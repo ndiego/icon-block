@@ -1,0 +1,82 @@
+{
+	"apiVersion": 2,
+	"name": "outermost/icon-block",
+	"version": "0.1.0",
+	"title": "Icon",
+	"category": "media",
+	"description": "Add an SVG icon.",
+	"keywords": [ "icon", "svg" ],
+	"textdomain": "icon-block",
+	"attributes": {
+		"icon": {
+			"type": "string",
+			"source": "html",
+			"selector": ".icon-container",
+			"default": ""
+		},
+		"itemsJustification": {
+			"type": "string"
+		},
+		"iconBackgroundColor": {
+			"type": "string"
+		},
+		"customIconBackgroundColor": {
+			"type": "string"
+		},
+		"iconBackgroundColorValue": {
+			"type": "string"
+		},
+		"iconColor": {
+			"type": "string"
+		},
+		"customIconColor": {
+			"type": "string"
+		},
+		"iconColorValue": {
+			"type": "string"
+		},
+		"gradient": {
+			"type": "string"
+		},
+		"customGradient": {
+			"type": "string"
+		},
+		"linkUrl": {
+			"type": "string"
+		},
+		"linkRel": {
+			"type": "string"
+		},
+		"linkTarget": {
+			"type": "string"
+		},
+		"rotate": {
+			"type": "number"
+		},
+		"flipHorizontal": {
+			"type": "boolean"
+		},
+		"flipHVertical": {
+			"type": "boolean"
+		},
+		"width": {
+			"type": "number"
+		},
+		"percentWidth": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"align": true,
+		"html": false,
+		"__experimentalBorder": {
+			"radius": true
+		},
+		"spacing": {
+			"padding": true
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

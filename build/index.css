@@ -1,0 +1,36 @@
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/**
+ * Editor only styles for the Icon Block.
+ */
+/* Register our variables. */
+/* Editor specific styles for the block itself. */
+.wp-block-outermost-icon-block {
+  display: flex;
+}
+.wp-block-outermost-icon-block div {
+  line-height: 0;
+  display: inline-block;
+}
+
+/* Custom styles for the block's toolbar controls. */
+.block-editor-block-toolbar .outermost-icon-block__rotate-button-90 svg {
+  transform: rotate(90deg);
+}
+.block-editor-block-toolbar .outermost-icon-block__rotate-button-180 svg {
+  transform: rotate(180deg);
+}
+.block-editor-block-toolbar .outermost-icon-block__rotate-button-270 svg {
+  transform: rotate(270deg);
+}
+
+/* Custom styles for the block's inspector controls. */
+.block-editor-block-inspector .outermost-icon-block__icon-settings .components-range-control {
+  margin-bottom: 12px;
+}
+.block-editor-block-inspector .outermost-icon-block__icon-settings .components-button-group {
+  margin-bottom: 12px;
+}
+
+/*# sourceMappingURL=index.css.map*/

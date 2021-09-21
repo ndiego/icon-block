@@ -1,0 +1,51 @@
+/**
+ * Editor only styles for the Icon Block.
+ */
+
+/* Register our variables. */
+$r90: rotate(90deg);
+$r180: rotate(180deg);
+$r270: rotate(270deg);
+
+/* Editor specific styles for the block itself. */
+.wp-block-outermost-icon-block {
+	display: flex;
+
+	div {
+		line-height: 0;
+		display: inline-block;
+	}
+}
+
+/* Custom styles for the block's toolbar controls. */
+.block-editor-block-toolbar {
+	.outermost-icon-block__rotate-button-90 {
+		svg {
+			transform: $r90;
+		}
+	}
+
+	.outermost-icon-block__rotate-button-180 {
+		svg {
+			transform: $r180;
+		}
+	}
+
+	.outermost-icon-block__rotate-button-270 {
+		svg {
+			transform: $r270;
+		}
+	}
+}
+
+/* Custom styles for the block's inspector controls. */
+.block-editor-block-inspector {
+	.outermost-icon-block__icon-settings {
+		.components-range-control {
+			margin-bottom: 12px;
+		}
+		.components-button-group {
+			margin-bottom: 12px;
+		}
+	}
+}

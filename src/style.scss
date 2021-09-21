@@ -1,0 +1,137 @@
+/**
+ * Editor and frontend styles for the Icon Block.
+ */
+
+/* Register our variables. */
+$r90: rotate(90deg);
+$r180: rotate(180deg);
+$r270: rotate(270deg);
+$flipH: scaleX(-1);
+$flipV: scaleY(-1);
+$flipHV: scale(-1, -1);
+
+/* Icon Block styles. */
+.wp-block-outermost-icon-block {
+ 	line-height: 0;
+	display: flex;
+
+	&.has-icon-color,
+	.has-icon-color {
+		svg {
+			color: currentColor;
+			fill: currentColor;
+		}
+	}
+
+	a,
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	/* There is likely a more efficient way to handle the rotation/flipping */
+	&.rotate-90,
+	.rotate-90 {
+		svg {
+			transform: $r90;
+		}
+	}
+
+	&.rotate-180,
+	.rotate-180 {
+		svg {
+			transform: $r180;
+		}
+	}
+
+	&.rotate-270,
+	.rotate-270 {
+		svg {
+			transform: $r270;
+		}
+	}
+
+	&.flip-horizontal,
+	.flip-horizontal {
+		svg {
+			transform: $flipH;
+		}
+	}
+
+	&.flip-vertical,
+	.flip-vertical {
+		svg {
+			transform: $flipV;
+		}
+	}
+
+	&.flip-vertical.flip-horizontal,
+	.flip-vertical.flip-horizontal {
+		svg {
+			transform: $flipHV;
+		}
+	}
+
+	&.rotate-90.flip-horizontal,
+	.rotate-90.flip-horizontal {
+		svg {
+			transform: $r90 $flipH;
+		}
+	}
+
+	&.rotate-90.flip-vertical,
+	.rotate-90.flip-vertical {
+		svg {
+			transform: $r90 $flipV;
+		}
+	}
+
+	&.rotate-90.flip-horizontal.flip-vertical,
+	.rotate-90.flip-horizontal.flip-vertical {
+		svg {
+			transform: $r90 $flipHV;
+		}
+	}
+
+	&.rotate-180.flip-horizontal,
+	.rotate-180.flip-horizontal {
+		svg {
+			transform: $r180 $flipH;
+		}
+	}
+
+	&.rotate-180.flip-vertical,
+	.rotate-180.flip-vertical {
+		svg {
+			transform: $r180 $flipV;
+		}
+	}
+
+	&.rotate-180.flip-horizontal.flip-vertical,
+	.rotate-180.flip-horizontal.flip-vertical {
+		svg {
+			transform: $r180 $flipHV;
+		}
+	}
+
+	&.rotate-270.flip-horizontal,
+	.rotate-270.flip-horizontal {
+		svg {
+			transform: $r270 $flipH;
+		}
+	}
+
+	&.rotate-270.flip-vertical,
+	.rotate-270.flip-vertical {
+		svg {
+			transform: $r270 $flipV;
+		}
+	}
+
+	&.rotate-270.flip-horizontal.flip-vertical,
+	.rotate-270.flip-horizontal.flip-vertical {
+		svg {
+			transform: $r270 $flipHV;
+		}
+	}
+ }

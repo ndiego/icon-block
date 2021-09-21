@@ -1,0 +1,32 @@
+{
+	"name": "icon-block",
+	"version": "0.1.0",
+	"description": "A simple little block that allows you add an SVG icon or graphic to your website.",
+	"author": "Nick Diego",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:js:src": "wp-scripts lint-js ./src",
+		"start": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^7.0.2",
+		"@wordpress/blocks": "^11.1.0",
+		"@wordpress/components": "^17.0.0",
+		"@wordpress/element": "^4.0.1",
+		"@wordpress/i18n": "^4.2.2",
+		"@wordpress/icons": "^5.0.2",
+		"@wordpress/keycodes": "^3.2.2",
+		"classnames": "^2.3.1",
+		"html-react-parser": "^1.3.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^18.0.1",
+		"lodash": "^4.17.21"
+	}
+}
