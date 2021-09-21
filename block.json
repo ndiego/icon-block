@@ -4,7 +4,7 @@
 	"version": "0.1.0",
 	"title": "Icon",
 	"category": "media",
-	"description": "Add an SVG icon.",
+	"description": "Add an SVG icon or graphic.",
 	"keywords": [ "icon", "svg" ],
 	"textdomain": "icon-block",
 	"attributes": {
