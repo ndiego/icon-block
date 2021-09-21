@@ -39,7 +39,7 @@ A simple little block that allows you add an SVG icon or graphic to the Block Ed
 
 = Wait, where are all the icons? =
 
-Currently, the Icon Block does not include its own library of icons for users to choose from. If that's what you are looking for, my apologies. The there are many other icon blocks out there that do have this functionality.
+Currently, the Icon Block does not include its own library of icons for users to choose from. If that's what you are looking for, my apologies. The there are many other icon blocks out there that have this functionality.
 
 Instead, this plugin allows you to render **any** SVG-based icon by simply copy/pasting the code into the icon textarea! See the screenshots for reference. This give you complete flexibility and allows you to use practically any icon you want. A great source for free SVG icons is Google's Material Icons project.
 
