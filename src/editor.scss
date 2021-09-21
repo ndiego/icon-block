@@ -47,5 +47,13 @@ $r270: rotate(270deg);
 		.components-button-group {
 			margin-bottom: 12px;
 		}
+		.components-notice {
+			margin: 0 0 24px 0;
+
+			// Needed to fix color error in Notice component
+			&.is-error {
+				background-color: #f8ebea;
+			}
+		}
 	}
 }

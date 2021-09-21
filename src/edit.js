@@ -3,6 +3,7 @@
  */
 import classnames from 'classnames';
 import parse from 'html-react-parser';
+import { isEmpty } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -12,6 +13,7 @@ import {
 	Button,
 	ButtonGroup,
 	Icon,
+	Notice,
 	PanelBody,
 	Popover,
 	RangeControl,
@@ -109,22 +111,32 @@ export function Edit( props ) {
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
+	let isSVG = true;
 	let customIcon = defaultIcon;
 
 	if ( icon ) {
 		customIcon = parse( icon, {
 			trim: true,
 			replace: ( domNode ) => {
-				// Very basic SVG sanitization, needs more refinement.
-				if ( ! domNode.parent && domNode.name !== 'svg' ) {
+				// TODO: Very basic SVG sanitization, needs more refinement.
+				if (
+					( ! domNode.parent && domNode.name !== 'svg' ) ||
+					! domNode.name
+				) {
 					return defaultIcon;
 				}
 			},
 		} );
+
+		if ( isEmpty( customIcon ) ) {
+			customIcon = defaultIcon;
+		}
+
+		isSVG = customIcon === defaultIcon ? false : true;
 	}
 
 	function updateIcon( newIcon ) {
-		// Add sanitization in the future.
+		// TODO: Add sanitization in the future.
 		setAttributes( { icon: newIcon } );
 	}
 
@@ -309,9 +321,17 @@ export function Edit( props ) {
 					label={ __( 'Icon', 'icon-block' ) }
 					value={ icon }
 					onChange={ updateIcon }
-					help={ __( 'Paste SVG icon markup.', 'icon-block' ) }
+					help={ __( 'Paste an SVG icon or graphic.', 'icon-block' ) }
 					rows={ 6 }
 				/>
+				{ ! isSVG && (
+					<Notice status="error" isDismissible={ false }>
+						{ __(
+							'The icon does not appear to be in an SVG format.',
+							'icon-block'
+						) }
+					</Notice>
+				) }
 				<RangeControl
 					label={ __( 'Icon width', 'icon-block' ) }
 					onChange={ ( value ) => setAttributes( { width: value } ) }
