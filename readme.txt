@@ -1,9 +1,9 @@
-=== Icon Block ===
+=== The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
-Requires at least: 5.8.0
-Tested up to:      5.8.0
-Stable tag:        0.1.0
+Requires at least: 5.8
+Tested up to:      5.8
+Stable tag:        0.1.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,5 +62,12 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 == Changelog ==
 
-= 0.1.0 =
+= 0.1.1 - 2021-09-25 =
+
+**Fixed**
+
+* Fixed SVG sanitization for non-standard SVGs.
+
+= 0.1.0 - 2021-09-25 =
+
 * Initial release 🎉
