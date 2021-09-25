@@ -378,7 +378,14 @@ export function Edit( props ) {
 							label: __( 'Background color', 'icon-block' ),
 						},
 					] }
-				/>
+				>
+					<p className="outermost-icon-block__icon-settings-help">
+					 	{ __(
+							'Any color/fill values in the SVG icon itself will take precedent over custom colors.',
+							'icon-block'
+						) }
+					</p>
+				</PanelColorGradientSettings>
 				<ContrastChecker
 					{ ...{
 						textColor: iconColorValue,
