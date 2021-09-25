@@ -85,17 +85,23 @@ export default function Save( props ) {
 	let customIcon = defaultIcon;
 
 	if ( icon ) {
-		customIcon = parse( icon, {
+		let newIcon = icon.trim();
+
+		customIcon = parse( newIcon, {
 			trim: true,
 			replace: ( domNode ) => {
 				// TODO: Very basic SVG sanitization, needs more refinement.
-				if ( ! domNode.parent && domNode.name !== 'svg' ) {
-					return defaultIcon;
+				if (
+					domNode.type !== 'tag' ||
+					( ! domNode.parent && domNode.name !== 'svg' ) ||
+					! domNode.name
+				) {
+					return <></>;
 				}
 			},
 		} );
 
-		if ( isEmpty( customIcon ) ) {
+		if ( isEmpty( customIcon?.props ) ) {
 			customIcon = defaultIcon;
 		}
 	}

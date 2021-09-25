@@ -115,20 +115,23 @@ export function Edit( props ) {
 	let customIcon = defaultIcon;
 
 	if ( icon ) {
-		customIcon = parse( icon, {
+		let newIcon = icon.trim();
+
+		customIcon = parse( newIcon, {
 			trim: true,
 			replace: ( domNode ) => {
 				// TODO: Very basic SVG sanitization, needs more refinement.
 				if (
+					domNode.type !== 'tag' ||
 					( ! domNode.parent && domNode.name !== 'svg' ) ||
 					! domNode.name
 				) {
-					return defaultIcon;
+					return <></>;
 				}
 			},
 		} );
 
-		if ( isEmpty( customIcon ) ) {
+		if ( isEmpty( customIcon?.props ) ) {
 			customIcon = defaultIcon;
 		}
 
@@ -137,7 +140,7 @@ export function Edit( props ) {
 
 	function updateIcon( newIcon ) {
 		// TODO: Add sanitization in the future.
-		setAttributes( { icon: newIcon } );
+		setAttributes( { icon: newIcon.replace(/\s+/g, ' ') } );
 	}
 
 	function setRotate() {
@@ -327,7 +330,7 @@ export function Edit( props ) {
 				{ ! isSVG && (
 					<Notice status="error" isDismissible={ false }>
 						{ __(
-							'The icon does not appear to be in an SVG format.',
+							'The icon does not appear to be in an SVG format or contains non-SVG elements.',
 							'icon-block'
 						) }
 					</Notice>
