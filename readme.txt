@@ -13,17 +13,19 @@ A simple little block that allows you add an SVG icon or graphic to your website
 
 A simple little block that allows you add an SVG icon or graphic to the Block Editor (Gutenberg).
 
+Note that the Icon Block does not include its own icon library (yet). Instead, this plugin allows you to render **any** SVG-based icon by simply copy/pasting the SVG code into the icon textarea! See the screenshots for reference.
+
 === Key Features ===
 
-* Use your own SVG icon or graphic
-* Includes some handy controls (link, rotate, alignment, colors, etc.)
-* No block library required
+* Use any SVG icon or graphic
+* Includes some handy icon controls (link, rotate, alignment, colors, etc.)
+* No block library required 🎉
 * Built almost entirely with native WordPress components
 * Will get additional functionality as its added to WordPress core (margin, borders, responsive controls etc.)
 
 === Stay Connected ===
 
-* [Follow on Twitter](https://twitter.com/nickmdiego)
+* [Follow on Twitter](https://twitter.com/theiconblock)
 * [View on GitHub](https://github.com/ndiego/icon-block)
 
 == Installation ==
@@ -41,7 +43,7 @@ A simple little block that allows you add an SVG icon or graphic to the Block Ed
 
 Currently, the Icon Block does not include its own library of icons for users to choose from. If that's what you are looking for, my apologies. The there are many other icon blocks out there that have this functionality.
 
-Instead, this plugin allows you to render **any** SVG-based icon by simply copy/pasting the code into the icon textarea! See the screenshots for reference. This give you complete flexibility and allows you to use practically any icon you want. A great source for free SVG icons is Google's Material Icons project.
+Instead, this plugin allows you to render **any** SVG-based icon by simply copy/pasting the code into the icon textarea! See the screenshots for reference. This gives you complete flexibility and allows you to use practically any icon you want. A great source for free SVG icons is Google's Material Icons project, Font Awesome, and Iconic, just to name a few.
 
 = Why is my icon not changing color? =
 
@@ -53,11 +55,10 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Create your own icons by simply copy/pasting the SVG code into the block. Then customize the icon to suit your needs.
+2. The Icon Block comes with numerous icon controls such as color, rotation, alignment, padding, and border radius.
+3. Whether you need a big icon, or a small one, the Icon Block adapts to your layout. Give it a try with the Row block in Gutenberg!
+4. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
 
