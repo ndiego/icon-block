@@ -4,7 +4,7 @@
  * Description:       A simple little block that allows you add an SVG icon or graphic to your website.
  * Requires at least: 5.8
  * Requires PHP:      7.0
- * Version:           0.1.1
+ * Version:           0.1.2
  * Author:            Nick Diego
  * Author URI:        https://www.nickdiego.com
  * License:           GPL-2.0-or-later
@@ -21,5 +21,8 @@
  */
 function create_outermost_icon_block_init() {
 	register_block_type( __DIR__ );
+
+	// Load available translations.
+	wp_set_script_translations( 'outermost-icon-block-editor-script-js', 'icon-block' );
 }
 add_action( 'init', 'create_outermost_icon_block_init' );

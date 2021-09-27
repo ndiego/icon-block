@@ -29,6 +29,11 @@ $flipHV: scale(-1, -1);
 		height: 100%;
 	}
 
+    /* Added for a11y. In-block hover/focus controls will be added in future releases. */
+    a:hover {
+        transform: scale(1.1);
+    }
+
 	/* There is likely a more efficient way to handle the rotation/flipping */
 	&.rotate-90,
 	.rotate-90 {

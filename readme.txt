@@ -3,7 +3,7 @@ Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
 Tested up to:      5.8
-Stable tag:        0.1.1
+Stable tag:        0.1.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,17 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 4. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 0.1.2 - 2021-09-27 =
+
+**Added**
+
+* Added scale transform on the frontend when an icon is linked to improve a11y. This matches the hover styling in the core WordPress Social Icons block. Future improvements are planned, including dedicated hover/focus settings within the block itself.
+
+**Fixed**
+
+* Fixed translation file.
+* Fixed version in block.json so block can be added to the Block Directory.
 
 = 0.1.1 - 2021-09-25 =
 
