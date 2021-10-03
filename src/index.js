@@ -9,7 +9,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import './style.scss';
 import Edit from './edit';
 import Save from './save';
-import { bolt as icon } from './icons';
+import { bolt as icon } from './icon';
 
 /**
  * Register the Icon Block.

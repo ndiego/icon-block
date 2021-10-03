@@ -17,6 +17,7 @@ import {
 	PanelBody,
 	Popover,
 	RangeControl,
+	RawHTML,
 	TextareaControl,
 	ToolbarButton,
 	ToolbarGroup,
@@ -46,7 +47,10 @@ import {
  * Internal dependencies
  */
 import './editor.scss';
-import { bolt as defaultIcon } from './icons';
+import icons from './icons';
+import { bolt as defaultIcon } from './icon';
+import InserterModal from './inserter';
+import IconPlaceholder from './placeholder';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
@@ -96,6 +100,7 @@ export function Edit( props ) {
 	} = props;
 	const {
 		icon,
+		iconName,
 		style,
 		iconBackgroundColorValue,
 		iconColorValue,
@@ -111,10 +116,15 @@ export function Edit( props ) {
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
+	const [ isInserterOpen, setInserterOpen ] = useState( false );
+	const [ isQuickInserterOpen, setQuickInserterOpen ] = useState( false );
+
+	const namedIcon = icons.filter( ( icon ) => icon.name === iconName );
+
 	let isSVG = true;
 	let customIcon = defaultIcon;
 
-	if ( icon ) {
+	if ( icon && isEmpty( namedIcon ) ) {
 		let newIcon = icon.trim();
 
 		customIcon = parse( newIcon, {
@@ -138,8 +148,9 @@ export function Edit( props ) {
 		isSVG = customIcon === defaultIcon ? false : true;
 	}
 
-	function updateIcon( newIcon ) {
+	function updateCustomIcon( newIcon ) {
 		// TODO: Add sanitization in the future.
+		setAttributes( { iconName: null } );
 		setAttributes( { icon: newIcon.replace(/\s+/g, ' ') } );
 	}
 
@@ -230,25 +241,14 @@ export function Edit( props ) {
 			</BlockControls>
 			<BlockControls>
 				<ToolbarGroup>
-					{ ! isURLSet && (
-						<ToolbarButton
-							name="link"
-							icon={ link }
-							title={ __( 'Link', 'icon-block' ) }
-							shortcut={ displayShortcut.primary( 'k' ) }
-							onClick={ startEditing }
-						/>
-					) }
-					{ isURLSet && (
-						<ToolbarButton
-							name="link"
-							icon={ linkOff }
-							title={ __( 'Unlink', 'icon-block' ) }
-							shortcut={ displayShortcut.primaryShift( 'k' ) }
-							onClick={ unlink }
-							isActive={ true }
-						/>
-					) }
+					<ToolbarButton
+						name="link"
+						icon={ link }
+						title={ __( 'Link', 'icon-block' ) }
+						shortcut={ displayShortcut.primary( 'k' ) }
+						onClick={ startEditing }
+						isActive={ isURLSet }
+					/>
 				</ToolbarGroup>
 				<ToolbarGroup>
 					<ToolbarButton
@@ -280,7 +280,7 @@ export function Edit( props ) {
 					/>
 				</ToolbarGroup>
 			</BlockControls>
-			{ isSelected && ( isEditingURL || isURLSet ) && (
+			{ isEditingURL && (
 				<Popover
 					position="bottom center"
 					onClose={ () => {
@@ -307,7 +307,6 @@ export function Edit( props ) {
 							unlink();
 							iconRef.current?.focus();
 						} }
-						forceIsEditingLink={ isEditingURL }
 					/>
 				</Popover>
 			) }
@@ -320,17 +319,35 @@ export function Edit( props ) {
 				className="outermost-icon-block__icon-settings"
 				title={ __( 'Icon settings', 'icon-block' ) }
 			>
+				<p className="outermost-icon-block__icon-settings-help">
+					{ __(
+						'Choose an icon from the library or insert a custom SVG below.',
+						'icon-block'
+					) }
+				</p>
+				<Button
+					className="outermost-icon-block__icon-settings-button"
+					variant="secondary"
+					onClick={ () => setInserterOpen( true ) }
+				>
+					{ __( 'Icon library', 'icon-block' ) }
+				</Button>
+				<InserterModal
+					isInserterOpen={ isInserterOpen }
+					setInserterOpen={ setInserterOpen }
+					setAttributes={ setAttributes }
+				/>
 				<TextareaControl
-					label={ __( 'Icon', 'icon-block' ) }
-					value={ icon }
-					onChange={ updateIcon }
-					help={ __( 'Paste an SVG icon or graphic.', 'icon-block' ) }
+					label={ __( 'Custom icon', 'icon-block' ) }
+					value={ ! iconName ? icon : '' }
+					onChange={ updateCustomIcon }
+					help={ __( 'Custom icons must be in an SVG format.', 'icon-block' ) }
 					rows={ 6 }
 				/>
 				{ ! isSVG && (
 					<Notice status="error" isDismissible={ false }>
 						{ __(
-							'The icon does not appear to be in an SVG format or contains non-SVG elements.',
+							'The custom icon does not appear to be in an SVG format or contains non-SVG elements.',
 							'icon-block'
 						) }
 					</Notice>
@@ -382,12 +399,14 @@ export function Edit( props ) {
 						},
 					] }
 				>
+				{ ! iconName && (
 					<p className="outermost-icon-block__icon-settings-help">
 					 	{ __(
 							'Any color/fill values in the SVG icon itself will take precedent over custom colors.',
 							'icon-block'
 						) }
 					</p>
+				) }
 				</PanelColorGradientSettings>
 				<ContrastChecker
 					{ ...{
@@ -414,9 +433,11 @@ export function Edit( props ) {
 		width: iconWidth,
 	};
 
+	const printedIcon = ! isEmpty( namedIcon ) ? namedIcon[0].icon : customIcon;
+
 	const blockMarkup = (
 		<div ref={ iconRef } className={ iconClasses } style={ iconStyles }>
-			<Icon icon={ customIcon } />
+			{ <Icon icon={ printedIcon } /> }
 		</div>
 	);
 
@@ -446,7 +467,17 @@ export function Edit( props ) {
 				// This is a bit of a hack, so the styles are not printed.
 				style={ {} }
 			>
-				{ blockMarkup }
+				{ [
+					! icon && ! iconName && (
+						<IconPlaceholder
+							setInserterOpen={ setInserterOpen }
+							isQuickInserterOpen={ isQuickInserterOpen }
+							setQuickInserterOpen={ setQuickInserterOpen }
+							setAttributes={ setAttributes }
+						/>
+					),
+					( icon || iconName ) && blockMarkup,
+				] }
 			</div>
 		</>
 	);

@@ -13,7 +13,8 @@ import { useBlockProps } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import { bolt as defaultIcon } from './icons';
+import icons from './icons';
+import { bolt as defaultIcon } from './icon';
 
 /**
  * The save function for the Icon Block.
@@ -24,6 +25,7 @@ import { bolt as defaultIcon } from './icons';
 export default function Save( props ) {
 	const {
 		icon,
+		iconName,
 		style,
 		iconBackgroundColor,
 		iconBackgroundColorValue,
@@ -82,9 +84,10 @@ export default function Save( props ) {
 		width: iconWidth,
 	};
 
+	const namedIcon = icons.filter( ( icon ) => icon.name === iconName );
 	let customIcon = defaultIcon;
 
-	if ( icon ) {
+	if ( icon && isEmpty( namedIcon ) ) {
 		let newIcon = icon.trim();
 
 		customIcon = parse( newIcon, {
@@ -106,8 +109,10 @@ export default function Save( props ) {
 		}
 	}
 
+	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[0].icon : customIcon;
+
 	if ( linkUrl ) {
-		customIcon = (
+		printedIcon = (
 			<a
 				className={ classes }
 				href={ linkUrl }
@@ -115,13 +120,13 @@ export default function Save( props ) {
 				rel={ rel }
 				style={ styles }
 			>
-				{ customIcon }
+				{ printedIcon }
 			</a>
 		);
 	} else {
-		customIcon = (
+		printedIcon = (
 			<div className={ classes } style={ styles }>
-				{ customIcon }
+				{ printedIcon }
 			</div>
 		);
 	}
@@ -134,7 +139,7 @@ export default function Save( props ) {
 			// This is a bit of a hack, so the styles are not printed.
 			style={ {} }
 		>
-			{ customIcon }
+			{ printedIcon }
 		</div>
 	);
 }
