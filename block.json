@@ -1,7 +1,7 @@
 {
 	"apiVersion": 2,
 	"name": "outermost/icon-block",
-	"title": "Icon",
+	"title": "The Icon Block",
 	"category": "media",
 	"description": "Add an SVG icon or graphic.",
 	"keywords": [ "icon", "svg" ],
@@ -12,6 +12,9 @@
 			"source": "html",
 			"selector": ".icon-container",
 			"default": ""
+		},
+		"iconName": {
+			"type": "string"
 		},
 		"itemsJustification": {
 			"type": "string"

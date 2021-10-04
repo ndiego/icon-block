@@ -48,7 +48,7 @@ import {
  */
 import './editor.scss';
 import icons from './icons';
-import { bolt as defaultIcon } from './icon';
+import { bolt as defaultIcon } from './icons/bolt';
 import InserterModal from './inserter';
 import IconPlaceholder from './placeholder';
 
@@ -118,6 +118,7 @@ export function Edit( props ) {
 
 	const [ isInserterOpen, setInserterOpen ] = useState( false );
 	const [ isQuickInserterOpen, setQuickInserterOpen ] = useState( false );
+	const [ isCustomInserterOpen, setCustomInserterOpen ] = useState( false );
 
 	const namedIcon = icons.filter( ( icon ) => icon.name === iconName );
 
@@ -239,47 +240,49 @@ export function Edit( props ) {
 					}
 				/>
 			</BlockControls>
-			<BlockControls>
-				<ToolbarGroup>
-					<ToolbarButton
-						name="link"
-						icon={ link }
-						title={ __( 'Link', 'icon-block' ) }
-						shortcut={ displayShortcut.primary( 'k' ) }
-						onClick={ startEditing }
-						isActive={ isURLSet }
-					/>
-				</ToolbarGroup>
-				<ToolbarGroup>
-					<ToolbarButton
-						className={ `outermost-icon-block__rotate-button-${ rotate }` }
-						icon={ rotateRight }
-						label={ __( 'Rotate', 'icon-block' ) }
-						onClick={ setRotate }
-						isPressed={ rotate }
-					/>
-					<ToolbarButton
-						icon={ flipH }
-						label={ __( 'Flip Horizontal', 'icon-block' ) }
-						onClick={ () =>
-							setAttributes( {
-								flipHorizontal: ! flipHorizontal,
-							} )
-						}
-						isPressed={ flipHorizontal }
-					/>
-					<ToolbarButton
-						icon={ flipV }
-						label={ __( 'Flip Vertical', 'icon-block' ) }
-						onClick={ () =>
-							setAttributes( {
-								flipVertical: ! flipVertical,
-							} )
-						}
-						isPressed={ flipVertical }
-					/>
-				</ToolbarGroup>
-			</BlockControls>
+			{ ( icon || iconName ) && (
+				<BlockControls>
+					<ToolbarGroup>
+						<ToolbarButton
+							name="link"
+							icon={ link }
+							title={ __( 'Link', 'icon-block' ) }
+							shortcut={ displayShortcut.primary( 'k' ) }
+							onClick={ startEditing }
+							isActive={ isURLSet }
+						/>
+					</ToolbarGroup>
+					<ToolbarGroup>
+						<ToolbarButton
+							className={ `outermost-icon-block__rotate-button-${ rotate }` }
+							icon={ rotateRight }
+							label={ __( 'Rotate', 'icon-block' ) }
+							onClick={ setRotate }
+							isPressed={ rotate }
+						/>
+						<ToolbarButton
+							icon={ flipH }
+							label={ __( 'Flip Horizontal', 'icon-block' ) }
+							onClick={ () =>
+								setAttributes( {
+									flipHorizontal: ! flipHorizontal,
+								} )
+							}
+							isPressed={ flipHorizontal }
+						/>
+						<ToolbarButton
+							icon={ flipV }
+							label={ __( 'Flip Vertical', 'icon-block' ) }
+							onClick={ () =>
+								setAttributes( {
+									flipVertical: ! flipVertical,
+								} )
+							}
+							isPressed={ flipVertical }
+						/>
+					</ToolbarGroup>
+				</BlockControls>
+			) }
 			{ isEditingURL && (
 				<Popover
 					position="bottom center"
@@ -332,11 +335,6 @@ export function Edit( props ) {
 				>
 					{ __( 'Icon library', 'icon-block' ) }
 				</Button>
-				<InserterModal
-					isInserterOpen={ isInserterOpen }
-					setInserterOpen={ setInserterOpen }
-					setAttributes={ setAttributes }
-				/>
 				<TextareaControl
 					label={ __( 'Custom icon', 'icon-block' ) }
 					value={ ! iconName ? icon : '' }
@@ -401,7 +399,7 @@ export function Edit( props ) {
 				>
 				{ ! iconName && (
 					<p className="outermost-icon-block__icon-settings-help">
-					 	{ __(
+						{ __(
 							'Any color/fill values in the SVG icon itself will take precedent over custom colors.',
 							'icon-block'
 						) }
@@ -473,12 +471,20 @@ export function Edit( props ) {
 							setInserterOpen={ setInserterOpen }
 							isQuickInserterOpen={ isQuickInserterOpen }
 							setQuickInserterOpen={ setQuickInserterOpen }
+							isCustomInserterOpen={ isCustomInserterOpen }
+							setCustomInserterOpen={ setCustomInserterOpen }
 							setAttributes={ setAttributes }
 						/>
 					),
 					( icon || iconName ) && blockMarkup,
 				] }
 			</div>
+			<InserterModal
+				isInserterOpen={ isInserterOpen }
+				setInserterOpen={ setInserterOpen }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+			/>
 		</>
 	);
 }

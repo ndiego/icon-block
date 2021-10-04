@@ -1,193 +1,246 @@
 /**
  * External dependencies
  */
+import classnames from 'classnames';
 import { isEmpty } from 'lodash';
 
 /**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, Modal, Popover, SearchControl } from '@wordpress/components';
+import { Button, MenuGroup, MenuItem, Modal, Popover, RangeControl, SearchControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-import { Icon } from '@wordpress/icons';
+import { Icon, blockDefault } from '@wordpress/icons';
 
 /**
  * Internal dependencies
  */
 import icons from './icons';
+import { bolt } from './icons/bolt';
 
 
 export default function InserterModal( props ) {
-    const { isInserterOpen, setInserterOpen, setAttributes } = props;
-    const [ searchInput, setSearchInput ] = useState( '' );
-    if( ! isInserterOpen ) {
-        return null;
-    }
+	const {
+		isInserterOpen,
+		setInserterOpen,
+		attributes,
+		setAttributes,
+	} = props;
+	const [ searchInput, setSearchInput ] = useState( '' );
+	const [ currentCategory, setCurrentCategory ] = useState( 'all' );
+	const [ iconSize, setIconSize ] = useState( 24 );
 
-    function updateIconName( name, icon ) {
-    	setAttributes( {
-            icon: '',
-            iconName: name
-        } );
-        setInserterOpen( false );
-    }
+	if( ! isInserterOpen ) {
+		return null;
+	}
 
-    console.log( searchInput );
+	let shownIcons = icons;
 
-    let shownIcons = icons;
+	// Filter by search input.
+	if ( searchInput ) {
+		shownIcons = icons.filter( ( icon ) => {
+			const input = searchInput.toLowerCase();
+			const iconName = icon.title.toLowerCase();
 
-    if ( searchInput ) {
-        shownIcons = icons.filter( ( icon ) => {
-            const input = searchInput.toLowerCase();
-            const iconName = icon.title.toLowerCase();
+			// First check if the name matches.
+			if ( iconName.includes( input ) ) {
+				return true;
+			}
 
-            // First check if the name matches.
-            if ( iconName.includes( input ) ) {
-                return true;
-            }
+			// Then check if any keywords match.
+			if ( icon?.keywords && ! isEmpty( icon?.keywords ) ) {
+				const keywordMatches = icon.keywords.filter(
+					( keyword ) => keyword.includes( input )
+				);
 
-            // Then check if any keywords match.
-            if ( icon?.keywords && ! isEmpty( icon?.keywords ) ) {
-                const keywordMatches = icon.keywords.filter(
-                    ( keyword ) => keyword.includes( input )
-                );
+				return ! isEmpty( keywordMatches );
+			}
 
-                return ! isEmpty( keywordMatches );
-            }
+			return false;
+		} );
+	}
 
-            return false;
-        } );
-    }
-    return (
-        <Modal
-            className="wp-block-outermost-icon-inserter__modal"
-            title={ __( 'Icon Library', 'icon-block' ) }
-            onRequestClose={ () => setInserterOpen( false ) }
-        >
-            <SearchControl
-                value={ searchInput }
-                onChange={ setSearchInput }
-            />
-            <div className="icons-list">
-                { shownIcons.map( ( icon ) => {
-                    return (
-                        <Button
-                            label={ __( 'Insert Icon', 'icon-block' ) }
-                            className="icons-list__item"
-                            onClick={ () => updateIconName( icon.name, icon.icon ) }
-                        >
-                            <span className="icons-list__item-icon">
-                                <Icon icon={ icon.icon }/>
-                            </span>
-                            <span className="icons-list__item-title">
-                                { icon.title }
-                            </span>
-                        </Button>
-                    )
-                } ) }
-            </div>
-        </Modal>
-    )
-}
+	// Filter by category if one select and we are not searching.
+	if ( currentCategory !== 'all' && ! searchInput ) {
+		shownIcons = icons.filter( ( icon ) => {
+			const iconCategories = icon?.categories ?? [];
 
-export function QuickInserterPopover( props ) {
-    const [ searchInput, setSearchInput ] = useState( '' );
-    const {
-        setInserterOpen,
-        isQuickInserterOpen,
-        setQuickInserterOpen,
-        setAttributes,
-    } = props;
+			// First check if the category matches.
+			if ( iconCategories.includes( currentCategory ) ) {
+				return true;
+			}
 
-    if ( ! isQuickInserterOpen ) {
-        return null;
-    }
+			return false;
+		} );
+	}
 
-    function updateIconName( name, icon ) {
-        setAttributes( {
-            icon: '',
-            iconName: name
-        } );
-        setInserterOpen( false );
-    }
+	let iconTypes = [];
 
-    let shownIcons = icons;
+	// Get all icon types.
+	icons.forEach( ( icon ) => {
+		const type = icon?.type;
 
-    if ( searchInput ) {
-        shownIcons = icons.filter( ( icon ) => {
-            const input = searchInput.toLowerCase();
-            const iconName = icon.title.toLowerCase();
+		if ( type && isEmpty( iconTypes ) ) {
+			iconTypes.push( type );
+		} else if ( type && ! isEmpty( iconTypes ) ) {
+			iconTypes = iconTypes.filter( ( i ) => i !== type ).concat( type );
+		}
 
-            // First check if the name matches.
-            if ( iconName.includes( input ) ) {
-                return true;
-            }
+		return iconTypes;
+	} );
 
-            // Then check if any keywords match.
-            if ( icon?.keywords && ! isEmpty( icon?.keywords ) ) {
-                const keywordMatches = icon.keywords.filter(
-                    ( keyword ) => keyword.includes( input )
-                );
+	const preparedTypes = [];
 
-                return ! isEmpty( keywordMatches );
-            }
+	// Add any found categories to each icon type.
+	iconTypes.forEach( ( type ) => {
+		const iconsOfType = icons.filter( ( i ) => i.type === type );
+		const categories = [ 'all' ];
 
-            return false;
-        } );
-    }
+		iconsOfType.forEach( ( iconOfType ) => {
+			const iconCategories = iconOfType?.categories;
 
-    shownIcons = shownIcons.slice(0,6);
+			if ( ! isEmpty( iconCategories ) ) {
+				iconCategories.forEach( ( category ) => {
+					if ( ! categories.includes( category ) ) {
+						categories.push( category );
+					}
+				} );
+			}
+		} );
 
-    return (
-        <Popover
-            className="wp-block-outermost-icon-inserter__popover"
-            onClose={ () => setQuickInserterOpen( false ) }
-        >
-            <div
-                className="wp-block-outermost-icon-inserter__quick-inserter"
-            >
-                <SearchControl
-                    className="block-editor-inserter__search"
-                    value={ searchInput }
-                    onChange={ setSearchInput }
-                />
-                <div
-                    className="wp-block-outermost-icon-inserter__quick-inserter-results"
-                >
-                    <div className="icons-list">
-                        { shownIcons.map( ( icon ) => {
-                            return (
-                                <Button
-                                    label={ __( 'Insert Icon', 'icon-block' ) }
-                                    className="icons-list__item"
-                                    onClick={ () => {
-                                        updateIconName( icon.name, icon.icon );
-                                        setQuickInserterOpen( false );
-                                        setSearchInput( '' );
-                                    } }
-                                >
-                                    <span className="icons-list__item-icon">
-                                        <Icon icon={ icon.icon }/>
-                                    </span>
-                                    <span className="icons-list__item-title">
-                                        { icon.title }
-                                    </span>
-                                </Button>
-                            )
-                        } ) }
-                    </div>
-                </div>
-                <Button
-                    className="wp-block-outermost-icon-inserter__quick-inserter-expand"
-                    onClick={ () => {
-                        setInserterOpen( true );
-                        setQuickInserterOpen( false );
-                        setSearchInput( '' );
-                    } }
-                >
-                    { __( 'Browse all', 'icon-block' ) }
-                </Button>
-            </div>
-        </Popover>
-    )
+		preparedTypes.push( { type, categories, count: iconsOfType.length } );
+	} );
+
+	function updateIconName( name, icon ) {
+		setAttributes( {
+			icon: '',
+			iconName: name
+		} );
+		setInserterOpen( false );
+	}
+
+	function onClickCategory( category ) {
+		setCurrentCategory( category );
+	}
+
+	function renderIconTypeCategories( type ) {
+		return (
+			<MenuGroup
+				label={ type.type }
+			>
+				{ type.categories.map( ( category ) => {
+					const isActive = currentCategory ? category === currentCategory : category === 'all';
+
+					const categoryIcons = icons.filter( ( icon ) => {
+						const iconCats = icon?.categories ?? [];
+						return icon.type === type.type && iconCats.includes( category );
+					} );
+
+					return (
+						<MenuItem
+							className={ classnames( {
+								'is-active': isActive,
+							} ) }
+							onClick={ () => onClickCategory( category ) }
+						>
+							{ category }
+							<span>{ category === 'all' ? type.count : categoryIcons.length }</span>
+						</MenuItem>
+					);
+				} ) }
+			</MenuGroup>
+		);
+	}
+
+	const searchResults = (
+		<div className="icons-list">
+			{ shownIcons.map( ( icon ) => {
+				return (
+					<Button
+						className={ classnames(
+							'icons-list__item',
+							{ 'is-active': icon.name === attributes?.iconName }
+						) }
+						onClick={ () => updateIconName( icon.name, icon.icon ) }
+					>
+						<span className="icons-list__item-icon">
+							<Icon icon={ icon.icon } size={ iconSize } />
+						</span>
+						<span className="icons-list__item-title">
+							{ icon?.title ?? icon.name }
+						</span>
+					</Button>
+				);
+			} ) }
+		</div>
+	);
+
+	const noResults = (
+		<div class="block-editor-inserter__no-results">
+			<Icon
+				icon={ blockDefault }
+				className="block-editor-inserter__no-results-icon"
+			/>
+			<p>{ __( 'No results found.', 'block-icon' ) }</p>
+		</div>
+	);
+
+	return (
+		<Modal
+			className="wp-block-outermost-icon-inserter__modal"
+			title={ __( 'Icon Library', 'icon-block' ) }
+			onRequestClose={ () => setInserterOpen( false ) }
+		>
+			<div
+				className={ classnames(
+					'icon-inserter__panel',
+					{ 'is-searching': searchInput }
+				) }
+			>
+				<div className="icon-inserter__panel-sidebar">
+					<SearchControl
+						value={ searchInput }
+						onChange={ setSearchInput }
+					/>
+					{ preparedTypes.map(
+						( type ) => renderIconTypeCategories( type )
+					) }
+				</div>
+				<div className="icon-inserter__panel-content">
+					<div className="icon-inserter__panel-content-header">
+						<div className="search-results">
+							{ searchInput && sprintf(
+								// translators: %1$s: Number of icons retruned from search, %2$s: the search input
+								__(
+									'%1$s search results for "%2$s"',
+									'icon-block'
+								),
+								 shownIcons.length,
+								 searchInput
+							) }
+						</div>
+						<div className="icon-controls">
+							<div className="icon-controls__size">
+								<span>{ __( 'Scale', 'icon-block' ) }</span>
+								<RangeControl
+									min={ 24 }
+									max={ 72 }
+									initialPosition={ 24 }
+									withInputField={ false }
+									showTooltip={ false }
+									onChange={
+										( value ) => setIconSize( value )
+									}
+								/>
+							</div>
+						</div>
+					</div>
+					{ [
+						isEmpty( shownIcons ) && noResults,
+						! isEmpty( shownIcons ) && searchResults,
+					] }
+				</div>
+			</div>
+		</Modal>
+	)
 }

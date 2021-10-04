@@ -14,7 +14,6 @@ import { useBlockProps } from '@wordpress/block-editor';
  * Internal dependencies
  */
 import icons from './icons';
-import { bolt as defaultIcon } from './icon';
 
 /**
  * The save function for the Icon Block.
@@ -42,6 +41,43 @@ export default function Save( props ) {
 		width,
 		percentWidth,
 	} = props.attributes;
+
+	// If there is no icon and iconName, don't save anything.
+	if ( ! icon && ! iconName ) {
+		return null;
+	}
+
+	const namedIcon = icons.filter( ( i ) => i.name === iconName );
+	let customIcon = '';
+
+	if ( icon && isEmpty( namedIcon ) ) {
+		let newIcon = icon.trim();
+
+		customIcon = parse( newIcon, {
+			trim: true,
+			replace: ( domNode ) => {
+				// TODO: Very basic SVG sanitization, needs more refinement.
+				if (
+					domNode.type !== 'tag' ||
+					( ! domNode.parent && domNode.name !== 'svg' ) ||
+					! domNode.name
+				) {
+					return <></>;
+				}
+			},
+		} );
+
+		if ( isEmpty( customIcon?.props ) ) {
+			customIcon = '';
+		}
+	}
+
+	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[0]?.icon : customIcon;
+
+	// If there is no valid SVG icon, don't save anything.
+	if ( ! printedIcon ) {
+		return null;
+	}
 
 	const classes = classnames( 'icon-container', {
 		'has-icon-color': iconColorValue,
@@ -83,33 +119,6 @@ export default function Save( props ) {
 		padding,
 		width: iconWidth,
 	};
-
-	const namedIcon = icons.filter( ( icon ) => icon.name === iconName );
-	let customIcon = defaultIcon;
-
-	if ( icon && isEmpty( namedIcon ) ) {
-		let newIcon = icon.trim();
-
-		customIcon = parse( newIcon, {
-			trim: true,
-			replace: ( domNode ) => {
-				// TODO: Very basic SVG sanitization, needs more refinement.
-				if (
-					domNode.type !== 'tag' ||
-					( ! domNode.parent && domNode.name !== 'svg' ) ||
-					! domNode.name
-				) {
-					return <></>;
-				}
-			},
-		} );
-
-		if ( isEmpty( customIcon?.props ) ) {
-			customIcon = defaultIcon;
-		}
-	}
-
-	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[0].icon : customIcon;
 
 	if ( linkUrl ) {
 		printedIcon = (

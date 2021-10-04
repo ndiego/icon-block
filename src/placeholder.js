@@ -10,49 +10,51 @@ import { Icon } from '@wordpress/icons';
  */
 import './editor.scss';
 import icons from './icons';
-import { bolt as defaultIcon } from './icon';
-import { QuickInserterPopover } from './inserter';
+import { bolt } from './icons/bolt';
+import { QuickInserterPopover } from './quick-inserter';
 
 export default function IconPlaceholder( props ) {
-    const {
-        setInserterOpen,
-        isQuickInserterOpen,
-        setQuickInserterOpen,
-        setAttributes
-    } = props;
+	const {
+		setInserterOpen,
+		isQuickInserterOpen,
+		setQuickInserterOpen,
+		isCustomInserterOpen,
+		setCustomInserterOpen,
+		setAttributes
+	} = props;
 
-    return (
-        <Placeholder className="wp-block-outermost-icon-placeholder">
-            <div className="wp-block-outermost-icon-placeholder__preview">
-                <Icon icon={ defaultIcon } />
-            </div>
-            <div className="wp-block-outermost-icon-placeholder__controls">
-                <div className="wp-block-outermost-icon-placeholder__actions">
-                    <div
-                        className="wp-block-outermost-icon-placeholder__actions__indicator"
-                    >
-                        <Icon icon={ defaultIcon } /> { __( 'Icon Block' ) }
-                    </div>
-                    <Button
-                        variant="primary"
-                        onClick={ () => setQuickInserterOpen( true ) }
-                    >
-                        { __( 'Browse icon Library', 'icon-block' ) }
-                    </Button>
-                    <QuickInserterPopover
-                        setInserterOpen={ setInserterOpen }
-                        isQuickInserterOpen={ isQuickInserterOpen }
-                        setQuickInserterOpen={ setQuickInserterOpen }
-                        setAttributes={ setAttributes }
-                    />
-                    <Button
-                        variant="secondary"
-                        onClick={ console.log( 'custom icon' ) }
-                    >
-                        { __( 'Add custom icon', 'icon-block' ) }
-                    </Button>
-                </div>
-            </div>
-        </Placeholder>
-    );
+	return (
+		<Placeholder className="wp-block-outermost-icon-placeholder">
+			<div className="wp-block-outermost-icon-placeholder__preview">
+				<Icon icon={ bolt } />
+			</div>
+			<div className="wp-block-outermost-icon-placeholder__controls">
+				<div className="wp-block-outermost-icon-placeholder__actions">
+					<div
+						className="wp-block-outermost-icon-placeholder__actions__indicator"
+					>
+						<Icon icon={ bolt } /> { __( 'Icon Block' ) }
+					</div>
+					<Button
+						variant="primary"
+						onClick={ () => setQuickInserterOpen( true ) }
+					>
+						{ __( 'Browse icon Library', 'icon-block' ) }
+					</Button>
+					<QuickInserterPopover
+						setInserterOpen={ setInserterOpen }
+						isQuickInserterOpen={ isQuickInserterOpen }
+						setQuickInserterOpen={ setQuickInserterOpen }
+						setAttributes={ setAttributes }
+					/>
+					<Button
+						variant="secondary"
+						onClick={ () => setCustomInserterOpen( true ) }
+					>
+						{ __( 'Add custom icon', 'icon-block' ) }
+					</Button>
+				</div>
+			</div>
+		</Placeholder>
+	);
 }

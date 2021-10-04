@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies
  */
+import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 
 /**
@@ -9,12 +10,13 @@ import { registerBlockType } from '@wordpress/blocks';
 import './style.scss';
 import Edit from './edit';
 import Save from './save';
-import { bolt as icon } from './icon';
+import { bolt as icon } from './icons/bolt';
 
 /**
  * Register the Icon Block.
  */
 registerBlockType( 'outermost/icon-block', {
+	title: __( 'Icon', 'icon-block' ),
 	icon,
 	example: {
 		attributes: {

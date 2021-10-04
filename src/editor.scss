@@ -108,49 +108,157 @@ $r270: rotate(270deg);
 	}
 }
 
-.wp-block-outermost-icon-inserter__popover {
+.wp-block-outermost-icon-inserter__quick-inserter {
 
-	.components-popover__content {
-		border: none;
+	.icons-list {
+		margin: -8px;
+
+		.icons-list__item {
+			width: 33.33%;
+		}
+	}
+}
+
+.wp-block-outermost-icon-inserter__modal {
+	height: 70%;
+	width: 100%;
+
+	@media ( min-width: 1100px ) {
+		width: 80%;
 	}
 
-	.wp-block-outermost-icon-inserter__quick-inserter {
-		max-width: 100%;
+	.components-modal__content {
+		overflow: hidden;
+		padding: 32px 24px 24px 32px;
+
+		&:before {
+			margin: 0;
+		}
+	}
+
+	.icon-inserter__panel {
+		display: flex;
+		gap: 48px;
+		height: 100%
+	}
+
+	.icon-inserter__panel-sidebar {
+		min-width: 200px;
+		width: 200px;
+
+		.components-search-control {
+			margin-bottom: 32px;
+		}
+
+		.components-menu-group__label {
+			padding: 0;
+		}
+
+		.components-menu-item__button {
+			&.is-active {
+				background: #f0f0f0;
+			    box-shadow: none;
+			    font-weight: 500;
+			}
+		}
+
+		.components-menu-item__item {
+			text-transform: capitalize;
+			display: inline-flex;
+			justify-content: space-between;
+			width: 100%;
+
+			&>span {
+				color: #757575;
+			}
+		}
+	}
+
+	.icon-inserter__panel-content {
 		width: 100%;
+		overflow: scroll;
+		padding-right: 8px;
 
-		@media ( min-width: 782px ) {
-			width: 350px;
-		}
+		.icon-inserter__panel-content-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			min-height: 48px;
+			margin-bottom: 6px;
 
-		&>* {
-			border-left: 1px solid #ccc;
-    		border-right: 1px solid #ccc;
-		}
+			.search-results {
+				color: #757575;
+			}
 
-		&>:first-child {
-			border-top: 1px solid #ccc;
-		}
+			.icon-controls__size {
+				display: flex;
+				align-items: center;
+				margin-right: 6px;
 
-		.wp-block-outermost-icon-inserter__quick-inserter-results {
-			padding: 16px;
+				&>span {
+					margin-bottom: 6px;
+					margin-right: 16px;
+				}
 
-			.icons-list {
-				margin: -8px;
+				.components-range-control {
+					width: 72px;
 
-				.icons-list__item {
-					width: 33.33%;
+					.components-base-control__field {
+						margin-bottom: 0;
+					}
 				}
 			}
 		}
 
-		.wp-block-outermost-icon-inserter__quick-inserter-expand {
-			border: 1px solid #1e1e1e;
-			background: #1e1e1e;
-		    border-radius: 0;
-		    color: #fff;
-		    display: block;
-		    height: 44px;
-		    width: 100%;
+		.icons-list {
+			overflow: hidden;
+		    padding: 4px;
+			margin: 0;
+		    display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+
+			@media ( min-width: 900px ) {
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			}
+
+			@media ( min-width: 1100px ) {
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			}
+
+			@media ( min-width: 1450px ) {
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			}
+
+			@media ( min-width: 1600px ) {
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			}
+
+			.icons-list__item {
+				&.is-active {
+					background-color: var(--wp-admin-theme-color);
+					color: rgb(255 255 255 / 80%);
+
+					&:hover {
+						color: #fff !important;
+					}
+
+					svg {
+						fill: #fff;
+					}
+				}
+			}
+		}
+
+		.block-editor-inserter__no-results {
+			height: calc(100% - 56px);
+		    margin-top: 0;
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+
+			svg {
+				margin: 0 auto;
+			}
 		}
 	}
 }
@@ -232,11 +340,9 @@ $r270: rotate(270deg);
 		font-size: 13px;
 		height: auto;
 		justify-content: center;
-		padding: 8px;
+    	padding: 12px;
 		position: relative;
 		transition: all .05s ease-in-out;
-		width: 100%;
-		max-width: 110px;
 		word-break: break-word;
 
 		&:hover {
@@ -254,6 +360,9 @@ $r270: rotate(270deg);
 		.icons-list__item-title {
 			font-size: 12px;
 			padding: 4px 2px 8px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 	}
 }
