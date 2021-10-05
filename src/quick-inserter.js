@@ -135,10 +135,7 @@ export function QuickInserterPopover( props ) {
                     value={ searchInput }
                     onChange={ setSearchInput }
                 />
-                <div
-                    className="block-editor-inserter__quick-inserter-results"
-                    style={ { overflow: 'hidden' } }
-                >
+                <div className="block-editor-inserter__quick-inserter-results">
                     { [
                         isEmpty( shownIcons ) && noResults,
                         ! isEmpty( shownIcons ) && searchResults,

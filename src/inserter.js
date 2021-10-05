@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { Button, MenuGroup, MenuItem, Modal, Popover, RangeControl, SearchControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { Icon, blockDefault } from '@wordpress/icons';
@@ -211,12 +211,14 @@ export default function InserterModal( props ) {
 						<div className="search-results">
 							{ searchInput && sprintf(
 								// translators: %1$s: Number of icons retruned from search, %2$s: the search input
-								__(
+								_n(
+									'%1$s search result for "%2$s"',
 									'%1$s search results for "%2$s"',
+									shownPatterns.length,
 									'icon-block'
 								),
-								 shownIcons.length,
-								 searchInput
+								shownPatterns.length,
+								searchInput
 							) }
 						</div>
 						<div className="icon-controls">
