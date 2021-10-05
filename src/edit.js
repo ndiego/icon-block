@@ -12,7 +12,10 @@ import { __ } from '@wordpress/i18n';
 import {
 	Button,
 	ButtonGroup,
+	Dropdown,
 	Icon,
+	MenuItem,
+	NavigableMenu,
 	Notice,
 	PanelBody,
 	Popover,
@@ -50,6 +53,7 @@ import './editor.scss';
 import icons from './icons';
 import { bolt as defaultIcon } from './icons/bolt';
 import InserterModal from './inserter';
+import CustomInserterModal from './custom-inserter';
 import IconPlaceholder from './placeholder';
 
 const NEW_TAB_REL = 'noreferrer noopener';
@@ -281,6 +285,42 @@ export function Edit( props ) {
 							isPressed={ flipVertical }
 						/>
 					</ToolbarGroup>
+
+					<ToolbarGroup>
+						<Dropdown
+							renderToggle={ ( { isOpen, onToggle } ) => (
+								<ToolbarButton onClick={ onToggle }>
+									{ __( 'Replace') }
+								</ToolbarButton>
+							) }
+							renderContent={ ( { onClose } ) => (
+								<NavigableMenu>
+									<MenuItem
+										onClick={ () => {
+											setInserterOpen( true );
+											onClose( true );
+										} }
+									>
+										{ __(
+											'Browse icon library',
+											'icon-block'
+										) }
+									</MenuItem>
+									<MenuItem
+										onClick={ () => {
+											setCustomInserterOpen( true );
+											onClose( true );
+										} }
+									>
+										{ __(
+											'Add/edit custom icon',
+											'icon-block'
+										) }
+									</MenuItem>
+								</NavigableMenu>
+							) }
+						/>
+					</ToolbarGroup>
 				</BlockControls>
 			) }
 			{ isEditingURL && (
@@ -316,40 +356,12 @@ export function Edit( props ) {
 		</>
 	);
 
-	const inspectorControls = (
+	const inspectorControls = ( icon || iconName ) && (
 		<InspectorControls>
 			<PanelBody
 				className="outermost-icon-block__icon-settings"
 				title={ __( 'Icon settings', 'icon-block' ) }
 			>
-				<p className="outermost-icon-block__icon-settings-help">
-					{ __(
-						'Choose an icon from the library or insert a custom SVG below.',
-						'icon-block'
-					) }
-				</p>
-				<Button
-					className="outermost-icon-block__icon-settings-button"
-					variant="secondary"
-					onClick={ () => setInserterOpen( true ) }
-				>
-					{ __( 'Icon library', 'icon-block' ) }
-				</Button>
-				<TextareaControl
-					label={ __( 'Custom icon', 'icon-block' ) }
-					value={ ! iconName ? icon : '' }
-					onChange={ updateCustomIcon }
-					help={ __( 'Custom icons must be in an SVG format.', 'icon-block' ) }
-					rows={ 6 }
-				/>
-				{ ! isSVG && (
-					<Notice status="error" isDismissible={ false }>
-						{ __(
-							'The custom icon does not appear to be in an SVG format or contains non-SVG elements.',
-							'icon-block'
-						) }
-					</Notice>
-				) }
 				<RangeControl
 					label={ __( 'Icon width', 'icon-block' ) }
 					onChange={ ( value ) => setAttributes( { width: value } ) }
@@ -482,6 +494,12 @@ export function Edit( props ) {
 			<InserterModal
 				isInserterOpen={ isInserterOpen }
 				setInserterOpen={ setInserterOpen }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+			/>
+			<CustomInserterModal
+				isCustomInserterOpen={ isCustomInserterOpen }
+				setCustomInserterOpen={ setCustomInserterOpen }
 				attributes={ attributes }
 				setAttributes={ setAttributes }
 			/>
