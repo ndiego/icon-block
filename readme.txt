@@ -3,21 +3,22 @@ Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
 Tested up to:      5.8
-Stable tag:        0.1.2
+Stable tag:        1.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-A simple little block that allows you add an SVG icon or graphic to your website.
+Effortlessly add an SVG icon or graphic to your website or choose one from the WordPress icon library.
 
 == Description ==
 
-A simple little block that allows you add an SVG icon or graphic to the Block Editor (Gutenberg).
+A simple little block that allows you add a custom SVG icon or graphic to the Block Editor (Gutenberg).
 
-Note that the Icon Block does not include its own icon library (yet). Instead, this plugin allows you to render **any** SVG-based icon by simply copy/pasting the SVG code into the icon textarea! See the screenshots for reference.
+The plugin also includes the complete WordPress icon library with 270+ SVG icons to choose from!
 
 === Key Features ===
 
-* Use any SVG icon or graphic
+* 270+ native WordPress icons, including social logos
+* Use any custom SVG icon or graphic
 * Includes some handy icon controls (link, rotate, alignment, colors, etc.)
 * No block library required 🎉
 * Built almost entirely with native WordPress components
@@ -39,11 +40,9 @@ Note that the Icon Block does not include its own icon library (yet). Instead, t
 
 == Frequently Asked Questions ==
 
-= Wait, where are all the icons? =
+= Where can I get more icons? =
 
-Currently, the Icon Block does not include its own library of icons for users to choose from. If that's what you are looking for, my apologies. The there are many other icon blocks out there that have this functionality.
-
-Instead, this plugin allows you to render **any** SVG-based icon by simply copy/pasting the code into the icon textarea! See the screenshots for reference. This gives you complete flexibility and allows you to use practically any icon you want. A great source for free SVG icons is Google's Material Icons project, Font Awesome, and Iconic, just to name a few.
+Currently, the Icon Block only includes the WordPress icon library. That said, the plugin allows you to render **any** SVG-based icon by simply copy/pasting the code into the icon textarea when using the "Add custom icon" option! See the screenshots for reference. This gives you complete flexibility and allows you to use practically any icon you want. A great source for free SVG icons is Google's Material Icons project, Font Awesome, and Iconic, just to name a few.
 
 = Why is my icon not changing color? =
 
@@ -61,6 +60,14 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 4. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 1.0.0 - 2021-10-06 =
+
+**Added**
+
+* Added the WordPress icon library featuring 270+ icons.
+* Add new placeholder and quick icon insertion experience.
+* Added new custom icon editing modal for an improved insertion experience.
 
 = 0.1.2 - 2021-09-27 =
 

@@ -16,8 +16,8 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import icons from './icons';
-import { bolt } from './icons/bolt';
+import icons from './../icons';
+import { bolt } from './../icons/bolt';
 
 
 export default function CustomInserterModal( props ) {

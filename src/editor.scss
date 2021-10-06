@@ -48,8 +48,8 @@ $r270: rotate(270deg);
 
 		.wp-block-outermost-icon-placeholder__actions {
 			display: flex;
-		    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
-		    font-size: 13px;
+			font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+			font-size: 13px;
 
 			.wp-block-outermost-icon-placeholder__actions__indicator {
 				display: inline-flex;
@@ -167,8 +167,8 @@ $r270: rotate(270deg);
 		.components-menu-item__button {
 			&.is-active {
 				background: #f0f0f0;
-			    box-shadow: none;
-			    font-weight: 500;
+				box-shadow: none;
+				font-weight: 500;
 			}
 		}
 
@@ -223,9 +223,9 @@ $r270: rotate(270deg);
 			padding-right: 8px;
 		}
 		.icons-list {
-		    padding: 4px 4px 72px 4px;
+			padding: 4px 4px 72px 4px;
 			margin: 0;
-		    display: grid;
+			display: grid;
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
 
 			@media ( min-width: 900px ) {
@@ -262,10 +262,10 @@ $r270: rotate(270deg);
 
 		.block-editor-inserter__no-results {
 			height: calc(100% - 56px);
-		    margin-top: 0;
-		    display: flex;
-		    flex-direction: column;
-		    justify-content: center;
+			margin-top: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 
 			svg {
 				margin: 0 auto;
@@ -289,6 +289,9 @@ $r270: rotate(270deg);
 	.components-modal__content {
 		overflow: hidden;
 		padding: 0 32px 32px;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
 
 		&:before {
 			margin: 0;
@@ -312,6 +315,10 @@ $r270: rotate(270deg);
 		.components-textarea-control__input {
 			height: 100%
 		}
+
+		textarea {
+			resize: none;
+		}
 	}
 
 	.icon-custom-inserter__panel-sidebar {
@@ -328,7 +335,9 @@ $r270: rotate(270deg);
 			justify-content: center;
 			align-items: center;
 			padding: 20px;
-			min-height: 300px;
+			min-height: 250px;
+			max-height: 400px;
+			overflow: scroll;
 
 			&.is-default {
 				svg {
@@ -343,8 +352,8 @@ $r270: rotate(270deg);
 
 		.icon-controls {
 			display: flex;
-		    justify-content: center;
-		    padding: 10px 20px;
+			justify-content: center;
+			padding: 10px 20px;
 		}
 
 		.icon-controls__size {
@@ -440,11 +449,11 @@ $r270: rotate(270deg);
 
 .icons-list {
 	display: flex;
-    flex-wrap: wrap;
-    margin-left: -4px;
-    margin-right: -4px;
-    overflow: hidden;
-    padding: 4px;
+	flex-wrap: wrap;
+	margin-left: -4px;
+	margin-right: -4px;
+	overflow: hidden;
+	padding: 4px;
 
 	.icons-list__item {
 		align-items: stretch;
@@ -458,14 +467,14 @@ $r270: rotate(270deg);
 		font-size: 13px;
 		height: auto;
 		justify-content: center;
-    	padding: 12px;
+		padding: 12px;
 		position: relative;
 		transition: all .05s ease-in-out;
 		word-break: break-word;
 
 		&:hover {
 			border-color: var(--wp-admin-theme-color);
-    		color: var(--wp-admin-theme-color)!important;
+			color: var(--wp-admin-theme-color)!important;
 		}
 
 		.icons-list__item-icon {
@@ -491,17 +500,17 @@ $r270: rotate(270deg);
 
 	input[type="search"].components-search-control__input {
 		background: #f0f0f0;
-	    border: none;
-	    border-radius: 2px;
-	    box-shadow: 0 0 0 transparent;
-	    display: block;
-	    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-	    font-size: 16px;
-	    height: 48px;
-	    line-height: normal;
-	    padding: 16px 48px 16px 16px;
-	    transition: box-shadow .1s linear;
-	    width: 100%;
+		border: none;
+		border-radius: 2px;
+		box-shadow: 0 0 0 transparent;
+		display: block;
+		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+		font-size: 16px;
+		height: 48px;
+		line-height: normal;
+		padding: 16px 48px 16px 16px;
+		transition: box-shadow .1s linear;
+		width: 100%;
 
 		/* Fonts smaller than 16px causes mobile safari to zoom. */
 		@media ( min-width: 600px ) {
@@ -528,11 +537,11 @@ $r270: rotate(270deg);
 
 .components-search-control__icon {
 	align-items: center;
-    bottom: 0;
-    display: flex;
-    position: absolute;
-    right: 12px;
-    top: 0;
+	bottom: 0;
+	display: flex;
+	position: absolute;
+	right: 12px;
+	top: 0;
 
 	> button {
 		margin-right: -10px;

@@ -14,8 +14,8 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import icons from './icons';
-import SearchControl from './search-control';
+import icons from './../icons';
+import SearchControl from './../utils/search-control';
 
 
 export function QuickInserterPopover( props ) {

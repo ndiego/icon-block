@@ -11,7 +11,7 @@ import { Icon } from '@wordpress/icons';
 import './editor.scss';
 import icons from './icons';
 import { bolt } from './icons/bolt';
-import { QuickInserterPopover } from './quick-inserter';
+import { QuickInserterPopover } from './inserters/quick-inserter';
 
 export default function IconPlaceholder( props ) {
 	const {

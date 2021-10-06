@@ -52,8 +52,8 @@ import {
 import './editor.scss';
 import icons from './icons';
 import { bolt as defaultIcon } from './icons/bolt';
-import InserterModal from './inserter';
-import CustomInserterModal from './custom-inserter';
+import InserterModal from './inserters/inserter';
+import CustomInserterModal from './inserters/custom-inserter';
 import IconPlaceholder from './placeholder';
 
 const NEW_TAB_REL = 'noreferrer noopener';

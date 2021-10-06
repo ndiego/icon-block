@@ -22,9 +22,9 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import SearchControl from './search-control';
-import icons from './icons';
-import { bolt } from './icons/bolt';
+import SearchControl from './../utils/search-control';
+import icons from './../icons';
+import { bolt } from './../icons/bolt';
 
 
 export default function InserterModal( props ) {
