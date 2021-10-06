@@ -36,7 +36,7 @@ export default function IconPlaceholder( props ) {
 						<Icon icon={ bolt } /> { __( 'Icon Block' ) }
 					</div>
 					<Button
-						variant="primary"
+						isPrimary
 						onClick={ () => setQuickInserterOpen( true ) }
 					>
 						{ __( 'Browse icon Library', 'icon-block' ) }
@@ -48,7 +48,7 @@ export default function IconPlaceholder( props ) {
 						setAttributes={ setAttributes }
 					/>
 					<Button
-						variant="secondary"
+						isSecondary
 						onClick={ () => setCustomInserterOpen( true ) }
 					>
 						{ __( 'Add custom icon', 'icon-block' ) }

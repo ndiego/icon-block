@@ -558,66 +558,79 @@ const wpIcons = [
 		name: 'addSubmenu',
 		title:  __( 'Add Submenu', 'icon-block' ),
 		icon: addSubmenu,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'alignCenter',
 		title:  __( 'Align Center', 'icon-block' ),
 		icon: alignCenter,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'alignJustify',
 		title:  __( 'Align Justify', 'icon-block' ),
 		icon: alignJustify,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'alignJustifyAlt',
 		title:  __( 'Align Justify - Alt', 'icon-block' ),
 		icon: alignJustifyAlt,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'alignLeft',
 		title:  __( 'Align Left', 'icon-block' ),
 		icon: alignLeft,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'alignNone',
 		title:  __( 'Align None', 'icon-block' ),
 		icon: alignNone,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'alignRight',
 		title:  __( 'Align Right', 'icon-block' ),
 		icon:  alignRight,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'archive',
 		title:  __( 'Archive', 'icon-block' ),
 		icon: archive,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'archiveTitle',
 		title:  __( 'Archive Title', 'icon-block' ),
 		icon: archiveTitle,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'arrowDown',
 		title:  __( 'Arrow Down', 'icon-block' ),
 		icon: arrowDown,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'arrowLeft',
 		title:  __( 'Arrow Left', 'icon-block' ),
 		icon: arrowLeft,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'arrowRight',
 		title:  __( 'Arrow Right', 'icon-block' ),
 		icon: arrowRight,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'arrowUp',
 		title:  __( 'Arrow Up', 'icon-block' ),
 		icon: arrowUp,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'atSymbol',
@@ -643,6 +656,7 @@ const wpIcons = [
 		name: 'blockDefault',
 		title:  __( 'Block Default', 'icon-block' ),
 		icon: blockDefault,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'blockTable',
@@ -668,16 +682,19 @@ const wpIcons = [
 		name: 'button',
 		title:  __( 'Button', 'icon-block' ),
 		icon: button,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'buttons',
 		title:  __( 'Buttons', 'icon-block' ),
 		icon: buttons,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'calendar',
 		title:  __( 'Calendar', 'icon-block' ),
 		icon: calendar,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'cancelCircleFilled',
@@ -698,6 +715,7 @@ const wpIcons = [
 		name: 'category',
 		title:  __( 'Category', 'icon-block' ),
 		icon: category,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'chartBar',
@@ -713,31 +731,37 @@ const wpIcons = [
 		name: 'chevronDown',
 		title:  __( 'Chevron Down', 'icon-block' ),
 		icon: chevronDown,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'chevronLeft',
 		title:  __( 'Chevron Left', 'icon-block' ),
 		icon: chevronLeft,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'chevronRight',
 		title:  __( 'Chevron Right', 'icon-block' ),
 		icon: chevronRight,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'chevronRightSmall',
 		title:  __( 'Chevron Right - Small', 'icon-block' ),
 		icon: chevronRightSmall,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'chevronUp',
 		title:  __( 'Chevron Up', 'icon-block' ),
 		icon: chevronUp,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'classic',
 		title:  __( 'Classic', 'icon-block' ),
 		icon: classic,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'close',
@@ -753,6 +777,7 @@ const wpIcons = [
 		name: 'cloudUpload',
 		title:  __( 'Cloud Upload', 'icon-block' ),
 		icon: cloudUpload,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'cloud',
@@ -763,6 +788,7 @@ const wpIcons = [
 		name: 'code',
 		title:  __( 'Code', 'icon-block' ),
 		icon: code,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'cog',
@@ -783,21 +809,25 @@ const wpIcons = [
 		name: 'column',
 		title:  __( 'Column', 'icon-block' ),
 		icon: column,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'columns',
 		title:  __( 'Columns', 'icon-block' ),
 		icon: columns,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'comment',
 		title:  __( 'Comment', 'icon-block' ),
 		icon: comment,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'cover',
 		title:  __( 'Cover', 'icon-block' ),
 		icon: cover,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'create',
@@ -833,6 +863,7 @@ const wpIcons = [
 		name: 'desktop',
 		title:  __( 'Desktop', 'icon-block' ),
 		icon: desktop,
+		categories: [ 'devices' ],
 	},
 	{
 		name: 'dragHandle',
@@ -843,6 +874,7 @@ const wpIcons = [
 		name: 'download',
 		title:  __( 'Download', 'icon-block' ),
 		icon: download,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'edit',
@@ -873,16 +905,19 @@ const wpIcons = [
 		name: 'formatBold',
 		title:  __( 'Format Bold', 'icon-block' ),
 		icon: formatBold,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatCapitalize',
 		title:  __( 'Format Capitalize', 'icon-block' ),
 		icon: formatCapitalize,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatIndent',
 		title:  __( 'Format Indent', 'icon-block' ),
 		icon: formatIndent,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatIndentRTL',
@@ -893,76 +928,91 @@ const wpIcons = [
 		name: 'formatItalic',
 		title:  __( 'Format Italic', 'icon-block' ),
 		icon: formatItalic,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatListBullets',
 		title:  __( 'Format List Bullets', 'icon-block' ),
 		icon: formatListBullets,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatListBulletsRTL',
 		title:  __( 'Format List Bullets RTL', 'icon-block' ),
 		icon: formatListBulletsRTL,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatListNumbered',
 		title:  __( 'Format List Numbered', 'icon-block' ),
 		icon: formatListNumbered,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatListNumberedRTL',
 		title:  __( 'Format List Numbered RTL', 'icon-block' ),
 		icon: formatListNumberedRTL,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatLtr',
 		title:  __( 'Format LTR', 'icon-block' ),
 		icon: formatLtr,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatLowercase',
 		title:  __( 'Format Lowercase', 'icon-block' ),
 		icon: formatLowercase,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatOutdent',
 		title:  __( 'Format Outdent', 'icon-block' ),
 		icon: formatOutdent,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatOutdentRTL',
 		title:  __( 'Format Outdent RTL', 'icon-block' ),
 		icon: formatOutdentRTL,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatRtl',
 		title:  __( 'Format RTL', 'icon-block' ),
 		icon: formatRtl,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatStrikethrough',
 		title:  __( 'Format Strikethrough', 'icon-block' ),
 		icon: formatStrikethrough,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatUnderline',
 		title:  __( 'Format Underline', 'icon-block' ),
 		icon: formatUnderline,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'formatUppercase',
 		title:  __( 'Format Uppercase', 'icon-block' ),
 		icon: formatUppercase,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'fullscreen',
 		title:  __( 'Fullscreen', 'icon-block' ),
 		icon: fullscreen,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'gallery',
 		title:  __( 'Gallery', 'icon-block' ),
 		icon: gallery,
+		categories: [ 'blocks', 'media' ],
 	},
 	{
 		name: 'globe',
@@ -978,6 +1028,7 @@ const wpIcons = [
 		name: 'group',
 		title:  __( 'Group', 'icon-block' ),
 		icon: group,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'handle',
@@ -988,6 +1039,7 @@ const wpIcons = [
 		name: 'heading',
 		title:  __( 'Heading', 'icon-block' ),
 		icon: heading,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'help',
@@ -1018,11 +1070,13 @@ const wpIcons = [
 		name: 'html',
 		title:  __( 'HTML', 'icon-block' ),
 		icon: html,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'image',
 		title:  __( 'Image', 'icon-block' ),
 		icon: image,
+		categories: [ 'blocks', 'media' ],
 	},
 	{
 		name: 'info',
@@ -1033,31 +1087,37 @@ const wpIcons = [
 		name: 'insertAfter',
 		title:  __( 'Insert After', 'icon-block' ),
 		icon: insertAfter,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'insertBefore',
 		title:  __( 'Insert Before', 'icon-block' ),
 		icon: insertBefore,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'justifyLeft',
 		title:  __( 'Justify Left', 'icon-block' ),
 		icon: justifyLeft,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'justifyCenter',
 		title:  __( 'Justify Center', 'icon-block' ),
 		icon: justifyCenter,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'justifyRight',
 		title:  __( 'Justify Right', 'icon-block' ),
 		icon: justifyRight,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'justifySpaceBetween',
 		title:  __( 'Justify Space Between', 'icon-block' ),
 		icon: justifySpaceBetween,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'key',
@@ -1068,11 +1128,13 @@ const wpIcons = [
 		name: 'keyboardClose',
 		title:  __( 'Keyboard Close', 'icon-block' ),
 		icon: keyboardClose,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'keyboardReturn',
 		title:  __( 'Keyboard Return', 'icon-block' ),
 		icon: keyboardReturn,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'layout',
@@ -1104,21 +1166,25 @@ const wpIcons = [
 		name: 'link',
 		title:  __( 'Link', 'icon-block' ),
 		icon: link,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'linkOff',
 		title:  __( 'Link Off', 'icon-block' ),
 		icon: linkOff,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'list',
 		title:  __( 'List', 'icon-block' ),
 		icon: list,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'listView',
 		title:  __( 'List View', 'icon-block' ),
 		icon: listView,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'lock',
@@ -1134,6 +1200,7 @@ const wpIcons = [
 		name: 'loop',
 		title:  __( 'Loop', 'icon-block' ),
 		icon: loop,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'mapMarker',
@@ -1144,11 +1211,13 @@ const wpIcons = [
 		name: 'media',
 		title:  __( 'Media', 'icon-block' ),
 		icon: media,
+		categories: [ 'blocks', 'media' ],
 	},
 	{
 		name: 'mediaAndText',
 		title:  __( 'Media & Text', 'icon-block' ),
 		icon: mediaAndText,
+		categories: [ 'blocks', 'media' ],
 	},
 	{
 		name: 'megaphone',
@@ -1164,6 +1233,7 @@ const wpIcons = [
 		name: 'mobile',
 		title:  __( 'Mobile', 'icon-block' ),
 		icon: mobile,
+		categories: [ 'devices' ],
 	},
 	{
 		name: 'more',
@@ -1189,6 +1259,7 @@ const wpIcons = [
 		name: 'moveTo',
 		title:  __( 'Move To', 'icon-block' ),
 		icon: moveTo,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'navigation',
@@ -1344,11 +1415,13 @@ const wpIcons = [
 		name: 'previous',
 		title:  __( 'Previous', 'icon-block' ),
 		icon: previous,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'next',
 		title:  __( 'Next', 'icon-block' ),
 		icon: next,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'preformatted',
@@ -1379,6 +1452,7 @@ const wpIcons = [
 		name: 'queryPaginationNext',
 		title:  __( 'Query Pagination Next', 'icon-block' ),
 		icon: queryPaginationNext,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'queryPaginationNumbers',
@@ -1389,6 +1463,7 @@ const wpIcons = [
 		name: 'queryPaginationPrevious',
 		title:  __( 'Query Pagination Previous', 'icon-block' ),
 		icon: queryPaginationPrevious,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'quote',
@@ -1404,6 +1479,7 @@ const wpIcons = [
 		name: 'redo',
 		title:  __( 'Redo', 'icon-block' ),
 		icon: redo,
+		categories: [ 'arrows', 'editor' ],
 	},
 	{
 		name: 'removeBug',
@@ -1414,6 +1490,7 @@ const wpIcons = [
 		name: 'replace',
 		title:  __( 'Replace', 'icon-block' ),
 		icon: replace,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'reset',
@@ -1424,21 +1501,25 @@ const wpIcons = [
 		name: 'resizeCornerNE',
 		title:  __( 'Resize Corner', 'icon-block' ),
 		icon: resizeCornerNE,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'reusableBlock',
 		title:  __( 'Reusable Block', 'icon-block' ),
 		icon: reusableBlock,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'rotateLeft',
 		title:  __( 'Rotate Left', 'icon-block' ),
 		icon: rotateLeft,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'rotateRight',
 		title:  __( 'Rotate Right', 'icon-block' ),
 		icon: rotateRight,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'rss',
@@ -1455,6 +1536,7 @@ const wpIcons = [
 		name: 'separator',
 		title:  __( 'Separator', 'icon-block' ),
 		icon: separator,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'settings',
@@ -1475,11 +1557,13 @@ const wpIcons = [
 		name: 'shortcode',
 		title:  __( 'Shortcode', 'icon-block' ),
 		icon: shortcode,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'siteLogo',
 		title:  __( 'Site Logo', 'icon-block' ),
 		icon: siteLogo,
+		categories: [ 'blocks', 'media' ],
 	},
 	{
 		name: 'sparkles',
@@ -1515,6 +1599,7 @@ const wpIcons = [
 		name: 'stretchFullWidth',
 		title:  __( 'Stretch Full Width', 'icon-block' ),
 		icon: stretchFullWidth,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'styles',
@@ -1531,16 +1616,19 @@ const wpIcons = [
 		name: 'stretchWide',
 		title:  __( 'Stretch Wide', 'icon-block' ),
 		icon: stretchWide,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'subscript',
 		title:  __( 'Subscript', 'icon-block' ),
 		icon: subscript,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'superscript',
 		title:  __( 'Superscript', 'icon-block' ),
 		icon: superscript,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'swatch',
@@ -1561,31 +1649,37 @@ const wpIcons = [
 		name: 'tableColumnAfter',
 		title:  __( 'Table Column After', 'icon-block' ),
 		icon: tableColumnAfter,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'tableColumnBefore',
 		title:  __( 'Table Column Before', 'icon-block' ),
 		icon: tableColumnBefore,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'tableColumnDelete',
 		title:  __( 'Table Column Delete', 'icon-block' ),
 		icon: tableColumnDelete,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'tableRowAfter',
 		title:  __( 'Table Row After', 'icon-block' ),
 		icon: tableRowAfter,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'tableRowBefore',
 		title:  __( 'Table Row Before', 'icon-block' ),
 		icon: tableRowBefore,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'tableRowDelete',
 		title:  __( 'Table Row Delete', 'icon-block' ),
 		icon: tableRowDelete,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'table',
@@ -1626,6 +1720,7 @@ const wpIcons = [
 		name: 'tablet',
 		title:  __( 'Tablet', 'icon-block' ),
 		icon: tablet,
+		categories: [ 'devices' ],
 	},
 	{
 		name: 'title',
@@ -1656,11 +1751,13 @@ const wpIcons = [
 		name: 'trendingDown',
 		title:  __( 'Trending Down', 'icon-block' ),
 		icon: trendingDown,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'trendingUp',
 		title:  __( 'Trending Up', 'icon-block' ),
 		icon: trendingUp,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'typography',
@@ -1671,11 +1768,13 @@ const wpIcons = [
 		name: 'undo',
 		title:  __( 'Undo', 'icon-block' ),
 		icon: undo,
+		categories: [ 'arrows', 'editor' ],
 	},
 	{
 		name: 'ungroup',
 		title:  __( 'Ungroup', 'icon-block' ),
 		icon: ungroup,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'update',
@@ -1686,16 +1785,19 @@ const wpIcons = [
 		name: 'upload',
 		title:  __( 'Upload', 'icon-block' ),
 		icon: upload,
+		categories: [ 'arrows' ],
 	},
 	{
 		name: 'verse',
 		title:  __( 'Verse', 'icon-block' ),
 		icon: verse,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'video',
 		title:  __( 'Video', 'icon-block' ),
 		icon: video,
+		categories: [ 'media' ],
 	},
 	{
 		name: 'warning',

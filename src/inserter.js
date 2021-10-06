@@ -8,13 +8,21 @@ import { isEmpty } from 'lodash';
  * WordPress dependencies
  */
 import { __, _n, sprintf } from '@wordpress/i18n';
-import { Button, MenuGroup, MenuItem, Modal, Popover, RangeControl, SearchControl } from '@wordpress/components';
+import {
+	Button,
+	MenuGroup,
+	MenuItem,
+	Modal,
+	Popover,
+	RangeControl,
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { Icon, blockDefault } from '@wordpress/icons';
 
 /**
  * Internal dependencies
  */
+import SearchControl from './search-control';
 import icons from './icons';
 import { bolt } from './icons/bolt';
 
@@ -94,7 +102,7 @@ export default function InserterModal( props ) {
 	// Add any found categories to each icon type.
 	iconTypes.forEach( ( type ) => {
 		const iconsOfType = icons.filter( ( i ) => i.type === type );
-		const categories = [ 'all' ];
+		const categories = [];
 
 		iconsOfType.forEach( ( iconOfType ) => {
 			const iconCategories = iconOfType?.categories;
@@ -107,6 +115,9 @@ export default function InserterModal( props ) {
 				} );
 			}
 		} );
+
+		// Sort alphabetically and then add the "all" category.
+		categories.sort().unshift( 'all' );
 
 		preparedTypes.push( { type, categories, count: iconsOfType.length } );
 	} );
@@ -124,6 +135,8 @@ export default function InserterModal( props ) {
 	}
 
 	function renderIconTypeCategories( type ) {
+
+		console.log( type.categories );
 		return (
 			<MenuGroup
 				label={ type.type }
@@ -214,22 +227,23 @@ export default function InserterModal( props ) {
 								_n(
 									'%1$s search result for "%2$s"',
 									'%1$s search results for "%2$s"',
-									shownPatterns.length,
+									shownIcons.length,
 									'icon-block'
 								),
-								shownPatterns.length,
+								shownIcons.length,
 								searchInput
 							) }
 						</div>
 						<div className="icon-controls">
 							<div className="icon-controls__size">
-								<span>{ __( 'Scale', 'icon-block' ) }</span>
+								<span>
+									{ __( 'Preview size', 'icon-block' ) }
+								</span>
 								<RangeControl
 									min={ 24 }
 									max={ 72 }
 									initialPosition={ 24 }
 									withInputField={ false }
-									showTooltip={ false }
 									onChange={
 										( value ) => setIconSize( value )
 									}
@@ -237,10 +251,12 @@ export default function InserterModal( props ) {
 							</div>
 						</div>
 					</div>
+					<div className="icon-inserter__panel-content-grid">
 					{ [
 						isEmpty( shownIcons ) && noResults,
 						! isEmpty( shownIcons ) && searchResults,
 					] }
+					</div>
 				</div>
 			</div>
 		</Modal>

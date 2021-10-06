@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash';
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, Modal, Popover, SearchControl } from '@wordpress/components';
+import { Button, Modal, Popover } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { Icon, blockDefault } from '@wordpress/icons';
 
@@ -15,6 +15,7 @@ import { Icon, blockDefault } from '@wordpress/icons';
  * Internal dependencies
  */
 import icons from './icons';
+import SearchControl from './search-control';
 
 
 export function QuickInserterPopover( props ) {
@@ -41,7 +42,6 @@ export function QuickInserterPopover( props ) {
     const defaultIcon = icons.filter( ( icon ) => {
         return icon.isDefault;
     } )
-
 
     let shownIcons = icons.filter( ( icon ) => {
         const curatedIcons = [
@@ -83,7 +83,7 @@ export function QuickInserterPopover( props ) {
     }
 
     shownIcons = shownIcons.slice( 0, 6 );
-
+console.log( shownIcons );
     const searchResults = (
         <div className="block-editor-inserter__panel-content">
             <div className="icons-list">
@@ -132,8 +132,10 @@ export function QuickInserterPopover( props ) {
             >
                 <SearchControl
                     className="block-editor-inserter__search"
+                    label={ __( 'Search icons', 'icon-block' ) }
+                    hideLabelFromVision={ true }
                     value={ searchInput }
-                    onChange={ setSearchInput }
+                    onChange={ ( value ) => setSearchInput( value ) }
                 />
                 <div className="block-editor-inserter__quick-inserter-results">
                     { [
