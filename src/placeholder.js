@@ -9,7 +9,6 @@ import { Icon } from '@wordpress/icons';
  * Internal dependencies
  */
 import './editor.scss';
-import icons from './icons';
 import { bolt } from './icons/bolt';
 import { QuickInserterPopover } from './inserters/quick-inserter';
 
@@ -18,9 +17,8 @@ export default function IconPlaceholder( props ) {
 		setInserterOpen,
 		isQuickInserterOpen,
 		setQuickInserterOpen,
-		isCustomInserterOpen,
 		setCustomInserterOpen,
-		setAttributes
+		setAttributes,
 	} = props;
 
 	return (
@@ -30,9 +28,7 @@ export default function IconPlaceholder( props ) {
 			</div>
 			<div className="wp-block-outermost-icon-placeholder__controls">
 				<div className="wp-block-outermost-icon-placeholder__actions">
-					<div
-						className="wp-block-outermost-icon-placeholder__actions__indicator"
-					>
+					<div className="wp-block-outermost-icon-placeholder__actions__indicator">
 						<Icon icon={ bolt } /> { __( 'Icon Block' ) }
 					</div>
 					<Button

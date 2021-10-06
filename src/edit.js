@@ -16,12 +16,9 @@ import {
 	Icon,
 	MenuItem,
 	NavigableMenu,
-	Notice,
 	PanelBody,
 	Popover,
 	RangeControl,
-	RawHTML,
-	TextareaControl,
 	ToolbarButton,
 	ToolbarGroup,
 } from '@wordpress/components';
@@ -42,7 +39,6 @@ import {
 	flipHorizontal as flipH,
 	flipVertical as flipV,
 	link,
-	linkOff,
 	rotateRight,
 } from '@wordpress/icons';
 
@@ -97,7 +93,6 @@ export function Edit( props ) {
 		attributes,
 		iconBackgroundColor,
 		iconColor,
-		isSelected,
 		setAttributes,
 		setIconBackgroundColor,
 		setIconColor,
@@ -124,13 +119,12 @@ export function Edit( props ) {
 	const [ isQuickInserterOpen, setQuickInserterOpen ] = useState( false );
 	const [ isCustomInserterOpen, setCustomInserterOpen ] = useState( false );
 
-	const namedIcon = icons.filter( ( icon ) => icon.name === iconName );
+	const namedIcon = icons.filter( ( i ) => i.name === iconName );
 
-	let isSVG = true;
 	let customIcon = defaultIcon;
 
 	if ( icon && isEmpty( namedIcon ) ) {
-		let newIcon = icon.trim();
+		const newIcon = icon.trim();
 
 		customIcon = parse( newIcon, {
 			trim: true,
@@ -149,14 +143,6 @@ export function Edit( props ) {
 		if ( isEmpty( customIcon?.props ) ) {
 			customIcon = defaultIcon;
 		}
-
-		isSVG = customIcon === defaultIcon ? false : true;
-	}
-
-	function updateCustomIcon( newIcon ) {
-		// TODO: Add sanitization in the future.
-		setAttributes( { iconName: null } );
-		setAttributes( { icon: newIcon.replace(/\s+/g, ' ') } );
 	}
 
 	function setRotate() {
@@ -288,9 +274,9 @@ export function Edit( props ) {
 
 					<ToolbarGroup>
 						<Dropdown
-							renderToggle={ ( { isOpen, onToggle } ) => (
+							renderToggle={ ( { onToggle } ) => (
 								<ToolbarButton onClick={ onToggle }>
-									{ __( 'Replace') }
+									{ __( 'Replace' ) }
 								</ToolbarButton>
 							) }
 							renderContent={ ( { onClose } ) => (
@@ -409,14 +395,14 @@ export function Edit( props ) {
 						},
 					] }
 				>
-				{ ! iconName && (
-					<p className="outermost-icon-block__icon-settings-help">
-						{ __(
-							'Any color/fill values in the SVG icon itself will take precedent over custom colors.',
-							'icon-block'
-						) }
-					</p>
-				) }
+					{ ! iconName && (
+						<p className="outermost-icon-block__icon-settings-help">
+							{ __(
+								'Any color/fill values in the SVG icon itself will take precedent over custom colors.',
+								'icon-block'
+							) }
+						</p>
+					) }
 				</PanelColorGradientSettings>
 				<ContrastChecker
 					{ ...{
@@ -443,7 +429,9 @@ export function Edit( props ) {
 		width: iconWidth,
 	};
 
-	const printedIcon = ! isEmpty( namedIcon ) ? namedIcon[0].icon : customIcon;
+	const printedIcon = ! isEmpty( namedIcon )
+		? namedIcon[ 0 ].icon
+		: customIcon;
 
 	const blockMarkup = (
 		<div ref={ iconRef } className={ iconClasses } style={ iconStyles }>

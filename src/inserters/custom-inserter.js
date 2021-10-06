@@ -8,17 +8,21 @@ import { isEmpty } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { __, _n, sprintf } from '@wordpress/i18n';
-import { Button, Modal, Notice, RangeControl, SearchControl, TextareaControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import {
+	Button,
+	Modal,
+	Notice,
+	RangeControl,
+	TextareaControl,
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
-import { Icon, blockDefault } from '@wordpress/icons';
+import { Icon } from '@wordpress/icons';
 
 /**
  * Internal dependencies
  */
-import icons from './../icons';
 import { bolt } from './../icons/bolt';
-
 
 export default function CustomInserterModal( props ) {
 	const {
@@ -31,14 +35,14 @@ export default function CustomInserterModal( props ) {
 	const [ customIcon, setCustomIcon ] = useState( ! iconName ? icon : '' );
 	const [ iconSize, setIconSize ] = useState( 48 );
 
-	if( ! isCustomInserterOpen ) {
+	if ( ! isCustomInserterOpen ) {
 		return null;
 	}
 
 	function insertCustomIcon() {
 		setAttributes( {
 			icon: customIcon,
-			iconName: ''
+			iconName: '',
 		} );
 		setCustomInserterOpen( false );
 	}
@@ -47,7 +51,7 @@ export default function CustomInserterModal( props ) {
 	let customIconRender = '';
 
 	if ( customIcon ) {
-		let newIcon = customIcon.trim();
+		const newIcon = customIcon.trim();
 
 		customIconRender = parse( newIcon, {
 			trim: true,
@@ -94,23 +98,24 @@ export default function CustomInserterModal( props ) {
 				<div className="icon-custom-inserter__panel-sidebar">
 					<div className="icon-preview">
 						<div
-							className={ classnames(
-								'icon-preview__window',
-								{ 'is-default': ! customIconRender }
-							) }
+							className={ classnames( 'icon-preview__window', {
+								'is-default': ! customIconRender,
+							} ) }
 						>
 							<Icon icon={ iconToRender } size={ iconSize } />
 						</div>
 						<div className="icon-controls">
 							<div className="icon-controls__size">
-								<span>{ __( 'Preview size', 'icon-block' ) }</span>
+								<span>
+									{ __( 'Preview size', 'icon-block' ) }
+								</span>
 								<RangeControl
 									min={ 24 }
 									max={ 400 }
 									initialPosition={ 48 }
 									withInputField={ false }
-									onChange={
-										( value ) => setIconSize( value )
+									onChange={ ( value ) =>
+										setIconSize( value )
 									}
 								/>
 							</div>
@@ -145,5 +150,5 @@ export default function CustomInserterModal( props ) {
 				</div>
 			</div>
 		</Modal>
-	)
+	);
 }

@@ -51,7 +51,7 @@ export default function Save( props ) {
 	let customIcon = '';
 
 	if ( icon && isEmpty( namedIcon ) ) {
-		let newIcon = icon.trim();
+		const newIcon = icon.trim();
 
 		customIcon = parse( newIcon, {
 			trim: true,
@@ -72,7 +72,9 @@ export default function Save( props ) {
 		}
 	}
 
-	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[0]?.icon : customIcon;
+	let printedIcon = ! isEmpty( namedIcon )
+		? namedIcon[ 0 ]?.icon
+		: customIcon;
 
 	// If there is no valid SVG icon, don't save anything.
 	if ( ! printedIcon ) {
