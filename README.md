@@ -1,6 +1,6 @@
-# The Icon Block
+# Icon Block
 
-[![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](https://github.com/ndiego/icon-block/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)](https://github.com/ndiego/icon-block/blob/master/LICENSE.txt)
 
 ![The Icon Block](https://github.com/ndiego/icon-block/blob/main/.wordpress-org/banner-1544x500.png)
 

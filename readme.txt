@@ -1,4 +1,4 @@
-=== The Icon Block ===
+=== Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
@@ -23,7 +23,7 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 * Includes some handy icon controls (link, rotate, alignment, colors, etc.)
 * No block library required 🎉
 * Built almost entirely with native WordPress components
-* Will get additional functionality as its added to WordPress core (margin, borders, responsive controls etc.)
+* Will get additional functionality as it's added to WordPress core (margin, borders, responsive controls etc.)
 
 === Stay Connected ===
 
