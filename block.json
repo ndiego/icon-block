@@ -58,7 +58,7 @@
 		"flipHorizontal": {
 			"type": "boolean"
 		},
-		"flipHVertical": {
+		"flipVertical": {
 			"type": "boolean"
 		},
 		"width": {
