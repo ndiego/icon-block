@@ -72,10 +72,14 @@
 		"align": true,
 		"html": false,
 		"__experimentalBorder": {
-			"radius": true
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
 		},
 		"spacing": {
-			"padding": true
+			"padding": true,
+			"margin": [ "top", "bottom" ]
 		}
 	},
 	"editorScript": "file:./build/index.js",

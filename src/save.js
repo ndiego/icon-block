@@ -23,6 +23,7 @@ import icons from './icons';
  */
 export default function Save( props ) {
 	const {
+		borderColor,
 		icon,
 		iconName,
 		style,
@@ -67,9 +68,13 @@ export default function Save( props ) {
 				// Hyphens or colons in attribute names are lost in the default process of
 				// html-react-parser. Spreading the attribs object as props avoids the loss.
 				const Tag = `${ name }`;
-				return <Tag { ...attribs }>{ domToReact( children, parseOptions ) }</Tag>;
+				return (
+					<Tag { ...attribs }>
+						{ domToReact( children, parseOptions ) }
+					</Tag>
+				);
 			},
-		}
+		};
 
 		customIcon = parse( newIcon, parseOptions );
 
@@ -110,11 +115,19 @@ export default function Save( props ) {
 		iconWidth = `${ percentWidth }%`;
 	}
 
-	const radius = style?.border?.radius ?? undefined;
+	let margin = style?.spacing?.margin ?? undefined;
 	let padding = style?.spacing?.padding ?? undefined;
 
+	// We are not adding the padding to the primary block div, so need to handle
+	// the formatting ourselves.
 	if ( padding ) {
 		padding = `${ padding.top } ${ padding.right } ${ padding.bottom } ${ padding.left }`;
+	}
+
+	// And even though margin is set on the main block div, we need to handle it
+	// manually since all other styles are applied to the inner div.
+	if ( margin ) {
+		margin = `${ margin.top } ${ margin.bottom }`;
 	}
 
 	const styles = {
@@ -122,7 +135,12 @@ export default function Save( props ) {
 		backgroundColor: ! iconBackgroundColor
 			? iconBackgroundColorValue
 			: undefined,
-		borderRadius: radius,
+		borderColor: borderColor
+			? `var(--wp--preset--color--${ borderColor })`
+			: style?.border?.color ?? undefined,
+		borderRadius: style?.border?.radius ?? undefined,
+		borderStyle: style?.border?.style ?? undefined,
+		borderWidth: style?.border?.width ?? undefined,
 		color: iconColorValue,
 		padding,
 		width: iconWidth,
@@ -153,8 +171,9 @@ export default function Save( props ) {
 			{ ...useBlockProps.save( {
 				className: `items-justified-${ itemsJustification }`,
 			} ) }
-			// This is a bit of a hack, so the styles are not printed.
-			style={ {} }
+			// This is a bit of a hack. we only want the margin styles
+			// applied to the main block div.
+			style={ { margin } }
 		>
 			{ printedIcon }
 		</div>

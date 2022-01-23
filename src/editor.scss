@@ -142,13 +142,17 @@ $r270: rotate(270deg);
 	}
 
 	.icon-inserter__sidebar {
-		display: flex;
+		display: none;
 	    flex-direction: column;
 	    flex-shrink: 0;
 	    overflow-y: scroll;
 	    width: 280px;
 	    border-right: 1px solid rgb(221, 221, 221);
 	    padding: 32px;
+
+		@media ( min-width: 900px ) {
+			display: flex;
+		}
 
 		&__search {
 			margin-bottom: 16px;
@@ -182,8 +186,12 @@ $r270: rotate(270deg);
 		flex-direction: column;
 		flex-shrink: 0;
 		overflow: auto;
-		padding: 32px 32px 100px;
-		width: calc(100% - 281px);
+		padding: 32px 32px 64px;
+		width: 100%;
+
+		@media ( min-width: 900px ) {
+			width: calc(100% - 281px);
+		}
 
 		.icon-inserter__content-header {
 			align-items: center;
@@ -219,7 +227,11 @@ $r270: rotate(270deg);
 			padding: 4px 4px 72px 4px;
 			margin: 0;
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+
+			@media ( min-width: 600px ) {
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			}
 
 			@media ( min-width: 900px ) {
 				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
@@ -269,33 +281,35 @@ $r270: rotate(270deg);
 
 .wp-block-outermost-icon-custom-inserter__modal {
 
-	.components-modal__header {
-		margin-bottom: 0;
-	}
-
 	.components-modal__content {
-		overflow: hidden;
-		padding: 0 32px 32px;
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
+		flex: 1 1 0%;
+		overflow: auto;
+		padding: 0px;
 
 		&:before {
-			margin: 0;
+			margin-bottom: 0;
 		}
 	}
 
-	.icon-custom-inserter__panel {
+	.icon-custom-inserter {
+		align-items: stretch;
 		display: flex;
-		justify-content: space-between;
-		gap: 64px;
+		flex-direction: column;
+		gap: 32px;
 		height: 100%;
-		margin-top: 32px;
+		padding: 32px;
+
+		@media ( min-width: 900px ) {
+			flex-direction: row;
+		}
 	}
 
-	.icon-custom-inserter__panel-content {
-		width: 100%;
-		height: 100%;
+	.icon-custom-inserter__content {
+		min-height: 400px;
+
+		@media ( min-width: 900px ) {
+			width: calc(100% - 400px);
+		}
 
 		.components-base-control,
 		.components-base-control__field,
@@ -308,13 +322,15 @@ $r270: rotate(270deg);
 		}
 	}
 
-	.icon-custom-inserter__panel-sidebar {
-		width: 400px;
+	.icon-custom-inserter__sidebar {
 		flex-shrink: 0;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		height: 100%;
+
+		@media ( min-width: 900px ) {
+			width: 400px;
+		}
 
 		.icon-preview__window {
 			border: 1px solid #ddd;
@@ -340,7 +356,7 @@ $r270: rotate(270deg);
 		.icon-controls {
 			display: flex;
 			justify-content: center;
-			padding: 10px 20px;
+			padding: 12px 24px;
 		}
 
 		.icon-controls__size {
@@ -362,11 +378,11 @@ $r270: rotate(270deg);
 		}
 
 		.components-notice {
-			margin: 24px 0;
+			margin: 12px 0 24px;
 
 			// Needed to fix color error in Notice component
 			&.is-error {
-				background-color: #f8ebea;
+			//	background-color: #f8ebea;
 			}
 		}
 

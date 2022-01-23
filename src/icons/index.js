@@ -291,12 +291,7 @@ import {
 } from './wordpress/social';
 
 // Temporary icon specifications that are not yet in the NPM package.
-import {
-	commentEditLink,
-	sparkles,
-	tip,
-	unlock,
-} from './wordpress/temp';
+import { commentEditLink, sparkles, tip, unlock } from './wordpress/temp';
 
 const wpSocialIcons = [
 	{

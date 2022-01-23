@@ -2,9 +2,9 @@
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
-Tested up to:      5.8
+Tested up to:      5.9
 Requires PHP:      7.0
-Stable tag:        1.0.0
+Stable tag:        1.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,9 +79,14 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 **Changed**
 
-* Updated the inserter modals to be fullscreen.
+* Updated inserter modal components to use `isFullScreen` to better resemble core modals.
+* Updated styling on inserter modals for improved mobile responsiveness.
 * The Align None, Color, Reset, and Styles icons are now imported directly from @wordpress/icons.
 * Removed custom search component in favor of core component from @wordpress/components.
+
+**Fixed**
+
+* Fix bug where hyphens and colons would be incorrectly stripped from attribute names. Thanks @stokesman for the PR. ([#5](https://github.com/ndiego/icon-block/pull/5))
 
 = 1.0.0 - 2021-10-06 =
 

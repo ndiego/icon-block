@@ -29,9 +29,9 @@ import {
 	JustifyToolbar,
 	useBlockProps,
 	withColors,
-	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
-	__experimentalUseGradient as useGradient,
-	__experimentalLinkControl as LinkControl,
+	__experimentalPanelColorGradientSettings as PanelColorGradientSettings, // eslint-disable-line
+	__experimentalUseGradient as useGradient, // eslint-disable-line
+	__experimentalLinkControl as LinkControl, // eslint-disable-line
 } from '@wordpress/block-editor';
 import { useRef, useState } from '@wordpress/element';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
@@ -98,6 +98,7 @@ export function Edit( props ) {
 		setIconColor,
 	} = props;
 	const {
+		borderColor,
 		icon,
 		iconName,
 		style,
@@ -163,15 +164,6 @@ export function Edit( props ) {
 
 	if ( percentWidth ) {
 		iconWidth = `${ percentWidth }%`;
-	}
-
-	const radius = style?.border?.radius ?? undefined;
-	let padding = style?.spacing?.padding ?? undefined;
-
-	// We are not adding the padding to the primary block div, so need to handle
-	// the formatting ourselves.
-	if ( padding ) {
-		padding = `${ padding.top } ${ padding.right } ${ padding.bottom } ${ padding.left }`;
 	}
 
 	const ref = useRef();
@@ -420,10 +412,30 @@ export function Edit( props ) {
 		[ gradientClass ]: gradientClass,
 	} );
 
+	let margin = style?.spacing?.margin ?? undefined;
+	let padding = style?.spacing?.padding ?? undefined;
+
+	// We are not adding the padding to the primary block div, so need to handle
+	// the formatting ourselves.
+	if ( padding ) {
+		padding = `${ padding.top } ${ padding.right } ${ padding.bottom } ${ padding.left }`;
+	}
+
+	// And even though margin is set on the main block div, we need to handle it
+	// manually since all other styles are applied to the inner div.
+	if ( margin ) {
+		margin = `${ margin.top } ${ margin.bottom }`;
+	}
+
 	const iconStyles = {
 		background: gradientValue,
 		backgroundColor: iconBackgroundColorValue,
-		borderRadius: radius,
+		borderColor: borderColor
+			? `var(--wp--preset--color--${ borderColor })`
+			: style?.border?.color ?? undefined,
+		borderRadius: style?.border?.radius ?? undefined,
+		borderStyle: style?.border?.style ?? undefined,
+		borderWidth: style?.border?.width ?? undefined,
 		color: iconColorValue,
 		padding,
 		width: iconWidth,
@@ -462,8 +474,9 @@ export function Edit( props ) {
 					onKeyDown,
 					className: blockClasses,
 				} ) }
-				// This is a bit of a hack, so the styles are not printed.
-				style={ {} }
+				// This is a bit of a hack. we only want the margin styles
+				// applied to the main block div.
+				style={ { margin } }
 			>
 				{ [
 					! icon && ! iconName && (
