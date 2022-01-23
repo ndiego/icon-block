@@ -9,7 +9,7 @@ import {
 	alignJustify,
 	alignJustifyAlt,
 	alignLeft,
-	// alignNone, NPM package not yet updated with new styles icon.
+	alignNone,
 	alignRight,
 	archive,
 	archiveTitle,
@@ -48,10 +48,15 @@ import {
 	code,
 	cog,
 	cogAlt,
-	// color, NPM package not yet updated with new styles icon.
+	color,
 	column,
 	columns,
 	comment,
+	commentAuthorAvatar,
+	commentAuthorName,
+	commentContent,
+	// commentEditLink, the WP Icons NPM package does not yet include this icon.
+	commentReplyLink,
 	cover,
 	create,
 	crop,
@@ -177,7 +182,7 @@ import {
 	redo,
 	removeBug,
 	replace,
-	// reset, NPM package not yet updated with new styles icon.
+	reset,
 	resizeCornerNE,
 	reusableBlock,
 	rotateLeft,
@@ -196,7 +201,7 @@ import {
 	starHalf,
 	store,
 	stretchFullWidth,
-	// styles, NPM package not yet updated with new styles icon.
+	styles,
 	shipping,
 	stretchWide,
 	subscript,
@@ -218,6 +223,7 @@ import {
 	sidebar,
 	textColor,
 	tablet,
+	// tip, the WP Icons NPM package does not yet include this icon.
 	title,
 	tool,
 	trash,
@@ -227,6 +233,7 @@ import {
 	typography,
 	undo,
 	ungroup,
+	// unlock, the WP Icons NPM package does not yet include this icon.
 	update,
 	upload,
 	verse,
@@ -285,12 +292,10 @@ import {
 
 // Temporary icon specifications that are not yet in the NPM package.
 import {
-	alignNone,
-	color,
-	reset,
-	styles,
+	commentEditLink,
 	sparkles,
 	tip,
+	unlock,
 } from './wordpress/temp';
 
 const wpSocialIcons = [
@@ -822,6 +827,31 @@ const wpIcons = [
 		title: __( 'Comment', 'icon-block' ),
 		icon: comment,
 		categories: [ 'blocks' ],
+	},
+	{
+		name: 'commentAuthorAvatar',
+		title: __( 'Comment Author Avatar', 'icon-block' ),
+		icon: commentAuthorAvatar,
+	},
+	{
+		name: 'commentAuthorName',
+		title: __( 'Comment Author Name', 'icon-block' ),
+		icon: commentAuthorName,
+	},
+	{
+		name: 'commentContent',
+		title: __( 'Comment Content', 'icon-block' ),
+		icon: commentContent,
+	},
+	{
+		name: 'commentEditLink',
+		title: __( 'Comment Edit Link', 'icon-block' ),
+		icon: commentEditLink,
+	},
+	{
+		name: 'commentReplyLink',
+		title: __( 'Comment Reply Link', 'icon-block' ),
+		icon: commentReplyLink,
 	},
 	{
 		name: 'cover',
@@ -1496,6 +1526,7 @@ const wpIcons = [
 		name: 'reset',
 		title: __( 'Reset', 'icon-block' ),
 		icon: reset,
+		keywords: [ 'minus' ],
 	},
 	{
 		name: 'resizeCornerNE',
@@ -1775,6 +1806,11 @@ const wpIcons = [
 		title: __( 'Ungroup', 'icon-block' ),
 		icon: ungroup,
 		categories: [ 'editor' ],
+	},
+	{
+		name: 'unlock',
+		title: __( 'Unlock', 'icon-block' ),
+		icon: unlock,
 	},
 	{
 		name: 'update',

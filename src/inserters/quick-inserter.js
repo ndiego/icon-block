@@ -7,14 +7,13 @@ import { isEmpty } from 'lodash';
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, Popover } from '@wordpress/components';
+import { Button, Popover, SearchControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { Icon, blockDefault } from '@wordpress/icons';
 
 /**
  * Internal dependencies
  */
-import SearchControl from './../utils/search-control';
 import icons from './../icons';
 
 export function QuickInserterPopover( props ) {

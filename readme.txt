@@ -66,6 +66,23 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 == Changelog ==
 
+= 1.1.0 - 2022-01-TBD =
+
+**Added**
+
+* Added core Unlock icon.
+* Added core Comment Author Avatar icon.
+* Added core Comment Author Name icon.
+* Added core Comment Content icon.
+* Added core Comment Edit Link icon.
+* Added core Comment Reply Link icon.
+
+**Changed**
+
+* Updated the inserter modals to be fullscreen.
+* The Align None, Color, Reset, and Styles icons are now imported directly from @wordpress/icons.
+* Removed custom search component in favor of core component from @wordpress/components.
+
 = 1.0.0 - 2021-10-06 =
 
 **Added**

@@ -81,6 +81,7 @@ export default function CustomInserterModal( props ) {
 			className="wp-block-outermost-icon-custom-inserter__modal"
 			title={ __( 'Custom Icon', 'icon-block' ) }
 			onRequestClose={ () => setCustomInserterOpen( false ) }
+			isFullScreen
 		>
 			<div className="icon-custom-inserter__panel">
 				<div className="icon-custom-inserter__panel-content">

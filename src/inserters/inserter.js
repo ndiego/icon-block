@@ -14,6 +14,7 @@ import {
 	MenuItem,
 	Modal,
 	RangeControl,
+	SearchControl,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { Icon, blockDefault } from '@wordpress/icons';
@@ -21,7 +22,6 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import SearchControl from './../utils/search-control';
 import icons from './../icons';
 
 export default function InserterModal( props ) {
@@ -206,6 +206,7 @@ export default function InserterModal( props ) {
 			className="wp-block-outermost-icon-inserter__modal"
 			title={ __( 'Icon Library', 'icon-block' ) }
 			onRequestClose={ () => setInserterOpen( false ) }
+			isFullScreen
 		>
 			<div
 				className={ classnames( 'icon-inserter__panel', {
