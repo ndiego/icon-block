@@ -43,6 +43,9 @@
 		"customGradient": {
 			"type": "string"
 		},
+		"label": {
+			"type": "string"
+		},
 		"linkUrl": {
 			"type": "string"
 		},

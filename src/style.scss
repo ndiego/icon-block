@@ -28,6 +28,11 @@ $flipHV: scale(-1, -1);
 		}
 	}
 
+    // box-sizing is set in the Editor but not on the frontend.
+    .icon-container {
+        box-sizing: border-box;
+    }
+
 	a,
 	svg {
 		width: 100%;

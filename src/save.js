@@ -33,6 +33,7 @@ export default function Save( props ) {
 		gradient,
 		customGradient,
 		itemsJustification,
+		label,
 		linkUrl,
 		linkRel,
 		linkTarget,
@@ -90,6 +91,10 @@ export default function Save( props ) {
 	// If there is no valid SVG icon, don't save anything.
 	if ( ! printedIcon ) {
 		return null;
+	}
+
+	if ( label ) {
+		//printedIcon.setAttributes( 'aria-label', label );
 	}
 
 	const classes = classnames( 'icon-container', {
@@ -154,6 +159,7 @@ export default function Save( props ) {
 				target={ target }
 				rel={ rel }
 				style={ styles }
+				aria-label={ label ?? undefined }
 			>
 				{ printedIcon }
 			</a>

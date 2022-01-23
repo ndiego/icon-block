@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import parse from 'html-react-parser';
+import parse, { domToReact } from 'html-react-parser';
 import { isEmpty } from 'lodash';
 
 /**
@@ -19,6 +19,7 @@ import {
 	PanelBody,
 	Popover,
 	RangeControl,
+	TextControl,
 	ToolbarButton,
 	ToolbarGroup,
 } from '@wordpress/components';
@@ -99,20 +100,21 @@ export function Edit( props ) {
 	} = props;
 	const {
 		borderColor,
-		icon,
-		iconName,
-		style,
-		iconBackgroundColorValue,
-		iconColorValue,
-		itemsJustification,
-		linkUrl,
-		linkTarget,
-		linkRel,
-		rotate,
 		flipHorizontal,
 		flipVertical,
-		width,
+		label,
+		linkRel,
+		linkTarget,
+		linkUrl,
+		icon,
+		iconBackgroundColorValue,
+		iconColorValue,
+		iconName,
+		itemsJustification,
 		percentWidth,
+		rotate,
+		style,
+		width,
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
@@ -127,19 +129,29 @@ export function Edit( props ) {
 	if ( icon && isEmpty( namedIcon ) ) {
 		const newIcon = icon.trim();
 
-		customIcon = parse( newIcon, {
+		const parseOptions = {
 			trim: true,
-			replace: ( domNode ) => {
+			replace: ( { attribs, children, name, parent, type } ) => {
 				// TODO: Very basic SVG sanitization, needs more refinement.
 				if (
-					domNode.type !== 'tag' ||
-					( ! domNode.parent && domNode.name !== 'svg' ) ||
-					! domNode.name
+					type !== 'tag' ||
+					( ! parent && name !== 'svg' ) ||
+					! name
 				) {
 					return <></>;
 				}
+				// Hyphens or colons in attribute names are lost in the default process of
+				// html-react-parser. Spreading the attribs object as props avoids the loss.
+				const Tag = `${ name }`;
+				return (
+					<Tag { ...attribs }>
+						{ domToReact( children, parseOptions ) }
+					</Tag>
+				);
 			},
-		} );
+		};
+
+		customIcon = parse( newIcon, parseOptions );
 
 		if ( isEmpty( customIcon?.props ) ) {
 			customIcon = defaultIcon;
@@ -340,6 +352,17 @@ export function Edit( props ) {
 				className="outermost-icon-block__icon-settings"
 				title={ __( 'Icon settings', 'icon-block' ) }
 			>
+				<TextControl
+					label={ __( 'Icon label', 'social-sharing-block' ) }
+					help={ __(
+						'Briefly describe the icon to help screen reader users.',
+						'icon-block'
+					) }
+					value={ label }
+					onChange={ ( value ) =>
+						setAttributes( { label: value } )
+					}
+				/>
 				<RangeControl
 					label={ __( 'Icon width', 'icon-block' ) }
 					onChange={ ( value ) => setAttributes( { width: value } ) }
