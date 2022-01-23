@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import parse from 'html-react-parser';
+import parse, { domToReact } from 'html-react-parser';
 import { isEmpty } from 'lodash';
 
 /**
@@ -53,19 +53,25 @@ export default function Save( props ) {
 	if ( icon && isEmpty( namedIcon ) ) {
 		const newIcon = icon.trim();
 
-		customIcon = parse( newIcon, {
+		const parseOptions = {
 			trim: true,
-			replace: ( domNode ) => {
+			replace: ( { attribs, children, name, parent, type } ) => {
 				// TODO: Very basic SVG sanitization, needs more refinement.
 				if (
-					domNode.type !== 'tag' ||
-					( ! domNode.parent && domNode.name !== 'svg' ) ||
-					! domNode.name
+					type !== 'tag' ||
+					( ! parent && name !== 'svg' ) ||
+					! name
 				) {
 					return <></>;
 				}
+				// Hyphens or colons in attribute names are lost in the default process of
+				// html-react-parser. Spreading the attribs object as props avoids the loss.
+				const Tag = `${ name }`;
+				return <Tag { ...attribs }>{ domToReact( children, parseOptions ) }</Tag>;
 			},
-		} );
+		}
+
+		customIcon = parse( newIcon, parseOptions );
 
 		if ( isEmpty( customIcon?.props ) ) {
 			customIcon = '';
