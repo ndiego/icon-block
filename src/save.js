@@ -14,6 +14,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  * Internal dependencies
  */
 import icons from './icons';
+import parseIcon from './utils/parse-icon';
 
 /**
  * The save function for the Icon Block.
@@ -44,57 +45,37 @@ export default function Save( props ) {
 		percentWidth,
 	} = props.attributes;
 
-	// If there is no icon and iconName, don't save anything.
+	// If there is no icon and no iconName, don't save anything.
 	if ( ! icon && ! iconName ) {
 		return null;
 	}
 
 	const namedIcon = icons.filter( ( i ) => i.name === iconName );
-	let customIcon = '';
+	let printedIcon = '';
 
 	if ( icon && isEmpty( namedIcon ) ) {
-		const newIcon = icon.trim();
+		// Custom icon.
+		printedIcon = parseIcon( icon );
 
-		const parseOptions = {
-			trim: true,
-			replace: ( { attribs, children, name, parent, type } ) => {
-				// TODO: Very basic SVG sanitization, needs more refinement.
-				if (
-					type !== 'tag' ||
-					( ! parent && name !== 'svg' ) ||
-					! name
-				) {
-					return <></>;
-				}
-				// Hyphens or colons in attribute names are lost in the default process of
-				// html-react-parser. Spreading the attribs object as props avoids the loss.
-				const Tag = `${ name }`;
-				return (
-					<Tag { ...attribs }>
-						{ domToReact( children, parseOptions ) }
-					</Tag>
-				);
-			},
-		};
+		if ( isEmpty( printedIcon?.props ) ) {
+			printedIcon = '';
+		}
+	} else {
+		// Icon choosen from library.
+		printedIcon = namedIcon[ 0 ]?.icon;
 
-		customIcon = parse( newIcon, parseOptions );
-
-		if ( isEmpty( customIcon?.props ) ) {
-			customIcon = '';
+		// If a label is set, add as aria-label.
+		if ( label ) {
+			printedIcon = {
+				...printedIcon,
+				props: { ...printedIcon.props, 'aria-label': label },
+			};
 		}
 	}
-
-	let printedIcon = ! isEmpty( namedIcon )
-		? namedIcon[ 0 ]?.icon
-		: customIcon;
 
 	// If there is no valid SVG icon, don't save anything.
 	if ( ! printedIcon ) {
 		return null;
-	}
-
-	if ( label ) {
-		//printedIcon.setAttributes( 'aria-label', label );
 	}
 
 	const classes = classnames( 'icon-container', {
