@@ -2,7 +2,6 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import parse, { domToReact } from 'html-react-parser';
 import { isEmpty } from 'lodash';
 
 /**
@@ -63,19 +62,20 @@ export default function Save( props ) {
 	} else {
 		// Icon choosen from library.
 		printedIcon = namedIcon[ 0 ]?.icon;
-
-		// If a label is set, add as aria-label.
-		if ( label ) {
-			printedIcon = {
-				...printedIcon,
-				props: { ...printedIcon.props, 'aria-label': label },
-			};
-		}
 	}
 
 	// If there is no valid SVG icon, don't save anything.
 	if ( ! printedIcon ) {
 		return null;
+	}
+
+	// If a label is set, add as aria-label. Will overwite any aria-label in
+	// custom icons.
+	if ( label ) {
+		printedIcon = {
+			...printedIcon,
+			props: { ...printedIcon.props, 'aria-label': label },
+		};
 	}
 
 	const classes = classnames( 'icon-container', {

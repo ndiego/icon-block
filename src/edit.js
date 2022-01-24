@@ -12,7 +12,6 @@ import {
 	Button,
 	ButtonGroup,
 	Dropdown,
-	Icon,
 	MenuItem,
 	NavigableMenu,
 	PanelBody,
@@ -334,9 +333,7 @@ export function Edit( props ) {
 						'icon-block'
 					) }
 					value={ label }
-					onChange={ ( value ) =>
-						setAttributes( { label: value } )
-					}
+					onChange={ ( value ) => setAttributes( { label: value } ) }
 				/>
 				<RangeControl
 					label={ __( 'Icon width', 'icon-block' ) }
@@ -445,7 +442,7 @@ export function Edit( props ) {
 
 	const blockMarkup = (
 		<div ref={ iconRef } className={ iconClasses } style={ iconStyles }>
-			{ <Icon icon={ printedIcon } /> }
+			{ printedIcon }
 		</div>
 	);
 
