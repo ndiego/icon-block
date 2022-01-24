@@ -66,16 +66,19 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 == Changelog ==
 
-= 1.1.0 - 2022-01-TBD =
+= 1.1.0 - 2022-01-25 =
 
 **Added**
 
-* Added core Unlock icon.
-* Added core Comment Author Avatar icon.
-* Added core Comment Author Name icon.
-* Added core Comment Content icon.
-* Added core Comment Edit Link icon.
-* Added core Comment Reply Link icon.
+* Add additional border support (color, width, style)
+* Add margin support (top, bottom)
+* Add the ability to set an `aria-label` on the icon and link
+* Add the core Unlock icon.
+* Add the core Comment Author Avatar icon.
+* Add the core Comment Author Name icon.
+* Add the core Comment Content icon.
+* Add the core Comment Edit Link icon.
+* Add the core Comment Reply Link icon.
 
 **Changed**
 
@@ -86,7 +89,7 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 **Fixed**
 
-* Fix bug where hyphens and colons would be incorrectly stripped from attribute names. Thanks @stokesman for the PR. ([#5](https://github.com/ndiego/icon-block/pull/5))
+* Fix bug where hyphens and colons would be incorrectly stripped from attribute names in custom icons. Thanks @stokesman for the PR. ([#5](https://github.com/ndiego/icon-block/pull/5))
 
 = 1.0.0 - 2021-10-06 =
 
