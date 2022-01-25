@@ -1,4 +1,4 @@
-=== Icon Block ===
+=== The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
@@ -20,10 +20,10 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 
 * 270+ native WordPress icons, including social logos
 * Use any custom SVG icon or graphic
-* Includes some handy icon controls (link, rotate, alignment, colors, etc.)
+* Includes some handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
 * No block library required 🎉
 * Built almost entirely with native WordPress components
-* Will get additional functionality as it's added to WordPress core (margin, borders, responsive controls etc.)
+* Will get additional functionality as it's added to WordPress core
 
 === Stay Connected ===
 
@@ -72,7 +72,7 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 * Add additional border support (color, width, style)
 * Add margin support (top, bottom)
-* Add the ability to set an `aria-label` on the icon and link
+* Add the ability to set an `aria-label` on the icon and link.
 * Add the core Unlock icon.
 * Add the core Comment Author Avatar icon.
 * Add the core Comment Author Name icon.
@@ -82,10 +82,11 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 **Changed**
 
-* Updated inserter modal components to use `isFullScreen` to better resemble core modals.
-* Updated styling on inserter modals for improved mobile responsiveness.
-* The Align None, Color, Reset, and Styles icons are now imported directly from @wordpress/icons.
-* Removed custom search component in favor of core component from @wordpress/components.
+* Update inserter modal components to use `isFullScreen` to better resemble core modals.
+* Update styling on inserter modals for improved mobile responsiveness.
+* Import the Align None, Color, Reset, and Styles icons directly from @wordpress/icons.
+* Remove the custom search component in favor of the core component from @wordpress/components.
+* Restructure stylesheets to better conform with block standards.
 
 **Fixed**
 
