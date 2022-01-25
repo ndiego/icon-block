@@ -81,9 +81,10 @@ export default function CustomInserterModal( props ) {
 			className="wp-block-outermost-icon-custom-inserter__modal"
 			title={ __( 'Custom Icon', 'icon-block' ) }
 			onRequestClose={ () => setCustomInserterOpen( false ) }
+			isFullScreen
 		>
-			<div className="icon-custom-inserter__panel">
-				<div className="icon-custom-inserter__panel-content">
+			<div className="icon-custom-inserter">
+				<div className="icon-custom-inserter__content">
 					<TextareaControl
 						label={ __( 'Custom icon', 'icon-block' ) }
 						hideLabelFromVision={ true }
@@ -95,7 +96,7 @@ export default function CustomInserterModal( props ) {
 						) }
 					/>
 				</div>
-				<div className="icon-custom-inserter__panel-sidebar">
+				<div className="icon-custom-inserter__sidebar">
 					<div className="icon-preview">
 						<div
 							className={ classnames( 'icon-preview__window', {

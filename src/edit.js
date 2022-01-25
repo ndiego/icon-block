@@ -2,7 +2,6 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import parse from 'html-react-parser';
 import { isEmpty } from 'lodash';
 
 /**
@@ -13,12 +12,12 @@ import {
 	Button,
 	ButtonGroup,
 	Dropdown,
-	Icon,
 	MenuItem,
 	NavigableMenu,
 	PanelBody,
 	Popover,
 	RangeControl,
+	TextControl,
 	ToolbarButton,
 	ToolbarGroup,
 } from '@wordpress/components';
@@ -29,9 +28,9 @@ import {
 	JustifyToolbar,
 	useBlockProps,
 	withColors,
-	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
-	__experimentalUseGradient as useGradient,
-	__experimentalLinkControl as LinkControl,
+	__experimentalPanelColorGradientSettings as PanelColorGradientSettings, // eslint-disable-line
+	__experimentalUseGradient as useGradient, // eslint-disable-line
+	__experimentalLinkControl as LinkControl, // eslint-disable-line
 } from '@wordpress/block-editor';
 import { useRef, useState } from '@wordpress/element';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
@@ -45,9 +44,9 @@ import {
 /**
  * Internal dependencies
  */
-import './editor.scss';
 import icons from './icons';
 import { bolt as defaultIcon } from './icons/bolt';
+import parseIcon from './utils/parse-icon';
 import InserterModal from './inserters/inserter';
 import CustomInserterModal from './inserters/custom-inserter';
 import IconPlaceholder from './placeholder';
@@ -98,20 +97,22 @@ export function Edit( props ) {
 		setIconColor,
 	} = props;
 	const {
-		icon,
-		iconName,
-		style,
-		iconBackgroundColorValue,
-		iconColorValue,
-		itemsJustification,
-		linkUrl,
-		linkTarget,
-		linkRel,
-		rotate,
+		borderColor,
 		flipHorizontal,
 		flipVertical,
-		width,
+		label,
+		linkRel,
+		linkTarget,
+		linkUrl,
+		icon,
+		iconBackgroundColorValue,
+		iconColorValue,
+		iconName,
+		itemsJustification,
 		percentWidth,
+		rotate,
+		style,
+		width,
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
@@ -124,21 +125,7 @@ export function Edit( props ) {
 	let customIcon = defaultIcon;
 
 	if ( icon && isEmpty( namedIcon ) ) {
-		const newIcon = icon.trim();
-
-		customIcon = parse( newIcon, {
-			trim: true,
-			replace: ( domNode ) => {
-				// TODO: Very basic SVG sanitization, needs more refinement.
-				if (
-					domNode.type !== 'tag' ||
-					( ! domNode.parent && domNode.name !== 'svg' ) ||
-					! domNode.name
-				) {
-					return <></>;
-				}
-			},
-		} );
+		customIcon = parseIcon( icon );
 
 		if ( isEmpty( customIcon?.props ) ) {
 			customIcon = defaultIcon;
@@ -163,15 +150,6 @@ export function Edit( props ) {
 
 	if ( percentWidth ) {
 		iconWidth = `${ percentWidth }%`;
-	}
-
-	const radius = style?.border?.radius ?? undefined;
-	let padding = style?.spacing?.padding ?? undefined;
-
-	// We are not adding the padding to the primary block div, so need to handle
-	// the formatting ourselves.
-	if ( padding ) {
-		padding = `${ padding.top } ${ padding.right } ${ padding.bottom } ${ padding.left }`;
 	}
 
 	const ref = useRef();
@@ -348,6 +326,15 @@ export function Edit( props ) {
 				className="outermost-icon-block__icon-settings"
 				title={ __( 'Icon settings', 'icon-block' ) }
 			>
+				<TextControl
+					label={ __( 'Icon label', 'social-sharing-block' ) }
+					help={ __(
+						'Briefly describe the icon to help screen reader users.',
+						'icon-block'
+					) }
+					value={ label }
+					onChange={ ( value ) => setAttributes( { label: value } ) }
+				/>
 				<RangeControl
 					label={ __( 'Icon width', 'icon-block' ) }
 					onChange={ ( value ) => setAttributes( { width: value } ) }
@@ -420,10 +407,30 @@ export function Edit( props ) {
 		[ gradientClass ]: gradientClass,
 	} );
 
+	let margin = style?.spacing?.margin ?? undefined;
+	let padding = style?.spacing?.padding ?? undefined;
+
+	// We are not adding the padding to the primary block div, so need to handle
+	// the formatting ourselves.
+	if ( padding ) {
+		padding = `${ padding?.top ?? 0 } ${ padding?.right ?? 0 } ${ padding?.bottom ?? 0 } ${ padding?.left ?? 0 }`; // eslint-disable-line
+	}
+
+	// And even though margin is set on the main block div, we need to handle it
+	// manually since all other styles are applied to the inner div.
+	if ( margin ) {
+		margin = `${ margin?.top ?? 0 } ${ margin?.right ?? 0 } ${ margin?.bottom ?? 0 } ${ margin?.left ?? 0 }`; // eslint-disable-line
+	}
+
 	const iconStyles = {
 		background: gradientValue,
 		backgroundColor: iconBackgroundColorValue,
-		borderRadius: radius,
+		borderColor: borderColor
+			? `var(--wp--preset--color--${ borderColor })`
+			: style?.border?.color ?? undefined,
+		borderRadius: style?.border?.radius ?? undefined,
+		borderStyle: style?.border?.style ?? undefined,
+		borderWidth: style?.border?.width ?? undefined,
 		color: iconColorValue,
 		padding,
 		width: iconWidth,
@@ -435,7 +442,7 @@ export function Edit( props ) {
 
 	const blockMarkup = (
 		<div ref={ iconRef } className={ iconClasses } style={ iconStyles }>
-			{ <Icon icon={ printedIcon } /> }
+			{ printedIcon }
 		</div>
 	);
 
@@ -462,8 +469,9 @@ export function Edit( props ) {
 					onKeyDown,
 					className: blockClasses,
 				} ) }
-				// This is a bit of a hack, so the styles are not printed.
-				style={ {} }
+				// This is a bit of a hack. we only want the margin styles
+				// applied to the main block div.
+				style={ { margin } }
 			>
 				{ [
 					! icon && ! iconName && (

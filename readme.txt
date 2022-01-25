@@ -1,10 +1,10 @@
-=== Icon Block ===
+=== The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
-Tested up to:      5.8
+Tested up to:      5.9
 Requires PHP:      7.0
-Stable tag:        1.0.0
+Stable tag:        1.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,10 +20,10 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 
 * 270+ native WordPress icons, including social logos
 * Use any custom SVG icon or graphic
-* Includes some handy icon controls (link, rotate, alignment, colors, etc.)
+* Includes some handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
 * No block library required 🎉
 * Built almost entirely with native WordPress components
-* Will get additional functionality as it's added to WordPress core (margin, borders, responsive controls etc.)
+* Will get additional functionality as it's added to WordPress core
 
 === Stay Connected ===
 
@@ -65,6 +65,32 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 8. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 1.1.0 - 2022-01-25 =
+
+**Added**
+
+* Add additional border support (color, width, style)
+* Add margin support
+* Add the ability to set an `aria-label` on the icon and link.
+* Add the core Unlock icon.
+* Add the core Comment Author Avatar icon.
+* Add the core Comment Author Name icon.
+* Add the core Comment Content icon.
+* Add the core Comment Edit Link icon.
+* Add the core Comment Reply Link icon.
+
+**Changed**
+
+* Update inserter modal components to use `isFullScreen` to better resemble core modals.
+* Update styling on inserter modals for improved mobile responsiveness.
+* Import the Align None, Color, Reset, and Styles icons directly from @wordpress/icons.
+* Remove the custom search component in favor of the core component from @wordpress/components.
+* Restructure stylesheets to better conform with block standards.
+
+**Fixed**
+
+* Fix bug where hyphens and colons would be incorrectly stripped from attribute names in custom icons. Thanks @stokesman for the PR. ([#5](https://github.com/ndiego/icon-block/pull/5))
 
 = 1.0.0 - 2021-10-06 =
 

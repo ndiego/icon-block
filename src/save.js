@@ -2,7 +2,6 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import parse, { domToReact } from 'html-react-parser';
 import { isEmpty } from 'lodash';
 
 /**
@@ -14,6 +13,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  * Internal dependencies
  */
 import icons from './icons';
+import parseIcon from './utils/parse-icon';
 
 /**
  * The save function for the Icon Block.
@@ -23,6 +23,7 @@ import icons from './icons';
  */
 export default function Save( props ) {
 	const {
+		borderColor,
 		icon,
 		iconName,
 		style,
@@ -32,6 +33,7 @@ export default function Save( props ) {
 		gradient,
 		customGradient,
 		itemsJustification,
+		label,
 		linkUrl,
 		linkRel,
 		linkTarget,
@@ -42,49 +44,38 @@ export default function Save( props ) {
 		percentWidth,
 	} = props.attributes;
 
-	// If there is no icon and iconName, don't save anything.
+	// If there is no icon and no iconName, don't save anything.
 	if ( ! icon && ! iconName ) {
 		return null;
 	}
 
 	const namedIcon = icons.filter( ( i ) => i.name === iconName );
-	let customIcon = '';
+	let printedIcon = '';
 
 	if ( icon && isEmpty( namedIcon ) ) {
-		const newIcon = icon.trim();
+		// Custom icon.
+		printedIcon = parseIcon( icon );
 
-		const parseOptions = {
-			trim: true,
-			replace: ( { attribs, children, name, parent, type } ) => {
-				// TODO: Very basic SVG sanitization, needs more refinement.
-				if (
-					type !== 'tag' ||
-					( ! parent && name !== 'svg' ) ||
-					! name
-				) {
-					return <></>;
-				}
-				// Hyphens or colons in attribute names are lost in the default process of
-				// html-react-parser. Spreading the attribs object as props avoids the loss.
-				const Tag = `${ name }`;
-				return <Tag { ...attribs }>{ domToReact( children, parseOptions ) }</Tag>;
-			},
+		if ( isEmpty( printedIcon?.props ) ) {
+			printedIcon = '';
 		}
-
-		customIcon = parse( newIcon, parseOptions );
-
-		if ( isEmpty( customIcon?.props ) ) {
-			customIcon = '';
-		}
+	} else {
+		// Icon choosen from library.
+		printedIcon = namedIcon[ 0 ]?.icon;
 	}
-
-	let printedIcon = ! isEmpty( namedIcon )
-		? namedIcon[ 0 ]?.icon
-		: customIcon;
 
 	// If there is no valid SVG icon, don't save anything.
 	if ( ! printedIcon ) {
 		return null;
+	}
+
+	// If a label is set, add as aria-label. Will overwite any aria-label in
+	// custom icons.
+	if ( label ) {
+		printedIcon = {
+			...printedIcon,
+			props: { ...printedIcon.props, 'aria-label': label },
+		};
 	}
 
 	const classes = classnames( 'icon-container', {
@@ -110,11 +101,23 @@ export default function Save( props ) {
 		iconWidth = `${ percentWidth }%`;
 	}
 
-	const radius = style?.border?.radius ?? undefined;
+	let margin = style?.spacing?.margin ?? undefined;
 	let padding = style?.spacing?.padding ?? undefined;
 
+	// We are not adding the padding to the primary block div, so need to handle
+	// the formatting ourselves.
 	if ( padding ) {
-		padding = `${ padding.top } ${ padding.right } ${ padding.bottom } ${ padding.left }`;
+		padding = `${ padding?.top ?? 0 } ${ padding?.right ?? 0 } ${
+			padding?.bottom ?? 0
+		} ${ padding?.left ?? 0 }`;
+	}
+
+	// And even though margin is set on the main block div, we need to handle it
+	// manually since all other styles are applied to the inner div.
+	if ( margin ) {
+		margin = `${ margin?.top ?? 0 } ${ margin?.right ?? 0 } ${
+			margin?.bottom ?? 0
+		} ${ margin?.left ?? 0 }`;
 	}
 
 	const styles = {
@@ -122,7 +125,12 @@ export default function Save( props ) {
 		backgroundColor: ! iconBackgroundColor
 			? iconBackgroundColorValue
 			: undefined,
-		borderRadius: radius,
+		borderColor: borderColor
+			? `var(--wp--preset--color--${ borderColor })`
+			: style?.border?.color ?? undefined,
+		borderRadius: style?.border?.radius ?? undefined,
+		borderStyle: style?.border?.style ?? undefined,
+		borderWidth: style?.border?.width ?? undefined,
 		color: iconColorValue,
 		padding,
 		width: iconWidth,
@@ -136,6 +144,7 @@ export default function Save( props ) {
 				target={ target }
 				rel={ rel }
 				style={ styles }
+				aria-label={ label ?? undefined }
 			>
 				{ printedIcon }
 			</a>
@@ -153,8 +162,9 @@ export default function Save( props ) {
 			{ ...useBlockProps.save( {
 				className: `items-justified-${ itemsJustification }`,
 			} ) }
-			// This is a bit of a hack, so the styles are not printed.
-			style={ {} }
+			// This is a bit of a hack. we only want the margin styles
+			// applied to the main block div.
+			style={ { margin } }
 		>
 			{ printedIcon }
 		</div>

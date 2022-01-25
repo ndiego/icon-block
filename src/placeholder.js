@@ -8,7 +8,6 @@ import { Icon } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import './editor.scss';
 import { bolt } from './icons/bolt';
 import { QuickInserterPopover } from './inserters/quick-inserter';
 

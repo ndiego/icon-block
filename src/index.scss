@@ -15,6 +15,11 @@ $flipHV: scale(-1, -1);
  	line-height: 0;
 	display: flex;
 
+    // Unset border styling inherited from block props.
+    &.has-border-color {
+        border: none;
+    }
+
 	&.has-icon-color,
 	.has-icon-color {
 		svg {
@@ -22,6 +27,11 @@ $flipHV: scale(-1, -1);
 			fill: currentColor;
 		}
 	}
+
+    // box-sizing is set in the Editor but not on the frontend.
+    .icon-container {
+        box-sizing: border-box;
+    }
 
 	a,
 	svg {

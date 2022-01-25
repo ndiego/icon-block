@@ -124,75 +124,80 @@ $r270: rotate(270deg);
 }
 
 .wp-block-outermost-icon-inserter__modal {
-	height: 70%;
-	width: 100%;
-
-	@media ( min-width: 1100px ) {
-		width: 80%;
-	}
-
-	.components-modal__header {
-		margin-bottom: 0;
-	}
 
 	.components-modal__content {
-		overflow: hidden;
-		padding: 0 24px 0 32px;
+		flex: 1 1 0%;
+	    overflow: auto;
+	    padding: 0px;
 
 		&:before {
-			margin: 0;
+			margin-bottom: 0;
 		}
 	}
 
-	.icon-inserter__panel {
+	.icon-inserter {
+		align-items: stretch;
+	    display: flex;
+	    height: 100%;
+	}
+
+	.icon-inserter__sidebar {
+		display: none;
+	    flex-direction: column;
+	    flex-shrink: 0;
+	    overflow-y: scroll;
+	    width: 280px;
+	    border-right: 1px solid rgb(221, 221, 221);
+	    padding: 32px;
+
+		@media ( min-width: 900px ) {
+			display: flex;
+		}
+
+		&__search {
+			margin-bottom: 16px;
+
+			.components-base-control__field {
+    			margin-bottom: 0;
+			}
+		}
+
+		&__category-type {
+			.components-menu-group__label {
+				margin: 0;
+			    padding: 16px 12px 16px;
+			}
+
+			.components-menu-item__item {
+				text-transform: capitalize;
+				display: inline-flex;
+				justify-content: space-between;
+				width: 100%;
+
+				&>span {
+					opacity: 0.5;
+				}
+			}
+		}
+	}
+
+	.icon-inserter__content {
 		display: flex;
-		gap: 48px;
-		height: calc(100% - 32px);
-		margin-top: 32px;
-	}
-
-	.icon-inserter__panel-sidebar {
-		min-width: 200px;
-		width: 200px;
-		padding-bottom: 32px;
-
-		.components-search-control {
-			margin-bottom: 32px;
-		}
-
-		.components-menu-group__label {
-			padding: 0;
-		}
-
-		.components-menu-item__button {
-			&.is-active {
-				background: #f0f0f0;
-				box-shadow: none;
-				font-weight: 500;
-			}
-		}
-
-		.components-menu-item__item {
-			text-transform: capitalize;
-			display: inline-flex;
-			justify-content: space-between;
-			width: 100%;
-
-			&>span {
-				color: #757575;
-			}
-		}
-	}
-
-	.icon-inserter__panel-content {
+		flex-direction: column;
+		flex-shrink: 0;
+		overflow: auto;
+		padding: 32px 32px 64px;
 		width: 100%;
 
-		.icon-inserter__panel-content-header {
+		@media ( min-width: 900px ) {
+			width: calc(100% - 281px);
+		}
+
+		.icon-inserter__content-header {
+			align-items: center;
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
-			min-height: 48px;
-			margin: 0 8px 8px 0;
+			margin-bottom: 24px;
 
 			.search-results {
 				color: #757575;
@@ -217,16 +222,16 @@ $r270: rotate(270deg);
 				}
 			}
 		}
-		.icon-inserter__panel-content-grid {
-			height: calc(100% - 58px);
-			overflow: scroll;
-			padding-right: 8px;
-		}
+
 		.icons-list {
 			padding: 4px 4px 72px 4px;
 			margin: 0;
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+
+			@media ( min-width: 600px ) {
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+			}
 
 			@media ( min-width: 900px ) {
 				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
@@ -275,40 +280,36 @@ $r270: rotate(270deg);
 }
 
 .wp-block-outermost-icon-custom-inserter__modal {
-	height: 70%;
-	width: 100%;
-
-	@media ( min-width: 1100px ) {
-		width: 80%;
-	}
-
-	.components-modal__header {
-		margin-bottom: 0;
-	}
 
 	.components-modal__content {
-		overflow: hidden;
-		padding: 0 32px 32px;
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
+		flex: 1 1 0%;
+		overflow: auto;
+		padding: 0px;
 
 		&:before {
-			margin: 0;
+			margin-bottom: 0;
 		}
 	}
 
-	.icon-custom-inserter__panel {
+	.icon-custom-inserter {
+		align-items: stretch;
 		display: flex;
-		justify-content: space-between;
-		gap: 64px;
+		flex-direction: column;
+		gap: 32px;
 		height: 100%;
-		margin-top: 32px;
+		padding: 32px;
+
+		@media ( min-width: 900px ) {
+			flex-direction: row;
+		}
 	}
 
-	.icon-custom-inserter__panel-content {
-		width: 100%;
-		height: 100%;
+	.icon-custom-inserter__content {
+		min-height: 400px;
+
+		@media ( min-width: 900px ) {
+			width: calc(100% - 400px);
+		}
 
 		.components-base-control,
 		.components-base-control__field,
@@ -321,13 +322,15 @@ $r270: rotate(270deg);
 		}
 	}
 
-	.icon-custom-inserter__panel-sidebar {
-		width: 400px;
+	.icon-custom-inserter__sidebar {
 		flex-shrink: 0;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		height: 100%;
+
+		@media ( min-width: 900px ) {
+			width: 400px;
+		}
 
 		.icon-preview__window {
 			border: 1px solid #ddd;
@@ -353,7 +356,7 @@ $r270: rotate(270deg);
 		.icon-controls {
 			display: flex;
 			justify-content: center;
-			padding: 10px 20px;
+			padding: 12px 24px;
 		}
 
 		.icon-controls__size {
@@ -375,11 +378,11 @@ $r270: rotate(270deg);
 		}
 
 		.components-notice {
-			margin: 24px 0;
+			margin: 12px 0 24px;
 
 			// Needed to fix color error in Notice component
 			&.is-error {
-				background-color: #f8ebea;
+			//	background-color: #f8ebea;
 			}
 		}
 
@@ -492,65 +495,4 @@ $r270: rotate(270deg);
 			white-space: nowrap;
 		}
 	}
-}
-
-/* Temporary styling until the SearchControl component is included in WP core. */
-.components-search-control {
-	position: relative;
-
-	input[type="search"].components-search-control__input {
-		background: #f0f0f0;
-		border: none;
-		border-radius: 2px;
-		box-shadow: 0 0 0 transparent;
-		display: block;
-		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-		font-size: 16px;
-		height: 48px;
-		line-height: normal;
-		padding: 16px 48px 16px 16px;
-		transition: box-shadow .1s linear;
-		width: 100%;
-
-		/* Fonts smaller than 16px causes mobile safari to zoom. */
-		@media ( min-width: 600px ) {
-			font-size: 13px;
-		}
-
-		&:focus {
-			background: #fff;
-			box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
-		}
-
-		&::placeholder {
-			color: rgba(30,30,30,.62);
-		}
-
-		&::-webkit-search-decoration,
-		&::-webkit-search-cancel-button,
-		&::-webkit-search-results-button,
-		&::-webkit-search-results-decoration {
-			-webkit-appearance: none;
-		}
-	}
-}
-
-.components-search-control__icon {
-	align-items: center;
-	bottom: 0;
-	display: flex;
-	position: absolute;
-	right: 12px;
-	top: 0;
-
-	> button {
-		margin-right: -10px;
-	}
-	> svg {
-		margin: 8px 0;
-	}
-}
-
-.components-search-control__input-wrapper {
-	position: relative;
 }

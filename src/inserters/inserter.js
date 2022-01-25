@@ -14,6 +14,7 @@ import {
 	MenuItem,
 	Modal,
 	RangeControl,
+	SearchControl,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { Icon, blockDefault } from '@wordpress/icons';
@@ -21,7 +22,6 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import SearchControl from './../utils/search-control';
 import icons from './../icons';
 
 export default function InserterModal( props ) {
@@ -133,7 +133,10 @@ export default function InserterModal( props ) {
 
 	function renderIconTypeCategories( type ) {
 		return (
-			<MenuGroup label={ type.type }>
+			<MenuGroup
+				className="icon-inserter__sidebar__category-type"
+				label={ type.type }
+			>
 				{ type.categories.map( ( category ) => {
 					const isActive = currentCategory
 						? category === currentCategory
@@ -154,6 +157,7 @@ export default function InserterModal( props ) {
 								'is-active': isActive,
 							} ) }
 							onClick={ () => onClickCategory( category ) }
+							isPressed={ isActive }
 						>
 							{ category }
 							<span>
@@ -206,23 +210,26 @@ export default function InserterModal( props ) {
 			className="wp-block-outermost-icon-inserter__modal"
 			title={ __( 'Icon Library', 'icon-block' ) }
 			onRequestClose={ () => setInserterOpen( false ) }
+			isFullScreen
 		>
 			<div
-				className={ classnames( 'icon-inserter__panel', {
+				className={ classnames( 'icon-inserter', {
 					'is-searching': searchInput,
 				} ) }
 			>
-				<div className="icon-inserter__panel-sidebar">
-					<SearchControl
-						value={ searchInput }
-						onChange={ setSearchInput }
-					/>
+				<div className="icon-inserter__sidebar">
+					<div className="icon-inserter__sidebar__search">
+						<SearchControl
+							value={ searchInput }
+							onChange={ setSearchInput }
+						/>
+					</div>
 					{ preparedTypes.map( ( type ) =>
 						renderIconTypeCategories( type )
 					) }
 				</div>
-				<div className="icon-inserter__panel-content">
-					<div className="icon-inserter__panel-content-header">
+				<div className="icon-inserter__content">
+					<div className="icon-inserter__content-header">
 						<div className="search-results">
 							{ searchInput &&
 								sprintf(
@@ -254,7 +261,7 @@ export default function InserterModal( props ) {
 							</div>
 						</div>
 					</div>
-					<div className="icon-inserter__panel-content-grid">
+					<div className="icon-inserter__content-grid">
 						{ [
 							isEmpty( shownIcons ) && noResults,
 							! isEmpty( shownIcons ) && searchResults,

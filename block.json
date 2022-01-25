@@ -43,6 +43,9 @@
 		"customGradient": {
 			"type": "string"
 		},
+		"label": {
+			"type": "string"
+		},
 		"linkUrl": {
 			"type": "string"
 		},
@@ -72,13 +75,17 @@
 		"align": true,
 		"html": false,
 		"__experimentalBorder": {
-			"radius": true
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
 		},
 		"spacing": {
-			"padding": true
+			"padding": true,
+			"margin": true
 		}
 	},
 	"editorScript": "file:./build/index.js",
-	"editorStyle": "file:./build/index.css",
-	"style": "file:./build/style-index.css"
+	"editorStyle": "file:./build/editor.css",
+	"style": "file:./build/style.css"
 }

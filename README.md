@@ -8,12 +8,12 @@ A simple little block that allows you add a custom SVG icon or graphic to the Bl
 
 ### Key Features
 
-* 270+ native WordPress icons, including social logos
-* Use any custom SVG icon or graphic
-* Includes some handy icon controls (link, rotate, alignment, colors, etc.)
-* No block library required 🎉
-* Built almost entirely with native WordPress components
-* Will get additional functionality as its added to WordPress core (margin, borders, responsive controls etc.)
+- 270+ native WordPress icons, including social logos
+- Use any custom SVG icon or graphic
+- Includes some handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
+- No block library required 🎉
+- Built almost entirely with native WordPress components
+- Will get additional functionality as it's added to WordPress core
 
 ## Requirements
 
