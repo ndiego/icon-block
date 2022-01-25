@@ -82,7 +82,7 @@
 		},
 		"spacing": {
 			"padding": true,
-			"margin": [ "top", "bottom" ]
+			"margin": true
 		}
 	},
 	"editorScript": "file:./build/index.js",

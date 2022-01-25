@@ -107,13 +107,13 @@ export default function Save( props ) {
 	// We are not adding the padding to the primary block div, so need to handle
 	// the formatting ourselves.
 	if ( padding ) {
-		padding = `${ padding.top } ${ padding.right } ${ padding.bottom } ${ padding.left }`;
+		padding = `${ padding?.top ?? 0 } ${ padding?.right ?? 0  } ${ padding?.bottom ?? 0  } ${ padding?.left ?? 0  }`;
 	}
 
 	// And even though margin is set on the main block div, we need to handle it
 	// manually since all other styles are applied to the inner div.
 	if ( margin ) {
-		margin = `${ margin.top } ${ margin.bottom }`;
+		margin = `${ margin?.top ?? 0 } ${ margin?.right ?? 0 } ${ margin?.bottom ?? 0 } ${ margin?.left ?? 0 }`;
 	}
 
 	const styles = {
