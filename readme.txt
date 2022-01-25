@@ -71,7 +71,7 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 **Added**
 
 * Add additional border support (color, width, style)
-* Add margin support (top, bottom)
+* Add margin support
 * Add the ability to set an `aria-label` on the icon and link.
 * Add the core Unlock icon.
 * Add the core Comment Author Avatar icon.
