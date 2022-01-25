@@ -7,7 +7,6 @@ import { registerBlockType } from '@wordpress/blocks';
 /**
  * Internal dependencies
  */
-import './style.scss';
 import Edit from './edit';
 import Save from './save';
 import { bolt as icon } from './icons/bolt';

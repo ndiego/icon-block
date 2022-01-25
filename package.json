@@ -30,6 +30,7 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^19.2.3",
-		"lodash": "^4.17.21"
+		"lodash": "^4.17.21",
+		"webpack-remove-empty-scripts": "^0.7.2"
 	}
 }
