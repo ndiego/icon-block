@@ -66,7 +66,7 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 == Changelog ==
 
-= 1.1.1 - 2022-01-26 =
+= 1.1.1 - 2022-01-25 =
 
 **Changed**
 
