@@ -66,6 +66,12 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 
 == Changelog ==
 
+= 1.1.1 - 2022-01-26 =
+
+**Changed**
+
+* Include both theme and WordPress default color palettes in the icon and background color picker.
+
 = 1.1.0 - 2022-01-25 =
 
 **Added**

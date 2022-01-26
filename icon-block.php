@@ -4,7 +4,7 @@
  * Description:       A simple little block that allows you add an SVG icon or graphic to your website.
  * Requires at least: 5.8
  * Requires PHP:      7.0
- * Version:           1.1.0
+ * Version:           1.1.1
  * Author:            Nick Diego
  * Author URI:        https://www.nickdiego.com
  * License:           GPL-2.0-or-later
