@@ -381,6 +381,7 @@ export function Edit( props ) {
 							label: __( 'Background color', 'icon-block' ),
 						},
 					] }
+					__experimentalHasMultipleOrigins={ true }
 				>
 					{ ! iconName && (
 						<p className="outermost-icon-block__icon-settings-help">
