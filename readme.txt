@@ -4,7 +4,7 @@ Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
 Tested up to:      5.9
 Requires PHP:      7.0
-Stable tag:        1.1.1
+Stable tag:        1.1.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,12 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 8. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 1.1.2 - 2022-01-27 =
+
+**Fixed**
+
+* Fix bug where custom SVG icons with `style` attributes would not render correctly. Thanks @endres for reporting this issue.
 
 = 1.1.1 - 2022-01-25 =
 

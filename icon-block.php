@@ -4,14 +4,14 @@
  * Description:       A simple little block that allows you add an SVG icon or graphic to your website.
  * Requires at least: 5.8
  * Requires PHP:      7.0
- * Version:           1.1.1
+ * Version:           1.1.2
  * Author:            Nick Diego
  * Author URI:        https://www.nickdiego.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       icon-block
  *
- * @package           outermost-icon-block
+ * @package           The Icon Block
  */
 
 /**
