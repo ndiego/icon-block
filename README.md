@@ -17,7 +17,7 @@ A simple little block that allows you add a custom SVG icon or graphic to the Bl
 
 ## Requirements
 
-- WordPress 5.8+
+- WordPress 5.9+ or 5.8+ with [Gutenberg](https://wordpress.org/plugins/gutenberg/) active
 - PHP 7.0+
 
 ## Development
