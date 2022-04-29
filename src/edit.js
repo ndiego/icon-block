@@ -355,6 +355,7 @@ export function Edit( props ) {
 				<PanelColorGradientSettings
 					title={ __( 'Color' ) }
 					initialOpen={ true }
+					enableAlpha={ true }
 					settings={ [
 						{
 							colorValue: iconColor.color || iconColorValue,
