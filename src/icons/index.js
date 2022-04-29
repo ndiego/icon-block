@@ -7,7 +7,6 @@ import {
 	addSubmenu,
 	alignCenter,
 	alignJustify,
-	alignJustifyAlt,
 	alignLeft,
 	alignNone,
 	alignRight,
@@ -47,7 +46,6 @@ import {
 	cloud,
 	code,
 	cog,
-	cogAlt,
 	color,
 	column,
 	columns,
@@ -156,6 +154,7 @@ import {
 	plusCircleFilled,
 	plusCircle,
 	plus,
+	post,
 	postAuthor,
 	postCategories,
 	postContent,
@@ -166,6 +165,7 @@ import {
 	postExcerpt,
 	postFeaturedImage,
 	postList,
+	postTerms,
 	postTitle,
 	previous,
 	next,
@@ -177,16 +177,19 @@ import {
 	queryPaginationNext,
 	queryPaginationNumbers,
 	queryPaginationPrevious,
+	queryTitle,
 	quote,
 	receipt,
 	redo,
 	removeBug,
+	removeSubmenu,
 	replace,
 	reset,
 	resizeCornerNE,
 	reusableBlock,
 	rotateLeft,
 	rotateRight,
+	row,
 	rss,
 	search,
 	separator,
@@ -223,17 +226,16 @@ import {
 	sidebar,
 	textColor,
 	tablet,
-	// tip, the WP Icons NPM package does not yet include this icon.
+	tip,
 	title,
 	tool,
 	trash,
-	trashFilled,
 	trendingDown,
 	trendingUp,
 	typography,
 	undo,
 	ungroup,
-	// unlock, the WP Icons NPM package does not yet include this icon.
+	unlock,
 	update,
 	upload,
 	verse,
@@ -291,7 +293,7 @@ import {
 } from './wordpress/social';
 
 // Temporary icon specifications that are not yet in the NPM package.
-import { commentEditLink, sparkles, tip, unlock } from './wordpress/temp';
+import { commentEditLink, sparkles } from './wordpress/temp';
 
 const wpSocialIcons = [
 	{
@@ -573,12 +575,6 @@ const wpIcons = [
 		categories: [ 'editor' ],
 	},
 	{
-		name: 'alignJustifyAlt',
-		title: __( 'Align Justify - Alt', 'icon-block' ),
-		icon: alignJustifyAlt,
-		categories: [ 'editor' ],
-	},
-	{
 		name: 'alignLeft',
 		title: __( 'Align Left', 'icon-block' ),
 		icon: alignLeft,
@@ -794,11 +790,6 @@ const wpIcons = [
 		name: 'cog',
 		title: __( 'Cog', 'icon-block' ),
 		icon: cog,
-	},
-	{
-		name: 'cogAlt',
-		title: __( 'Cog - Alt', 'icon-block' ),
-		icon: cogAlt,
 	},
 	{
 		name: 'color',
@@ -1347,6 +1338,11 @@ const wpIcons = [
 		icon: positionRight,
 	},
 	{
+		name: 'post',
+		title: __( 'Post', 'icon-block' ),
+		icon: post,
+	},
+	{
 		name: 'pencil',
 		title: __( 'Pencil', 'icon-block' ),
 		icon: pencil,
@@ -1432,6 +1428,11 @@ const wpIcons = [
 		icon: postList,
 	},
 	{
+		name: 'postTerms',
+		title: __( 'Post Terms', 'icon-block' ),
+		icon: postTerms,
+	},
+	{
 		name: 'postTitle',
 		title: __( 'Post Title', 'icon-block' ),
 		icon: postTitle,
@@ -1491,6 +1492,11 @@ const wpIcons = [
 		categories: [ 'arrows' ],
 	},
 	{
+		name: 'queryTitle',
+		title: __( 'Query Title', 'icon-block' ),
+		icon: queryTitle,
+	},
+	{
 		name: 'quote',
 		title: __( 'Quote', 'icon-block' ),
 		icon: quote,
@@ -1510,6 +1516,11 @@ const wpIcons = [
 		name: 'removeBug',
 		title: __( 'Remove Bug', 'icon-block' ),
 		icon: removeBug,
+	},
+	{
+		name: 'removeSubmenu',
+		title: __( 'Remove Submenu', 'icon-block' ),
+		icon: removeSubmenu,
 	},
 	{
 		name: 'replace',
@@ -1546,6 +1557,11 @@ const wpIcons = [
 		title: __( 'Rotate Right', 'icon-block' ),
 		icon: rotateRight,
 		categories: [ 'arrows' ],
+	},
+	{
+		name: 'row',
+		title: __( 'Row', 'icon-block' ),
+		icon: row,
 	},
 	{
 		name: 'rss',
@@ -1767,11 +1783,6 @@ const wpIcons = [
 		name: 'trash',
 		title: __( 'Trash', 'icon-block' ),
 		icon: trash,
-	},
-	{
-		name: 'trashFilled',
-		title: __( 'Trash - Filled', 'icon-block' ),
-		icon: trashFilled,
 	},
 	{
 		name: 'trendingDown',
