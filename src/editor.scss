@@ -447,6 +447,14 @@ $r270: rotate(270deg);
 				margin-top: 0;
 			}
 		}
+
+		&__width {
+			margin-bottom: 12px;
+		}
+	}
+
+	.components-disabled {
+		opacity: .4;
 	}
 }
 

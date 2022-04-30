@@ -11,6 +11,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	Button,
 	ButtonGroup,
+	Disabled,
 	Dropdown,
 	MenuItem,
 	NavigableMenu,
@@ -320,11 +321,23 @@ export function Edit( props ) {
 		</>
 	);
 
+	let linkRelMarkup = (
+		<TextControl
+			label={ __( 'Link rel', 'social-sharing-block' ) }
+			value={ linkRel }
+			onChange={ ( value ) => setAttributes( { linkRel: value } ) }
+		/>
+	);
+
+	if ( ! linkUrl ) {
+		linkRelMarkup = <Disabled>{ linkRelMarkup }</Disabled>;
+	}
+
 	const inspectorControls = ( icon || iconName ) && (
 		<InspectorControls>
 			<PanelBody
 				className="outermost-icon-block__icon-settings"
-				title={ __( 'Icon settings', 'icon-block' ) }
+				title={ __( 'Settings', 'icon-block' ) }
 			>
 				<TextControl
 					label={ __( 'Icon label', 'social-sharing-block' ) }
@@ -335,21 +348,24 @@ export function Edit( props ) {
 					value={ label }
 					onChange={ ( value ) => setAttributes( { label: value } ) }
 				/>
-				<RangeControl
-					label={ __( 'Icon width', 'icon-block' ) }
-					onChange={ ( value ) => setAttributes( { width: value } ) }
-					value={ width || '' }
-					min={ 10 }
-					max={ 1000 }
-					initialPosition={ 48 }
-					allowReset={ true }
-					resetFallbackValue={ 48 }
-					disabled={ percentWidth }
-				/>
-				<PercentWidthPanel
-					selectedWidth={ percentWidth }
-					setAttributes={ setAttributes }
-				/>
+				<div className="outermost-icon-block__icon-settings__width">
+					<RangeControl
+						label={ __( 'Icon width', 'icon-block' ) }
+						onChange={ ( value ) => setAttributes( { width: value } ) }
+						value={ width || '' }
+						min={ 10 }
+						max={ 1000 }
+						initialPosition={ 48 }
+						allowReset={ true }
+						resetFallbackValue={ 48 }
+						disabled={ percentWidth }
+					/>
+					<PercentWidthPanel
+						selectedWidth={ percentWidth }
+						setAttributes={ setAttributes }
+					/>
+				</div>
+				{ linkRelMarkup }
 			</PanelBody>
 			<div>
 				<PanelColorGradientSettings
