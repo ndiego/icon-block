@@ -22,7 +22,69 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import icons from './../icons';
+import iconsRaw from './../icons';
+
+function getTypes( icons ) {
+
+	const iconTypes = [];
+
+	icons.forEach( ( type ) => {
+
+		const iconType = type?.type;
+		const typeTitle = type?.title ?? type?.type;
+		const isDefault = type?.isDefault ?? false;
+
+		if ( ! isEmpty( iconType ) ) {
+			iconTypes.push( {
+				type: iconType,
+				title: typeTitle,
+				isDefault: isDefault,
+			} );
+		}
+	} );
+
+	return iconTypes;
+}
+
+function getIcons( icons ) {
+
+	let flatIcons = [];
+
+	icons.forEach( ( type ) => {
+		const iconType = type?.type;
+		const iconsOfType = type?.icons;
+
+		if ( ! isEmpty( iconsOfType ) ) {
+
+			// Append the type to the icon name and add the type parameter.
+			iconsOfType.forEach( ( icon ) => {
+				icon.name = iconType + '-' + icon.name;
+				icon.type = iconType;
+			} );
+
+			// Sort the icons alphabetically.
+			iconsOfType.sort( function ( a, b ) {
+				return a.name.localeCompare( b.name );
+			} );
+
+			flatIcons = flatIcons.concat( iconsOfType );
+		}
+	} );
+
+	return flatIcons;
+}
+
+function simplifyCategories( categories ) {
+	const simplifiedCategories = []
+
+	categories.forEach( ( category ) => {
+		if ( category?.name ) {
+			simplifiedCategories.push( category.name );
+		}
+	} );
+
+	return simplifiedCategories;
+}
 
 export default function InserterModal( props ) {
 	const {
@@ -31,15 +93,27 @@ export default function InserterModal( props ) {
 		attributes,
 		setAttributes,
 	} = props;
+
+	const types = getTypes( iconsRaw );
+
+	// Get the default type, and if there is none, get the first type.
+	let defaultType = types.filter( ( type ) => type.isDefault );
+	defaultType = defaultType.length !== 0 ? defaultType : [ types[0] ];
+
 	const [ searchInput, setSearchInput ] = useState( '' );
-	const [ currentCategory, setCurrentCategory ] = useState( 'all' );
+	const [ currentCategory, setCurrentCategory ] = useState( 'all__' + defaultType[0].type );
 	const [ iconSize, setIconSize ] = useState( 24 );
 
 	if ( ! isInserterOpen ) {
 		return null;
 	}
 
-	let shownIcons = icons;
+	const icons = getIcons( iconsRaw );
+
+	console.log( icons );
+	console.log( types );
+
+	let shownIcons = [];
 
 	// Filter by search input.
 	if ( searchInput ) {
@@ -65,18 +139,26 @@ export default function InserterModal( props ) {
 		} );
 	}
 
-	// Filter by category if one select and we are not searching.
-	if ( currentCategory !== 'all' && ! searchInput ) {
-		shownIcons = icons.filter( ( icon ) => {
-			const iconCategories = icon?.categories ?? [];
+	// Filter by category if we are not searching.
+	if ( ! searchInput ) {
 
-			// First check if the category matches.
-			if ( iconCategories.includes( currentCategory ) ) {
-				return true;
-			}
+		// If an "all" category, fetch all icons of the correct type.
+		if ( currentCategory.startsWith( 'all__' ) ) {
+			const type = currentCategory.replace( 'all__', '' );
+			const allIconsOfType = iconsRaw.filter( t => t.type === type )[ 0 ]?.icons ?? [];
+			shownIcons = allIconsOfType;
+		} else {
+			shownIcons = icons.filter( ( icon ) => {
+				const iconCategories = icon?.categories ?? [];
 
-			return false;
-		} );
+				// First check if the category matches.
+				if ( iconCategories.includes( currentCategory ) ) {
+					return true;
+				}
+
+				return false;
+			} );
+		}
 	}
 
 	let iconTypes = [];
@@ -96,27 +178,29 @@ export default function InserterModal( props ) {
 
 	const preparedTypes = [];
 
-	// Add any found categories to each icon type.
-	iconTypes.forEach( ( type ) => {
-		const iconsOfType = icons.filter( ( i ) => i.type === type );
-		const categories = [];
-
-		iconsOfType.forEach( ( iconOfType ) => {
-			const iconCategories = iconOfType?.categories;
-
-			if ( ! isEmpty( iconCategories ) ) {
-				iconCategories.forEach( ( category ) => {
-					if ( ! categories.includes( category ) ) {
-						categories.push( category );
-					}
-				} );
-			}
-		} );
+	iconsRaw.forEach( ( type ) => {
+		const title = type?.title ?? type.type;
+		const categoriesFull = type?.categories ?? [];
+		const categories = simplifyCategories( categoriesFull );
+		const allCategory = 'all__' + type.type;
+		const iconsOfType = type?.icons ?? [];
 
 		// Sort alphabetically and then add the "all" category.
-		categories.sort().unshift( 'all' );
+		if ( ! categories.includes( allCategory ) ) {
+			categories.sort().unshift( allCategory );
+			categoriesFull.unshift( {
+				name: allCategory,
+				title: __( 'All', 'icon-block' ),
+			} );
+		}
 
-		preparedTypes.push( { type, categories, count: iconsOfType.length } );
+		preparedTypes.push( {
+			type: type.type,
+			title,
+			categoriesFull,
+			categories,
+			count: iconsOfType.length
+		} );
 	} );
 
 	function updateIconName( name ) {
@@ -135,12 +219,12 @@ export default function InserterModal( props ) {
 		return (
 			<MenuGroup
 				className="icon-inserter__sidebar__category-type"
-				label={ type.type }
+				label={ type.title }
 			>
 				{ type.categories.map( ( category ) => {
 					const isActive = currentCategory
 						? category === currentCategory
-						: category === 'all';
+						: category === 'all__' + type.type;
 
 					const categoryIcons = icons.filter( ( icon ) => {
 						const iconCats = icon?.categories ?? [];
@@ -149,6 +233,8 @@ export default function InserterModal( props ) {
 							iconCats.includes( category )
 						);
 					} );
+
+					const categoryTitle = type.categoriesFull.filter( c => c.name === category )[0]?.title ?? category;
 
 					return (
 						<MenuItem
@@ -159,9 +245,9 @@ export default function InserterModal( props ) {
 							onClick={ () => onClickCategory( category ) }
 							isPressed={ isActive }
 						>
-							{ category }
+							{ categoryTitle }
 							<span>
-								{ category === 'all'
+								{ category === 'all__' + type.type
 									? type.count
 									: categoryIcons.length }
 							</span>

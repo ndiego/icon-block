@@ -1853,21 +1853,75 @@ const wpIcons = [
 	},
 ];
 
-wpSocialIcons.forEach( ( icon ) => {
-	icon.name = 'wordpress-' + icon.name;
-	icon.type = 'wordpress';
-} );
+const wpIconsArray = [].concat( wpSocialIcons, wpIcons );
 
-wpIcons.forEach( ( icon ) => {
-	icon.name = 'wordpress-' + icon.name;
-	icon.type = 'wordpress';
-} );
+const wpIconsBase = [
+	{
+		isDefault: true,
+		type: 'wordpress',
+		title: __( 'WordPress', 'icon-block' ),
+		icons: wpIconsArray,
+		categories: [
+			{
+				name: 'arrows',
+				title: __( 'Arrows', 'icon-block' ),
+			},
+			{
+				name: 'blocks',
+				title: __( 'Blocks', 'icon-block' ),
+			},
+			{
+				name: 'devices',
+				title: __( 'Devices', 'icon-block' ),
+			},
+			{
+				name: 'editor',
+				title: __( 'Editor', 'icon-block' ),
+			},
+			{
+				name: 'logos',
+				title: __( 'Logos', 'icon-block' ),
+			},
+			{
+				name: 'media',
+				title: __( 'Media', 'icon-block' ),
+			},
+		],
+	},
+];
 
-const iconsArray = [];
-const icons = iconsArray.concat( wpSocialIcons, wpIcons );
+const customIcons = [
+	{
+		isDefault: false,
+		type: 'custom-new',
+		title: __( 'Custom', 'icon-block' ),
+		icons: [
+			{
+				name: 'warning',
+				title: __( 'Warning', 'icon-block' ),
+				icon: warning,
+				categories: [ 'test-cat', 'boats' ],
+			},
+			{
+				name: 'widget',
+				title: __( 'Testing Widget', 'icon-block' ),
+				icon: widget,
+			},
+		],
+		categories: [
+			{
+				name: 'test-cat',
+				title: __( 'Test Cat', 'icon-block' ),
+			},
+			{
+				name: 'boats',
+				title: __( 'Boats', 'icon-block' ),
+			},
+		],
+	}
+];
 
-icons.sort( function ( a, b ) {
-	return a.name.localeCompare( b.name );
-} );
+
+const icons = [].concat( wpIconsBase, customIcons );
 
 export default icons;
