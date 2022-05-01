@@ -14,7 +14,33 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import icons from './../icons';
+import iconsByType from './../icons';
+
+function getAllIcons( icons ) {
+	let allIcons = [];
+
+	icons.forEach( ( type ) => {
+		const iconType = type?.type;
+		const iconsOfType = type?.icons;
+
+		if ( ! isEmpty( iconsOfType ) ) {
+			// Append the type to the icon name and add the type parameter.
+			iconsOfType.forEach( ( icon ) => {
+				icon.name = iconType + '-' + icon.name;
+				icon.type = iconType;
+			} );
+
+			// Sort the icons alphabetically.
+			iconsOfType.sort( function ( a, b ) {
+				return a.name.localeCompare( b.name );
+			} );
+
+			allIcons = allIcons.concat( iconsOfType );
+		}
+	} );
+
+	return allIcons;
+}
 
 export function QuickInserterPopover( props ) {
 	const [ searchInput, setSearchInput ] = useState( '' );
@@ -37,28 +63,17 @@ export function QuickInserterPopover( props ) {
 		setInserterOpen( false );
 	}
 
-	const defaultIcon = icons.filter( ( icon ) => {
-		return icon.isDefault;
-	} );
+	const iconsAll = getAllIcons( iconsByType );
 
-	let shownIcons = icons.filter( ( icon ) => {
-		const curatedIcons = [
-			'wordpress-image',
-			'wordpress-shipping',
-			'wordpress-sparkles',
-			'wordpress-twitter',
-			'wordpress-verse',
-		];
+	// Get the icons of the default type, if there is one. Otherwise, just pull
+	// from the first icon type.
+	const iconsOfDefaultType =
+		iconsByType.filter( ( t ) => t.isDefault )[ 0 ]?.icons ?? iconsAll;
 
-		return curatedIcons.includes( icon.name );
-	} );
-
-	if ( ! isEmpty( defaultIcon ) ) {
-		shownIcons.unshift( defaultIcon[ 0 ] );
-	}
+	let shownIcons = [];
 
 	if ( searchInput ) {
-		shownIcons = icons.filter( ( icon ) => {
+		shownIcons = iconsAll.filter( ( icon ) => {
 			const input = searchInput.toLowerCase();
 			const iconName = icon.title.toLowerCase();
 
@@ -78,6 +93,14 @@ export function QuickInserterPopover( props ) {
 
 			return false;
 		} );
+	}
+
+	if ( ! searchInput ) {
+		// See if there is a default icon set.
+		const defaultIcons =
+			iconsOfDefaultType.filter( ( i ) => i.isDefault ) ?? [];
+
+		shownIcons = shownIcons.concat( defaultIcons, iconsOfDefaultType );
 	}
 
 	shownIcons = shownIcons.slice( 0, 6 );

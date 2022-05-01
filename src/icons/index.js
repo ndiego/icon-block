@@ -295,7 +295,7 @@ import {
 // Temporary icon specifications that are not yet in the NPM package.
 import { commentEditLink, sparkles } from './wordpress/temp';
 
-const wpSocialIcons = [
+const wpIconsSocial = [
 	{
 		isDefault: true,
 		name: 'wordpress',
@@ -519,6 +519,7 @@ const wpSocialIcons = [
 		categories: [ 'logos' ],
 	},
 	{
+		isDefault: true,
 		name: 'twitter',
 		title: 'Twitter',
 		icon: twitter,
@@ -1089,6 +1090,7 @@ const wpIcons = [
 		categories: [ 'blocks' ],
 	},
 	{
+		isDefault: true,
 		name: 'image',
 		title: __( 'Image', 'icon-block' ),
 		icon: image,
@@ -1608,6 +1610,7 @@ const wpIcons = [
 		categories: [ 'blocks', 'media' ],
 	},
 	{
+		isDefault: true,
 		name: 'sparkles',
 		title: __( 'Sparkles', 'icon-block' ),
 		icon: sparkles,
@@ -1649,6 +1652,7 @@ const wpIcons = [
 		icon: styles,
 	},
 	{
+		isDefault: true,
 		name: 'shipping',
 		title: __( 'Shipping', 'icon-block' ),
 		icon: shipping,
@@ -1830,6 +1834,7 @@ const wpIcons = [
 		categories: [ 'arrows' ],
 	},
 	{
+		isDefault: true,
 		name: 'verse',
 		title: __( 'Verse', 'icon-block' ),
 		icon: verse,
@@ -1853,14 +1858,12 @@ const wpIcons = [
 	},
 ];
 
-const wpIconsArray = [].concat( wpSocialIcons, wpIcons );
-
-const wpIconsBase = [
+const wpIconsType = [
 	{
-		isDefault: true,
+		isDefault: false,
 		type: 'wordpress',
 		title: __( 'WordPress', 'icon-block' ),
-		icons: wpIconsArray,
+		icons: [].concat( wpIconsSocial, wpIcons ),
 		categories: [
 			{
 				name: 'arrows',
@@ -1890,12 +1893,100 @@ const wpIconsBase = [
 	},
 ];
 
+// Temp, remove in production.
 const customIcons = [
 	{
 		isDefault: false,
 		type: 'custom-new',
 		title: __( 'Custom', 'icon-block' ),
 		icons: [
+			{
+				name: 'footer',
+				title: __( 'Footer', 'icon-block' ),
+				icon: footer,
+			},
+			{
+				name: 'header',
+				title: __( 'Header', 'icon-block' ),
+				icon: header,
+			},
+			{
+				name: 'sidebar',
+				title: __( 'Sidebar', 'icon-block' ),
+				icon: sidebar,
+			},
+			{
+				name: 'textColor',
+				title: __( 'Text Color', 'icon-block' ),
+				icon: textColor,
+			},
+			{
+				name: 'tablet',
+				title: __( 'Tablet', 'icon-block' ),
+				icon: tablet,
+				categories: [ 'devices' ],
+			},
+			{
+				name: 'title',
+				title: __( 'Title', 'icon-block' ),
+				icon: title,
+			},
+			{
+				isDefault: true,
+				name: 'tip',
+				title: __( 'Tip', 'icon-block' ),
+				icon: tip,
+			},
+			{
+				name: 'tool',
+				title: __( 'Tool', 'icon-block' ),
+				icon: tool,
+			},
+			{
+				isDefault: true,
+				name: 'trash',
+				title: __( 'Trash', 'icon-block' ),
+				icon: trash,
+			},
+			{
+				name: 'trendingDown',
+				title: __( 'Trending Down', 'icon-block' ),
+				icon: trendingDown,
+				categories: [ 'arrows' ],
+			},
+			{
+				name: 'trendingUp',
+				title: __( 'Trending Up', 'icon-block' ),
+				icon: trendingUp,
+				categories: [ 'arrows' ],
+			},
+			{
+				name: 'typography',
+				title: __( 'Typography', 'icon-block' ),
+				icon: typography,
+			},
+			{
+				name: 'undo',
+				title: __( 'Undo', 'icon-block' ),
+				icon: undo,
+				categories: [ 'arrows', 'editor' ],
+			},
+			{
+				name: 'ungroup',
+				title: __( 'Ungroup', 'icon-block' ),
+				icon: ungroup,
+				categories: [ 'editor' ],
+			},
+			{
+				name: 'unlock',
+				title: __( 'Unlock', 'icon-block' ),
+				icon: unlock,
+			},
+			{
+				name: 'update',
+				title: __( 'Update', 'icon-block' ),
+				icon: update,
+			},
 			{
 				name: 'warning',
 				title: __( 'Warning', 'icon-block' ),
@@ -1918,10 +2009,9 @@ const customIcons = [
 				title: __( 'Boats', 'icon-block' ),
 			},
 		],
-	}
+	},
 ];
 
-
-const icons = [].concat( wpIconsBase, customIcons );
+const icons = [].concat( customIcons, wpIconsType );
 
 export default icons;

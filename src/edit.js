@@ -351,7 +351,9 @@ export function Edit( props ) {
 				<div className="outermost-icon-block__icon-settings__width">
 					<RangeControl
 						label={ __( 'Icon width', 'icon-block' ) }
-						onChange={ ( value ) => setAttributes( { width: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { width: value } )
+						}
 						value={ width || '' }
 						min={ 10 }
 						max={ 1000 }
