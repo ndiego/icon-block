@@ -22,68 +22,13 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import iconsByType from './../icons';
-
-// Get all icon types.
-function getTypes( icons ) {
-	const iconTypes = [];
-
-	icons.forEach( ( type ) => {
-		const iconType = type?.type;
-		const typeTitle = type?.title ?? type?.type;
-		const isDefault = type?.isDefault ?? false;
-
-		if ( ! isEmpty( iconType ) ) {
-			iconTypes.push( {
-				type: iconType,
-				title: typeTitle,
-				isDefault,
-			} );
-		}
-	} );
-
-	return iconTypes;
-}
-
-// Extracts all icons from all types and places them in a single array.
-function getAllIcons( icons ) {
-	let allIcons = [];
-
-	icons.forEach( ( type ) => {
-		const iconType = type?.type;
-		const iconsOfType = type?.icons;
-
-		if ( ! isEmpty( iconsOfType ) ) {
-			// Append the type to the icon name and add the type parameter.
-			iconsOfType.forEach( ( icon ) => {
-				icon.name = iconType + '-' + icon.name;
-				icon.type = iconType;
-			} );
-
-			// Sort the icons alphabetically.
-			iconsOfType.sort( function ( a, b ) {
-				return a.name.localeCompare( b.name );
-			} );
-
-			allIcons = allIcons.concat( iconsOfType );
-		}
-	} );
-
-	return allIcons;
-}
-
-// Simplify the categories into a single array.
-function simplifyCategories( categories ) {
-	const simplifiedCategories = [];
-
-	categories.forEach( ( category ) => {
-		if ( category?.name ) {
-			simplifiedCategories.push( category.name );
-		}
-	} );
-
-	return simplifiedCategories;
-}
+import getIcons from './../icons';
+import parseIcon from './../utils/parse-icon';
+import {
+	flattenIconsArray,
+	getIconTypes,
+	simplifyCategories,
+} from './../utils/icon-functions';
 
 export default function InserterModal( props ) {
 	const {
@@ -92,15 +37,16 @@ export default function InserterModal( props ) {
 		attributes,
 		setAttributes,
 	} = props;
-	const types = getTypes( iconsByType );
+	const iconsByType = getIcons();
+	const iconTypes = getIconTypes( iconsByType );
 
 	// Get the default type, and if there is none, get the first type.
-	let defaultType = types.filter( ( type ) => type.isDefault );
-	defaultType = defaultType.length !== 0 ? defaultType : [ types[ 0 ] ];
+	let defaultType = iconTypes.filter( ( type ) => type.isDefault );
+	defaultType = defaultType.length !== 0 ? defaultType : [ iconTypes[ 0 ] ];
 
 	const [ searchInput, setSearchInput ] = useState( '' );
 	const [ currentCategory, setCurrentCategory ] = useState(
-		'all__' + defaultType[ 0 ].type
+		'all__' + defaultType[ 0 ]?.type
 	);
 	const [ iconSize, setIconSize ] = useState( 24 );
 
@@ -108,7 +54,7 @@ export default function InserterModal( props ) {
 		return null;
 	}
 
-	const iconsAll = getAllIcons( iconsByType );
+	const iconsAll = flattenIconsArray( iconsByType );
 	let shownIcons = [];
 
 	// Filter by search input.
@@ -141,8 +87,9 @@ export default function InserterModal( props ) {
 		if ( currentCategory.startsWith( 'all__' ) ) {
 			const categoryType = currentCategory.replace( 'all__', '' );
 			const allIconsOfType =
-				iconsByType.filter( ( type ) => type.type === categoryType )[ 0 ]
-					?.icons ?? [];
+				iconsByType.filter(
+					( type ) => type.type === categoryType
+				)[ 0 ]?.icons ?? [];
 			shownIcons = allIconsOfType;
 		} else {
 			shownIcons = iconsAll.filter( ( icon ) => {
@@ -246,6 +193,13 @@ export default function InserterModal( props ) {
 	const searchResults = (
 		<div className="icons-list">
 			{ shownIcons.map( ( icon ) => {
+				let renderedIcon = icon.icon;
+
+				// Icons provided by third-parties are generally strings.
+				if ( typeof renderedIcon === 'string' ) {
+					renderedIcon = parseIcon( renderedIcon );
+				}
+
 				return (
 					<Button
 						key={ `icon-${ icon.name }` }
@@ -255,7 +209,7 @@ export default function InserterModal( props ) {
 						onClick={ () => updateIconName( icon.name ) }
 					>
 						<span className="icons-list__item-icon">
-							<Icon icon={ icon.icon } size={ iconSize } />
+							<Icon icon={ renderedIcon } size={ iconSize } />
 						</span>
 						<span className="icons-list__item-title">
 							{ icon?.title ?? icon.name }

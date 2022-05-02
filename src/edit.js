@@ -45,7 +45,8 @@ import {
 /**
  * Internal dependencies
  */
-import icons from './icons';
+import getIcons from './icons';
+import { flattenIconsArray } from './utils/icon-functions';
 import { bolt as defaultIcon } from './icons/bolt';
 import parseIcon from './utils/parse-icon';
 import InserterModal from './inserters/inserter';
@@ -121,8 +122,8 @@ export function Edit( props ) {
 	const [ isQuickInserterOpen, setQuickInserterOpen ] = useState( false );
 	const [ isCustomInserterOpen, setCustomInserterOpen ] = useState( false );
 
-	const namedIcon = icons.filter( ( i ) => i.name === iconName );
-
+	const iconsAll = flattenIconsArray( getIcons() );
+	const namedIcon = iconsAll.filter( ( i ) => i.name === iconName );
 	let customIcon = defaultIcon;
 
 	if ( icon && isEmpty( namedIcon ) ) {
@@ -250,7 +251,6 @@ export function Edit( props ) {
 							isPressed={ flipVertical }
 						/>
 					</ToolbarGroup>
-
 					<ToolbarGroup>
 						<Dropdown
 							renderToggle={ ( { onToggle } ) => (
@@ -456,9 +456,12 @@ export function Edit( props ) {
 		width: iconWidth,
 	};
 
-	const printedIcon = ! isEmpty( namedIcon )
-		? namedIcon[ 0 ].icon
-		: customIcon;
+	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[ 0 ].icon : customIcon;
+
+	// Icons provided by third-parties are generally strings.
+	if ( typeof printedIcon === 'string' ) {
+		printedIcon = parseIcon( printedIcon );
+	}
 
 	const blockMarkup = (
 		<div ref={ iconRef } className={ iconClasses } style={ iconStyles }>
