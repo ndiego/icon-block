@@ -68,13 +68,13 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.2.0 - 2022-04-TBD =
+= 1.2.0 - 2022-05-02 =
 
 **Added**
 
 * Add alpha support for icon and background colors.
 * Add link rel support.
-* Add support for custom icon types. 
+* Add support for custom icon types.
 * Add new WordPress icons: `post`, `postTerms`, `queryTitle`, `removeSubmenu`, and `row`
 
 **Changed**
