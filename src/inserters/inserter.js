@@ -22,7 +22,13 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import icons from './../icons';
+import getIcons from './../icons';
+import parseIcon from './../utils/parse-icon';
+import {
+	flattenIconsArray,
+	getIconTypes,
+	simplifyCategories,
+} from './../utils/icon-functions';
 
 export default function InserterModal( props ) {
 	const {
@@ -31,19 +37,29 @@ export default function InserterModal( props ) {
 		attributes,
 		setAttributes,
 	} = props;
+	const iconsByType = getIcons();
+	const iconTypes = getIconTypes( iconsByType );
+
+	// Get the default type, and if there is none, get the first type.
+	let defaultType = iconTypes.filter( ( type ) => type.isDefault );
+	defaultType = defaultType.length !== 0 ? defaultType : [ iconTypes[ 0 ] ];
+
 	const [ searchInput, setSearchInput ] = useState( '' );
-	const [ currentCategory, setCurrentCategory ] = useState( 'all' );
+	const [ currentCategory, setCurrentCategory ] = useState(
+		'all__' + defaultType[ 0 ]?.type
+	);
 	const [ iconSize, setIconSize ] = useState( 24 );
 
 	if ( ! isInserterOpen ) {
 		return null;
 	}
 
-	let shownIcons = icons;
+	const iconsAll = flattenIconsArray( iconsByType );
+	let shownIcons = [];
 
 	// Filter by search input.
 	if ( searchInput ) {
-		shownIcons = icons.filter( ( icon ) => {
+		shownIcons = iconsAll.filter( ( icon ) => {
 			const input = searchInput.toLowerCase();
 			const iconName = icon.title.toLowerCase();
 
@@ -65,58 +81,55 @@ export default function InserterModal( props ) {
 		} );
 	}
 
-	// Filter by category if one select and we are not searching.
-	if ( currentCategory !== 'all' && ! searchInput ) {
-		shownIcons = icons.filter( ( icon ) => {
-			const iconCategories = icon?.categories ?? [];
+	// Filter by category if we are not searching.
+	if ( ! searchInput ) {
+		// If an "all" category, fetch all icons of the correct type.
+		if ( currentCategory.startsWith( 'all__' ) ) {
+			const categoryType = currentCategory.replace( 'all__', '' );
+			const allIconsOfType =
+				iconsByType.filter(
+					( type ) => type.type === categoryType
+				)[ 0 ]?.icons ?? [];
+			shownIcons = allIconsOfType;
+		} else {
+			shownIcons = iconsAll.filter( ( icon ) => {
+				const iconCategories = icon?.categories ?? [];
 
-			// First check if the category matches.
-			if ( iconCategories.includes( currentCategory ) ) {
-				return true;
-			}
+				// First check if the category matches.
+				if ( iconCategories.includes( currentCategory ) ) {
+					return true;
+				}
 
-			return false;
-		} );
-	}
-
-	let iconTypes = [];
-
-	// Get all icon types.
-	icons.forEach( ( icon ) => {
-		const type = icon?.type;
-
-		if ( type && isEmpty( iconTypes ) ) {
-			iconTypes.push( type );
-		} else if ( type && ! isEmpty( iconTypes ) ) {
-			iconTypes = iconTypes.filter( ( i ) => i !== type ).concat( type );
+				return false;
+			} );
 		}
-
-		return iconTypes;
-	} );
+	}
 
 	const preparedTypes = [];
 
-	// Add any found categories to each icon type.
-	iconTypes.forEach( ( type ) => {
-		const iconsOfType = icons.filter( ( i ) => i.type === type );
-		const categories = [];
-
-		iconsOfType.forEach( ( iconOfType ) => {
-			const iconCategories = iconOfType?.categories;
-
-			if ( ! isEmpty( iconCategories ) ) {
-				iconCategories.forEach( ( category ) => {
-					if ( ! categories.includes( category ) ) {
-						categories.push( category );
-					}
-				} );
-			}
-		} );
+	iconsByType.forEach( ( type ) => {
+		const title = type?.title ?? type.type;
+		const categoriesFull = type?.categories ?? [];
+		const categories = simplifyCategories( categoriesFull );
+		const allCategory = 'all__' + type.type;
+		const iconsOfType = type?.icons ?? [];
 
 		// Sort alphabetically and then add the "all" category.
-		categories.sort().unshift( 'all' );
+		if ( ! categories.includes( allCategory ) ) {
+			categories.sort().unshift( allCategory );
+			categoriesFull.unshift( {
+				name: allCategory,
+				title: __( 'All', 'icon-block' ),
+			} );
+		}
 
-		preparedTypes.push( { type, categories, count: iconsOfType.length } );
+		preparedTypes.push( {
+			type: type.type,
+			title,
+			categoriesFull,
+			categories,
+			count: iconsOfType.length,
+		} );
 	} );
 
 	function updateIconName( name ) {
@@ -135,20 +148,25 @@ export default function InserterModal( props ) {
 		return (
 			<MenuGroup
 				className="icon-inserter__sidebar__category-type"
-				label={ type.type }
+				label={ type.title }
 			>
 				{ type.categories.map( ( category ) => {
 					const isActive = currentCategory
 						? category === currentCategory
-						: category === 'all';
+						: category === 'all__' + type.type;
 
-					const categoryIcons = icons.filter( ( icon ) => {
+					const categoryIcons = iconsAll.filter( ( icon ) => {
 						const iconCats = icon?.categories ?? [];
 						return (
 							icon.type === type.type &&
 							iconCats.includes( category )
 						);
 					} );
+
+					const categoryTitle =
+						type.categoriesFull.filter(
+							( c ) => c.name === category
+						)[ 0 ]?.title ?? category;
 
 					return (
 						<MenuItem
@@ -159,9 +177,9 @@ export default function InserterModal( props ) {
 							onClick={ () => onClickCategory( category ) }
 							isPressed={ isActive }
 						>
-							{ category }
+							{ categoryTitle }
 							<span>
-								{ category === 'all'
+								{ category === 'all__' + type.type
 									? type.count
 									: categoryIcons.length }
 							</span>
@@ -175,6 +193,13 @@ export default function InserterModal( props ) {
 	const searchResults = (
 		<div className="icons-list">
 			{ shownIcons.map( ( icon ) => {
+				let renderedIcon = icon.icon;
+
+				// Icons provided by third-parties are generally strings.
+				if ( typeof renderedIcon === 'string' ) {
+					renderedIcon = parseIcon( renderedIcon );
+				}
+
 				return (
 					<Button
 						key={ `icon-${ icon.name }` }
@@ -184,7 +209,7 @@ export default function InserterModal( props ) {
 						onClick={ () => updateIconName( icon.name ) }
 					>
 						<span className="icons-list__item-icon">
-							<Icon icon={ icon.icon } size={ iconSize } />
+							<Icon icon={ renderedIcon } size={ iconSize } />
 						</span>
 						<span className="icons-list__item-title">
 							{ icon?.title ?? icon.name }

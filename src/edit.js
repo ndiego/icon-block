@@ -11,6 +11,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	Button,
 	ButtonGroup,
+	Disabled,
 	Dropdown,
 	MenuItem,
 	NavigableMenu,
@@ -44,7 +45,8 @@ import {
 /**
  * Internal dependencies
  */
-import icons from './icons';
+import getIcons from './icons';
+import { flattenIconsArray } from './utils/icon-functions';
 import { bolt as defaultIcon } from './icons/bolt';
 import parseIcon from './utils/parse-icon';
 import InserterModal from './inserters/inserter';
@@ -120,8 +122,8 @@ export function Edit( props ) {
 	const [ isQuickInserterOpen, setQuickInserterOpen ] = useState( false );
 	const [ isCustomInserterOpen, setCustomInserterOpen ] = useState( false );
 
-	const namedIcon = icons.filter( ( i ) => i.name === iconName );
-
+	const iconsAll = flattenIconsArray( getIcons() );
+	const namedIcon = iconsAll.filter( ( i ) => i.name === iconName );
 	let customIcon = defaultIcon;
 
 	if ( icon && isEmpty( namedIcon ) ) {
@@ -249,7 +251,6 @@ export function Edit( props ) {
 							isPressed={ flipVertical }
 						/>
 					</ToolbarGroup>
-
 					<ToolbarGroup>
 						<Dropdown
 							renderToggle={ ( { onToggle } ) => (
@@ -320,11 +321,23 @@ export function Edit( props ) {
 		</>
 	);
 
+	let linkRelMarkup = (
+		<TextControl
+			label={ __( 'Link rel', 'social-sharing-block' ) }
+			value={ linkRel }
+			onChange={ ( value ) => setAttributes( { linkRel: value } ) }
+		/>
+	);
+
+	if ( ! linkUrl ) {
+		linkRelMarkup = <Disabled>{ linkRelMarkup }</Disabled>;
+	}
+
 	const inspectorControls = ( icon || iconName ) && (
 		<InspectorControls>
 			<PanelBody
 				className="outermost-icon-block__icon-settings"
-				title={ __( 'Icon settings', 'icon-block' ) }
+				title={ __( 'Settings', 'icon-block' ) }
 			>
 				<TextControl
 					label={ __( 'Icon label', 'social-sharing-block' ) }
@@ -335,26 +348,32 @@ export function Edit( props ) {
 					value={ label }
 					onChange={ ( value ) => setAttributes( { label: value } ) }
 				/>
-				<RangeControl
-					label={ __( 'Icon width', 'icon-block' ) }
-					onChange={ ( value ) => setAttributes( { width: value } ) }
-					value={ width || '' }
-					min={ 10 }
-					max={ 1000 }
-					initialPosition={ 48 }
-					allowReset={ true }
-					resetFallbackValue={ 48 }
-					disabled={ percentWidth }
-				/>
-				<PercentWidthPanel
-					selectedWidth={ percentWidth }
-					setAttributes={ setAttributes }
-				/>
+				<div className="outermost-icon-block__icon-settings__width">
+					<RangeControl
+						label={ __( 'Icon width', 'icon-block' ) }
+						onChange={ ( value ) =>
+							setAttributes( { width: value } )
+						}
+						value={ width || '' }
+						min={ 10 }
+						max={ 1000 }
+						initialPosition={ 48 }
+						allowReset={ true }
+						resetFallbackValue={ 48 }
+						disabled={ percentWidth }
+					/>
+					<PercentWidthPanel
+						selectedWidth={ percentWidth }
+						setAttributes={ setAttributes }
+					/>
+				</div>
+				{ linkRelMarkup }
 			</PanelBody>
 			<div>
 				<PanelColorGradientSettings
 					title={ __( 'Color' ) }
 					initialOpen={ true }
+					enableAlpha={ true }
 					settings={ [
 						{
 							colorValue: iconColor.color || iconColorValue,
@@ -437,9 +456,12 @@ export function Edit( props ) {
 		width: iconWidth,
 	};
 
-	const printedIcon = ! isEmpty( namedIcon )
-		? namedIcon[ 0 ].icon
-		: customIcon;
+	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[ 0 ].icon : customIcon;
+
+	// Icons provided by third-parties are generally strings.
+	if ( typeof printedIcon === 'string' ) {
+		printedIcon = parseIcon( printedIcon );
+	}
 
 	const blockMarkup = (
 		<div ref={ iconRef } className={ iconClasses } style={ iconStyles }>

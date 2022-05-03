@@ -4,7 +4,7 @@ Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.8
 Tested up to:      5.9
 Requires PHP:      7.0
-Stable tag:        1.1.2
+Stable tag:        1.2.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 * No block library required 🎉
 * Built almost entirely with native WordPress components
 * Will get additional functionality as it's added to WordPress core
+* Register your own custom icon library. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
 === Stay Connected ===
 
@@ -45,13 +46,17 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 
 Currently, the Icon Block only includes the WordPress icon library. That said, the plugin allows you to render **any** SVG-based icon by simply copy/pasting the code into the icon textarea when using the "Add custom icon" option! See the screenshots for reference. This gives you complete flexibility and allows you to use practically any icon you want. A great source for free SVG icons is Google's Material Icons project, Font Awesome, and Iconic, just to name a few.
 
+The Icon Block also allows you to register your own custom block library. This needs to be done externally in your theme, or via a plugin, but provides complete flexibility over the icons available in the plugin. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
+
 = Why is my icon not changing color? =
 
 The Icon Block includes controls for the icon's color and background. However, if your SVG icon has hard coded color/fill values, the plugin will respect those instead of any applied custom colors.
 
 = Why is the block not working for certain users? =
 
-WordPress only allows Administrators and Editors to save SVG content. The Icon Block will not work properly for users who are at the Author level or lower.
+WordPress only allows Administrators and Editors to save "Unfiltered HTML" content, which includes SVGs. The Icon Block will not work properly for users who are at the Author level or lower.
+
+Note that WordPress multisite installations have additional restrictions. "Unfiltered HTML" is restricted to Super Admins on multisite. To enable "Unfiltered HTML" content for site Administrators and Editors, you will need to use a [code snippet](https://kellenmace.com/add-unfiltered_html-capability-to-admins-or-editors-in-wordpress-multisite/), the [Unfiltered MU](https://wordpress.org/plugins-wp/unfiltered-mu/) plugin, or something similar. Regrettably, this is a WordPress restriction and needs to be handled outside of the Icon Block.
 
 == Screenshots ==
 
@@ -65,6 +70,19 @@ WordPress only allows Administrators and Editors to save SVG content. The Icon B
 8. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 1.2.0 - 2022-05-02 =
+
+**Added**
+
+* Add alpha support for icon and background colors.
+* Add link rel support.
+* Add support for custom icon types.
+* Add new WordPress icons: `post`, `postTerms`, `queryTitle`, `removeSubmenu`, and `row`
+
+**Changed**
+
+* Remove deprecated WordPress icons: `alignJustifyAlt`, `cogAlt`, and `trashFilled`
 
 = 1.1.2 - 2022-01-27 =
 

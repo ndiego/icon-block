@@ -14,7 +14,9 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import icons from './../icons';
+import getIcons from './../icons';
+import parseIcon from './../utils/parse-icon';
+import { flattenIconsArray } from './../utils/icon-functions';
 
 export function QuickInserterPopover( props ) {
 	const [ searchInput, setSearchInput ] = useState( '' );
@@ -37,28 +39,18 @@ export function QuickInserterPopover( props ) {
 		setInserterOpen( false );
 	}
 
-	const defaultIcon = icons.filter( ( icon ) => {
-		return icon.isDefault;
-	} );
+	const iconsByType = getIcons();
+	const iconsAll = flattenIconsArray( iconsByType );
 
-	let shownIcons = icons.filter( ( icon ) => {
-		const curatedIcons = [
-			'wordpress-image',
-			'wordpress-shipping',
-			'wordpress-sparkles',
-			'wordpress-twitter',
-			'wordpress-verse',
-		];
+	// Get the icons of the default type, if there is one. Otherwise, just pull
+	// from the first icon type.
+	const iconsOfDefaultType =
+		iconsByType.filter( ( t ) => t.isDefault )[ 0 ]?.icons ?? iconsAll;
 
-		return curatedIcons.includes( icon.name );
-	} );
-
-	if ( ! isEmpty( defaultIcon ) ) {
-		shownIcons.unshift( defaultIcon[ 0 ] );
-	}
+	let shownIcons = [];
 
 	if ( searchInput ) {
-		shownIcons = icons.filter( ( icon ) => {
+		shownIcons = iconsAll.filter( ( icon ) => {
 			const input = searchInput.toLowerCase();
 			const iconName = icon.title.toLowerCase();
 
@@ -80,12 +72,32 @@ export function QuickInserterPopover( props ) {
 		} );
 	}
 
+	if ( ! searchInput ) {
+		// See if there is a default icon(s) set.
+		const defaultIcons =
+			iconsOfDefaultType.filter( ( i ) => i.isDefault ) ?? [];
+
+		// Get the rest of the icons in the type excluding the default ones.
+		const nonDefaultIcons =
+			iconsOfDefaultType.filter( ( i ) => ! i.isDefault ) ?? [];
+
+		// First show the default icons, then the rest.
+		shownIcons = shownIcons.concat( defaultIcons, nonDefaultIcons );
+	}
+
+	// Only want to display 6 icons.
 	shownIcons = shownIcons.slice( 0, 6 );
 
 	const searchResults = (
 		<div className="block-editor-inserter__panel-content">
 			<div className="icons-list">
 				{ shownIcons.map( ( icon ) => {
+					let renderedIcon = icon.icon;
+
+					if ( typeof renderedIcon === 'string' ) {
+						renderedIcon = parseIcon( renderedIcon );
+					}
+
 					return (
 						<Button
 							key={ `icon-${ icon.name }` }
@@ -98,7 +110,7 @@ export function QuickInserterPopover( props ) {
 							} }
 						>
 							<span className="icons-list__item-icon">
-								<Icon icon={ icon.icon } />
+								<Icon icon={ renderedIcon } />
 							</span>
 							<span className="icons-list__item-title">
 								{ icon.title }

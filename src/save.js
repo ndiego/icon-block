@@ -12,7 +12,8 @@ import { useBlockProps } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import icons from './icons';
+import getIcons from './icons';
+import { flattenIconsArray } from './utils/icon-functions';
 import parseIcon from './utils/parse-icon';
 
 /**
@@ -49,11 +50,12 @@ export default function Save( props ) {
 		return null;
 	}
 
-	const namedIcon = icons.filter( ( i ) => i.name === iconName );
+	const iconsAll = flattenIconsArray( getIcons() );
+	const namedIcon = iconsAll.filter( ( i ) => i.name === iconName );
 	let printedIcon = '';
 
 	if ( icon && isEmpty( namedIcon ) ) {
-		// Custom icon.
+		// Custom icons are strings and need to be parsed.
 		printedIcon = parseIcon( icon );
 
 		if ( isEmpty( printedIcon?.props ) ) {
@@ -62,6 +64,11 @@ export default function Save( props ) {
 	} else {
 		// Icon choosen from library.
 		printedIcon = namedIcon[ 0 ]?.icon;
+
+		// Icons provided by third-parties are generally strings.
+		if ( typeof printedIcon === 'string' ) {
+			printedIcon = parseIcon( printedIcon );
+		}
 	}
 
 	// If there is no valid SVG icon, don't save anything.

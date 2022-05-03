@@ -2,12 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import {
 	addCard,
 	addSubmenu,
 	alignCenter,
 	alignJustify,
-	alignJustifyAlt,
 	alignLeft,
 	alignNone,
 	alignRight,
@@ -47,7 +47,6 @@ import {
 	cloud,
 	code,
 	cog,
-	cogAlt,
 	color,
 	column,
 	columns,
@@ -156,6 +155,7 @@ import {
 	plusCircleFilled,
 	plusCircle,
 	plus,
+	post,
 	postAuthor,
 	postCategories,
 	postContent,
@@ -166,6 +166,7 @@ import {
 	postExcerpt,
 	postFeaturedImage,
 	postList,
+	postTerms,
 	postTitle,
 	previous,
 	next,
@@ -177,16 +178,19 @@ import {
 	queryPaginationNext,
 	queryPaginationNumbers,
 	queryPaginationPrevious,
+	queryTitle,
 	quote,
 	receipt,
 	redo,
 	removeBug,
+	removeSubmenu,
 	replace,
 	reset,
 	resizeCornerNE,
 	reusableBlock,
 	rotateLeft,
 	rotateRight,
+	row,
 	rss,
 	search,
 	separator,
@@ -223,17 +227,16 @@ import {
 	sidebar,
 	textColor,
 	tablet,
-	// tip, the WP Icons NPM package does not yet include this icon.
+	tip,
 	title,
 	tool,
 	trash,
-	trashFilled,
 	trendingDown,
 	trendingUp,
 	typography,
 	undo,
 	ungroup,
-	// unlock, the WP Icons NPM package does not yet include this icon.
+	unlock,
 	update,
 	upload,
 	verse,
@@ -291,9 +294,9 @@ import {
 } from './wordpress/social';
 
 // Temporary icon specifications that are not yet in the NPM package.
-import { commentEditLink, sparkles, tip, unlock } from './wordpress/temp';
+import { commentEditLink, sparkles } from './wordpress/temp';
 
-const wpSocialIcons = [
+const wordpressSocialIcons = [
 	{
 		isDefault: true,
 		name: 'wordpress',
@@ -517,6 +520,7 @@ const wpSocialIcons = [
 		categories: [ 'logos' ],
 	},
 	{
+		isDefault: true,
 		name: 'twitter',
 		title: 'Twitter',
 		icon: twitter,
@@ -548,7 +552,7 @@ const wpSocialIcons = [
 	},
 ];
 
-const wpIcons = [
+const wordpressIcons = [
 	{
 		name: 'addCard',
 		title: __( 'Add Card', 'icon-block' ),
@@ -570,12 +574,6 @@ const wpIcons = [
 		name: 'alignJustify',
 		title: __( 'Align Justify', 'icon-block' ),
 		icon: alignJustify,
-		categories: [ 'editor' ],
-	},
-	{
-		name: 'alignJustifyAlt',
-		title: __( 'Align Justify - Alt', 'icon-block' ),
-		icon: alignJustifyAlt,
 		categories: [ 'editor' ],
 	},
 	{
@@ -641,11 +639,13 @@ const wpIcons = [
 		name: 'aspectRatio',
 		title: __( 'Aspect Ratio', 'icon-block' ),
 		icon: aspectRatio,
+		categories: [ 'media' ],
 	},
 	{
 		name: 'audio',
 		title: __( 'Audio', 'icon-block' ),
 		icon: audio,
+		categories: [ 'media' ],
 	},
 	{
 		name: 'backup',
@@ -705,11 +705,13 @@ const wpIcons = [
 		name: 'capturePhoto',
 		title: __( 'Capture Photo', 'icon-block' ),
 		icon: capturePhoto,
+		categories: [ 'media' ],
 	},
 	{
 		name: 'captureVideo',
 		title: __( 'Capture Video', 'icon-block' ),
 		icon: captureVideo,
+		categories: [ 'media' ],
 	},
 	{
 		name: 'category',
@@ -796,11 +798,6 @@ const wpIcons = [
 		icon: cog,
 	},
 	{
-		name: 'cogAlt',
-		title: __( 'Cog - Alt', 'icon-block' ),
-		icon: cogAlt,
-	},
-	{
 		name: 'color',
 		title: __( 'Color', 'icon-block' ),
 		icon: color,
@@ -827,26 +824,31 @@ const wpIcons = [
 		name: 'commentAuthorAvatar',
 		title: __( 'Comment Author Avatar', 'icon-block' ),
 		icon: commentAuthorAvatar,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'commentAuthorName',
 		title: __( 'Comment Author Name', 'icon-block' ),
 		icon: commentAuthorName,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'commentContent',
 		title: __( 'Comment Content', 'icon-block' ),
 		icon: commentContent,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'commentEditLink',
 		title: __( 'Comment Edit Link', 'icon-block' ),
 		icon: commentEditLink,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'commentReplyLink',
 		title: __( 'Comment Reply Link', 'icon-block' ),
 		icon: commentReplyLink,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'cover',
@@ -1090,6 +1092,7 @@ const wpIcons = [
 		name: 'home',
 		title: __( 'Home', 'icon-block' ),
 		icon: home,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'html',
@@ -1098,6 +1101,7 @@ const wpIcons = [
 		categories: [ 'blocks' ],
 	},
 	{
+		isDefault: true,
 		name: 'image',
 		title: __( 'Image', 'icon-block' ),
 		icon: image,
@@ -1215,6 +1219,7 @@ const wpIcons = [
 		name: 'lock',
 		title: __( 'Lock', 'icon-block' ),
 		icon: lock,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'login',
@@ -1347,6 +1352,11 @@ const wpIcons = [
 		icon: positionRight,
 	},
 	{
+		name: 'post',
+		title: __( 'Post', 'icon-block' ),
+		icon: post,
+	},
+	{
 		name: 'pencil',
 		title: __( 'Pencil', 'icon-block' ),
 		icon: pencil,
@@ -1385,21 +1395,25 @@ const wpIcons = [
 		name: 'postAuthor',
 		title: __( 'Post Author', 'icon-block' ),
 		icon: postAuthor,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postCategories',
 		title: __( 'Post Categories', 'icon-block' ),
 		icon: postCategories,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postContent',
 		title: __( 'Post Content', 'icon-block' ),
 		icon: postContent,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postComments',
 		title: __( 'Post Comments', 'icon-block' ),
 		icon: postComments,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postCommentsCount',
@@ -1410,31 +1424,43 @@ const wpIcons = [
 		name: 'postCommentsForm',
 		title: __( 'Post Comments Form', 'icon-block' ),
 		icon: postCommentsForm,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postDate',
 		title: __( 'Post Date', 'icon-block' ),
 		icon: postDate,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postExcerpt',
 		title: __( 'Post Excerpt', 'icon-block' ),
 		icon: postExcerpt,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postFeaturedImage',
 		title: __( 'Post Featured Image', 'icon-block' ),
 		icon: postFeaturedImage,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postList',
 		title: __( 'Post List', 'icon-block' ),
 		icon: postList,
+		categories: [ 'blocks' ],
+	},
+	{
+		name: 'postTerms',
+		title: __( 'Post Terms', 'icon-block' ),
+		icon: postTerms,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'postTitle',
 		title: __( 'Post Title', 'icon-block' ),
 		icon: postTitle,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'previous',
@@ -1491,9 +1517,16 @@ const wpIcons = [
 		categories: [ 'arrows' ],
 	},
 	{
+		name: 'queryTitle',
+		title: __( 'Query Title', 'icon-block' ),
+		icon: queryTitle,
+		categories: [ 'blocks' ],
+	},
+	{
 		name: 'quote',
 		title: __( 'Quote', 'icon-block' ),
 		icon: quote,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'receipt',
@@ -1510,6 +1543,11 @@ const wpIcons = [
 		name: 'removeBug',
 		title: __( 'Remove Bug', 'icon-block' ),
 		icon: removeBug,
+	},
+	{
+		name: 'removeSubmenu',
+		title: __( 'Remove Submenu', 'icon-block' ),
+		icon: removeSubmenu,
 	},
 	{
 		name: 'replace',
@@ -1546,6 +1584,11 @@ const wpIcons = [
 		title: __( 'Rotate Right', 'icon-block' ),
 		icon: rotateRight,
 		categories: [ 'arrows' ],
+	},
+	{
+		name: 'row',
+		title: __( 'Row', 'icon-block' ),
+		icon: row,
 	},
 	{
 		name: 'rss',
@@ -1592,6 +1635,7 @@ const wpIcons = [
 		categories: [ 'blocks', 'media' ],
 	},
 	{
+		isDefault: true,
 		name: 'sparkles',
 		title: __( 'Sparkles', 'icon-block' ),
 		icon: sparkles,
@@ -1633,6 +1677,7 @@ const wpIcons = [
 		icon: styles,
 	},
 	{
+		isDefault: true,
 		name: 'shipping',
 		title: __( 'Shipping', 'icon-block' ),
 		icon: shipping,
@@ -1721,6 +1766,7 @@ const wpIcons = [
 		name: 'termDescription',
 		title: __( 'Term Description', 'icon-block' ),
 		icon: termDescription,
+		categories: [ 'blocks' ],
 	},
 	{
 		name: 'footer',
@@ -1769,11 +1815,6 @@ const wpIcons = [
 		icon: trash,
 	},
 	{
-		name: 'trashFilled',
-		title: __( 'Trash - Filled', 'icon-block' ),
-		icon: trashFilled,
-	},
-	{
 		name: 'trendingDown',
 		title: __( 'Trending Down', 'icon-block' ),
 		icon: trendingDown,
@@ -1806,6 +1847,7 @@ const wpIcons = [
 		name: 'unlock',
 		title: __( 'Unlock', 'icon-block' ),
 		icon: unlock,
+		categories: [ 'editor' ],
 	},
 	{
 		name: 'update',
@@ -1819,6 +1861,7 @@ const wpIcons = [
 		categories: [ 'arrows' ],
 	},
 	{
+		isDefault: true,
 		name: 'verse',
 		title: __( 'Verse', 'icon-block' ),
 		icon: verse,
@@ -1842,21 +1885,42 @@ const wpIcons = [
 	},
 ];
 
-wpSocialIcons.forEach( ( icon ) => {
-	icon.name = 'wordpress-' + icon.name;
-	icon.type = 'wordpress';
-} );
+const icons = [
+	{
+		isDefault: false,
+		type: 'wordpress',
+		title: __( 'WordPress', 'icon-block' ),
+		icons: [].concat( wordpressSocialIcons, wordpressIcons ),
+		categories: [
+			{
+				name: 'arrows',
+				title: __( 'Arrows', 'icon-block' ),
+			},
+			{
+				name: 'blocks',
+				title: __( 'Blocks', 'icon-block' ),
+			},
+			{
+				name: 'devices',
+				title: __( 'Devices', 'icon-block' ),
+			},
+			{
+				name: 'editor',
+				title: __( 'Editor', 'icon-block' ),
+			},
+			{
+				name: 'logos',
+				title: __( 'Logos', 'icon-block' ),
+			},
+			{
+				name: 'media',
+				title: __( 'Media', 'icon-block' ),
+			},
+		],
+	},
+];
 
-wpIcons.forEach( ( icon ) => {
-	icon.name = 'wordpress-' + icon.name;
-	icon.type = 'wordpress';
-} );
-
-const iconsArray = [];
-const icons = iconsArray.concat( wpSocialIcons, wpIcons );
-
-icons.sort( function ( a, b ) {
-	return a.name.localeCompare( b.name );
-} );
-
-export default icons;
+// Allow third parties to add their own icon types via filter.
+export default function getIcons() {
+	return applyFilters( 'iconBlock.icons', icons );
+}
