@@ -24,6 +24,7 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 * No block library required 🎉
 * Built almost entirely with native WordPress components
 * Will get additional functionality as it's added to WordPress core
+* Register your own custom icon library. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
 === Stay Connected ===
 
@@ -44,6 +45,8 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 = Where can I get more icons? =
 
 Currently, the Icon Block only includes the WordPress icon library. That said, the plugin allows you to render **any** SVG-based icon by simply copy/pasting the code into the icon textarea when using the "Add custom icon" option! See the screenshots for reference. This gives you complete flexibility and allows you to use practically any icon you want. A great source for free SVG icons is Google's Material Icons project, Font Awesome, and Iconic, just to name a few.
+
+The Icon Block also allows you to register your own custom block library. This needs to be done externally in your theme, or via a plugin, but provides complete flexibility over the icons available in the plugin. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
 = Why is my icon not changing color? =
 
