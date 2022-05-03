@@ -1,8 +1,8 @@
 === The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
-Requires at least: 5.8
-Tested up to:      5.9
+Requires at least: 5.9
+Tested up to:      6.0
 Requires PHP:      7.0
 Stable tag:        1.2.0
 License:           GPL-2.0-or-later
