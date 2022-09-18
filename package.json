@@ -16,21 +16,21 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^8.6.0",
-		"@wordpress/blocks": "^11.6.0",
-		"@wordpress/components": "^19.9.0",
-		"@wordpress/compose": "^5.5.0",
-		"@wordpress/element": "^4.5.0",
-		"@wordpress/i18n": "^4.7.0",
-		"@wordpress/icons": "^8.3.0",
-		"@wordpress/keycodes": "^3.7.0",
-		"@wordpress/primitives": "^3.5.0",
-		"classnames": "^2.3.1",
-		"html-react-parser": "^1.4.12"
+		"@wordpress/block-editor": "^10.0.0",
+		"@wordpress/blocks": "^11.16.0",
+		"@wordpress/components": "^21.0.0",
+		"@wordpress/compose": "^5.15.0",
+		"@wordpress/element": "^4.15.0",
+		"@wordpress/i18n": "^4.17.0",
+		"@wordpress/icons": "^9.8.0",
+		"@wordpress/keycodes": "^3.17.0",
+		"@wordpress/primitives": "^3.15.0",
+		"classnames": "^2.3.2",
+		"html-react-parser": "^1.4.14"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^22.5.0",
+		"@wordpress/scripts": "^24.1.0",
 		"lodash": "^4.17.21",
-		"webpack-remove-empty-scripts": "^0.8.0"
+		"webpack-remove-empty-scripts": "^0.8.4"
 	}
 }

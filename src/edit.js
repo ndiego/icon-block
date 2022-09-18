@@ -11,14 +11,15 @@ import { __ } from '@wordpress/i18n';
 import {
 	Button,
 	ButtonGroup,
-	Disabled,
 	Dropdown,
+	ExternalLink,
 	MenuItem,
 	NavigableMenu,
 	PanelBody,
 	Popover,
 	RangeControl,
 	TextControl,
+	ToggleControl,
 	ToolbarButton,
 	ToolbarGroup,
 } from '@wordpress/components';
@@ -32,6 +33,7 @@ import {
 	__experimentalPanelColorGradientSettings as PanelColorGradientSettings, // eslint-disable-line
 	__experimentalUseGradient as useGradient, // eslint-disable-line
 	__experimentalLinkControl as LinkControl, // eslint-disable-line
+	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
 } from '@wordpress/block-editor';
 import { useRef, useState } from '@wordpress/element';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
@@ -41,6 +43,7 @@ import {
 	link,
 	rotateRight,
 } from '@wordpress/icons';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal dependencies
@@ -99,21 +102,21 @@ export function Edit( props ) {
 		setIconColor,
 	} = props;
 	const {
-		borderColor,
 		flipHorizontal,
 		flipVertical,
 		label,
+		title,
 		linkRel,
 		linkTarget,
 		linkUrl,
 		icon,
 		iconBackgroundColorValue,
 		iconColorValue,
+		hasNoIconFill,
 		iconName,
 		itemsJustification,
 		percentWidth,
 		rotate,
-		style,
 		width,
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } = useGradient();
@@ -121,6 +124,18 @@ export function Edit( props ) {
 	const [ isInserterOpen, setInserterOpen ] = useState( false );
 	const [ isQuickInserterOpen, setQuickInserterOpen ] = useState( false );
 	const [ isCustomInserterOpen, setCustomInserterOpen ] = useState( false );
+	const [ isEditingURL, setIsEditingURL ] = useState( false );
+
+	// Allow users to disable custom SVG icons.
+	const enableCustomIcons = applyFilters(
+		'iconBlock.enableCustomIcons',
+		false
+	);
+
+	const ref = useRef();
+	const iconRef = useRef();
+	const isURLSet = !! linkUrl;
+	const opensInNewTab = linkTarget === '_blank';
 
 	const iconsAll = flattenIconsArray( getIcons() );
 	const namedIcon = iconsAll.filter( ( i ) => i.name === iconName );
@@ -132,6 +147,13 @@ export function Edit( props ) {
 		if ( isEmpty( customIcon?.props ) ) {
 			customIcon = defaultIcon;
 		}
+	}
+
+	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[ 0 ].icon : customIcon;
+
+	// Icons provided by third-parties are generally strings.
+	if ( typeof printedIcon === 'string' ) {
+		printedIcon = parseIcon( printedIcon );
 	}
 
 	function setRotate() {
@@ -147,18 +169,6 @@ export function Edit( props ) {
 
 		setAttributes( { rotate: newRotate } );
 	}
-
-	let iconWidth = width ? `${ width }px` : '48px';
-
-	if ( percentWidth ) {
-		iconWidth = `${ percentWidth }%`;
-	}
-
-	const ref = useRef();
-	const iconRef = useRef();
-	const [ isEditingURL, setIsEditingURL ] = useState( false );
-	const isURLSet = !! linkUrl;
-	const opensInNewTab = linkTarget === '_blank';
 
 	function startEditing( event ) {
 		event.preventDefault();
@@ -252,39 +262,49 @@ export function Edit( props ) {
 						/>
 					</ToolbarGroup>
 					<ToolbarGroup>
-						<Dropdown
-							renderToggle={ ( { onToggle } ) => (
-								<ToolbarButton onClick={ onToggle }>
-									{ __( 'Replace' ) }
-								</ToolbarButton>
-							) }
-							renderContent={ ( { onClose } ) => (
-								<NavigableMenu>
-									<MenuItem
-										onClick={ () => {
-											setInserterOpen( true );
-											onClose( true );
-										} }
-									>
-										{ __(
-											'Browse icon library',
-											'icon-block'
-										) }
-									</MenuItem>
-									<MenuItem
-										onClick={ () => {
-											setCustomInserterOpen( true );
-											onClose( true );
-										} }
-									>
-										{ __(
-											'Add/edit custom icon',
-											'icon-block'
-										) }
-									</MenuItem>
-								</NavigableMenu>
-							) }
-						/>
+						{ enableCustomIcons ? (
+							<Dropdown
+								renderToggle={ ( { onToggle } ) => (
+									<ToolbarButton onClick={ onToggle }>
+										{ __( 'Replace' ) }
+									</ToolbarButton>
+								) }
+								renderContent={ ( { onClose } ) => (
+									<NavigableMenu>
+										<MenuItem
+											onClick={ () => {
+												setInserterOpen( true );
+												onClose( true );
+											} }
+										>
+											{ __(
+												'Browse icon library',
+												'icon-block'
+											) }
+										</MenuItem>
+										<MenuItem
+											onClick={ () => {
+												setCustomInserterOpen( true );
+												onClose( true );
+											} }
+										>
+											{ __(
+												'Add/edit custom icon',
+												'icon-block'
+											) }
+										</MenuItem>
+									</NavigableMenu>
+								) }
+							/>
+						) : (
+							<ToolbarButton
+								onClick={ () => {
+									setInserterOpen( true );
+								} }
+							>
+								{ __( 'Replace' ) }
+							</ToolbarButton>
+						) }
 					</ToolbarGroup>
 				</BlockControls>
 			) }
@@ -321,194 +341,229 @@ export function Edit( props ) {
 		</>
 	);
 
-	let linkRelMarkup = (
-		<TextControl
-			label={ __( 'Link rel', 'social-sharing-block' ) }
-			value={ linkRel }
-			onChange={ ( value ) => setAttributes( { linkRel: value } ) }
-		/>
-	);
-
-	if ( ! linkUrl ) {
-		linkRelMarkup = <Disabled>{ linkRelMarkup }</Disabled>;
-	}
-
 	const inspectorControls = ( icon || iconName ) && (
-		<InspectorControls>
-			<PanelBody
-				className="outermost-icon-block__icon-settings"
-				title={ __( 'Settings', 'icon-block' ) }
-			>
-				<TextControl
-					label={ __( 'Icon label', 'social-sharing-block' ) }
-					help={ __(
-						'Briefly describe the icon to help screen reader users.',
-						'icon-block'
-					) }
-					value={ label }
-					onChange={ ( value ) => setAttributes( { label: value } ) }
-				/>
-				<div className="outermost-icon-block__icon-settings__width">
-					<RangeControl
-						label={ __( 'Icon width', 'icon-block' ) }
-						onChange={ ( value ) =>
-							setAttributes( { width: value } )
-						}
-						value={ width || '' }
-						min={ 10 }
-						max={ 1000 }
-						initialPosition={ 48 }
-						allowReset={ true }
-						resetFallbackValue={ 48 }
-						disabled={ percentWidth }
-					/>
-					<PercentWidthPanel
-						selectedWidth={ percentWidth }
-						setAttributes={ setAttributes }
-					/>
-				</div>
-				{ linkRelMarkup }
-			</PanelBody>
-			<div>
-				<PanelColorGradientSettings
-					title={ __( 'Color' ) }
-					initialOpen={ true }
-					enableAlpha={ true }
-					settings={ [
-						{
-							colorValue: iconColor.color || iconColorValue,
-							onColorChange: ( colorValue ) => {
-								setIconColor( colorValue );
-								setAttributes( {
-									iconColorValue: colorValue,
-								} );
-							},
-							label: __( 'Icon color', 'icon-block' ),
-						},
-						{
-							colorValue:
-								iconBackgroundColor.color ||
-								iconBackgroundColorValue,
-							onColorChange: ( colorValue ) => {
-								setIconBackgroundColor( colorValue );
-								setAttributes( {
-									iconBackgroundColorValue: colorValue,
-								} );
-							},
-							gradientValue,
-							onGradientChange: setGradient,
-							label: __( 'Background color', 'icon-block' ),
-						},
-					] }
-					__experimentalHasMultipleOrigins={ true }
+		<>
+			<InspectorControls>
+				<PanelBody
+					className="outermost-icon-block__icon-settings"
+					title={ __( 'Settings', 'icon-block' ) }
 				>
-					{ ! iconName && (
-						<p className="outermost-icon-block__icon-settings-help">
+					<TextControl
+						label={ __( 'Icon label', 'icon-block' ) }
+						help={ __(
+							'Briefly describe the icon to help screen reader users.',
+							'icon-block'
+						) }
+						value={ label }
+						onChange={ ( value ) =>
+							setAttributes( { label: value } )
+						}
+					/>
+					<div className="icon-settings__width">
+						<RangeControl
+							label={ __( 'Icon width', 'icon-block' ) }
+							onChange={ ( value ) =>
+								setAttributes( { width: value } )
+							}
+							value={ width || '' }
+							min={ 10 }
+							max={ 1000 }
+							initialPosition={ 48 }
+							allowReset={ true }
+							resetFallbackValue={ 48 }
+							disabled={ percentWidth }
+						/>
+						<PercentWidthPanel
+							selectedWidth={ percentWidth }
+							setAttributes={ setAttributes }
+						/>
+					</div>
+				</PanelBody>
+				<div>
+					<PanelColorGradientSettings
+						className="outermost-icon-block__color-settings"
+						title={ __( 'Color' ) }
+						initialOpen={ true }
+						enableAlpha={ true }
+						settings={ [
+							{
+								colorValue: iconColor.color || iconColorValue,
+								onColorChange: ( colorValue ) => {
+									setIconColor( colorValue );
+									setAttributes( {
+										iconColorValue: colorValue,
+									} );
+								},
+								label: __( 'Icon color', 'icon-block' ),
+							},
+							{
+								colorValue:
+									iconBackgroundColor.color ||
+									iconBackgroundColorValue,
+								onColorChange: ( colorValue ) => {
+									setIconBackgroundColor( colorValue );
+									setAttributes( {
+										iconBackgroundColorValue: colorValue,
+									} );
+								},
+								gradientValue,
+								onGradientChange: setGradient,
+								label: __( 'Background color', 'icon-block' ),
+							},
+						] }
+						__experimentalHasMultipleOrigins={ true }
+					>
+						{ ( iconColor.color || iconColorValue ) && (
+							<>
+								<p className="outermost-icon-block__color-settings__help">
+									{ __(
+										'Any color or fill values in the SVG icon itself will take precedent over the chosen color.',
+										'icon-block'
+									) }
+								</p>
+								<ToggleControl
+									checked={ ! hasNoIconFill }
+									label={ __(
+										`Apply icon color to fill`,
+										'icon-block'
+									) }
+									help={ __(
+										'Set the SVG fill value to the chosen icon color. Disable as needed.',
+										'icon-block'
+									) }
+									onChange={ () =>
+										setAttributes( {
+											hasNoIconFill: ! hasNoIconFill,
+										} )
+									}
+								/>
+							</>
+						) }
+						<ContrastChecker
+							{ ...{
+								textColor: iconColorValue,
+								backgroundColor: iconBackgroundColorValue,
+							} }
+							isLargeText={ false }
+						/>
+					</PanelColorGradientSettings>
+				</div>
+			</InspectorControls>
+			<InspectorControls __experimentalGroup="advanced">
+				<TextControl
+					label={ __( 'Link rel', 'icon-block' ) }
+					value={ linkRel || '' }
+					onChange={ ( value ) =>
+						setAttributes( { linkRel: value } )
+					}
+				/>
+				<TextControl
+					label={ __( 'Title attribute', 'icon-block' ) }
+					className="outermost-icon-block__title-control"
+					value={ title || '' }
+					onChange={ ( value ) => setAttributes( { title: value } ) }
+					help={
+						<>
 							{ __(
-								'Any color/fill values in the SVG icon itself will take precedent over custom colors.',
+								'Describe the role of this icon on the page.',
 								'icon-block'
 							) }
-						</p>
-					) }
-				</PanelColorGradientSettings>
-				<ContrastChecker
-					{ ...{
-						textColor: iconColorValue,
-						backgroundColor: iconBackgroundColorValue,
-					} }
-					isLargeText={ false }
+							<ExternalLink href="https://www.w3.org/TR/html52/dom.html#the-title-attribute">
+								{ __(
+									'Note: many devices and browsers do not display this text',
+									'icon-block'
+								) }
+							</ExternalLink>
+						</>
+					}
 				/>
-			</div>
-		</InspectorControls>
+			</InspectorControls>
+		</>
 	);
 
-	const iconClasses = classnames( {
+	const blockProps = useBlockProps();
+	const borderProps = getBorderClassesAndStyles( attributes );
+
+	const iconClasses = classnames( 'icon-container', borderProps?.className, {
 		'has-background-gradient': gradientValue,
 		[ gradientClass ]: gradientClass,
-	} );
-
-	let margin = style?.spacing?.margin ?? undefined;
-	let padding = style?.spacing?.padding ?? undefined;
-
-	// We are not adding the padding to the primary block div, so need to handle
-	// the formatting ourselves.
-	if ( padding ) {
-		padding = `${ padding?.top ?? 0 } ${ padding?.right ?? 0 } ${ padding?.bottom ?? 0 } ${ padding?.left ?? 0 }`; // eslint-disable-line
-	}
-
-	// And even though margin is set on the main block div, we need to handle it
-	// manually since all other styles are applied to the inner div.
-	if ( margin ) {
-		margin = `${ margin?.top ?? 0 } ${ margin?.right ?? 0 } ${ margin?.bottom ?? 0 } ${ margin?.left ?? 0 }`; // eslint-disable-line
-	}
-
-	const iconStyles = {
-		background: gradientValue,
-		backgroundColor: iconBackgroundColorValue,
-		borderColor: borderColor
-			? `var(--wp--preset--color--${ borderColor })`
-			: style?.border?.color ?? undefined,
-		borderRadius: style?.border?.radius ?? undefined,
-		borderStyle: style?.border?.style ?? undefined,
-		borderWidth: style?.border?.width ?? undefined,
-		color: iconColorValue,
-		padding,
-		width: iconWidth,
-	};
-
-	let printedIcon = ! isEmpty( namedIcon ) ? namedIcon[ 0 ].icon : customIcon;
-
-	// Icons provided by third-parties are generally strings.
-	if ( typeof printedIcon === 'string' ) {
-		printedIcon = parseIcon( printedIcon );
-	}
-
-	const blockMarkup = (
-		<div ref={ iconRef } className={ iconClasses } style={ iconStyles }>
-			{ printedIcon }
-		</div>
-	);
-
-	// Block classes.
-	const blockClasses = classnames( {
 		'has-icon-color': iconColor.color || iconColorValue,
-		'has-background-color':
+		'has-icon-background-color':
 			iconBackgroundColor.color ||
 			iconBackgroundColorValue ||
 			gradientValue,
+		'has-no-icon-fill-color': hasNoIconFill,
 		[ `items-justified-${ itemsJustification }` ]: itemsJustification,
 		[ `rotate-${ rotate }` ]: rotate,
 		'flip-horizontal': flipHorizontal,
 		'flip-vertical': flipVertical,
 	} );
 
+	let iconWidth = width ? `${ width }px` : '48px';
+
+	if ( percentWidth ) {
+		iconWidth = `${ percentWidth }%`;
+	}
+
+	const iconStyles = {
+		background: gradientValue,
+		backgroundColor: iconBackgroundColorValue,
+		...blockProps.style,
+		...borderProps.style,
+		color: iconColorValue,
+		width: iconWidth,
+
+		// Margin is applied to the wrapper container, so unset.
+		marginBottom: undefined,
+		marginLeft: undefined,
+		marginRight: undefined,
+		marginTop: undefined,
+	};
+
+	// And even though margin is set on the main block div, we need to handle it
+	// manually since all other styles are applied to the inner div.
+	const blockMargin = {
+		marginBottom: blockProps.style?.marginBottom,
+		marginLeft: blockProps.style?.marginLeft,
+		marginRight: blockProps.style?.marginRight,
+		marginTop: blockProps.style?.marginTop,
+	};
+
+	const iconMarkup = (
+		<>
+			{ ! icon && ! iconName ? (
+				<IconPlaceholder
+					setInserterOpen={ setInserterOpen }
+					isQuickInserterOpen={ isQuickInserterOpen }
+					setQuickInserterOpen={ setQuickInserterOpen }
+					isCustomInserterOpen={ isCustomInserterOpen }
+					setCustomInserterOpen={ setCustomInserterOpen }
+					setAttributes={ setAttributes }
+					enableCustomIcons={ enableCustomIcons }
+				/>
+			) : (
+				<div
+					ref={ iconRef }
+					className={ iconClasses }
+					style={ iconStyles }
+				>
+					{ printedIcon }
+				</div>
+			) }
+		</>
+	);
+
 	return (
 		<>
 			{ blockControls }
 			{ inspectorControls }
 			<div
-				{ ...useBlockProps( {
-					ref,
-					onKeyDown,
-					className: blockClasses,
-				} ) }
+				{ ...useBlockProps( { ref, onKeyDown } ) }
 				// This is a bit of a hack. we only want the margin styles
 				// applied to the main block div.
-				style={ { margin } }
+				style={ blockMargin }
 			>
-				{ [
-					! icon && ! iconName && (
-						<IconPlaceholder
-							setInserterOpen={ setInserterOpen }
-							isQuickInserterOpen={ isQuickInserterOpen }
-							setQuickInserterOpen={ setQuickInserterOpen }
-							isCustomInserterOpen={ isCustomInserterOpen }
-							setCustomInserterOpen={ setCustomInserterOpen }
-							setAttributes={ setAttributes }
-						/>
-					),
-					( icon || iconName ) && blockMarkup,
-				] }
+				{ iconMarkup }
 			</div>
 			<InserterModal
 				isInserterOpen={ isInserterOpen }
@@ -516,12 +571,14 @@ export function Edit( props ) {
 				attributes={ attributes }
 				setAttributes={ setAttributes }
 			/>
-			<CustomInserterModal
-				isCustomInserterOpen={ isCustomInserterOpen }
-				setCustomInserterOpen={ setCustomInserterOpen }
-				attributes={ attributes }
-				setAttributes={ setAttributes }
-			/>
+			{ enableCustomIcons && (
+				<CustomInserterModal
+					isCustomInserterOpen={ isCustomInserterOpen }
+					setCustomInserterOpen={ setCustomInserterOpen }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
+			) }
 		</>
 	);
 }

@@ -14,6 +14,7 @@ A simple little block that allows you add a custom SVG icon or graphic to the Bl
 - No block library required 🎉
 - Built almost entirely with native WordPress components
 - Will get additional functionality as it's added to WordPress core
+- Register your own custom icon library. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
 ## Requirements
 
@@ -30,3 +31,25 @@ A simple little block that allows you add a custom SVG icon or graphic to the Bl
 6. Run `npm run start` to compile and watch source files for changes while developing.
 
 Refer to `package.json` and `composer.json` for additional commands.
+
+## Extensibility
+
+The Icon Block includes a handful of extensibility features allowing you to tailor the block to meet your needs.
+
+`iconBlock.icons`
+
+Filters all icons available in the built-in icon library. Use this filter add or remove icons from the plugin. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
+
+`iconBlock.enableCustomIcons`
+
+Defaults to `true`, this filter allows you to enable or disable custom SVG icon functionality. When disabled, your are restricted to using the icon library.
+
+```
+wp.hooks.addFilter(
+    'iconBlock.enableCustomIcons',
+    'example-theme/disable-custom-icons',
+    false
+);
+```
+
+

@@ -12,7 +12,6 @@ import {
 	alignNone,
 	alignRight,
 	archive,
-	archiveTitle,
 	arrowDown,
 	arrowLeft,
 	arrowRight,
@@ -167,7 +166,6 @@ import {
 	postFeaturedImage,
 	postList,
 	postTerms,
-	postTitle,
 	previous,
 	next,
 	preformatted,
@@ -178,7 +176,6 @@ import {
 	queryPaginationNext,
 	queryPaginationNumbers,
 	queryPaginationPrevious,
-	queryTitle,
 	quote,
 	receipt,
 	redo,
@@ -276,6 +273,7 @@ import {
 	patreon,
 	pinterest,
 	pocket,
+	redditSolid,
 	reddit,
 	skype,
 	snapchat,
@@ -466,6 +464,12 @@ const wordpressSocialIcons = [
 		categories: [ 'logos' ],
 	},
 	{
+		name: 'reddit-solid',
+		title: 'Reddit Solid',
+		icon: redditSolid,
+		categories: [ 'logos' ],
+	},
+	{
 		name: 'reddit',
 		title: 'Reddit',
 		icon: reddit,
@@ -598,12 +602,6 @@ const wordpressIcons = [
 		name: 'archive',
 		title: __( 'Archive', 'icon-block' ),
 		icon: archive,
-		categories: [ 'blocks' ],
-	},
-	{
-		name: 'archiveTitle',
-		title: __( 'Archive Title', 'icon-block' ),
-		icon: archiveTitle,
 		categories: [ 'blocks' ],
 	},
 	{
@@ -1457,12 +1455,6 @@ const wordpressIcons = [
 		categories: [ 'blocks' ],
 	},
 	{
-		name: 'postTitle',
-		title: __( 'Post Title', 'icon-block' ),
-		icon: postTitle,
-		categories: [ 'blocks' ],
-	},
-	{
 		name: 'previous',
 		title: __( 'Previous', 'icon-block' ),
 		icon: previous,
@@ -1515,12 +1507,6 @@ const wordpressIcons = [
 		title: __( 'Query Pagination Previous', 'icon-block' ),
 		icon: queryPaginationPrevious,
 		categories: [ 'arrows' ],
-	},
-	{
-		name: 'queryTitle',
-		title: __( 'Query Title', 'icon-block' ),
-		icon: queryTitle,
-		categories: [ 'blocks' ],
 	},
 	{
 		name: 'quote',

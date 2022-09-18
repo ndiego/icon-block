@@ -1,0 +1,103 @@
+{
+  "apiVersion": 2,
+  "name": "outermost/icon-block",
+  "title": "The Icon Block",
+  "category": "media",
+  "description": "Insert an SVG icon or graphic.",
+  "keywords": [
+    "icon",
+    "svg"
+  ],
+  "attributes": {
+    "icon": {
+      "type": "string",
+      "source": "html",
+      "selector": ".icon-container",
+      "default": ""
+    },
+    "iconName": {
+      "type": "string"
+    },
+    "itemsJustification": {
+      "type": "string"
+    },
+    "iconBackgroundColor": {
+      "type": "string"
+    },
+    "customIconBackgroundColor": {
+      "type": "string"
+    },
+    "iconBackgroundColorValue": {
+      "type": "string"
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "customIconColor": {
+      "type": "string"
+    },
+    "iconColorValue": {
+      "type": "string"
+    },
+    "gradient": {
+      "type": "string"
+    },
+    "customGradient": {
+      "type": "string"
+    },
+    "hasNoIconFill": {
+      "type": "boolean"
+    },
+    "label": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "linkUrl": {
+      "type": "string"
+    },
+    "linkRel": {
+      "type": "string"
+    },
+    "linkTarget": {
+      "type": "string"
+    },
+    "rotate": {
+      "type": "number"
+    },
+    "flipHorizontal": {
+      "type": "boolean"
+    },
+    "flipVertical": {
+      "type": "boolean"
+    },
+    "width": {
+      "type": "number"
+    },
+    "percentWidth": {
+      "type": "number"
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": true,
+    "html": false,
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalSelector": ".icon-container",
+      "__experimentalSkipSerialization": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "textdomain": "icon-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css"
+}

@@ -3,9 +3,8 @@
 	"name": "outermost/icon-block",
 	"title": "The Icon Block",
 	"category": "media",
-	"description": "Add an SVG icon or graphic.",
+	"description": "Insert an SVG icon or graphic.",
 	"keywords": [ "icon", "svg" ],
-	"textdomain": "icon-block",
 	"attributes": {
 		"icon": {
 			"type": "string",
@@ -43,7 +42,13 @@
 		"customGradient": {
 			"type": "string"
 		},
+		"hasNoIconFill": {
+			"type": "boolean"
+		},
 		"label": {
+			"type": "string"
+		},
+		"title": {
 			"type": "string"
 		},
 		"linkUrl": {
@@ -72,20 +77,24 @@
 		}
 	},
 	"supports": {
+		"anchor": true,
 		"align": true,
 		"html": false,
 		"__experimentalBorder": {
 			"color": true,
 			"radius": true,
 			"style": true,
-			"width": true
+			"width": true,
+			"__experimentalSelector": ".icon-container",
+			"__experimentalSkipSerialization": true
 		},
 		"spacing": {
 			"padding": true,
 			"margin": true
 		}
 	},
-	"editorScript": "file:./build/index.js",
-	"editorStyle": "file:./build/editor.css",
-	"style": "file:./build/style.css"
+	"textdomain": "icon-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css"
 }

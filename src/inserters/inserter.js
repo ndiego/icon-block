@@ -31,12 +31,8 @@ import {
 } from './../utils/icon-functions';
 
 export default function InserterModal( props ) {
-	const {
-		isInserterOpen,
-		setInserterOpen,
-		attributes,
-		setAttributes,
-	} = props;
+	const { isInserterOpen, setInserterOpen, attributes, setAttributes } =
+		props;
 	const iconsByType = getIcons();
 	const iconTypes = getIconTypes( iconsByType );
 

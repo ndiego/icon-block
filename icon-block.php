@@ -20,7 +20,7 @@
  * through the block editor in the corresponding context.
  */
 function create_outermost_icon_block_init() {
-	register_block_type( __DIR__ );
+	register_block_type( __DIR__ . '/build' );
 
 	// Load available translations.
 	wp_set_script_translations( 'outermost-icon-block-editor-script-js', 'icon-block' );

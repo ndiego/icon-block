@@ -7,7 +7,10 @@ import { isEmpty } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
+} from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -24,17 +27,16 @@ import parseIcon from './utils/parse-icon';
  */
 export default function Save( props ) {
 	const {
-		borderColor,
 		icon,
 		iconName,
-		style,
 		iconBackgroundColor,
 		iconBackgroundColorValue,
 		iconColorValue,
+		hasNoIconFill,
 		gradient,
 		customGradient,
-		itemsJustification,
 		label,
+		title,
 		linkUrl,
 		linkRel,
 		linkTarget,
@@ -85,22 +87,24 @@ export default function Save( props ) {
 		};
 	}
 
-	const classes = classnames( 'icon-container', {
+	const blockProps = useBlockProps.save();
+	const borderProps = getBorderClassesAndStyles( props.attributes );
+
+	const iconClasses = classnames( 'icon-container', borderProps?.className, {
 		'has-icon-color': iconColorValue,
-		'has-background-color':
+		'has-icon-background-color':
 			iconBackgroundColorValue ||
 			iconBackgroundColor ||
 			gradient ||
 			customGradient,
-		[ `has-${ iconBackgroundColor }-background-color` ]: iconBackgroundColor,
+		'has-no-icon-fill-color': hasNoIconFill,
+		[ `has-${ iconBackgroundColor }-background-color` ]:
+			iconBackgroundColor,
 		[ `has-${ gradient }-gradient-background` ]: gradient,
 		[ `rotate-${ rotate }` ]: rotate,
 		'flip-horizontal': flipHorizontal,
 		'flip-vertical': flipVertical,
 	} );
-
-	const rel = isEmpty( linkRel ) ? undefined : linkRel;
-	const target = isEmpty( linkTarget ) ? undefined : linkTarget;
 
 	let iconWidth = width ? `${ width }px` : '48px';
 
@@ -108,72 +112,67 @@ export default function Save( props ) {
 		iconWidth = `${ percentWidth }%`;
 	}
 
-	let margin = style?.spacing?.margin ?? undefined;
-	let padding = style?.spacing?.padding ?? undefined;
-
-	// We are not adding the padding to the primary block div, so need to handle
-	// the formatting ourselves.
-	if ( padding ) {
-		padding = `${ padding?.top ?? 0 } ${ padding?.right ?? 0 } ${
-			padding?.bottom ?? 0
-		} ${ padding?.left ?? 0 }`;
-	}
-
-	// And even though margin is set on the main block div, we need to handle it
-	// manually since all other styles are applied to the inner div.
-	if ( margin ) {
-		margin = `${ margin?.top ?? 0 } ${ margin?.right ?? 0 } ${
-			margin?.bottom ?? 0
-		} ${ margin?.left ?? 0 }`;
-	}
-
-	const styles = {
+	const iconStyles = {
 		background: ! gradient ? customGradient : undefined,
 		backgroundColor: ! iconBackgroundColor
 			? iconBackgroundColorValue
 			: undefined,
-		borderColor: borderColor
-			? `var(--wp--preset--color--${ borderColor })`
-			: style?.border?.color ?? undefined,
-		borderRadius: style?.border?.radius ?? undefined,
-		borderStyle: style?.border?.style ?? undefined,
-		borderWidth: style?.border?.width ?? undefined,
+		...blockProps.style,
+		...borderProps.style,
 		color: iconColorValue,
-		padding,
 		width: iconWidth,
+
+		// Margin is applied to the wrapper container, so unset.
+		marginBottom: undefined,
+		marginLeft: undefined,
+		marginRight: undefined,
+		marginTop: undefined,
 	};
 
-	if ( linkUrl ) {
-		printedIcon = (
-			<a
-				className={ classes }
-				href={ linkUrl }
-				target={ target }
-				rel={ rel }
-				style={ styles }
-				aria-label={ label ?? undefined }
-			>
-				{ printedIcon }
-			</a>
-		);
-	} else {
-		printedIcon = (
-			<div className={ classes } style={ styles }>
-				{ printedIcon }
-			</div>
-		);
-	}
+	const blockStyles = useBlockProps.save()?.style;
+
+	// And even though margin is set on the main block div, we need to handle it
+	// manually since all other styles are applied to the inner div.
+	const blockMargin = {
+		marginBottom: blockStyles?.marginBottom,
+		marginLeft: blockStyles?.marginLeft,
+		marginRight: blockStyles?.marginRight,
+		marginTop: blockStyles?.marginTop,
+	};
+
+	const rel = isEmpty( linkRel ) ? undefined : linkRel;
+	const target = isEmpty( linkTarget ) ? undefined : linkTarget;
+
+	const iconMarkup = (
+		<>
+			{ linkUrl ? (
+				<a
+					className={ iconClasses }
+					href={ linkUrl }
+					target={ target }
+					rel={ rel }
+					style={ iconStyles }
+					aria-label={ label }
+				>
+					{ printedIcon }
+				</a>
+			) : (
+				<div className={ iconClasses } style={ iconStyles }>
+					{ printedIcon }
+				</div>
+			) }
+		</>
+	);
 
 	return (
 		<div
-			{ ...useBlockProps.save( {
-				className: `items-justified-${ itemsJustification }`,
-			} ) }
+			{ ...useBlockProps.save() }
 			// This is a bit of a hack. we only want the margin styles
 			// applied to the main block div.
-			style={ { margin } }
+			style={ blockMargin }
+			title={ title }
 		>
-			{ printedIcon }
+			{ iconMarkup }
 		</div>
 	);
 }

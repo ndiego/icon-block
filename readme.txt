@@ -24,7 +24,7 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 * No block library required 🎉
 * Built almost entirely with native WordPress components
 * Will get additional functionality as it's added to WordPress core
-* Register your own custom icon library. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
+* Register your own custom icon library. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/)
 
 === Stay Connected ===
 
@@ -70,6 +70,30 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 8. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 1.3.0 - 2022-09-19 =
+
+**Added**
+
+* Add the ability to toggle icon color fill. Useful for SVG icons that use stroke.
+* Add the ability to disable custom icons using the `iconBlock.enableCustomIcons` filter.
+* Add title attribute support.
+* Add alternative Reddit icon to match Core.
+* Add new WordPress icon: `title`
+
+**Changed**
+
+* Update block block placeholder to be more consistent with core placeholders.
+* Update block architecture to support features in WordPress 6.1.
+* Improve the UI in various places.
+
+**Removed**
+
+* Remove deprecated WordPress icons: `archiveTitle`, `commentTitle`, `postTitle`, and `queryTitle`
+
+**Fixed**
+
+* Fix bug where icon color and fill was overridden by theme colors.
 
 = 1.2.0 - 2022-05-02 =
 

@@ -12,8 +12,8 @@ $flipHV: scale(-1, -1);
 
 /* Icon Block styles. */
 .wp-block-outermost-icon-block {
- 	line-height: 0;
 	display: flex;
+ 	line-height: 0;
 
     // Unset border styling inherited from block props.
     &.has-border-color {
@@ -24,7 +24,12 @@ $flipHV: scale(-1, -1);
 	.has-icon-color {
 		svg {
 			color: currentColor;
-			fill: currentColor;
+		}
+
+		&:not(.has-no-icon-fill-color) {
+			svg {
+				fill: currentColor;
+			}
 		}
 	}
 
@@ -37,7 +42,7 @@ $flipHV: scale(-1, -1);
 	svg {
 		width: 100%;
 		height: 100%;
-        transition: all 0.1s ease-in-out;
+		transition: all 0.1s ease-in-out;
 	}
 
     /* Added for a11y. In-block hover/focus controls will be added in future releases. */

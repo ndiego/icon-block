@@ -8,7 +8,7 @@ import { Icon } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import { bolt } from './icons/bolt';
+import { bolt, boltPlaceholder } from './icons/bolt';
 import { QuickInserterPopover } from './inserters/quick-inserter';
 
 export default function IconPlaceholder( props ) {
@@ -18,38 +18,47 @@ export default function IconPlaceholder( props ) {
 		setQuickInserterOpen,
 		setCustomInserterOpen,
 		setAttributes,
+		enableCustomIcons,
 	} = props;
 
+	const instructions = enableCustomIcons
+		? __(
+				'Choose an icon from the library or add your own custom SVG graphic.',
+				'icon-block'
+		  )
+		: __(
+				'Browse the icon library and choose one to insert.',
+				'icon-block'
+		  );
+
 	return (
-		<Placeholder className="wp-block-outermost-icon-placeholder">
-			<div className="wp-block-outermost-icon-placeholder__preview">
-				<Icon icon={ bolt } />
-			</div>
-			<div className="wp-block-outermost-icon-placeholder__controls">
-				<div className="wp-block-outermost-icon-placeholder__actions">
-					<div className="wp-block-outermost-icon-placeholder__actions__indicator">
-						<Icon icon={ bolt } /> { __( 'Icon Block' ) }
-					</div>
-					<Button
-						isPrimary
-						onClick={ () => setQuickInserterOpen( true ) }
-					>
-						{ __( 'Browse icon Library', 'icon-block' ) }
-					</Button>
-					<QuickInserterPopover
-						setInserterOpen={ setInserterOpen }
-						isQuickInserterOpen={ isQuickInserterOpen }
-						setQuickInserterOpen={ setQuickInserterOpen }
-						setAttributes={ setAttributes }
-					/>
-					<Button
-						isSecondary
-						onClick={ () => setCustomInserterOpen( true ) }
-					>
-						{ __( 'Add custom icon', 'icon-block' ) }
-					</Button>
-				</div>
-			</div>
+		<Placeholder
+			className="has-illustration"
+			icon={ bolt }
+			label={ __( 'Icon' ) }
+			instructions={ instructions }
+		>
+			<Icon
+				class="components-placeholder__illustration"
+				icon={ boltPlaceholder }
+			/>
+			<Button isPrimary onClick={ () => setQuickInserterOpen( true ) }>
+				{ __( 'Icon Library', 'icon-block' ) }
+			</Button>
+			{ enableCustomIcons && (
+				<Button
+					isTertiary
+					onClick={ () => setCustomInserterOpen( true ) }
+				>
+					{ __( 'Insert custom SVG', 'icon-block' ) }
+				</Button>
+			) }
+			<QuickInserterPopover
+				setInserterOpen={ setInserterOpen }
+				isQuickInserterOpen={ isQuickInserterOpen }
+				setQuickInserterOpen={ setQuickInserterOpen }
+				setAttributes={ setAttributes }
+			/>
 		</Placeholder>
 	);
 }
