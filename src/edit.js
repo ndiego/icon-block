@@ -129,7 +129,7 @@ export function Edit( props ) {
 	// Allow users to disable custom SVG icons.
 	const enableCustomIcons = applyFilters(
 		'iconBlock.enableCustomIcons',
-		false
+		true
 	);
 
 	const ref = useRef();
