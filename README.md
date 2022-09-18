@@ -36,11 +36,11 @@ Refer to `package.json` and `composer.json` for additional commands.
 
 The Icon Block includes a handful of extensibility features allowing you to tailor the block to meet your needs.
 
-`iconBlock.icons`
+### `iconBlock.icons`
 
 Filters all icons available in the built-in icon library. Use this filter add or remove icons from the plugin. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
-`iconBlock.enableCustomIcons`
+### `iconBlock.enableCustomIcons`
 
 Defaults to `true`, this filter allows you to enable or disable custom SVG icon functionality. When disabled, your are restricted to using the icon library.
 
@@ -48,7 +48,7 @@ Defaults to `true`, this filter allows you to enable or disable custom SVG icon 
 wp.hooks.addFilter(
     'iconBlock.enableCustomIcons',
     'example-theme/disable-custom-icons',
-    false
+    () => false
 );
 ```
 
