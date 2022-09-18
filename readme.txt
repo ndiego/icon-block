@@ -85,6 +85,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 * Update block block placeholder to be more consistent with core placeholders.
 * Update block architecture to support features in WordPress 6.1.
+* Improve support for custom icons without a fill color.
 * Improve the UI in various places.
 
 **Removed**

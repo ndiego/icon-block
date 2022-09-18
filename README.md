@@ -36,11 +36,13 @@ Refer to `package.json` and `composer.json` for additional commands.
 
 The Icon Block includes a handful of extensibility features allowing you to tailor the block to meet your needs.
 
-### `iconBlock.icons`
+### Hooks & Filters
+
+#### `iconBlock.icons`
 
 Filters all icons available in the built-in icon library. Use this filter add or remove icons from the plugin. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
-### `iconBlock.enableCustomIcons`
+#### `iconBlock.enableCustomIcons`
 
 Defaults to `true`, this filter allows you to enable or disable custom SVG icon functionality. When disabled, your are restricted to using the icon library.
 
@@ -51,5 +53,31 @@ wp.hooks.addFilter(
     () => false
 );
 ```
+
+### theme.json
+
+In themes that includes a theme.json file, you can easily disable border and spacing settings in the Editor user interface.
+
+```
+{
+    ...
+    "settings": {
+        ...
+        "blocks": {
+			"outermost/icon-block": {
+				"border": {
+					"color": false,
+					"radius": false,
+					"style": false,
+					"width": false
+				},
+				"spacing": {
+					"margin": false,
+					"padding": false
+				}
+			},
+...
+```
+
 
 
