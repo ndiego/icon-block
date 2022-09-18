@@ -35,7 +35,7 @@ $r270: rotate(270deg);
 			box-shadow: inset 0 0 0 1px #1e1e1e;
 			color: #1e1e1e;
 			filter: none;
-			
+
 			.components-placeholder__illustration {
 				display: none;
 			}
@@ -200,6 +200,13 @@ $r270: rotate(270deg);
 
 					svg {
 						fill: #fff;
+					}
+
+					&.has-no-icon-fill {
+						svg {
+							color: #fff;
+							fill: none;
+						}
 					}
 				}
 			}
@@ -438,6 +445,12 @@ $r270: rotate(270deg);
 		&:hover {
 			border-color: var(--wp-admin-theme-color);
 			color: var(--wp-admin-theme-color) !important;
+		}
+
+		&.has-no-icon-fill {
+			svg {
+				fill: none;
+			}
 		}
 
 		.icons-list__item-icon {

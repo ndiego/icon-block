@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import classnames from 'classnames';
 import { isEmpty } from 'lodash';
 
 /**
@@ -31,10 +32,11 @@ export function QuickInserterPopover( props ) {
 		return null;
 	}
 
-	function updateIconName( name ) {
+	function updateIconAtts( name, hasNoIconFill ) {
 		setAttributes( {
 			icon: '',
 			iconName: name,
+			hasNoIconFill,
 		} );
 		setInserterOpen( false );
 	}
@@ -102,9 +104,14 @@ export function QuickInserterPopover( props ) {
 						<Button
 							key={ `icon-${ icon.name }` }
 							label={ __( 'Insert Icon', 'icon-block' ) }
-							className="icons-list__item"
+							className={ classnames( 'icons-list__item', {
+								'has-no-icon-fill': icon?.hasNoIconFill,
+							} ) }
 							onClick={ () => {
-								updateIconName( icon.name );
+								updateIconAtts(
+									icon.name,
+									icon?.hasNoIconFill
+								);
 								setQuickInserterOpen( false );
 								setSearchInput( '' );
 							} }

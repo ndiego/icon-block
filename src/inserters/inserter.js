@@ -128,10 +128,11 @@ export default function InserterModal( props ) {
 		} );
 	} );
 
-	function updateIconName( name ) {
+	function updateIconAtts( name, hasNoIconFill ) {
 		setAttributes( {
 			icon: '',
 			iconName: name,
+			hasNoIconFill,
 		} );
 		setInserterOpen( false );
 	}
@@ -201,8 +202,11 @@ export default function InserterModal( props ) {
 						key={ `icon-${ icon.name }` }
 						className={ classnames( 'icons-list__item', {
 							'is-active': icon.name === attributes?.iconName,
+							'has-no-icon-fill': icon?.hasNoIconFill,
 						} ) }
-						onClick={ () => updateIconName( icon.name ) }
+						onClick={ () =>
+							updateIconAtts( icon.name, icon?.hasNoIconFill )
+						}
 					>
 						<span className="icons-list__item-icon">
 							<Icon icon={ renderedIcon } size={ iconSize } />
