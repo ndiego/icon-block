@@ -48,9 +48,9 @@ Defaults to `true`, this filter allows you to enable or disable custom SVG icon 
 
 ```
 wp.hooks.addFilter(
-    'iconBlock.enableCustomIcons',
-    'example-theme/disable-custom-icons',
-    () => false
+	'iconBlock.enableCustomIcons',
+	'example-theme/disable-custom-icons',
+	() => false
 );
 ```
 
@@ -60,10 +60,10 @@ In themes that includes a theme.json file, you can easily disable border and spa
 
 ```
 {
-    ...
-    "settings": {
-        ...
-        "blocks": {
+	...
+	"settings": {
+		...
+		"blocks": {
 			"outermost/icon-block": {
 				"border": {
 					"color": false,
