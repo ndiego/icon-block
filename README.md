@@ -1,6 +1,6 @@
 # Icon Block
 
-[![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)](https://github.com/ndiego/icon-block/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](https://github.com/ndiego/icon-block/blob/master/LICENSE.txt) ![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/icon-block?color=%23007cba&label=Active%20Installs&logo=wordpress&style=flat-square)
 
 ![The Icon Block](https://github.com/ndiego/icon-block/blob/main/.wordpress-org/banner-1544x500.png)
 
@@ -56,7 +56,7 @@ wp.hooks.addFilter(
 
 ### theme.json
 
-In themes that includes a theme.json file, you can easily disable border and spacing settings in the Editor user interface.
+You can easily disable border and spacing settings in the Editor UI if your theme includes a theme.json file.
 
 ```
 {

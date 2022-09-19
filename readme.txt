@@ -78,13 +78,13 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 * Add the ability to toggle icon color fill. Useful for SVG icons that use stroke.
 * Add the ability to disable custom icons using the `iconBlock.enableCustomIcons` filter.
 * Add title attribute support.
-* Add alternative Reddit icon to match Core.
+* Add alternative Reddit icon to match WordPress core.
 * Add new WordPress icon: `title`
 
 **Changed**
 
-* Update block block placeholder to be more consistent with core placeholders.
 * Update block architecture to support features in WordPress 6.1.
+* Update block placeholder to be more consistent with core placeholders.
 * Improve support for custom icons without a fill color.
 * Improve the UI in various places.
 
@@ -94,7 +94,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 **Fixed**
 
-* Fix bug where icon color and fill was overridden by theme colors.
+* Fix bug where icon color and fill were overridden by theme colors.
 
 = 1.2.0 - 2022-05-02 =
 
