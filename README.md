@@ -44,7 +44,7 @@ Filters all icons available in the built-in icon library. Use this filter add or
 
 #### `iconBlock.enableCustomIcons`
 
-Defaults to `true`, this filter allows you to enable or disable custom SVG icon functionality. When disabled, your are restricted to using the icon library.
+Defaults to `true`, this filter allows you to enable or disable custom SVG icon functionality. When disabled, you are restricted to using the icon library.
 
 ```
 wp.hooks.addFilter(
