@@ -4,7 +4,7 @@ Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 5.9
 Tested up to:      6.0
 Requires PHP:      7.0
-Stable tag:        1.2.0
+Stable tag:        1.3.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,7 +71,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.3.0 - 2022-09-19 =
+= 1.3.0 - 2022-09-20 =
 
 **Added**
 
@@ -95,6 +95,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 **Fixed**
 
 * Fix bug where icon color and fill were overridden by theme colors.
+* Fix visual inconsistency between the frontend and Editor due to box-sizing not getting applied in the Editor.
 
 = 1.2.0 - 2022-05-02 =
 
