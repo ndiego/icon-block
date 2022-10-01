@@ -16,86 +16,90 @@ import getIcons from './icons';
 import { flattenIconsArray } from './utils/icon-functions';
 import parseIcon from './utils/parse-icon';
 
+const blockAttributes = {
+	icon: {
+		type: 'string',
+		source: 'html',
+		selector: '.icon-container',
+		default: '',
+	},
+	iconName: {
+		type: 'string',
+	},
+	itemsJustification: {
+		type: 'string',
+	},
+	iconBackgroundColor: {
+		type: 'string',
+	},
+	customIconBackgroundColor: {
+		type: 'string',
+	},
+	iconBackgroundColorValue: {
+		type: 'string',
+	},
+	iconColor: {
+		type: 'string',
+	},
+	customIconColor: {
+		type: 'string',
+	},
+	iconColorValue: {
+		type: 'string',
+	},
+	gradient: {
+		type: 'string',
+	},
+	customGradient: {
+		type: 'string',
+	},
+	label: {
+		type: 'string',
+	},
+	linkUrl: {
+		type: 'string',
+	},
+	linkRel: {
+		type: 'string',
+	},
+	linkTarget: {
+		type: 'string',
+	},
+	rotate: {
+		type: 'number',
+	},
+	flipHorizontal: {
+		type: 'boolean',
+	},
+	flipVertical: {
+		type: 'boolean',
+	},
+	width: {
+		type: 'number',
+	},
+	percentWidth: {
+		type: 'number',
+	},
+};
+
+const blockSupports = {
+	align: true,
+	html: false,
+	__experimentalBorder: {
+		color: true,
+		radius: true,
+		style: true,
+		width: true,
+	},
+	spacing: {
+		padding: true,
+		margin: true,
+	},
+};
+
 const v1 = {
-	attributes: {
-		icon: {
-			type: 'string',
-			source: 'html',
-			selector: '.icon-container',
-			default: '',
-		},
-		iconName: {
-			type: 'string',
-		},
-		itemsJustification: {
-			type: 'string',
-		},
-		iconBackgroundColor: {
-			type: 'string',
-		},
-		customIconBackgroundColor: {
-			type: 'string',
-		},
-		iconBackgroundColorValue: {
-			type: 'string',
-		},
-		iconColor: {
-			type: 'string',
-		},
-		customIconColor: {
-			type: 'string',
-		},
-		iconColorValue: {
-			type: 'string',
-		},
-		gradient: {
-			type: 'string',
-		},
-		customGradient: {
-			type: 'string',
-		},
-		label: {
-			type: 'string',
-		},
-		linkUrl: {
-			type: 'string',
-		},
-		linkRel: {
-			type: 'string',
-		},
-		linkTarget: {
-			type: 'string',
-		},
-		rotate: {
-			type: 'number',
-		},
-		flipHorizontal: {
-			type: 'boolean',
-		},
-		flipVertical: {
-			type: 'boolean',
-		},
-		width: {
-			type: 'number',
-		},
-		percentWidth: {
-			type: 'number',
-		},
-	},
-	supports: {
-		align: true,
-		html: false,
-		__experimentalBorder: {
-			color: true,
-			radius: true,
-			style: true,
-			width: true,
-		},
-		spacing: {
-			padding: true,
-			margin: true,
-		},
-	},
+	attributes: blockAttributes,
+	supports: blockSupports,
 	save( { attributes } ) {
 		const {
 			borderColor,
