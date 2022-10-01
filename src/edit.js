@@ -104,19 +104,19 @@ export function Edit( props ) {
 	const {
 		flipHorizontal,
 		flipVertical,
-		label,
-		title,
-		linkRel,
-		linkTarget,
-		linkUrl,
+		hasNoIconFill,
 		icon,
 		iconBackgroundColorValue,
 		iconColorValue,
-		hasNoIconFill,
 		iconName,
 		itemsJustification,
+		label,
+		linkRel,
+		linkTarget,
+		linkUrl,
 		percentWidth,
 		rotate,
+		title,
 		width,
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } = useGradient();
@@ -558,7 +558,13 @@ export function Edit( props ) {
 			{ blockControls }
 			{ inspectorControls }
 			<div
-				{ ...useBlockProps( { ref, onKeyDown } ) }
+				{ ...useBlockProps( {
+					className:
+						itemsJustification &&
+						`items-justified-${ itemsJustification }`,
+					ref,
+					onKeyDown,
+				} ) }
 				// This is a bit of a hack. we only want the margin styles
 				// applied to the main block div.
 				style={ blockMargin }

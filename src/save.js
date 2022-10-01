@@ -27,24 +27,25 @@ import parseIcon from './utils/parse-icon';
  */
 export default function Save( props ) {
 	const {
+		customGradient,
+		flipHorizontal,
+		flipVertical,
+		gradient,
+		hasNoIconFill,
 		icon,
-		iconName,
 		iconBackgroundColor,
 		iconBackgroundColorValue,
 		iconColorValue,
-		hasNoIconFill,
-		gradient,
-		customGradient,
+		iconName,
+		itemsJustification,
 		label,
-		title,
-		linkUrl,
 		linkRel,
 		linkTarget,
-		rotate,
-		flipHorizontal,
-		flipVertical,
-		width,
+		linkUrl,
 		percentWidth,
+		rotate,
+		title,
+		width,
 	} = props.attributes;
 
 	// If there is no icon and no iconName, don't save anything.
@@ -166,7 +167,11 @@ export default function Save( props ) {
 
 	return (
 		<div
-			{ ...useBlockProps.save() }
+			{ ...useBlockProps.save( {
+				className:
+					itemsJustification &&
+					`items-justified-${ itemsJustification }`,
+			} ) }
 			// This is a bit of a hack. we only want the margin styles
 			// applied to the main block div.
 			style={ blockMargin }
