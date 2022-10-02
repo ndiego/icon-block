@@ -12,7 +12,7 @@ Effortlessly add an SVG icon or graphic to your website or choose one from the W
 
 == Description ==
 
-A simple little block that allows you add a custom SVG icon or graphic to the Block Editor (Gutenberg).
+A simple little block that allows you to add a custom SVG icon or graphic to the Block Editor (Gutenberg).
 
 The plugin also includes the complete WordPress icon library with 270+ SVG icons to choose from!
 
