@@ -39,7 +39,7 @@ export default function IconPlaceholder( props ) {
 			instructions={ instructions }
 		>
 			<Icon
-				class="components-placeholder__illustration"
+				className="components-placeholder__illustration"
 				icon={ boltPlaceholder }
 			/>
 			<Button isPrimary onClick={ () => setQuickInserterOpen( true ) }>
