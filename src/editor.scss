@@ -39,6 +39,10 @@ $r270: rotate(270deg);
 			color: #1e1e1e;
 			filter: none;
 
+			&:before {
+				opacity: 0;
+			}
+
 			.components-placeholder__illustration {
 				display: none;
 			}
