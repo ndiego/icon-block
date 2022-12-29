@@ -8,6 +8,9 @@ import { isEmpty } from 'lodash';
  * WordPress dependencies
  */
 import {
+	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
+} from '@wordpress/components';
+import {
 	useBlockProps,
 	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
 } from '@wordpress/block-editor';
@@ -107,9 +110,18 @@ export default function Save( props ) {
 		'flip-vertical': flipVertical,
 	} );
 
-	let iconWidth = width ? `${ width }px` : '48px';
+	const [ widthQuantity, widthUnit ] = parseQuantityAndUnitFromRawValue( width );
 
-	if ( percentWidth ) {
+	// Default icon width.
+	let iconWidth = '48px';
+
+	if ( widthQuantity ) {
+		iconWidth = widthUnit ? `${ widthQuantity }${ widthUnit }` : `${ widthQuantity }px`;
+	}
+
+	// percentWidth was deprecated in v1.4.0. If the attribute exists, but there is
+	// no widthUnit (introduced in v1.4.0), use percentWidth.
+	if ( percentWidth && ! widthUnit ) {
 		iconWidth = `${ percentWidth }%`;
 	}
 
@@ -121,7 +133,7 @@ export default function Save( props ) {
 		...blockProps.style,
 		...borderProps.style,
 		color: iconColorValue,
-		width: iconWidth,
+		width: iconWidth || '48px',
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,

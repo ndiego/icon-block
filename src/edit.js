@@ -22,6 +22,7 @@ import {
 	ToggleControl,
 	ToolbarButton,
 	ToolbarGroup,
+	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
 } from '@wordpress/components';
 import {
 	BlockControls,
@@ -55,6 +56,7 @@ import parseIcon from './utils/parse-icon';
 import InserterModal from './inserters/inserter';
 import CustomInserterModal from './inserters/custom-inserter';
 import IconPlaceholder from './placeholder';
+import DimensionControl from './components/dimension-control';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
@@ -360,22 +362,12 @@ export function Edit( props ) {
 						}
 					/>
 					<div className="icon-settings__width">
-						<RangeControl
+						<DimensionControl
 							label={ __( 'Icon width', 'icon-block' ) }
+							value={ width || '' }
 							onChange={ ( value ) =>
 								setAttributes( { width: value } )
-							}
-							value={ width || '' }
-							min={ 10 }
-							max={ 1000 }
-							initialPosition={ 48 }
-							allowReset={ true }
-							resetFallbackValue={ 48 }
-							disabled={ percentWidth }
-						/>
-						<PercentWidthPanel
-							selectedWidth={ percentWidth }
-							setAttributes={ setAttributes }
+							}						
 						/>
 					</div>
 				</PanelBody>
@@ -499,9 +491,18 @@ export function Edit( props ) {
 		'flip-vertical': flipVertical,
 	} );
 
-	let iconWidth = width ? `${ width }px` : '48px';
+	const [ widthQuantity, widthUnit ] = parseQuantityAndUnitFromRawValue( width );
 
-	if ( percentWidth ) {
+	// Default icon width.
+	let iconWidth = '48px';
+
+	if ( widthQuantity ) {
+		iconWidth = widthUnit ? `${ widthQuantity }${ widthUnit }` : `${ widthQuantity }px`;
+	}
+
+	// percentWidth was deprecated in v1.4.0. If the attribute exists, but there is
+	// no widthUnit (introduced in v1.4.0), use percentWidth.
+	if ( percentWidth && ! widthUnit ) {
 		iconWidth = `${ percentWidth }%`;
 	}
 
