@@ -9,20 +9,17 @@ import { isEmpty } from 'lodash';
  */
 import { __ } from '@wordpress/i18n';
 import {
-	Button,
-	ButtonGroup,
 	Dropdown,
 	ExternalLink,
 	MenuItem,
 	NavigableMenu,
 	PanelBody,
 	Popover,
-	RangeControl,
 	TextControl,
 	ToggleControl,
 	ToolbarButton,
 	ToolbarGroup,
-	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
+	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue, // eslint-disable-line
 } from '@wordpress/components';
 import {
 	BlockControls,
@@ -59,34 +56,6 @@ import IconPlaceholder from './placeholder';
 import DimensionControl from './components/dimension-control';
 
 const NEW_TAB_REL = 'noreferrer noopener';
-
-function PercentWidthPanel( { selectedWidth, setAttributes } ) {
-	function handleChange( newWidth ) {
-		// Check if we are toggling the width off
-		const percentWidth = selectedWidth === newWidth ? undefined : newWidth;
-
-		// Update attributes
-		setAttributes( { percentWidth } );
-	}
-
-	return (
-		<ButtonGroup aria-label={ __( 'Icon percent width', 'icon-block' ) }>
-			{ [ 25, 50, 75, 100 ].map( ( widthValue ) => {
-				return (
-					<Button
-						key={ widthValue }
-						isSmall
-						isPrimary={ widthValue === selectedWidth }
-						isPressed={ widthValue === selectedWidth }
-						onClick={ () => handleChange( widthValue ) }
-					>
-						{ widthValue }%
-					</Button>
-				);
-			} ) }
-		</ButtonGroup>
-	);
-}
 
 /**
  * The edit function for the Icon Block.
@@ -367,7 +336,7 @@ export function Edit( props ) {
 							value={ width || '' }
 							onChange={ ( value ) =>
 								setAttributes( { width: value } )
-							}						
+							}
 						/>
 					</div>
 				</PanelBody>
@@ -491,13 +460,16 @@ export function Edit( props ) {
 		'flip-vertical': flipVertical,
 	} );
 
-	const [ widthQuantity, widthUnit ] = parseQuantityAndUnitFromRawValue( width );
+	const [ widthQuantity, widthUnit ] =
+		parseQuantityAndUnitFromRawValue( width );
 
 	// Default icon width.
 	let iconWidth = '48px';
 
 	if ( widthQuantity ) {
-		iconWidth = widthUnit ? `${ widthQuantity }${ widthUnit }` : `${ widthQuantity }px`;
+		iconWidth = widthUnit
+			? `${ widthQuantity }${ widthUnit }`
+			: `${ widthQuantity }px`;
 	}
 
 	// percentWidth was deprecated in v1.4.0. If the attribute exists, but there is

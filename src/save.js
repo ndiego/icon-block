@@ -7,9 +7,7 @@ import { isEmpty } from 'lodash';
 /**
  * WordPress dependencies
  */
-import {
-	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
-} from '@wordpress/components';
+import { __experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue } from '@wordpress/components'; // eslint-disable-line
 import {
 	useBlockProps,
 	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
@@ -110,13 +108,16 @@ export default function Save( props ) {
 		'flip-vertical': flipVertical,
 	} );
 
-	const [ widthQuantity, widthUnit ] = parseQuantityAndUnitFromRawValue( width );
+	const [ widthQuantity, widthUnit ] =
+		parseQuantityAndUnitFromRawValue( width );
 
 	// Default icon width.
 	let iconWidth = '48px';
 
 	if ( widthQuantity ) {
-		iconWidth = widthUnit ? `${ widthQuantity }${ widthUnit }` : `${ widthQuantity }px`;
+		iconWidth = widthUnit
+			? `${ widthQuantity }${ widthUnit }`
+			: `${ widthQuantity }px`;
 	}
 
 	// percentWidth was deprecated in v1.4.0. If the attribute exists, but there is

@@ -7,12 +7,11 @@ import {
 	RangeControl,
 	Flex,
 	FlexItem,
-	__experimentalSpacer as Spacer,
-	__experimentalUseCustomUnits as useCustomUnits,
-	__experimentalUnitControl as UnitControl,
-	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
+	__experimentalSpacer as Spacer, // eslint-disable-line
+	__experimentalUseCustomUnits as useCustomUnits, // eslint-disable-line
+	__experimentalUnitControl as UnitControl, // eslint-disable-line
+	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue, // eslint-disable-line
 } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 
 const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	px: { max: 1000, step: 1 },
@@ -23,25 +22,14 @@ const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	rem: { max: 50, step: 0.1 },
 };
 
-export default function DimensionControl( {
-	onChange,
-	label,
-	value,
-} ) {
+export default function DimensionControl( { onChange, label, value } ) {
 	const customRangeValue = parseFloat( value );
 
 	const units = useCustomUnits( {
-		availableUnits: [
-			'%',
-			'px',
-			'em',
-			'rem',
-			'vh',
-			'vw',
-		],
+		availableUnits: [ '%', 'px', 'em', 'rem', 'vh', 'vw' ],
 	} );
 
-    const selectedUnit =
+	const selectedUnit =
 		useMemo(
 			() => parseQuantityAndUnitFromRawValue( value ),
 			[ value ]
@@ -109,9 +97,9 @@ export default function DimensionControl( {
 							withInputField={ false }
 							onChange={ handleSliderChange }
 							__nextHasNoMarginBottom
-                            // initialPosition={ 48 }
-                            // allowReset={ true }
-                            // resetFallbackValue={ 48 }
+							// initialPosition={ 48 }
+							// allowReset={ true }
+							// resetFallbackValue={ 48 }
 						/>
 					</Spacer>
 				</FlexItem>
