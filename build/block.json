@@ -73,7 +73,7 @@
       "type": "boolean"
     },
     "width": {
-      "type": "number"
+      "type": "string"
     },
     "percentWidth": {
       "type": "number"
