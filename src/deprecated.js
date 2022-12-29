@@ -7,7 +7,10 @@ import { isEmpty } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { 
+	useBlockProps,
+	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
+} from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -291,6 +294,167 @@ const v1 = {
 	},
 };
 
-const deprecated = [ v1 ];
+const v2 = {
+	attributes: blockAttributes,
+	supports: blockSupports,
+	save( { attributes } ) {
+		const {
+			customGradient,
+			flipHorizontal,
+			flipVertical,
+			gradient,
+			hasNoIconFill,
+			icon,
+			iconBackgroundColor,
+			iconBackgroundColorValue,
+			iconColorValue,
+			iconName,
+			itemsJustification,
+			label,
+			linkRel,
+			linkTarget,
+			linkUrl,
+			percentWidth,
+			rotate,
+			title,
+			width,
+		} = attributes;
+	
+		// If there is no icon and no iconName, don't save anything.
+		if ( ! icon && ! iconName ) {
+			return null;
+		}
+	
+		const iconsAll = flattenIconsArray( getIcons() );
+		const namedIcon = iconsAll.filter( ( i ) => i.name === iconName );
+		let printedIcon = '';
+	
+		if ( icon && isEmpty( namedIcon ) ) {
+			// Custom icons are strings and need to be parsed.
+			printedIcon = parseIcon( icon );
+	
+			if ( isEmpty( printedIcon?.props ) ) {
+				printedIcon = '';
+			}
+		} else {
+			// Icon choosen from library.
+			printedIcon = namedIcon[ 0 ]?.icon;
+	
+			// Icons provided by third-parties are generally strings.
+			if ( typeof printedIcon === 'string' ) {
+				printedIcon = parseIcon( printedIcon );
+			}
+		}
+	
+		// If there is no valid SVG icon, don't save anything.
+		if ( ! printedIcon ) {
+			return null;
+		}
+	
+		// If a label is set, add as aria-label. Will overwite any aria-label in
+		// custom icons.
+		if ( label ) {
+			printedIcon = {
+				...printedIcon,
+				props: { ...printedIcon.props, 'aria-label': label },
+			};
+		}
+	
+		const blockProps = useBlockProps.save();
+		const borderProps = getBorderClassesAndStyles( attributes );
+	
+		const iconClasses = classnames( 'icon-container', borderProps?.className, {
+			'has-icon-color': iconColorValue,
+			'has-icon-background-color':
+				iconBackgroundColorValue ||
+				iconBackgroundColor ||
+				gradient ||
+				customGradient,
+			'has-no-icon-fill-color': hasNoIconFill,
+			[ `has-${ iconBackgroundColor }-background-color` ]:
+				iconBackgroundColor,
+			[ `has-${ gradient }-gradient-background` ]: gradient,
+			[ `rotate-${ rotate }` ]: rotate,
+			'flip-horizontal': flipHorizontal,
+			'flip-vertical': flipVertical,
+		} );
+	
+		let iconWidth = width ? `${ width }px` : '48px';
+	
+		if ( percentWidth ) {
+			iconWidth = `${ percentWidth }%`;
+		}
+	
+		const iconStyles = {
+			background: ! gradient ? customGradient : undefined,
+			backgroundColor: ! iconBackgroundColor
+				? iconBackgroundColorValue
+				: undefined,
+			...blockProps.style,
+			...borderProps.style,
+			color: iconColorValue,
+			width: iconWidth,
+	
+			// Margin is applied to the wrapper container, so unset.
+			marginBottom: undefined,
+			marginLeft: undefined,
+			marginRight: undefined,
+			marginTop: undefined,
+		};
+	
+		const blockStyles = useBlockProps.save()?.style;
+	
+		// And even though margin is set on the main block div, we need to handle it
+		// manually since all other styles are applied to the inner div.
+		const blockMargin = {
+			marginBottom: blockStyles?.marginBottom,
+			marginLeft: blockStyles?.marginLeft,
+			marginRight: blockStyles?.marginRight,
+			marginTop: blockStyles?.marginTop,
+		};
+	
+		const rel = isEmpty( linkRel ) ? undefined : linkRel;
+		const target = isEmpty( linkTarget ) ? undefined : linkTarget;
+	
+		const iconMarkup = (
+			<>
+				{ linkUrl ? (
+					<a
+						className={ iconClasses }
+						href={ linkUrl }
+						target={ target }
+						rel={ rel }
+						style={ iconStyles }
+						aria-label={ label }
+					>
+						{ printedIcon }
+					</a>
+				) : (
+					<div className={ iconClasses } style={ iconStyles }>
+						{ printedIcon }
+					</div>
+				) }
+			</>
+		);
+	
+		return (
+			<div
+				{ ...useBlockProps.save( {
+					className:
+						itemsJustification &&
+						`items-justified-${ itemsJustification }`,
+				} ) }
+				// This is a bit of a hack. we only want the margin styles
+				// applied to the main block div.
+				style={ blockMargin }
+				title={ title }
+			>
+				{ iconMarkup }
+			</div>
+		);
+	}
+}
+
+const deprecated = [ v1, v2 ];
 
 export default deprecated;
