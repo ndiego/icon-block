@@ -73,6 +73,10 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 = 1.4.0 - 2023-01-TBD =
 
+**Added**
+
+* Added icon height control.
+
 **Changed**
 
 * Updated WordPress version requirement to 6.0+.

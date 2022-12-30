@@ -66,7 +66,7 @@ export default function DimensionControl( { onChange, label, value } ) {
 	};
 
 	return (
-		<fieldset className="block-editor-height-control">
+		<fieldset className="components-dimension-control">
 			<BaseControl.VisualLabel as="legend">
 				{ label }
 			</BaseControl.VisualLabel>

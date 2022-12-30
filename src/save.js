@@ -43,10 +43,12 @@ export default function Save( props ) {
 		linkRel,
 		linkTarget,
 		linkUrl,
-		percentWidth,
 		rotate,
 		title,
 		width,
+		height,
+		// Deprecated
+		percentWidth,
 	} = props.attributes;
 
 	// If there is no icon and no iconName, don't save anything.
@@ -111,8 +113,8 @@ export default function Save( props ) {
 	const [ widthQuantity, widthUnit ] =
 		parseQuantityAndUnitFromRawValue( width );
 
-	// Default icon width.
-	let iconWidth = '48px';
+	// Default icon width when there is no height set.
+	let iconWidth = ! height ? '48px' : undefined;
 
 	if ( widthQuantity ) {
 		iconWidth = widthUnit
@@ -135,6 +137,7 @@ export default function Save( props ) {
 		...borderProps.style,
 		color: iconColorValue,
 		width: iconWidth,
+		height: height || undefined,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,
