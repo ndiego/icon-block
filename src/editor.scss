@@ -404,6 +404,19 @@ $r270: rotate(270deg);
 				}
 			}
 		}
+
+		.options-panel-container {
+			display: grid;
+    		grid-gap: 16px;
+
+			.components-base-control {
+				margin: 0;
+			}
+
+			.components-base-control__help {
+				margin-bottom: 0;
+			}
+		}
 	}
 
 	// Styles for color settings.

@@ -85,10 +85,12 @@ export function Edit( props ) {
 		linkRel,
 		linkTarget,
 		linkUrl,
-		percentWidth,
 		rotate,
 		title,
 		width,
+		height,
+		// Deprecated
+		percentWidth,
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
@@ -328,6 +330,10 @@ export function Edit( props ) {
 							label: __( 'Width', 'icon-block' ),
 							isDefault: true,
 						},
+						{
+							attributeSlug: 'height',
+							label: __( 'Height', 'icon-block' ),
+						},
 					] }
 					{ ...props }
 				>
@@ -342,16 +348,23 @@ export function Edit( props ) {
 							setAttributes( { label: value } )
 						}
 					/>
-					<div className="icon-settings__width">
+					<DimensionControl
+						label={ __( 'Width', 'icon-block' ) }
+						// If percentWidth is set (deprecated in v1.4.0), set that as width value.
+						value={ percentWidth ? `${ percentWidth }%` : width }
+						onChange={ ( value ) =>
+							setAttributes( { width: value } )
+						}
+					/>
+					{ height !== undefined && (
 						<DimensionControl
-							label={ __( 'Width', 'icon-block' ) }
-							// If percentWidth is set (deprecated in v1.4.0), set that as width value.
-							value={ percentWidth ? `${ percentWidth }%` : width }
+							label={ __( 'Height', 'icon-block' ) }
+							value={ height }
 							onChange={ ( value ) =>
-								setAttributes( { width: value } )
+								setAttributes( { height: value } )
 							}
 						/>
-					</div>
+					) }
 				</OptionsPanel>
 				<div>
 					<PanelColorGradientSettings
@@ -476,8 +489,8 @@ export function Edit( props ) {
 	const [ widthQuantity, widthUnit ] =
 		parseQuantityAndUnitFromRawValue( width );
 
-	// Default icon width.
-	let iconWidth = '48px';
+	// Default icon width when there is no height set.
+	let iconWidth = ! height ? '48px' : undefined;
 
 	if ( widthQuantity ) {
 		iconWidth = widthUnit
@@ -498,6 +511,7 @@ export function Edit( props ) {
 		...borderProps.style,
 		color: iconColorValue,
 		width: iconWidth,
+		height: height || undefined,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,
