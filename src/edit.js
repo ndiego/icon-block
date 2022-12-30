@@ -13,7 +13,6 @@ import {
 	ExternalLink,
 	MenuItem,
 	NavigableMenu,
-	PanelBody,
 	Popover,
 	TextControl,
 	ToggleControl,
@@ -54,6 +53,7 @@ import InserterModal from './inserters/inserter';
 import CustomInserterModal from './inserters/custom-inserter';
 import IconPlaceholder from './placeholder';
 import DimensionControl from './components/dimension-control';
+import OptionsPanel from './components/options-panel';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
@@ -273,7 +273,7 @@ export function Edit( props ) {
 									setInserterOpen( true );
 								} }
 							>
-								{ __( 'Replace' ) }
+								{ __( 'Replace', 'icon-block' ) }
 							</ToolbarButton>
 						) }
 					</ToolbarGroup>
@@ -315,31 +315,43 @@ export function Edit( props ) {
 	const inspectorControls = ( icon || iconName ) && (
 		<>
 			<InspectorControls>
-				<PanelBody
-					className="outermost-icon-block__icon-settings"
-					title={ __( 'Settings', 'icon-block' ) }
+				<OptionsPanel
+					label={ __( 'Settings', 'icon-block' ) }
+					options={ [
+						{
+							attributeSlug: 'label',
+							label: __( 'Label', 'icon-block' ),
+							isDefault: true,
+						},
+						{
+							attributeSlug: 'width',
+							label: __( 'Width', 'icon-block' ),
+							isDefault: true,
+						},
+					] }
+					{ ...props }
 				>
 					<TextControl
-						label={ __( 'Icon label', 'icon-block' ) }
+						label={ __( 'Label', 'icon-block' ) }
 						help={ __(
 							'Briefly describe the icon to help screen reader users.',
 							'icon-block'
 						) }
-						value={ label }
+						value={ label || '' }
 						onChange={ ( value ) =>
 							setAttributes( { label: value } )
 						}
 					/>
 					<div className="icon-settings__width">
 						<DimensionControl
-							label={ __( 'Icon width', 'icon-block' ) }
-							value={ width || '' }
+							label={ __( 'Width', 'icon-block' ) }
+							value={ width }
 							onChange={ ( value ) =>
 								setAttributes( { width: value } )
 							}
 						/>
 					</div>
-				</PanelBody>
+				</OptionsPanel>
 				<div>
 					<PanelColorGradientSettings
 						className="outermost-icon-block__color-settings"

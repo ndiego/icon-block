@@ -24,7 +24,7 @@ registerBlockType( 'outermost/icon-block', {
 			iconColorValue: '#ffffff',
 			iconBackgroundColorValue: '#000000',
 			itemsJustification: 'center',
-			width: 60,
+			width: '60px',
 			style: {
 				border: {
 					radius: 50,

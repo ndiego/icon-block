@@ -134,7 +134,7 @@ export default function Save( props ) {
 		...blockProps.style,
 		...borderProps.style,
 		color: iconColorValue,
-		width: iconWidth || '48px',
+		width: iconWidth,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,
