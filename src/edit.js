@@ -345,7 +345,8 @@ export function Edit( props ) {
 					<div className="icon-settings__width">
 						<DimensionControl
 							label={ __( 'Width', 'icon-block' ) }
-							value={ width }
+							// If percentWidth is set (deprecated in v1.4.0), set that as width value.
+							value={ percentWidth ? `${ percentWidth }%` : width }
 							onChange={ ( value ) =>
 								setAttributes( { width: value } )
 							}
