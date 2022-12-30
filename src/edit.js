@@ -374,6 +374,7 @@ export function Edit( props ) {
 							onChange={ ( value ) =>
 								setAttributes( { height: value } )
 							}
+							units={ [ 'px', 'em', 'rem', 'vh', 'vw' ] }
 						/>
 					) }
 				</OptionsPanel>

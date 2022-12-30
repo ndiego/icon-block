@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import { intersection } from 'lodash';
+
+/**
  * WordPress dependencies
  */
 import { useMemo } from '@wordpress/element';
@@ -12,6 +17,7 @@ import {
 	__experimentalUnitControl as UnitControl, // eslint-disable-line
 	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue, // eslint-disable-line
 } from '@wordpress/components';
+import { useSetting } from '@wordpress/block-editor';
 
 const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	px: { max: 1000, step: 1 },
@@ -22,11 +28,19 @@ const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	rem: { max: 50, step: 0.1 },
 };
 
-export default function DimensionControl( { onChange, label, value } ) {
+export default function DimensionControl( { onChange, label, units, value } ) {
 	const customRangeValue = parseFloat( value );
+	const themeJsonUnits = useSetting( 'spacing.units' );
+	let defaultUnits;
 
-	const units = useCustomUnits( {
-		availableUnits: [ '%', 'px', 'em', 'rem', 'vh', 'vw' ],
+	if ( units && themeJsonUnits ) {
+		defaultUnits = intersection( units, themeJsonUnits );
+	} else {
+		defaultUnits = units || themeJsonUnits;
+	}
+
+	const availableUnits = useCustomUnits( {
+		availableUnits: defaultUnits || [ '%', 'px', 'em', 'rem', 'vh', 'vw' ],
 	} );
 
 	const selectedUnit =
@@ -34,7 +48,7 @@ export default function DimensionControl( { onChange, label, value } ) {
 			() => parseQuantityAndUnitFromRawValue( value ),
 			[ value ]
 		)[ 1 ] ||
-		units[ 0 ]?.value ||
+		availableUnits[ 0 ]?.value ||
 		'px';
 
 	const handleSliderChange = ( next ) => {
@@ -74,7 +88,7 @@ export default function DimensionControl( { onChange, label, value } ) {
 				<FlexItem isBlock>
 					<UnitControl
 						value={ value }
-						units={ units }
+						units={ availableUnits }
 						onChange={ onChange }
 						onUnitChange={ handleUnitChange }
 						min={ 0 }
@@ -97,9 +111,6 @@ export default function DimensionControl( { onChange, label, value } ) {
 							withInputField={ false }
 							onChange={ handleSliderChange }
 							__nextHasNoMarginBottom
-							// initialPosition={ 48 }
-							// allowReset={ true }
-							// resetFallbackValue={ 48 }
 						/>
 					</Spacer>
 				</FlexItem>
