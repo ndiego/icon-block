@@ -75,6 +75,9 @@
     "width": {
       "type": "string"
     },
+    "height": {
+      "type": "string"
+    },
     "percentWidth": {
       "type": "number"
     }
