@@ -1,7 +1,7 @@
 === The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
-Requires at least: 5.9
+Requires at least: 6.0
 Tested up to:      6.1
 Requires PHP:      7.0
 Stable tag:        1.3.2
@@ -70,6 +70,14 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 8. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 1.4.0 - 2023-01-TBD =
+
+**Changed**
+
+* Updated WordPress version requirement to 6.0+.
+* Updated icon width control to support additional units.
+* Updated settings panel to mirror Core `ToolsPanel` implementations and support setting resets.
 
 = 1.3.2 - 2022-10-17 =
 
