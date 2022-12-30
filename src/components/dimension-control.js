@@ -55,6 +55,15 @@ export default function DimensionControl( { onChange, label, units, value } ) {
 		onChange( [ next, selectedUnit ].join( '' ) );
 	};
 
+	const handleChange = ( unitValue ) => {
+		// Prevent the unit from getting returned if there is no actual value set.
+		const [ newValue, newUnit ] = // eslint-disable-line
+			parseQuantityAndUnitFromRawValue( unitValue );
+		if ( newValue ) {
+			onChange( unitValue );
+		}
+	};
+
 	const handleUnitChange = ( newUnit ) => {
 		// Attempt to smooth over differences between currentUnit and newUnit.
 		// This should slightly improve the experience of switching between unit types.
@@ -89,7 +98,7 @@ export default function DimensionControl( { onChange, label, units, value } ) {
 					<UnitControl
 						value={ value }
 						units={ availableUnits }
-						onChange={ onChange }
+						onChange={ handleChange }
 						onUnitChange={ handleUnitChange }
 						min={ 0 }
 						size={ '__unstable-large' }
