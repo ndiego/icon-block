@@ -9,19 +9,16 @@ import { isEmpty } from 'lodash';
  */
 import { __ } from '@wordpress/i18n';
 import {
-	Button,
-	ButtonGroup,
 	Dropdown,
 	ExternalLink,
 	MenuItem,
 	NavigableMenu,
-	PanelBody,
 	Popover,
-	RangeControl,
 	TextControl,
 	ToggleControl,
 	ToolbarButton,
 	ToolbarGroup,
+	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue, // eslint-disable-line
 } from '@wordpress/components';
 import {
 	BlockControls,
@@ -55,36 +52,10 @@ import parseIcon from './utils/parse-icon';
 import InserterModal from './inserters/inserter';
 import CustomInserterModal from './inserters/custom-inserter';
 import IconPlaceholder from './placeholder';
+import DimensionControl from './components/dimension-control';
+import OptionsPanel from './components/options-panel';
 
 const NEW_TAB_REL = 'noreferrer noopener';
-
-function PercentWidthPanel( { selectedWidth, setAttributes } ) {
-	function handleChange( newWidth ) {
-		// Check if we are toggling the width off
-		const percentWidth = selectedWidth === newWidth ? undefined : newWidth;
-
-		// Update attributes
-		setAttributes( { percentWidth } );
-	}
-
-	return (
-		<ButtonGroup aria-label={ __( 'Icon percent width', 'icon-block' ) }>
-			{ [ 25, 50, 75, 100 ].map( ( widthValue ) => {
-				return (
-					<Button
-						key={ widthValue }
-						isSmall
-						isPrimary={ widthValue === selectedWidth }
-						isPressed={ widthValue === selectedWidth }
-						onClick={ () => handleChange( widthValue ) }
-					>
-						{ widthValue }%
-					</Button>
-				);
-			} ) }
-		</ButtonGroup>
-	);
-}
 
 /**
  * The edit function for the Icon Block.
@@ -302,7 +273,7 @@ export function Edit( props ) {
 									setInserterOpen( true );
 								} }
 							>
-								{ __( 'Replace' ) }
+								{ __( 'Replace', 'icon-block' ) }
 							</ToolbarButton>
 						) }
 					</ToolbarGroup>
@@ -344,41 +315,43 @@ export function Edit( props ) {
 	const inspectorControls = ( icon || iconName ) && (
 		<>
 			<InspectorControls>
-				<PanelBody
-					className="outermost-icon-block__icon-settings"
-					title={ __( 'Settings', 'icon-block' ) }
+				<OptionsPanel
+					label={ __( 'Settings', 'icon-block' ) }
+					options={ [
+						{
+							attributeSlug: 'label',
+							label: __( 'Label', 'icon-block' ),
+							isDefault: true,
+						},
+						{
+							attributeSlug: 'width',
+							label: __( 'Width', 'icon-block' ),
+							isDefault: true,
+						},
+					] }
+					{ ...props }
 				>
 					<TextControl
-						label={ __( 'Icon label', 'icon-block' ) }
+						label={ __( 'Label', 'icon-block' ) }
 						help={ __(
 							'Briefly describe the icon to help screen reader users.',
 							'icon-block'
 						) }
-						value={ label }
+						value={ label || '' }
 						onChange={ ( value ) =>
 							setAttributes( { label: value } )
 						}
 					/>
 					<div className="icon-settings__width">
-						<RangeControl
-							label={ __( 'Icon width', 'icon-block' ) }
+						<DimensionControl
+							label={ __( 'Width', 'icon-block' ) }
+							value={ width }
 							onChange={ ( value ) =>
 								setAttributes( { width: value } )
 							}
-							value={ width || '' }
-							min={ 10 }
-							max={ 1000 }
-							initialPosition={ 48 }
-							allowReset={ true }
-							resetFallbackValue={ 48 }
-							disabled={ percentWidth }
-						/>
-						<PercentWidthPanel
-							selectedWidth={ percentWidth }
-							setAttributes={ setAttributes }
 						/>
 					</div>
-				</PanelBody>
+				</OptionsPanel>
 				<div>
 					<PanelColorGradientSettings
 						className="outermost-icon-block__color-settings"
@@ -499,9 +472,21 @@ export function Edit( props ) {
 		'flip-vertical': flipVertical,
 	} );
 
-	let iconWidth = width ? `${ width }px` : '48px';
+	const [ widthQuantity, widthUnit ] =
+		parseQuantityAndUnitFromRawValue( width );
 
-	if ( percentWidth ) {
+	// Default icon width.
+	let iconWidth = '48px';
+
+	if ( widthQuantity ) {
+		iconWidth = widthUnit
+			? `${ widthQuantity }${ widthUnit }`
+			: `${ widthQuantity }px`;
+	}
+
+	// percentWidth was deprecated in v1.4.0. If the attribute exists, but there is
+	// no widthUnit (introduced in v1.4.0), use percentWidth.
+	if ( percentWidth && ! widthUnit ) {
 		iconWidth = `${ percentWidth }%`;
 	}
 
