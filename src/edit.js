@@ -32,7 +32,7 @@ import {
 	__experimentalLinkControl as LinkControl, // eslint-disable-line
 	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
 } from '@wordpress/block-editor';
-import { useRef, useState } from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
 import {
 	flipHorizontal as flipH,
@@ -92,6 +92,18 @@ export function Edit( props ) {
 		// Deprecated
 		percentWidth,
 	} = attributes;
+
+	useEffect( () => {
+		// If percentWidth is set (deprecated in v1.4.0), set as width value
+		// and remove the attribute.
+		if ( percentWidth ) {
+			setAttributes( {
+				width: `${ percentWidth }%`,
+				percentWidth: undefined,
+			} );
+		}
+	} );
+
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
 	const [ isInserterOpen, setInserterOpen ] = useState( false );
@@ -350,8 +362,7 @@ export function Edit( props ) {
 					/>
 					<DimensionControl
 						label={ __( 'Width', 'icon-block' ) }
-						// If percentWidth is set (deprecated in v1.4.0), set that as width value.
-						value={ percentWidth ? `${ percentWidth }%` : width }
+						value={ width }
 						onChange={ ( value ) =>
 							setAttributes( { width: value } )
 						}
@@ -496,12 +507,6 @@ export function Edit( props ) {
 		iconWidth = widthUnit
 			? `${ widthQuantity }${ widthUnit }`
 			: `${ widthQuantity }px`;
-	}
-
-	// percentWidth was deprecated in v1.4.0. If the attribute exists, but there is
-	// no widthUnit (introduced in v1.4.0), use percentWidth.
-	if ( percentWidth && ! widthUnit ) {
-		iconWidth = `${ percentWidth }%`;
 	}
 
 	const iconStyles = {

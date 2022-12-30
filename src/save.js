@@ -47,8 +47,6 @@ export default function Save( props ) {
 		title,
 		width,
 		height,
-		// Deprecated
-		percentWidth,
 	} = props.attributes;
 
 	// If there is no icon and no iconName, don't save anything.
@@ -120,12 +118,6 @@ export default function Save( props ) {
 		iconWidth = widthUnit
 			? `${ widthQuantity }${ widthUnit }`
 			: `${ widthQuantity }px`;
-	}
-
-	// percentWidth was deprecated in v1.4.0. If the attribute exists, but there is
-	// no widthUnit (introduced in v1.4.0), use percentWidth.
-	if ( percentWidth && ! widthUnit ) {
-		iconWidth = `${ percentWidth }%`;
 	}
 
 	const iconStyles = {
