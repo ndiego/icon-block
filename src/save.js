@@ -36,6 +36,7 @@ export default function Save( props ) {
 		icon,
 		iconBackgroundColor,
 		iconBackgroundColorValue,
+		iconColor,
 		iconColorValue,
 		iconName,
 		itemsJustification,
@@ -94,14 +95,15 @@ export default function Save( props ) {
 
 	const iconClasses = classnames( 'icon-container', borderProps?.className, {
 		'has-icon-color': iconColorValue,
+		'has-no-icon-fill-color': hasNoIconFill,
 		'has-icon-background-color':
 			iconBackgroundColorValue ||
 			iconBackgroundColor ||
 			gradient ||
 			customGradient,
-		'has-no-icon-fill-color': hasNoIconFill,
 		[ `has-${ iconBackgroundColor }-background-color` ]:
 			iconBackgroundColor,
+		[ `has-${ iconColor }-color` ]: iconColor,
 		[ `has-${ gradient }-gradient-background` ]: gradient,
 		[ `rotate-${ rotate }` ]: rotate,
 		'flip-horizontal': flipHorizontal,
@@ -122,9 +124,7 @@ export default function Save( props ) {
 
 	const iconStyles = {
 		background: ! gradient ? customGradient : undefined,
-		backgroundColor: ! iconBackgroundColor
-			? iconBackgroundColorValue
-			: undefined,
+		backgroundColor: iconBackgroundColorValue,
 		...blockProps.style,
 		...borderProps.style,
 		color: iconColorValue,

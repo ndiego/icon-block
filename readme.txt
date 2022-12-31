@@ -80,6 +80,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 **Changed**
 
 * Updated WordPress version requirement to 6.0+.
+* Updated icon color handling to better support Global Styles.
 * Updated icon width control to support additional units.
 * Updated settings panel to mirror Core `ToolsPanel` implementations and support setting resets.
 
