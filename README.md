@@ -4,13 +4,13 @@
 
 ![The Icon Block](https://github.com/ndiego/icon-block/blob/main/.wordpress-org/banner-1544x500.png)
 
-A simple little block that allows you to add a custom SVG icon or graphic to the Block Editor (Gutenberg). The plugin also includes the complete WordPress icon library with 270+ SVG icons to choose from!
+The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress editor (Gutenberg). The plugin also includes the complete WordPress icon library with 270+ SVG icons to choose from.
 
 ### Key Features
 
 - 270+ native WordPress icons, including social logos
 - Use any custom SVG icon or graphic
-- Includes some handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
+- Includes handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
 - No block library required 🎉
 - Built almost entirely with native WordPress components
 - Will get additional functionality as it's added to WordPress core
@@ -40,11 +40,11 @@ The Icon Block includes a handful of extensibility features allowing you to tail
 
 #### `iconBlock.icons`
 
-Filters all icons available in the built-in icon library. Use this filter add or remove icons from the plugin. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
+Filters all icons available in the built-in icon library. Use this filter to add or remove icons from the plugin. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
 #### `iconBlock.enableCustomIcons`
 
-Defaults to `true`, this filter allows you to enable or disable custom SVG icon functionality. When disabled, you are restricted to using the icon library.
+Defaults to `true`, this filter allows you to enable or disable custom SVG icon functionality. When disabled, you are restricted from using the icon library.
 
 ```
 wp.hooks.addFilter(
