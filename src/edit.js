@@ -484,14 +484,17 @@ export function Edit( props ) {
 	const borderProps = getBorderClassesAndStyles( attributes );
 
 	const iconClasses = classnames( 'icon-container', borderProps?.className, {
-		'has-background-gradient': gradientValue,
-		[ gradientClass ]: gradientClass,
 		'has-icon-color': iconColor.color || iconColorValue,
+		'has-no-icon-fill-color': hasNoIconFill,
 		'has-icon-background-color':
 			iconBackgroundColor.color ||
 			iconBackgroundColorValue ||
 			gradientValue,
-		'has-no-icon-fill-color': hasNoIconFill,
+		'has-background-gradient': gradientValue,
+		[ `has-${ iconColor.slug }-color` ]: iconColor.slug,
+		[ `has-${ iconBackgroundColor.slug }-background-color` ]:
+			iconBackgroundColor.slug,
+		[ gradientClass ]: gradientClass,
 		[ `items-justified-${ itemsJustification }` ]: itemsJustification,
 		[ `rotate-${ rotate }` ]: rotate,
 		'flip-horizontal': flipHorizontal,
