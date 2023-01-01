@@ -8,11 +8,11 @@ Stable tag:        1.4.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Effortlessly add SVG icons and graphics to the WordPress editor.
+Effortlessly add SVG icons and graphics to the WordPress block editor.
 
 == Description ==
 
-The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress editor (Gutenberg). 
+The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress block editor (Gutenberg). 
 
 The plugin also includes the complete WordPress icon library with 270+ SVG icons to choose from.
 
@@ -21,6 +21,7 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 * 270+ native WordPress icons, including social logos
 * Use any custom SVG icon or graphic
 * Includes handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
+* Fully compatible with the Site Editor
 * No block library required 🎉
 * Built almost entirely with native WordPress components
 * Will get additional functionality as it's added to WordPress core
