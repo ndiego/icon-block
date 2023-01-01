@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       The Icon Block
- * Description:       Effortlessly add SVG icons and graphics to the WordPress editor.
- * Requires at least: 5.9
+ * Description:       Effortlessly add SVG icons and graphics to the WordPress block editor.
+ * Requires at least: 6.0
  * Requires PHP:      7.0
  * Version:           1.4.0
  * Author:            Nick Diego
