@@ -1,7 +1,7 @@
 {
   "apiVersion": 2,
   "name": "outermost/icon-block",
-  "title": "The Icon Block",
+  "title": "Icon",
   "category": "media",
   "description": "Insert an SVG icon or graphic.",
   "keywords": [
