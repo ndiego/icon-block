@@ -1,7 +1,7 @@
 {
 	"name": "icon-block",
 	"version": "1.4.0",
-	"description": "Effortlessly add SVG icons and graphics to the WordPress editor.",
+	"description": "Effortlessly add SVG icons and graphics to the WordPress block editor.",
 	"author": "Nick Diego",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
