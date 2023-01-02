@@ -28,6 +28,10 @@ const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	rem: { max: 50, step: 0.1 },
 };
 
+/**
+ * A slightly modified version of the HeightControl component in Gutenberg.
+ * https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/height-control/index.js
+ */
 export default function DimensionControl( { onChange, label, units, value } ) {
 	const customRangeValue = parseFloat( value );
 	const themeJsonUnits = useSetting( 'spacing.units' );
