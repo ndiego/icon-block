@@ -73,7 +73,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.4.0 - 2023-01-TBD =
+= 1.4.0 - 2023-01-02 =
 
 **Added**
 
