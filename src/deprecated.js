@@ -19,90 +19,117 @@ import getIcons from './icons';
 import { flattenIconsArray } from './utils/icon-functions';
 import parseIcon from './utils/parse-icon';
 
-const blockAttributes = {
-	icon: {
-		type: 'string',
-		source: 'html',
-		selector: '.icon-container',
-		default: '',
-	},
-	iconName: {
-		type: 'string',
-	},
-	itemsJustification: {
-		type: 'string',
-	},
-	iconBackgroundColor: {
-		type: 'string',
-	},
-	customIconBackgroundColor: {
-		type: 'string',
-	},
-	iconBackgroundColorValue: {
-		type: 'string',
-	},
-	iconColor: {
-		type: 'string',
-	},
-	customIconColor: {
-		type: 'string',
-	},
-	iconColorValue: {
-		type: 'string',
-	},
-	gradient: {
-		type: 'string',
-	},
-	customGradient: {
-		type: 'string',
-	},
-	label: {
-		type: 'string',
-	},
-	linkUrl: {
-		type: 'string',
-	},
-	linkRel: {
-		type: 'string',
-	},
-	linkTarget: {
-		type: 'string',
-	},
-	rotate: {
-		type: 'number',
-	},
-	flipHorizontal: {
-		type: 'boolean',
-	},
-	flipVertical: {
-		type: 'boolean',
-	},
-	width: {
-		type: 'number',
-	},
-	percentWidth: {
-		type: 'number',
-	},
-};
-
-const blockSupports = {
-	align: true,
-	html: false,
-	__experimentalBorder: {
-		color: true,
-		radius: true,
-		style: true,
-		width: true,
-	},
-	spacing: {
-		padding: true,
-		margin: true,
-	},
+const undefinedStyleAttributes = {
+	borderColor: undefined,
+	borderRadius: undefined,
+	borderStyle: undefined,
+	borderWidth: undefined,
+	borderBottomColor: undefined,
+	borderBottomLeftRadius: undefined,
+	borderBottomRightRadius: undefined,
+	borderBottomStyle: undefined,
+	borderBottomWidth: undefined,
+	borderLeftColor: undefined,
+	borderLeftStyle: undefined,
+	borderLeftWidth: undefined,
+	borderRightColor: undefined,
+	borderRightStyle: undefined,
+	borderRightWidth: undefined,
+	borderTopColor: undefined,
+	borderTopLeftRadius: undefined,
+	borderTopRightRadius: undefined,
+	borderTopStyle: undefined,
+	borderTopWidth: undefined,
+	marginBottom: undefined,
+	marginLeft: undefined,
+	marginRight: undefined,
+	marginTop: undefined,
+	paddingBottom: undefined,
+	paddingLeft: undefined,
+	paddingRight: undefined,
+	paddingTop: undefined,
 };
 
 const v1 = {
-	attributes: blockAttributes,
-	supports: blockSupports,
+	attributes: {
+		icon: {
+			type: 'string',
+			source: 'html',
+			selector: '.icon-container',
+			default: '',
+		},
+		iconName: {
+			type: 'string',
+		},
+		itemsJustification: {
+			type: 'string',
+		},
+		iconBackgroundColor: {
+			type: 'string',
+		},
+		customIconBackgroundColor: {
+			type: 'string',
+		},
+		iconBackgroundColorValue: {
+			type: 'string',
+		},
+		iconColor: {
+			type: 'string',
+		},
+		customIconColor: {
+			type: 'string',
+		},
+		iconColorValue: {
+			type: 'string',
+		},
+		gradient: {
+			type: 'string',
+		},
+		customGradient: {
+			type: 'string',
+		},
+		label: {
+			type: 'string',
+		},
+		linkUrl: {
+			type: 'string',
+		},
+		linkRel: {
+			type: 'string',
+		},
+		linkTarget: {
+			type: 'string',
+		},
+		rotate: {
+			type: 'number',
+		},
+		flipHorizontal: {
+			type: 'boolean',
+		},
+		flipVertical: {
+			type: 'boolean',
+		},
+		width: {
+			type: 'number',
+		},
+		percentWidth: {
+			type: 'number',
+		},
+	},
+	supports: {
+		align: true,
+		html: false,
+		__experimentalBorder: {
+			color: true,
+			radius: true,
+			style: true,
+			width: true,
+		},
+		spacing: {
+			padding: true,
+			margin: true,
+		},
+	},
 	save( { attributes } ) {
 		const {
 			borderColor,
@@ -253,34 +280,7 @@ const v1 = {
 					style: {
 						// We have to mark all new style attributes as undefined
 						// otherwise the deprecation will fail.
-						borderColor: undefined,
-						borderRadius: undefined,
-						borderStyle: undefined,
-						borderWidth: undefined,
-						borderBottomColor: undefined,
-						borderBottomLeftRadius: undefined,
-						borderBottomRightRadius: undefined,
-						borderBottomStyle: undefined,
-						borderBottomWidth: undefined,
-						borderLeftColor: undefined,
-						borderLeftStyle: undefined,
-						borderLeftWidth: undefined,
-						borderRightColor: undefined,
-						borderRightStyle: undefined,
-						borderRightWidth: undefined,
-						borderTopColor: undefined,
-						borderTopLeftRadius: undefined,
-						borderTopRightRadius: undefined,
-						borderTopStyle: undefined,
-						borderTopWidth: undefined,
-						marginBottom: undefined,
-						marginLeft: undefined,
-						marginRight: undefined,
-						marginTop: undefined,
-						paddingBottom: undefined,
-						paddingLeft: undefined,
-						paddingRight: undefined,
-						paddingTop: undefined,
+						...undefinedStyleAttributes,
 
 						// This is a bit of a hack. we only want the margin styles
 						// applied to the main block div.
@@ -295,8 +295,94 @@ const v1 = {
 };
 
 const v2 = {
-	attributes: blockAttributes,
-	supports: blockSupports,
+	attributes: {
+		icon: {
+			type: 'string',
+			source: 'html',
+			selector: '.icon-container',
+			default: '',
+		},
+		iconName: {
+			type: 'string',
+		},
+		itemsJustification: {
+			type: 'string',
+		},
+		iconBackgroundColor: {
+			type: 'string',
+		},
+		customIconBackgroundColor: {
+			type: 'string',
+		},
+		iconBackgroundColorValue: {
+			type: 'string',
+		},
+		iconColor: {
+			type: 'string',
+		},
+		customIconColor: {
+			type: 'string',
+		},
+		iconColorValue: {
+			type: 'string',
+		},
+		gradient: {
+			type: 'string',
+		},
+		customGradient: {
+			type: 'string',
+		},
+		hasNoIconFill: {
+			type: 'boolean',
+		},
+		label: {
+			type: 'string',
+		},
+		title: {
+			type: 'string',
+		},
+		linkUrl: {
+			type: 'string',
+		},
+		linkRel: {
+			type: 'string',
+		},
+		linkTarget: {
+			type: 'string',
+		},
+		rotate: {
+			type: 'number',
+		},
+		flipHorizontal: {
+			type: 'boolean',
+		},
+		flipVertical: {
+			type: 'boolean',
+		},
+		width: {
+			type: 'number',
+		},
+		percentWidth: {
+			type: 'number',
+		},
+	},
+	supports: {
+		anchor: true,
+		align: true,
+		html: false,
+		__experimentalBorder: {
+			color: true,
+			radius: true,
+			style: true,
+			width: true,
+			__experimentalSelector: '.icon-container',
+			__experimentalSkipSerialization: true,
+		},
+		spacing: {
+			padding: true,
+			margin: true,
+		},
+	},
 	save( { attributes } ) {
 		const {
 			customGradient,
@@ -394,10 +480,10 @@ const v2 = {
 			backgroundColor: ! iconBackgroundColor
 				? iconBackgroundColorValue
 				: undefined,
-			...blockProps.style,
-			...borderProps.style,
 			color: iconColorValue,
 			width: iconWidth,
+			...blockProps.style,
+			...borderProps.style,
 
 			// Margin is applied to the wrapper container, so unset.
 			marginBottom: undefined,
@@ -447,10 +533,16 @@ const v2 = {
 					className:
 						itemsJustification &&
 						`items-justified-${ itemsJustification }`,
+					style: {
+						// We have to mark all new style attributes as undefined
+						// otherwise the deprecation will fail.
+						...undefinedStyleAttributes,
+
+						// This is a bit of a hack. we only want the margin styles
+						// applied to the main block div.
+						...blockMargin,
+					},
 				} ) }
-				// This is a bit of a hack. we only want the margin styles
-				// applied to the main block div.
-				style={ blockMargin }
 				title={ title }
 			>
 				{ iconMarkup }
@@ -459,6 +551,6 @@ const v2 = {
 	},
 };
 
-const deprecated = [ v1, v2 ];
+const deprecated = [ v2, v1 ];
 
 export default deprecated;
