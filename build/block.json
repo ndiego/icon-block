@@ -73,7 +73,10 @@
       "type": "boolean"
     },
     "width": {
-      "type": "string"
+      "type": [
+        "string",
+        "number"
+      ]
     },
     "height": {
       "type": "string"
