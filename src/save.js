@@ -125,11 +125,11 @@ export default function Save( props ) {
 	const iconStyles = {
 		background: ! gradient ? customGradient : undefined,
 		backgroundColor: iconBackgroundColorValue,
-		...blockProps.style,
-		...borderProps.style,
 		color: iconColorValue,
 		width: iconWidth,
 		height: height || undefined,
+		...blockProps.style,
+		...borderProps.style,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,
