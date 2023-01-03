@@ -24,7 +24,7 @@ const settings = {
 			width: '60px',
 			style: {
 				border: {
-					radius: "50px",
+					radius: '50px',
 				},
 				spacing: {
 					padding: {
