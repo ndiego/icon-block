@@ -482,6 +482,9 @@ export function Edit( props ) {
 
 	const blockProps = useBlockProps();
 	const borderProps = getBorderClassesAndStyles( attributes );
+	const themeIconBackgroundColor =
+		iconBackgroundColor?.slug || attributes.iconBackgroundColor;
+	const themeIconColor = iconColor?.slug || attributes.iconColor;
 
 	const iconClasses = classnames( 'icon-container', borderProps?.className, {
 		'has-icon-color': iconColor.color || iconColorValue,
@@ -491,9 +494,9 @@ export function Edit( props ) {
 			iconBackgroundColorValue ||
 			gradientValue,
 		'has-background-gradient': gradientValue,
-		[ `has-${ iconColor.slug }-color` ]: iconColor.slug,
-		[ `has-${ iconBackgroundColor.slug }-background-color` ]:
-			iconBackgroundColor.slug,
+		[ `has-${ themeIconColor }-color` ]: themeIconColor,
+		[ `has-${ themeIconBackgroundColor }-background-color` ]:
+			themeIconBackgroundColor,
 		[ gradientClass ]: gradientClass,
 		[ `items-justified-${ itemsJustification }` ]: itemsJustification,
 		[ `rotate-${ rotate }` ]: rotate,
