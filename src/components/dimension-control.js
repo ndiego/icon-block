@@ -1,4 +1,9 @@
 /**
+ * A slightly modified version of the HeightControl component in Gutenberg.
+ * https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/height-control/index.js
+ */
+
+/**
  * External dependencies
  */
 import { intersection } from 'lodash';
@@ -6,6 +11,7 @@ import { intersection } from 'lodash';
 /**
  * WordPress dependencies
  */
+import { __ } from '@wordpress/i18n';
 import { useMemo } from '@wordpress/element';
 import {
 	BaseControl,
@@ -28,10 +34,6 @@ const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	rem: { max: 50, step: 0.1 },
 };
 
-/**
- * A slightly modified version of the HeightControl component in Gutenberg.
- * https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/height-control/index.js
- */
 export default function DimensionControl( { onChange, label, units, value } ) {
 	const customRangeValue = parseFloat( value );
 	const themeJsonUnits = useSetting( 'spacing.units' );
@@ -95,7 +97,7 @@ export default function DimensionControl( { onChange, label, units, value } ) {
 	return (
 		<fieldset className="components-dimension-control">
 			<BaseControl.VisualLabel as="legend">
-				{ label }
+				{ label || __( 'Dimension', 'icon-block' ) }
 			</BaseControl.VisualLabel>
 			<Flex>
 				<FlexItem isBlock>
