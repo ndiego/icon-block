@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import parse, { attributesToProps, domToReact } from 'html-react-parser';
+import parse, { domToReact } from 'html-react-parser';
 
 /**
  * The save function for the Icon Block.
@@ -24,10 +24,7 @@ export default function parseIcon( icon ) {
 			// props avoids the loss. Style does need to be handled separately.
 			const Tag = `${ name }`;
 			return (
-				<Tag
-					{ ...attributesToProps( attribs ) }
-					style={ parseStyles( attribs?.style ) }
-				>
+				<Tag { ...attribs } style={ parseStyles( attribs?.style ) }>
 					{ domToReact( children, parseOptions ) }
 				</Tag>
 			);
