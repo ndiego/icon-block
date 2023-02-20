@@ -328,7 +328,7 @@ export function Edit( props ) {
 
 	const inspectorControls = ( icon || iconName ) && (
 		<>
-			<InspectorControls>
+			<InspectorControls group="settings">
 				<OptionsPanel
 					label={ __( 'Settings', 'icon-block' ) }
 					options={ [
@@ -378,75 +378,75 @@ export function Edit( props ) {
 						/>
 					) }
 				</OptionsPanel>
-				<div>
-					<PanelColorGradientSettings
-						className="outermost-icon-block__color-settings"
-						title={ __( 'Color' ) }
-						initialOpen={ true }
-						enableAlpha={ true }
-						settings={ [
-							{
-								colorValue: iconColor.color || iconColorValue,
-								onColorChange: ( colorValue ) => {
-									setIconColor( colorValue );
-									setAttributes( {
-										iconColorValue: colorValue,
-									} );
-								},
-								label: __( 'Icon color', 'icon-block' ),
+			</InspectorControls>
+			<InspectorControls group="styles">
+				<PanelColorGradientSettings
+					className="outermost-icon-block__color-settings"
+					title={ __( 'Color' ) }
+					initialOpen={ true }
+					enableAlpha={ true }
+					settings={ [
+						{
+							colorValue: iconColor.color || iconColorValue,
+							onColorChange: ( colorValue ) => {
+								setIconColor( colorValue );
+								setAttributes( {
+									iconColorValue: colorValue,
+								} );
 							},
-							{
-								colorValue:
-									iconBackgroundColor.color ||
-									iconBackgroundColorValue,
-								onColorChange: ( colorValue ) => {
-									setIconBackgroundColor( colorValue );
-									setAttributes( {
-										iconBackgroundColorValue: colorValue,
-									} );
-								},
-								gradientValue,
-								onGradientChange: setGradient,
-								label: __( 'Background color', 'icon-block' ),
+							label: __( 'Icon color', 'icon-block' ),
+						},
+						{
+							colorValue:
+								iconBackgroundColor.color ||
+								iconBackgroundColorValue,
+							onColorChange: ( colorValue ) => {
+								setIconBackgroundColor( colorValue );
+								setAttributes( {
+									iconBackgroundColorValue: colorValue,
+								} );
 							},
-						] }
-						__experimentalHasMultipleOrigins={ true }
-					>
-						{ ( iconColor.color || iconColorValue ) && (
-							<>
-								<p className="outermost-icon-block__color-settings__help">
-									{ __(
-										'Any color or fill values in the SVG icon itself will take precedent over the chosen color.',
-										'icon-block'
-									) }
-								</p>
-								<ToggleControl
-									checked={ ! hasNoIconFill }
-									label={ __(
-										`Apply icon color to fill`,
-										'icon-block'
-									) }
-									help={ __(
-										'Set the SVG fill value to the chosen icon color. Disable as needed.',
-										'icon-block'
-									) }
-									onChange={ () =>
-										setAttributes( {
-											hasNoIconFill: ! hasNoIconFill,
-										} )
-									}
-								/>
-							</>
-						) }
-						<ContrastChecker
-							{ ...{
-								textColor: iconColorValue,
-								backgroundColor: iconBackgroundColorValue,
-							} }
-							isLargeText={ false }
-						/>
-					</PanelColorGradientSettings>
-				</div>
+							gradientValue,
+							onGradientChange: setGradient,
+							label: __( 'Background color', 'icon-block' ),
+						},
+					] }
+					__experimentalHasMultipleOrigins={ true }
+				>
+					{ ( iconColor.color || iconColorValue ) && (
+						<>
+							<p className="outermost-icon-block__color-settings__help">
+								{ __(
+									'Any color or fill values in the SVG icon itself will take precedent over the chosen color.',
+									'icon-block'
+								) }
+							</p>
+							<ToggleControl
+								checked={ ! hasNoIconFill }
+								label={ __(
+									`Apply icon color to fill`,
+									'icon-block'
+								) }
+								help={ __(
+									'Set the SVG fill value to the chosen icon color. Disable as needed.',
+									'icon-block'
+								) }
+								onChange={ () =>
+									setAttributes( {
+										hasNoIconFill: ! hasNoIconFill,
+									} )
+								}
+							/>
+						</>
+					) }
+					<ContrastChecker
+						{ ...{
+							textColor: iconColorValue,
+							backgroundColor: iconBackgroundColorValue,
+						} }
+						isLargeText={ false }
+					/>
+				</PanelColorGradientSettings>
 			</InspectorControls>
 			<InspectorControls __experimentalGroup="advanced">
 				<TextControl
