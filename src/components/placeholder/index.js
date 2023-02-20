@@ -8,8 +8,8 @@ import { Icon } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import { bolt, boltPlaceholder } from './icons/bolt';
-import { QuickInserterPopover } from './inserters/quick-inserter';
+import { bolt, boltPlaceholder } from './../../icons/bolt';
+import QuickInserterPopover from './../quick-inserter';
 
 export default function IconPlaceholder( props ) {
 	const {

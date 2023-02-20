@@ -22,7 +22,7 @@ import { Icon } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import { bolt } from './../icons/bolt';
+import { bolt } from './../../icons/bolt';
 
 export default function CustomInserterModal( props ) {
 	const {

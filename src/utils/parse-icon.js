@@ -9,7 +9,7 @@ import parse, { attributesToProps, domToReact } from 'html-react-parser';
  * @param {string} icon The HTML icon.
  * @return {Object}     The icons as a React object.
  */
-export default function parseIcon( icon ) {
+export function parseIcon( icon ) {
 	const newIcon = icon.trim();
 
 	const parseOptions = {

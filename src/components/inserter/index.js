@@ -22,13 +22,13 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import getIcons from './../icons';
-import parseIcon from './../utils/parse-icon';
+import getIcons from './../../icons';
 import {
 	flattenIconsArray,
 	getIconTypes,
 	simplifyCategories,
-} from './../utils/icon-functions';
+	parseIcon,
+} from './../../utils';
 
 export default function InserterModal( props ) {
 	const { isInserterOpen, setInserterOpen, attributes, setAttributes } =

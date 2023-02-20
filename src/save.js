@@ -17,8 +17,7 @@ import {
  * Internal dependencies
  */
 import getIcons from './icons';
-import { flattenIconsArray } from './utils/icon-functions';
-import parseIcon from './utils/parse-icon';
+import { flattenIconsArray, parseIcon } from './utils';
 
 /**
  * The save function for the Icon Block.

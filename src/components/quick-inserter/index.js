@@ -15,11 +15,10 @@ import { Icon, blockDefault } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import getIcons from './../icons';
-import parseIcon from './../utils/parse-icon';
-import { flattenIconsArray } from './../utils/icon-functions';
+import getIcons from './../../icons';
+import { flattenIconsArray, parseIcon } from './../../utils';
 
-export function QuickInserterPopover( props ) {
+export default function QuickInserterPopover( props ) {
 	const [ searchInput, setSearchInput ] = useState( '' );
 	const {
 		setInserterOpen,

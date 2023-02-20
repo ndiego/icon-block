@@ -46,15 +46,16 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-import getIcons from './icons';
-import { flattenIconsArray } from './utils/icon-functions';
+import {
+	CustomInserterModal,
+	IconPlaceholder,
+	InserterModal,
+	DimensionControl,
+	OptionsPanel,
+} from './components';
+import { flattenIconsArray, parseIcon } from './utils';
 import { bolt as defaultIcon } from './icons/bolt';
-import parseIcon from './utils/parse-icon';
-import InserterModal from './inserters/inserter';
-import CustomInserterModal from './inserters/custom-inserter';
-import IconPlaceholder from './placeholder';
-import DimensionControl from './components/dimension-control';
-import OptionsPanel from './components/options-panel';
+import getIcons from './icons';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
