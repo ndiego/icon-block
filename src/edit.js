@@ -35,6 +35,7 @@ import {
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
 import {
+	code,
 	flipHorizontal as flipH,
 	flipVertical as flipV,
 	link,
@@ -261,6 +262,7 @@ export function Edit( props ) {
 												setInserterOpen( true );
 												onClose( true );
 											} }
+											icon={ defaultIcon }
 										>
 											{ __(
 												'Browse icon library',
@@ -272,6 +274,7 @@ export function Edit( props ) {
 												setCustomInserterOpen( true );
 												onClose( true );
 											} }
+											icon={ code }
 										>
 											{ __(
 												'Add/edit custom icon',
