@@ -250,7 +250,7 @@ $r270: rotate(270deg);
 		flex-direction: column;
 		gap: 32px;
 		height: 100%;
-		padding: 32px;
+		padding: 0 32px 32px;
 
 		@media ( min-width: 900px ) {
 			flex-direction: row;
@@ -425,7 +425,7 @@ $r270: rotate(270deg);
 			font-size: 12px;
 			font-style: normal;
 			color: rgb(117, 117, 117);
-			margin-top: -6px;
+			margin-top: 8px;
 			margin-bottom: 24px;
 	
 			&:first-child {
@@ -443,6 +443,12 @@ $r270: rotate(270deg);
 			.components-notice__content {
 				margin-right: 0;
 			}
+		}
+
+		// A spacer component is added automatically be the PanelColorGradientSettings
+		// component. We don't need this, and it messes with the panel styles.
+		.components-spacer {
+			display: none !important;
 		}
 	}
 
