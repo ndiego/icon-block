@@ -66,6 +66,13 @@ $r270: rotate(270deg);
 	.block-editor-inserter__no-results {
 		margin-top: 0;
 	}
+
+	// Fix minor gap between search field and icons.
+	.block-editor-inserter__search {
+		&> .components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .wp-block-outermost-icon-inserter__modal {
@@ -546,4 +553,10 @@ $r270: rotate(270deg);
 			}
 		}
 	}
+}
+
+// Temporary fix for the replace icon popover. Without this fix, the 
+// popover appears over the Media Library modal when opened.
+.outermost-icon-block__replace-popover {
+    z-index: 100000;
 }

@@ -16,7 +16,7 @@ import {
 	RangeControl,
 	TextareaControl,
 } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { Icon } from '@wordpress/icons';
 
 /**
@@ -34,6 +34,10 @@ export default function CustomInserterModal( props ) {
 	const { icon, iconName } = attributes;
 	const [ customIcon, setCustomIcon ] = useState( ! iconName ? icon : '' );
 	const [ iconSize, setIconSize ] = useState( 48 );
+
+	// If a SVG icon is inserted from the Media Library, we need to update the
+	// custom icon editor in the modal.
+	useEffect( () => setCustomIcon( icon ), [ icon ] );
 
 	if ( ! isCustomInserterOpen ) {
 		return null;

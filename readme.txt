@@ -73,6 +73,22 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
+= 1.5.0 - 2023-02-TBD =
+
+
+**Added**
+
+* Added the ability to insert an SVG icon from the Media Library if SVG uploads are enabled on the website.
+
+**Changed**
+
+* Updated the block inspector panels for WordPress 6.2 compatibility.
+
+**Fixed**
+
+* Fixed invalid DOM properties error. Thanks @DeoThemes for reporting this issue and suggesting a solution! ([#25](https://github.com/ndiego/icon-block/pull/25))
+* Fixed a few minor CSS issues for for WordPress 6.2 compatibility.
+
 = 1.4.0 - 2023-01-03 =
 
 **Added**
