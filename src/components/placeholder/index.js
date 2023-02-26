@@ -2,13 +2,16 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Placeholder, Button } from '@wordpress/components';
+import { Button, Placeholder } from '@wordpress/components';
+import { MediaUpload } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/icons';
+import { useSelect } from '@wordpress/data';
 
 /**
  * Internal dependencies
  */
 import { bolt, boltPlaceholder } from './../../icons/bolt';
+import { parseMediaSetIcon } from '../../utils';
 import QuickInserterPopover from './../quick-inserter';
 
 export default function IconPlaceholder( props ) {
@@ -20,6 +23,15 @@ export default function IconPlaceholder( props ) {
 		setAttributes,
 		enableCustomIcons,
 	} = props;
+
+	// Allowed types for the current WP_User
+	const allowedMimeTypes = useSelect( ( select ) => {
+		const { getSettings } = select( 'core/block-editor' );
+		return getSettings().allowedMimeTypes;
+	}, [] );
+
+	const isSVGAllowed =
+		Object.values( allowedMimeTypes ).includes( 'image/svg+xml' );
 
 	const instructions = enableCustomIcons
 		? __(
@@ -45,6 +57,19 @@ export default function IconPlaceholder( props ) {
 			<Button isPrimary onClick={ () => setQuickInserterOpen( true ) }>
 				{ __( 'Icon Library', 'icon-block' ) }
 			</Button>
+			{ isSVGAllowed && (
+				<MediaUpload
+					onSelect={ ( media ) =>
+						parseMediaSetIcon( media, setAttributes )
+					}
+					allowedTypes={ [ 'image/svg+xml' ] }
+					render={ ( { open } ) => (
+						<Button isTertiary onClick={ open }>
+							{ __( 'Open Media Library' ) }
+						</Button>
+					) }
+				/>
+			) }
 			{ enableCustomIcons && (
 				<Button
 					isTertiary

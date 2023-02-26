@@ -25,6 +25,7 @@ import {
 	ContrastChecker,
 	InspectorControls,
 	JustifyToolbar,
+	MediaUpload,
 	useBlockProps,
 	withColors,
 	__experimentalPanelColorGradientSettings as PanelColorGradientSettings, // eslint-disable-line
@@ -33,12 +34,14 @@ import {
 	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
 } from '@wordpress/block-editor';
 import { useEffect, useRef, useState } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
 import {
 	code,
 	flipHorizontal as flipH,
 	flipVertical as flipV,
 	link,
+	media as mediaIcon,
 	rotateRight,
 } from '@wordpress/icons';
 import { applyFilters } from '@wordpress/hooks';
@@ -53,7 +56,7 @@ import {
 	DimensionControl,
 	OptionsPanel,
 } from './components';
-import { flattenIconsArray, parseIcon } from './utils';
+import { flattenIconsArray, parseIcon, parseMediaSetIcon } from './utils';
 import { bolt as defaultIcon } from './icons/bolt';
 import getIcons from './icons';
 
@@ -105,6 +108,15 @@ export function Edit( props ) {
 			} );
 		}
 	} );
+
+	// Allowed types for the current WP_User
+	const allowedMimeTypes = useSelect( ( select ) => {
+		const { getSettings } = select( 'core/block-editor' );
+		return getSettings().allowedMimeTypes;
+	}, [] );
+
+	const isSVGAllowed =
+		Object.values( allowedMimeTypes ).includes( 'image/svg+xml' );
 
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
@@ -196,6 +208,57 @@ export function Edit( props ) {
 		}
 	}
 
+	const replaceDropdown = (
+		<Dropdown
+			renderToggle={ ( { onToggle } ) => (
+				<ToolbarButton onClick={ onToggle }>
+					{ __( 'Replace', 'icon-block' ) }
+				</ToolbarButton>
+			) }
+			renderContent={ ( { onClose } ) => (
+				<NavigableMenu>
+					<MenuItem
+						onClick={ () => {
+							setInserterOpen( true );
+							onClose( true );
+						} }
+						icon={ defaultIcon }
+					>
+						{ __( 'Browse icon library', 'icon-block' ) }
+					</MenuItem>
+					{ isSVGAllowed && (
+						<MediaUpload
+							onSelect={ ( media ) => {
+								parseMediaSetIcon( media, setAttributes );
+								onClose();
+							} }
+							allowedTypes={ [ 'image/svg+xml' ] }
+							render={ ( { open } ) => (
+								<MenuItem onClick={ open } icon={ mediaIcon }>
+									{ __( 'Open Media Library', 'icon-block' ) }
+								</MenuItem>
+							) }
+						/>
+					) }
+					{ enableCustomIcons && (
+						<MenuItem
+							onClick={ () => {
+								setCustomInserterOpen( true );
+								onClose( true );
+							} }
+							icon={ code }
+						>
+							{ __( 'Add/edit custom icon', 'icon-block' ) }
+						</MenuItem>
+					) }
+				</NavigableMenu>
+			) }
+			popoverProps={ {
+				className: 'outermost-icon-block__replace-popover',
+			} }
+		/>
+	);
+
 	const blockControls = (
 		<>
 			<BlockControls group="block">
@@ -249,42 +312,8 @@ export function Edit( props ) {
 						/>
 					</ToolbarGroup>
 					<ToolbarGroup>
-						{ enableCustomIcons ? (
-							<Dropdown
-								renderToggle={ ( { onToggle } ) => (
-									<ToolbarButton onClick={ onToggle }>
-										{ __( 'Replace' ) }
-									</ToolbarButton>
-								) }
-								renderContent={ ( { onClose } ) => (
-									<NavigableMenu>
-										<MenuItem
-											onClick={ () => {
-												setInserterOpen( true );
-												onClose( true );
-											} }
-											icon={ defaultIcon }
-										>
-											{ __(
-												'Browse icon library',
-												'icon-block'
-											) }
-										</MenuItem>
-										<MenuItem
-											onClick={ () => {
-												setCustomInserterOpen( true );
-												onClose( true );
-											} }
-											icon={ code }
-										>
-											{ __(
-												'Add/edit custom icon',
-												'icon-block'
-											) }
-										</MenuItem>
-									</NavigableMenu>
-								) }
-							/>
+						{ enableCustomIcons || isSVGAllowed ? (
+							replaceDropdown
 						) : (
 							<ToolbarButton
 								onClick={ () => {
