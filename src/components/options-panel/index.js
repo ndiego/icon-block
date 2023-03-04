@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * Internal dependencies
  */
 import OptionsPanelHeader from './header';
@@ -11,7 +16,7 @@ import OptionsPanelHeader from './header';
  * @return {string}		 Return the rendered JSX
  */
 export default function OptionsPanel( props ) {
-	const { label, attributes, options } = props;
+	const { className, label, attributes, options } = props;
 
 	// Append the "active" property to all active options.
 	options.forEach( ( option ) => {
@@ -30,7 +35,11 @@ export default function OptionsPanel( props ) {
 	const activeOptions = options.filter( ( option ) => option.isActive );
 
 	return (
-		<div className="options-panel">
+		<div
+			className={ classnames( 'options-panel', {
+				[ className ]: className,
+			} ) }
+		>
 			<OptionsPanelHeader
 				label={ label }
 				activeOptions={ activeOptions }

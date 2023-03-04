@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNumber } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -51,12 +51,17 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import {
 	CustomInserterModal,
+	IconDropZone,
 	IconPlaceholder,
 	InserterModal,
 	DimensionControl,
 	OptionsPanel,
 } from './components';
-import { flattenIconsArray, parseIcon, parseMediaSetIcon } from './utils';
+import {
+	flattenIconsArray,
+	parseIcon,
+	parseUploadedMediaAndSetIcon,
+} from './utils';
 import { bolt as defaultIcon } from './icons/bolt';
 import getIcons from './icons';
 
@@ -110,12 +115,15 @@ export function Edit( props ) {
 	} );
 
 	// Allowed types for the current WP_User
-	const allowedMimeTypes = useSelect( ( select ) => {
+	const { allowedMimeTypes, mediaUpload } = useSelect( ( select ) => {
 		const { getSettings } = select( 'core/block-editor' );
-		return getSettings().allowedMimeTypes;
+		return {
+			allowedMimeTypes: getSettings().allowedMimeTypes,
+			mediaUpload: getSettings().mediaUpload,
+		};
 	}, [] );
 
-	const isSVGAllowed =
+	const isSVGUploadAllowed =
 		Object.values( allowedMimeTypes ).includes( 'image/svg+xml' );
 
 	const { gradientClass, gradientValue, setGradient } = useGradient();
@@ -155,18 +163,15 @@ export function Edit( props ) {
 		printedIcon = parseIcon( printedIcon );
 	}
 
-	function setRotate() {
-		let newRotate = 90;
+	function setRotate( value ) {
+		const currentValue = isNumber( value ) ? value : 0;
+		let newValue = currentValue + 90;
 
-		if ( rotate === 90 ) {
-			newRotate = 180;
-		} else if ( rotate === 180 ) {
-			newRotate = 270;
-		} else if ( rotate === 270 ) {
-			newRotate = 0;
+		if ( currentValue === 270 ) {
+			newValue = 0;
 		}
 
-		setAttributes( { rotate: newRotate } );
+		setAttributes( { rotate: newValue } );
 	}
 
 	function startEditing( event ) {
@@ -226,10 +231,14 @@ export function Edit( props ) {
 					>
 						{ __( 'Browse icon library', 'icon-block' ) }
 					</MenuItem>
-					{ isSVGAllowed && (
+					{ isSVGUploadAllowed && (
 						<MediaUpload
 							onSelect={ ( media ) => {
-								parseMediaSetIcon( media, setAttributes );
+								parseUploadedMediaAndSetIcon(
+									media,
+									attributes,
+									setAttributes
+								);
 								onClose();
 							} }
 							allowedTypes={ [ 'image/svg+xml' ] }
@@ -287,7 +296,7 @@ export function Edit( props ) {
 							className={ `outermost-icon-block__rotate-button-${ rotate }` }
 							icon={ rotateRight }
 							label={ __( 'Rotate', 'icon-block' ) }
-							onClick={ setRotate }
+							onClick={ () => setRotate( rotate ) }
 							isPressed={ rotate }
 						/>
 						<ToolbarButton
@@ -312,7 +321,7 @@ export function Edit( props ) {
 						/>
 					</ToolbarGroup>
 					<ToolbarGroup>
-						{ enableCustomIcons || isSVGAllowed ? (
+						{ enableCustomIcons || isSVGUploadAllowed ? (
 							replaceDropdown
 						) : (
 							<ToolbarButton
@@ -363,6 +372,7 @@ export function Edit( props ) {
 		<>
 			<InspectorControls group="settings">
 				<OptionsPanel
+					className="outermost-icon-block__main-settings"
 					label={ __( 'Settings', 'icon-block' ) }
 					options={ [
 						{
@@ -583,8 +593,10 @@ export function Edit( props ) {
 					setQuickInserterOpen={ setQuickInserterOpen }
 					isCustomInserterOpen={ isCustomInserterOpen }
 					setCustomInserterOpen={ setCustomInserterOpen }
+					attributes={ attributes }
 					setAttributes={ setAttributes }
 					enableCustomIcons={ enableCustomIcons }
+					isSVGUploadAllowed={ isSVGUploadAllowed }
 				/>
 			) : (
 				<div
@@ -615,6 +627,12 @@ export function Edit( props ) {
 				style={ blockMargin }
 			>
 				{ iconMarkup }
+				<IconDropZone
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					mediaUpload={ mediaUpload }
+					isSVGUploadAllowed={ isSVGUploadAllowed }
+				/>
 			</div>
 			<InserterModal
 				isInserterOpen={ isInserterOpen }

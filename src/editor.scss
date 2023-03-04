@@ -2,14 +2,30 @@
  * Editor only styles for the Icon Block.
  */
 
-// Register our variables.
-$r90: rotate(90deg);
-$r180: rotate(180deg);
-$r270: rotate(270deg);
-
 // Editor specific styles for the block itself.
 .wp-block-outermost-icon-block {
 
+	// Dropzone styles.
+	.components-drop-zone__content {
+		container-type: inline-size;
+
+		.components-drop-zone__content-icon {
+			width: 24px;
+			margin-bottom: 10px;
+		}
+		
+		// Only show the icon if the dropzone is too small.
+		@container (max-width: 150px) {
+			.components-drop-zone__content-icon {
+				margin-bottom: 0;
+			}
+			
+			.components-drop-zone__content-text {
+				display: none;
+			}
+		}
+	}
+	  
 	// Placeholder styles.
 	.components-placeholder {
 		line-height: normal;
@@ -75,6 +91,7 @@ $r270: rotate(270deg);
 	}
 }
 
+// Style for the icon library modal.
 .wp-block-outermost-icon-inserter__modal {
 	.components-modal__content {
 		flex: 1 1 0%;
@@ -240,6 +257,7 @@ $r270: rotate(270deg);
 	}
 }
 
+// Styles for the custom SVG inserter modal.
 .wp-block-outermost-icon-custom-inserter__modal {
 	.components-modal__content {
 		flex: 1 1 0%;
@@ -353,75 +371,77 @@ $r270: rotate(270deg);
 	}
 }
 
-// Custom styles for the block's toolbar controls.
+// Styles for the block's toolbar controls.
 .block-editor-block-toolbar {
 	.outermost-icon-block__rotate-button-90 {
 		svg {
-			transform: $r90;
+			transform: rotate(90deg);
 		}
 	}
 
 	.outermost-icon-block__rotate-button-180 {
 		svg {
-			transform: $r180;
+			transform: rotate(180deg);
 		}
 	}
 
 	.outermost-icon-block__rotate-button-270 {
 		svg {
-			transform: $r270;
+			transform: rotate(270deg);
 		}
 	}
 }
 
-// Custom styles for the block's inspector controls.
+// Styles for the block's inspector controls.
 .block-editor-block-inspector {
 
 	// Styling for the options panel used for the block settings.
-	.options-panel {
-		border-top: 1px solid #ddd;
-		display: grid;
-		gap: 16px;
-		margin-top: -1px;
-		padding: 16px;
+	.outermost-icon-block__main-settings {
+		&.options-panel {
+			border-top: 1px solid #ddd;
+			display: grid;
+			gap: 16px;
+			margin-top: -1px;
+			padding: 16px;
 
-		.options-panel-header {
-			align-items: center;
-			display: flex;
-			flex-direction: row;
-			gap: calc(8px);
-			grid-column: 1 / -1;
-			justify-content: space-between;
-			width: 100%;
-			-webkit-box-align: center;
-			-webkit-box-pack: justify;
-	
-			h2 {
-				font-weight: 500;
-				margin: 0;
-			}
-	
-			.options-panel-header__dropdown-menus {
-				line-height: 0;
-				margin: -4px 0;
-	
-				.components-button {
-					padding: 0px;
-					min-width: 24px;
+			.options-panel-header {
+				align-items: center;
+				display: flex;
+				flex-direction: row;
+				gap: calc(8px);
+				grid-column: 1 / -1;
+				justify-content: space-between;
+				width: 100%;
+				-webkit-box-align: center;
+				-webkit-box-pack: justify;
+		
+				h2 {
+					font-weight: 500;
+					margin: 0;
+				}
+		
+				.options-panel-header__dropdown-menus {
+					line-height: 0;
+					margin: -4px 0;
+		
+					.components-button {
+						padding: 0px;
+						min-width: 24px;
+					}
 				}
 			}
-		}
 
-		.options-panel-container {
-			display: grid;
-    		grid-gap: 16px;
+			.options-panel-container {
+				display: grid;
+				grid-gap: 16px;
 
-			.components-base-control {
-				margin: 0;
-			}
+				.components-base-control {
+					margin: 0;
+				}
 
-			.components-base-control__help {
-				margin-bottom: 0;
+				.components-base-control__help {
+					margin-bottom: 0;
+				}
 			}
 		}
 	}
@@ -468,56 +488,60 @@ $r270: rotate(270deg);
 	}
 }
 
-.icons-list {
-	display: flex;
-	flex-wrap: wrap;
-
-	.icons-list__item {
-		align-items: stretch;
-		background: transparent;
-		border: 1px solid transparent;
-		border-radius: 2px;
-		color: #1e1e1e;
-		cursor: pointer;
+// Styles for the icon list grid
+.wp-block-outermost-icon-inserter__modal,
+.wp-block-outermost-icon-inserter__quick-inserter {
+	.icons-list {
 		display: flex;
-		flex-direction: column;
-		font-size: 13px;
-		height: auto;
-		justify-content: center;
-		padding: 8px;
-		position: relative;
-		transition: all .05s ease-in-out;
-		word-break: break-word;
-
-		&:hover {
-			border-color: var(--wp-admin-theme-color);
-			color: var(--wp-admin-theme-color) !important;
-		}
-
-		&.has-no-icon-fill {
-			svg {
-				fill: none;
-			}
-		}
-
-		.icons-list__item-icon {
+		flex-wrap: wrap;
+	
+		.icons-list__item {
+			align-items: stretch;
+			background: transparent;
+			border: 1px solid transparent;
 			border-radius: 2px;
 			color: #1e1e1e;
-			padding: 12px;
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			font-size: 13px;
+			height: auto;
+			justify-content: center;
+			padding: 8px;
+			position: relative;
 			transition: all .05s ease-in-out;
-		}
-
-		.icons-list__item-title {
-			font-size: 12px;
-			padding: 4px 2px 8px;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+			word-break: break-word;
+	
+			&:hover {
+				border-color: var(--wp-admin-theme-color);
+				color: var(--wp-admin-theme-color) !important;
+			}
+	
+			&.has-no-icon-fill {
+				svg {
+					fill: none;
+				}
+			}
+	
+			.icons-list__item-icon {
+				border-radius: 2px;
+				color: #1e1e1e;
+				padding: 12px;
+				transition: all .05s ease-in-out;
+			}
+	
+			.icons-list__item-title {
+				font-size: 12px;
+				padding: 4px 2px 8px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 		}
 	}
 }
 
-// Dedicated styles for the options dropdown popover.
+// Styles for the options dropdown popover.
 .options-panel__option-popover {
 	// Same size as core popovers. 
 	.components-popover__content {

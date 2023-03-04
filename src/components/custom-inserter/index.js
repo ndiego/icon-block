@@ -2,7 +2,6 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import parse from 'html-react-parser';
 import { isEmpty } from 'lodash';
 
 /**
@@ -23,6 +22,7 @@ import { Icon } from '@wordpress/icons';
  * Internal dependencies
  */
 import { bolt } from './../../icons/bolt';
+import { parseIcon } from './../../utils';
 
 export default function CustomInserterModal( props ) {
 	const {
@@ -33,10 +33,10 @@ export default function CustomInserterModal( props ) {
 	} = props;
 	const { icon, iconName } = attributes;
 	const [ customIcon, setCustomIcon ] = useState( ! iconName ? icon : '' );
-	const [ iconSize, setIconSize ] = useState( 48 );
+	const [ iconSize, setIconSize ] = useState( 100 );
 
-	// If a SVG icon is inserted from the Media Library, we need to update the
-	// custom icon editor in the modal.
+	// If a SVG icon is inserted from the Media Library, we need to update
+	// the custom icon editor in the modal.
 	useEffect( () => setCustomIcon( icon ), [ icon ] );
 
 	if ( ! isCustomInserterOpen ) {
@@ -51,34 +51,11 @@ export default function CustomInserterModal( props ) {
 		setCustomInserterOpen( false );
 	}
 
-	let isSVG = true;
-	let customIconRender = '';
+	let iconToRender = parseIcon( customIcon );
+	const isSVG = ! isEmpty( iconToRender?.props );
 
-	if ( customIcon ) {
-		const newIcon = customIcon.trim();
-
-		customIconRender = parse( newIcon, {
-			trim: true,
-			replace: ( domNode ) => {
-				// TODO: Very basic SVG sanitization, needs more refinement.
-				if (
-					domNode.type !== 'tag' ||
-					( ! domNode.parent && domNode.name !== 'svg' ) ||
-					! domNode.name
-				) {
-					return <></>;
-				}
-			},
-		} );
-
-		if ( isEmpty( customIconRender?.props ) ) {
-			customIconRender = '';
-		}
-
-		isSVG = !! customIconRender;
-	}
-
-	const iconToRender = customIconRender ? customIconRender : bolt;
+	// Render the defualt lightning bolt if the icon is not a valid SVG.
+	iconToRender = isSVG ? iconToRender : bolt;
 
 	return (
 		<Modal
@@ -104,7 +81,7 @@ export default function CustomInserterModal( props ) {
 					<div className="icon-preview">
 						<div
 							className={ classnames( 'icon-preview__window', {
-								'is-default': ! customIconRender,
+								'is-default': ! isSVG,
 							} ) }
 						>
 							<Icon icon={ iconToRender } size={ iconSize } />
@@ -117,7 +94,7 @@ export default function CustomInserterModal( props ) {
 								<RangeControl
 									min={ 24 }
 									max={ 400 }
-									initialPosition={ 48 }
+									initialPosition={ 100 }
 									withInputField={ false }
 									onChange={ ( value ) =>
 										setIconSize( value )
@@ -125,7 +102,7 @@ export default function CustomInserterModal( props ) {
 								/>
 							</div>
 						</div>
-						{ ! isSVG && (
+						{ customIcon && ! isSVG && (
 							<Notice status="error" isDismissible={ false }>
 								{ __(
 									'The custom icon does not appear to be in a valid SVG format or contains non-SVG elements.',

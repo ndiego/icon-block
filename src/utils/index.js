@@ -4,4 +4,8 @@ export {
 	simplifyCategories,
 } from './icon-functions';
 export { parseIcon } from './parse-icon';
-export { parseMediaSetIcon } from './parse-media-set-icon';
+export {
+	parseUploadedMediaAndSetIcon,
+	parseDroppedMediaAndSetIcon,
+} from './parse-media';
+export { displayMessages } from './display-messages';
