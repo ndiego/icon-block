@@ -73,12 +73,13 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.5.0 - 2023-02-TBD =
-
+= 1.5.0 - 2023-03-TBD =
 
 **Added**
 
 * Added the ability to insert an SVG icon from the Media Library if SVG uploads are enabled on the website.
+* Added dropzone support for media library uploads and custom SVGs.
+* Added support for style elements in custom SVGs.
 
 **Changed**
 
