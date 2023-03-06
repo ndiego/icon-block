@@ -60,7 +60,7 @@ export default function IconPlaceholder( props ) {
 		<Placeholder
 			className="has-illustration"
 			icon={ bolt }
-			label={ __( 'Icon' ) }
+			label={ __( 'Icon', 'icon-block' ) }
 			instructions={ instructions() }
 		>
 			<Icon
@@ -82,7 +82,7 @@ export default function IconPlaceholder( props ) {
 					allowedTypes={ [ 'image/svg+xml' ] }
 					render={ ( { open } ) => (
 						<Button isTertiary onClick={ open }>
-							{ __( 'Open Media Library' ) }
+							{ __( 'Open Media Library', 'icon-block' ) }
 						</Button>
 					) }
 				/>

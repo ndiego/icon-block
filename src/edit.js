@@ -425,7 +425,7 @@ export function Edit( props ) {
 			<InspectorControls group="styles">
 				<PanelColorGradientSettings
 					className="outermost-icon-block__color-settings"
-					title={ __( 'Color' ) }
+					title={ __( 'Color', 'icon-block' ) }
 					initialOpen={ true }
 					enableAlpha={ true }
 					settings={ [
