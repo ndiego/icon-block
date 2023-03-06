@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: The Icon Block 1.4.0\n"
+"Project-Id-Version: The Icon Block 1.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/icon-block\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-02T17:40:17+00:00\n"
+"POT-Creation-Date: 2023-03-06T21:30:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: icon-block\n"
@@ -30,1133 +30,1485 @@ msgstr ""
 msgid "https://www.nickdiego.com"
 msgstr ""
 
-#: build/index.js:1
-msgid "Add Card"
-msgstr ""
-
-#: build/index.js:1
-msgid "Add Submenu"
-msgstr ""
-
-#: build/index.js:1
-msgid "Align Center"
-msgstr ""
-
-#: build/index.js:1
-msgid "Align Justify"
-msgstr ""
-
-#: build/index.js:1
-msgid "Align Left"
-msgstr ""
-
-#: build/index.js:1
-msgid "Align None"
-msgstr ""
-
-#: build/index.js:1
-msgid "Align Right"
-msgstr ""
-
-#: build/index.js:1
-msgid "Archive"
-msgstr ""
-
-#: build/index.js:1
-msgid "Arrow Down"
-msgstr ""
-
-#: build/index.js:1
-msgid "Arrow Left"
-msgstr ""
-
-#: build/index.js:1
-msgid "Arrow Right"
-msgstr ""
-
-#: build/index.js:1
-msgid "Arrow Up"
-msgstr ""
-
-#: build/index.js:1
-msgid "At Symbol"
-msgstr ""
-
-#: build/index.js:1
-msgid "Aspect Ratio"
-msgstr ""
-
-#: build/index.js:1
-msgid "Audio"
-msgstr ""
-
-#: build/index.js:1
-msgid "Backup"
-msgstr ""
-
-#: build/index.js:1
-msgid "Block Default"
-msgstr ""
-
-#: build/index.js:1
-msgid "Block Table"
-msgstr ""
-
-#: build/index.js:1
-msgid "Box"
-msgstr ""
-
-#: build/index.js:1
-msgid "Brush"
-msgstr ""
-
-#: build/index.js:1
-msgid "Bug"
-msgstr ""
-
-#: build/index.js:1
-msgid "Button"
-msgstr ""
-
-#: build/index.js:1
-msgid "Buttons"
-msgstr ""
-
-#: build/index.js:1
-msgid "Calendar"
-msgstr ""
-
-#: build/index.js:1
-msgid "Cancel - Circle Filled"
-msgstr ""
-
-#: build/index.js:1
-msgid "Capture Photo"
-msgstr ""
-
-#: build/index.js:1
-msgid "Capture Video"
-msgstr ""
-
-#: build/index.js:1
-msgid "Category"
-msgstr ""
-
-#: build/index.js:1
-msgid "Chart Bar"
-msgstr ""
-
-#: build/index.js:1
-msgid "Check"
-msgstr ""
-
-#: build/index.js:1
-msgid "Chevron Down"
-msgstr ""
-
-#: build/index.js:1
-msgid "Chevron Left"
-msgstr ""
-
-#: build/index.js:1
-msgid "Chevron Right"
-msgstr ""
-
-#: build/index.js:1
-msgid "Chevron Right - Small"
-msgstr ""
-
-#: build/index.js:1
-msgid "Chevron Up"
-msgstr ""
-
-#: build/index.js:1
-msgid "Classic"
-msgstr ""
-
-#: build/index.js:1
-msgid "Close"
-msgstr ""
-
-#: build/index.js:1
-msgid "Close - Small"
-msgstr ""
-
-#: build/index.js:1
-msgid "Cloud Upload"
-msgstr ""
-
-#: build/index.js:1
-msgid "Cloud"
-msgstr ""
-
-#: build/index.js:1
-msgid "Code"
-msgstr ""
-
-#: build/index.js:1
-msgid "Cog"
-msgstr ""
-
-#: build/index.js:1
-msgid "Color"
-msgstr ""
-
-#: build/index.js:1
-msgid "Column"
-msgstr ""
-
-#: build/index.js:1
-msgid "Columns"
-msgstr ""
-
-#: build/index.js:1
-msgid "Comment"
-msgstr ""
-
-#: build/index.js:1
-msgid "Comment Author Avatar"
-msgstr ""
-
-#: build/index.js:1
-msgid "Comment Author Name"
-msgstr ""
-
-#: build/index.js:1
-msgid "Comment Content"
-msgstr ""
-
-#: build/index.js:1
-msgid "Comment Edit Link"
-msgstr ""
-
-#: build/index.js:1
-msgid "Comment Reply Link"
-msgstr ""
-
-#: build/index.js:1
-msgid "Cover"
-msgstr ""
-
-#: build/index.js:1
-msgid "Create"
-msgstr ""
-
-#: build/index.js:1
-msgid "Crop"
-msgstr ""
-
-#: build/index.js:1
-msgid "Currency Dollar"
-msgstr ""
-
-#: build/index.js:1
-msgid "Currency Euro"
-msgstr ""
-
-#: build/index.js:1
-msgid "Currency Pound"
-msgstr ""
-
-#: build/index.js:1
-msgid "Custom Post Type"
-msgstr ""
-
-#: build/index.js:1
-msgid "Desktop"
-msgstr ""
-
-#: build/index.js:1
-msgid "Drag Handle"
-msgstr ""
-
-#: build/index.js:1
-msgid "Download"
-msgstr ""
-
-#: build/index.js:1
-msgid "Edit"
-msgstr ""
-
-#: build/index.js:1
-msgid "External"
-msgstr ""
-
-#: build/index.js:1
-msgid "File"
-msgstr ""
-
-#: build/index.js:1
-#: build/index.js:11
-msgid "Flip Horizontal"
-msgstr ""
-
-#: build/index.js:1
-#: build/index.js:11
-msgid "Flip Vertical"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Bold"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Capitalize"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Indent"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Indent RTL"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Italic"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format List Bullets"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format List Bullets RTL"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format List Numbered"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format List Numbered RTL"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format LTR"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Lowercase"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Outdent"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Outdent RTL"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format RTL"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Strikethrough"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Underline"
-msgstr ""
-
-#: build/index.js:1
-msgid "Format Uppercase"
-msgstr ""
-
-#: build/index.js:1
-msgid "Fullscreen"
-msgstr ""
-
-#: build/index.js:1
-msgid "Gallery"
-msgstr ""
-
-#: build/index.js:1
-msgid "Globe"
-msgstr ""
-
-#: build/index.js:1
-msgid "Grid"
-msgstr ""
-
-#: build/index.js:1
-msgid "Group"
-msgstr ""
-
-#: build/index.js:1
-msgid "Handle"
-msgstr ""
-
-#: build/index.js:1
-msgid "Heading"
-msgstr ""
-
-#: build/index.js:1
-msgid "Help"
-msgstr ""
-
-#: build/index.js:1
-msgid "Help - Filled"
-msgstr ""
-
-#: build/index.js:1
-msgid "Inbox"
-msgstr ""
-
-#: build/index.js:1
-msgid "Institution"
-msgstr ""
-
-#: build/index.js:1
-msgid "Home"
-msgstr ""
-
-#: build/index.js:1
-msgid "HTML"
-msgstr ""
-
-#: build/index.js:1
-msgid "Image"
-msgstr ""
-
-#: build/index.js:1
-msgid "Info"
-msgstr ""
-
-#: build/index.js:1
-msgid "Insert After"
-msgstr ""
-
-#: build/index.js:1
-msgid "Insert Before"
-msgstr ""
-
-#: build/index.js:1
-msgid "Justify Left"
-msgstr ""
-
-#: build/index.js:1
-msgid "Justify Center"
-msgstr ""
-
-#: build/index.js:1
-msgid "Justify Right"
-msgstr ""
-
-#: build/index.js:1
-msgid "Justify Space Between"
-msgstr ""
-
-#: build/index.js:1
-msgid "Key"
-msgstr ""
-
-#: build/index.js:1
-msgid "Keyboard Close"
-msgstr ""
-
-#: build/index.js:1
-msgid "Keyboard Return"
-msgstr ""
-
-#: build/index.js:1
-msgid "Layout"
-msgstr ""
-
-#: build/index.js:1
-msgid "Lifesaver"
-msgstr ""
-
-#: build/index.js:1
-#: build/index.js:11
-msgid "Link"
-msgstr ""
-
-#: build/index.js:1
-msgid "Link Off"
-msgstr ""
-
-#: build/index.js:1
-msgid "List"
-msgstr ""
-
-#: build/index.js:1
-msgid "List View"
-msgstr ""
-
-#: build/index.js:1
-msgid "Lock"
-msgstr ""
-
-#: build/index.js:1
-msgid "Login"
-msgstr ""
-
-#: build/index.js:1
-msgid "Loop"
-msgstr ""
-
-#: build/index.js:1
-msgid "Map Marker"
-msgstr ""
-
-#: build/index.js:1
-msgid "Media"
-msgstr ""
-
-#: build/index.js:1
-msgid "Media & Text"
-msgstr ""
-
-#: build/index.js:1
-msgid "Megaphone"
-msgstr ""
-
-#: build/index.js:1
-msgid "Menu"
-msgstr ""
-
-#: build/index.js:1
-msgid "Mobile"
-msgstr ""
-
-#: build/index.js:1
-msgid "More"
-msgstr ""
-
-#: build/index.js:1
-msgid "More Horizontal"
-msgstr ""
-
-#: build/index.js:1
-msgid "More Horizontal - Mobile"
-msgstr ""
-
-#: build/index.js:1
-msgid "More Vertical"
-msgstr ""
-
-#: build/index.js:1
-msgid "Move To"
-msgstr ""
-
-#: build/index.js:1
-msgid "Navigation"
-msgstr ""
-
-#: build/index.js:1
-msgid "Overlay Text"
-msgstr ""
-
-#: build/index.js:1
-msgid "Page Break"
-msgstr ""
-
-#: build/index.js:1
-msgid "Custom Link"
-msgstr ""
-
-#: build/index.js:1
-msgid "Page"
-msgstr ""
-
-#: build/index.js:1
-msgid "Pages"
-msgstr ""
-
-#: build/index.js:1
-msgid "Paragraph"
-msgstr ""
-
-#: build/index.js:1
-msgid "Payment"
-msgstr ""
-
-#: build/index.js:1
-msgid "Percent"
-msgstr ""
-
-#: build/index.js:1
-msgid "Position Center"
-msgstr ""
-
-#: build/index.js:1
-msgid "Position Left"
-msgstr ""
-
-#: build/index.js:1
-msgid "Position Right"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post"
-msgstr ""
-
-#: build/index.js:1
-msgid "Pencil"
-msgstr ""
-
-#: build/index.js:1
-msgid "People"
-msgstr ""
-
-#: build/index.js:1
-msgid "Pin"
-msgstr ""
-
-#: build/index.js:1
-msgid "Plugins"
-msgstr ""
-
-#: build/index.js:1
-msgid "Plus Circle - Filled"
-msgstr ""
-
-#: build/index.js:1
-msgid "Plus Circle"
-msgstr ""
-
-#: build/index.js:1
-msgid "Plus"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Author"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Categories"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Content"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Comments"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Comment Count"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Comments Form"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Date"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Excerpt"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Featured Image"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post List"
-msgstr ""
-
-#: build/index.js:1
-msgid "Post Terms"
-msgstr ""
-
-#: build/index.js:1
-msgid "Previous"
-msgstr ""
-
-#: build/index.js:1
-msgid "Next"
-msgstr ""
-
-#: build/index.js:1
-msgid "Preformatted"
-msgstr ""
-
-#: build/index.js:1
-msgid "Pull Left"
-msgstr ""
-
-#: build/index.js:1
-msgid "Pull Right"
-msgstr ""
-
-#: build/index.js:1
-msgid "Pull Quote"
-msgstr ""
-
-#: build/index.js:1
-msgid "Query Pagination"
-msgstr ""
-
-#: build/index.js:1
-msgid "Query Pagination Next"
-msgstr ""
-
-#: build/index.js:1
-msgid "Query Pagination Numbers"
-msgstr ""
-
-#: build/index.js:1
-msgid "Query Pagination Previous"
-msgstr ""
-
-#: build/index.js:1
-msgid "Quote"
-msgstr ""
-
-#: build/index.js:1
-msgid "Receipt"
-msgstr ""
-
-#: build/index.js:1
-msgid "Redo"
-msgstr ""
-
-#: build/index.js:1
-msgid "Remove Bug"
-msgstr ""
-
-#: build/index.js:1
-msgid "Remove Submenu"
-msgstr ""
-
-#: build/index.js:1
-#: build/index.js:11
-msgid "Replace"
-msgstr ""
-
-#. translators: %s: The name of the option being reset e.g. "Label".
-#: build/index.js:1
-#: build/index.js:11
-msgid "Reset"
-msgstr ""
-
-#: build/index.js:1
-msgid "Resize Corner"
-msgstr ""
-
-#: build/index.js:1
-msgid "Reusable Block"
-msgstr ""
-
-#: build/index.js:1
-msgid "Rotate Left"
-msgstr ""
-
-#: build/index.js:1
-msgid "Rotate Right"
-msgstr ""
-
-#: build/index.js:1
-msgid "Row"
-msgstr ""
-
-#: build/index.js:1
-msgid "RSS"
-msgstr ""
-
-#: build/index.js:1
-msgid "Search"
-msgstr ""
-
-#: build/index.js:1
-msgid "Separator"
-msgstr ""
-
-#: build/index.js:1
-#: build/index.js:11
-msgid "Settings"
-msgstr ""
-
-#: build/index.js:1
-msgid "Share"
-msgstr ""
-
-#: build/index.js:1
-msgid "Shield"
-msgstr ""
-
-#: build/index.js:1
-msgid "Shortcode"
-msgstr ""
-
-#: build/index.js:1
-msgid "Site Logo"
-msgstr ""
-
-#: build/index.js:1
-msgid "Sparkles"
-msgstr ""
-
-#: build/index.js:1
-msgid "Stack"
-msgstr ""
-
-#: build/index.js:1
-msgid "Star Empty"
-msgstr ""
-
-#: build/index.js:1
-msgid "Star Filled"
-msgstr ""
-
-#: build/index.js:1
-msgid "Star Half"
-msgstr ""
-
-#: build/index.js:1
-msgid "Store"
-msgstr ""
-
-#: build/index.js:1
-msgid "Stretch Full Width"
-msgstr ""
-
-#: build/index.js:1
-msgid "Styles"
-msgstr ""
-
-#: build/index.js:1
-msgid "Shipping"
-msgstr ""
-
-#: build/index.js:1
-msgid "Stretch Wide"
-msgstr ""
-
-#: build/index.js:1
-msgid "Subscript"
-msgstr ""
-
-#: build/index.js:1
-msgid "Superscript"
-msgstr ""
-
-#: build/index.js:1
-msgid "Swatch"
-msgstr ""
-
-#: build/index.js:1
-msgid "Symbol"
-msgstr ""
-
-#: build/index.js:1
-msgid "Symbol - Filled"
-msgstr ""
-
-#: build/index.js:1
-msgid "Table Column After"
-msgstr ""
-
-#: build/index.js:1
-msgid "Table Column Before"
-msgstr ""
-
-#: build/index.js:1
-msgid "Table Column Delete"
-msgstr ""
-
-#: build/index.js:1
-msgid "Table Row After"
-msgstr ""
-
-#: build/index.js:1
-msgid "Table Row Before"
-msgstr ""
-
-#: build/index.js:1
-msgid "Table Row Delete"
-msgstr ""
-
-#: build/index.js:1
-msgid "Table"
-msgstr ""
-
-#: build/index.js:1
-msgid "Tag"
-msgstr ""
-
-#: build/index.js:1
-msgid "Term Description"
-msgstr ""
-
-#: build/index.js:1
-msgid "Footer"
-msgstr ""
-
-#: build/index.js:1
-msgid "Header"
-msgstr ""
-
-#: build/index.js:1
-msgid "Sidebar"
-msgstr ""
-
-#: build/index.js:1
-msgid "Text Color"
-msgstr ""
-
-#: build/index.js:1
-msgid "Tablet"
-msgstr ""
-
-#: build/index.js:1
-msgid "Title"
-msgstr ""
-
-#: build/index.js:1
-msgid "Tip"
-msgstr ""
-
-#: build/index.js:1
-msgid "Tool"
-msgstr ""
-
-#: build/index.js:1
-msgid "Trash"
-msgstr ""
-
-#: build/index.js:1
-msgid "Trending Down"
-msgstr ""
-
-#: build/index.js:1
-msgid "Trending Up"
-msgstr ""
-
-#: build/index.js:1
-msgid "Typography"
-msgstr ""
-
-#: build/index.js:1
-msgid "Undo"
-msgstr ""
-
-#: build/index.js:1
-msgid "Ungroup"
-msgstr ""
-
-#: build/index.js:1
-msgid "Unlock"
-msgstr ""
-
-#: build/index.js:1
-msgid "Update"
-msgstr ""
-
-#: build/index.js:1
-msgid "Upload"
-msgstr ""
-
-#: build/index.js:1
-msgid "Verse"
-msgstr ""
-
-#: build/index.js:1
-msgid "Video"
-msgstr ""
-
-#: build/index.js:1
-msgid "Warning"
-msgstr ""
-
-#: build/index.js:1
-msgid "Widget"
-msgstr ""
-
-#: build/index.js:1
-msgid "WordPress"
-msgstr ""
-
-#: build/index.js:1
-msgid "Arrows"
-msgstr ""
-
-#: build/index.js:1
-msgid "Blocks"
-msgstr ""
-
-#: build/index.js:1
-msgid "Devices"
-msgstr ""
-
-#: build/index.js:1
-msgid "Editor"
-msgstr ""
-
-#: build/index.js:1
-msgid "Logos"
-msgstr ""
-
-#: build/index.js:1
-msgid "All"
-msgstr ""
-
-#: build/index.js:1
-#: build/index.js:3
-msgid "Icon Library"
-msgstr ""
-
-#. translators: %1$s: Number of icons retruned from search, %2$s: the search input
-#: build/index.js:3
-msgid "Preview size"
-msgstr ""
-
-#: build/index.js:3
+#: build/index.js:7587
+#: build/index.js:3395
 msgid "Custom Icon"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7595
+#: build/index.js:3402
 msgid "Custom icon"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7599
+#: build/index.js:3406
 msgid "Paste the SVG code for your custom icon."
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7615
+#: build/index.js:8220
+#: build/index.js:3424
+#: build/index.js:4051
+msgid "Preview size"
+msgstr ""
+
+#: build/index.js:7624
+#: build/index.js:3439
 msgid "The custom icon does not appear to be in a valid SVG format or contains non-SVG elements."
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7627
+#: build/index.js:3448
 msgid "Clear custom icon"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7631
+#: build/index.js:3453
 msgid "Clear"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7632
+#: build/index.js:7636
+#: build/index.js:3456
+#: build/index.js:3461
 msgid "Insert custom icon"
 msgstr ""
 
-#: build/index.js:3
-msgid "Insert Icon"
+#: build/index.js:7757
+#: build/index.js:3569
+msgid "Dimension"
 msgstr ""
 
-#: build/index.js:3
-msgid "Search icons"
+#: build/index.js:7849
+#: build/index.js:3656
+msgid "Drop SVG file to upload"
 msgstr ""
 
-#: build/index.js:3
-msgid "Browse all"
+#: build/index.js:7849
+#: build/index.js:3657
+msgid "Drop SVG file to insert"
 msgstr ""
 
-#: build/index.js:3
-msgid "Choose an icon from the library or add your own custom SVG graphic."
+#: build/index.js:7909
+#: build/index.js:3691
+msgid "Choose an icon from the library, pick one from your media library, or insert a custom SVG graphic."
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7910
+#: build/index.js:3695
+msgid "Choose an icon from the library or pick one from your media library."
+msgstr ""
+
+#: build/index.js:7911
+#: build/index.js:3699
+msgid "Choose an icon from the library or insert a custom SVG graphic."
+msgstr ""
+
+#: build/index.js:7912
+#: build/index.js:3703
 msgid "Browse the icon library and choose one to insert."
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:7926
+#: build/index.js:3724
+msgid "Icon"
+msgstr ""
+
+#: build/index.js:7934
+#: build/index.js:8194
+#: build/index.js:3732
+#: build/index.js:4012
+msgid "Icon Library"
+msgstr ""
+
+#: build/index.js:7944
+#: build/index.js:9722
+#: build/index.js:3746
+#: build/index.js:5670
+msgid "Open Media Library"
+msgstr ""
+
+#: build/index.js:7949
+#: build/index.js:3756
 msgid "Insert custom SVG"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:8115
+#: build/index.js:3894
+msgid "All"
+msgstr ""
+
+#: build/index.js:8316
+#: build/index.js:4135
 msgid "Setting options"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:8325
+#: build/index.js:4145
 msgid "Defaults"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:8331
+#: build/index.js:4155
 msgid "Options"
 msgstr ""
 
-#: build/index.js:3
+#: build/index.js:8344
+#: build/index.js:4174
 msgid "Reset all"
 msgstr ""
 
 #. translators: %s: The name of the option being toggled e.g. "Label".
-#: build/index.js:5
+#: build/index.js:8369
+#: build/index.js:4208
 msgid "Toggle %s"
 msgstr ""
 
 #. translators: %s: The name of the option being toggled e.g. "Label".
-#: build/index.js:7
+#: build/index.js:8374
+#: build/index.js:4216
 msgid "%s toggled"
 msgstr ""
 
 #. translators: %s: The name of the option being reset e.g. "Label".
-#: build/index.js:9
+#: build/index.js:8398
+#: build/index.js:4246
 msgid "Reset %s"
 msgstr ""
 
 #. translators: %s: The name of the option being reset e.g. "Label".
-#: build/index.js:11
+#: build/index.js:8403
+#: build/index.js:4254
 msgid "%s reset to default"
 msgstr ""
 
-#: build/index.js:11
-msgid "Rotate"
+#: build/index.js:8409
+#: build/index.js:11333
+#: build/index.js:4265
+#: build/index.js:7665
+msgid "Reset"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:8607
+#: build/index.js:4445
+msgid "Insert Icon"
+msgstr ""
+
+#: build/index.js:8638
+#: build/index.js:4490
+msgid "Search icons"
+msgstr ""
+
+#: build/index.js:8651
+#: build/index.js:4509
+msgid "Browse all"
+msgstr ""
+
+#: build/index.js:9698
+#: build/index.js:9779
+#: build/index.js:11328
+#: build/index.js:5640
+#: build/index.js:5769
+#: build/index.js:7659
+msgid "Replace"
+msgstr ""
+
+#: build/index.js:9709
+#: build/index.js:5652
 msgid "Browse icon library"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9730
+#: build/index.js:5686
 msgid "Add/edit custom icon"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9738
+#: build/index.js:5700
+msgid "Clear icon"
+msgstr ""
+
+#: build/index.js:9751
+#: build/index.js:11046
+#: build/index.js:5725
+#: build/index.js:7313
+msgid "Link"
+msgstr ""
+
+#: build/index.js:9758
+#: build/index.js:5735
+msgid "Rotate"
+msgstr ""
+
+#: build/index.js:9763
+#: build/index.js:10817
+#: build/index.js:5741
+#: build/index.js:7040
+msgid "Flip Horizontal"
+msgstr ""
+
+#: build/index.js:9770
+#: build/index.js:10821
+#: build/index.js:5751
+#: build/index.js:7045
+msgid "Flip Vertical"
+msgstr ""
+
+#: build/index.js:9814
+#: build/index.js:11376
+#: build/index.js:5813
+#: build/index.js:7717
+msgid "Settings"
+msgstr ""
+
+#: build/index.js:9817
+#: build/index.js:9828
+#: build/index.js:5817
+#: build/index.js:5833
 msgid "Label"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9821
+#: build/index.js:9835
+#: build/index.js:5822
+#: build/index.js:5844
 msgid "Width"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9825
+#: build/index.js:9841
+#: build/index.js:5827
+#: build/index.js:5852
 msgid "Height"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9829
+#: build/index.js:5834
 msgid "Briefly describe the icon to help screen reader users."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9851
+#: build/index.js:10718
+#: build/index.js:5865
+#: build/index.js:6919
+msgid "Color"
+msgstr ""
+
+#: build/index.js:9862
+#: build/index.js:5877
 msgid "Icon color"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9873
+#: build/index.js:5891
 msgid "Background color"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9878
+#: build/index.js:5899
 msgid "Any color or fill values in the SVG icon itself will take precedent over the chosen color."
 msgstr ""
 
-#: build/index.js:11
-msgid "Apply icon color to fill"
-msgstr ""
-
-#: build/index.js:11
+#: build/index.js:9881
+#: build/index.js:5910
 msgid "Set the SVG fill value to the chosen icon color. Disable as needed."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9892
+#: build/index.js:5933
 msgid "Link rel"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9898
+#: build/index.js:5940
 msgid "Title attribute"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9904
+#: build/index.js:5946
 msgid "Describe the role of this icon on the page."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:9906
+#: build/index.js:5951
 msgid "Note: many devices and browsers do not display this text"
+msgstr ""
+
+#: build/index.js:10522
+#: build/index.js:6681
+msgid "Add Card"
+msgstr ""
+
+#: build/index.js:10526
+#: build/index.js:6686
+msgid "Add Submenu"
+msgstr ""
+
+#: build/index.js:10531
+#: build/index.js:6692
+msgid "Align Center"
+msgstr ""
+
+#: build/index.js:10536
+#: build/index.js:6698
+msgid "Align Justify"
+msgstr ""
+
+#: build/index.js:10541
+#: build/index.js:6704
+msgid "Align Left"
+msgstr ""
+
+#: build/index.js:10546
+#: build/index.js:6710
+msgid "Align None"
+msgstr ""
+
+#: build/index.js:10551
+#: build/index.js:6716
+msgid "Align Right"
+msgstr ""
+
+#: build/index.js:10556
+#: build/index.js:6722
+msgid "Archive"
+msgstr ""
+
+#: build/index.js:10561
+#: build/index.js:6728
+msgid "Arrow Down"
+msgstr ""
+
+#: build/index.js:10566
+#: build/index.js:6734
+msgid "Arrow Left"
+msgstr ""
+
+#: build/index.js:10571
+#: build/index.js:6740
+msgid "Arrow Right"
+msgstr ""
+
+#: build/index.js:10576
+#: build/index.js:6746
+msgid "Arrow Up"
+msgstr ""
+
+#: build/index.js:10581
+#: build/index.js:6752
+msgid "At Symbol"
+msgstr ""
+
+#: build/index.js:10585
+#: build/index.js:6757
+msgid "Aspect Ratio"
+msgstr ""
+
+#: build/index.js:10590
+#: build/index.js:6763
+msgid "Audio"
+msgstr ""
+
+#: build/index.js:10595
+#: build/index.js:6769
+msgid "Backup"
+msgstr ""
+
+#: build/index.js:10599
+#: build/index.js:6774
+msgid "Block Default"
+msgstr ""
+
+#: build/index.js:10604
+#: build/index.js:6780
+msgid "Block Table"
+msgstr ""
+
+#: build/index.js:10608
+#: build/index.js:6785
+msgid "Box"
+msgstr ""
+
+#: build/index.js:10612
+#: build/index.js:6790
+msgid "Brush"
+msgstr ""
+
+#: build/index.js:10616
+#: build/index.js:6795
+msgid "Bug"
+msgstr ""
+
+#: build/index.js:10620
+#: build/index.js:6800
+msgid "Button"
+msgstr ""
+
+#: build/index.js:10625
+#: build/index.js:6806
+msgid "Buttons"
+msgstr ""
+
+#: build/index.js:10630
+#: build/index.js:6812
+msgid "Calendar"
+msgstr ""
+
+#: build/index.js:10635
+#: build/index.js:6818
+msgid "Cancel - Circle Filled"
+msgstr ""
+
+#: build/index.js:10639
+#: build/index.js:6823
+msgid "Capture Photo"
+msgstr ""
+
+#: build/index.js:10644
+#: build/index.js:6829
+msgid "Capture Video"
+msgstr ""
+
+#: build/index.js:10649
+#: build/index.js:6835
+msgid "Category"
+msgstr ""
+
+#: build/index.js:10654
+#: build/index.js:6841
+msgid "Chart Bar"
+msgstr ""
+
+#: build/index.js:10658
+#: build/index.js:6846
+msgid "Check"
+msgstr ""
+
+#: build/index.js:10662
+#: build/index.js:6851
+msgid "Chevron Down"
+msgstr ""
+
+#: build/index.js:10667
+#: build/index.js:6857
+msgid "Chevron Left"
+msgstr ""
+
+#: build/index.js:10672
+#: build/index.js:6863
+msgid "Chevron Right"
+msgstr ""
+
+#: build/index.js:10677
+#: build/index.js:6869
+msgid "Chevron Right - Small"
+msgstr ""
+
+#: build/index.js:10682
+#: build/index.js:6875
+msgid "Chevron Up"
+msgstr ""
+
+#: build/index.js:10687
+#: build/index.js:6881
+msgid "Classic"
+msgstr ""
+
+#: build/index.js:10692
+#: build/index.js:6887
+msgid "Close"
+msgstr ""
+
+#: build/index.js:10696
+#: build/index.js:6892
+msgid "Close - Small"
+msgstr ""
+
+#: build/index.js:10700
+#: build/index.js:6897
+msgid "Cloud Upload"
+msgstr ""
+
+#: build/index.js:10705
+#: build/index.js:6903
+msgid "Cloud"
+msgstr ""
+
+#: build/index.js:10709
+#: build/index.js:6908
+msgid "Code"
+msgstr ""
+
+#: build/index.js:10714
+#: build/index.js:6914
+msgid "Cog"
+msgstr ""
+
+#: build/index.js:10722
+#: build/index.js:6924
+msgid "Column"
+msgstr ""
+
+#: build/index.js:10727
+#: build/index.js:6930
+msgid "Columns"
+msgstr ""
+
+#: build/index.js:10732
+#: build/index.js:6936
+msgid "Comment"
+msgstr ""
+
+#: build/index.js:10737
+#: build/index.js:6942
+msgid "Comment Author Avatar"
+msgstr ""
+
+#: build/index.js:10742
+#: build/index.js:6948
+msgid "Comment Author Name"
+msgstr ""
+
+#: build/index.js:10747
+#: build/index.js:6954
+msgid "Comment Content"
+msgstr ""
+
+#: build/index.js:10752
+#: build/index.js:6960
+msgid "Comment Edit Link"
+msgstr ""
+
+#: build/index.js:10757
+#: build/index.js:6966
+msgid "Comment Reply Link"
+msgstr ""
+
+#: build/index.js:10762
+#: build/index.js:6972
+msgid "Cover"
+msgstr ""
+
+#: build/index.js:10767
+#: build/index.js:6978
+msgid "Create"
+msgstr ""
+
+#: build/index.js:10771
+#: build/index.js:6983
+msgid "Crop"
+msgstr ""
+
+#: build/index.js:10775
+#: build/index.js:6988
+msgid "Currency Dollar"
+msgstr ""
+
+#: build/index.js:10779
+#: build/index.js:6993
+msgid "Currency Euro"
+msgstr ""
+
+#: build/index.js:10783
+#: build/index.js:6998
+msgid "Currency Pound"
+msgstr ""
+
+#: build/index.js:10787
+#: build/index.js:7003
+msgid "Custom Post Type"
+msgstr ""
+
+#: build/index.js:10791
+#: build/index.js:7008
+msgid "Desktop"
+msgstr ""
+
+#: build/index.js:10796
+#: build/index.js:7014
+msgid "Drag Handle"
+msgstr ""
+
+#: build/index.js:10800
+#: build/index.js:7019
+msgid "Download"
+msgstr ""
+
+#: build/index.js:10805
+#: build/index.js:7025
+msgid "Edit"
+msgstr ""
+
+#: build/index.js:10809
+#: build/index.js:7030
+msgid "External"
+msgstr ""
+
+#: build/index.js:10813
+#: build/index.js:7035
+msgid "File"
+msgstr ""
+
+#: build/index.js:10825
+#: build/index.js:7050
+msgid "Format Bold"
+msgstr ""
+
+#: build/index.js:10830
+#: build/index.js:7056
+msgid "Format Capitalize"
+msgstr ""
+
+#: build/index.js:10835
+#: build/index.js:7062
+msgid "Format Indent"
+msgstr ""
+
+#: build/index.js:10840
+#: build/index.js:7068
+msgid "Format Indent RTL"
+msgstr ""
+
+#: build/index.js:10844
+#: build/index.js:7073
+msgid "Format Italic"
+msgstr ""
+
+#: build/index.js:10849
+#: build/index.js:7079
+msgid "Format List Bullets"
+msgstr ""
+
+#: build/index.js:10854
+#: build/index.js:7085
+msgid "Format List Bullets RTL"
+msgstr ""
+
+#: build/index.js:10859
+#: build/index.js:7091
+msgid "Format List Numbered"
+msgstr ""
+
+#: build/index.js:10864
+#: build/index.js:7097
+msgid "Format List Numbered RTL"
+msgstr ""
+
+#: build/index.js:10869
+#: build/index.js:7103
+msgid "Format LTR"
+msgstr ""
+
+#: build/index.js:10874
+#: build/index.js:7109
+msgid "Format Lowercase"
+msgstr ""
+
+#: build/index.js:10879
+#: build/index.js:7115
+msgid "Format Outdent"
+msgstr ""
+
+#: build/index.js:10884
+#: build/index.js:7121
+msgid "Format Outdent RTL"
+msgstr ""
+
+#: build/index.js:10889
+#: build/index.js:7127
+msgid "Format RTL"
+msgstr ""
+
+#: build/index.js:10894
+#: build/index.js:7133
+msgid "Format Strikethrough"
+msgstr ""
+
+#: build/index.js:10899
+#: build/index.js:7139
+msgid "Format Underline"
+msgstr ""
+
+#: build/index.js:10904
+#: build/index.js:7145
+msgid "Format Uppercase"
+msgstr ""
+
+#: build/index.js:10909
+#: build/index.js:7151
+msgid "Fullscreen"
+msgstr ""
+
+#: build/index.js:10914
+#: build/index.js:7157
+msgid "Gallery"
+msgstr ""
+
+#: build/index.js:10919
+#: build/index.js:7163
+msgid "Globe"
+msgstr ""
+
+#: build/index.js:10923
+#: build/index.js:7168
+msgid "Grid"
+msgstr ""
+
+#: build/index.js:10927
+#: build/index.js:7173
+msgid "Group"
+msgstr ""
+
+#: build/index.js:10932
+#: build/index.js:7179
+msgid "Handle"
+msgstr ""
+
+#: build/index.js:10936
+#: build/index.js:7184
+msgid "Heading"
+msgstr ""
+
+#: build/index.js:10941
+#: build/index.js:7190
+msgid "Help"
+msgstr ""
+
+#: build/index.js:10945
+#: build/index.js:7195
+msgid "Help - Filled"
+msgstr ""
+
+#: build/index.js:10949
+#: build/index.js:7200
+msgid "Inbox"
+msgstr ""
+
+#: build/index.js:10953
+#: build/index.js:7205
+msgid "Institution"
+msgstr ""
+
+#: build/index.js:10957
+#: build/index.js:7210
+msgid "Home"
+msgstr ""
+
+#: build/index.js:10962
+#: build/index.js:7216
+msgid "HTML"
+msgstr ""
+
+#: build/index.js:10968
+#: build/index.js:7223
+msgid "Image"
+msgstr ""
+
+#: build/index.js:10973
+#: build/index.js:7229
+msgid "Info"
+msgstr ""
+
+#: build/index.js:10977
+#: build/index.js:7234
+msgid "Insert After"
+msgstr ""
+
+#: build/index.js:10982
+#: build/index.js:7240
+msgid "Insert Before"
+msgstr ""
+
+#: build/index.js:10987
+#: build/index.js:7246
+msgid "Justify Left"
+msgstr ""
+
+#: build/index.js:10992
+#: build/index.js:7252
+msgid "Justify Center"
+msgstr ""
+
+#: build/index.js:10997
+#: build/index.js:7258
+msgid "Justify Right"
+msgstr ""
+
+#: build/index.js:11002
+#: build/index.js:7264
+msgid "Justify Space Between"
+msgstr ""
+
+#: build/index.js:11007
+#: build/index.js:7270
+msgid "Key"
+msgstr ""
+
+#: build/index.js:11011
+#: build/index.js:7275
+msgid "Keyboard Close"
+msgstr ""
+
+#: build/index.js:11016
+#: build/index.js:7281
+msgid "Keyboard Return"
+msgstr ""
+
+#: build/index.js:11021
+#: build/index.js:7287
+msgid "Layout"
+msgstr ""
+
+#: build/index.js:11025
+#: build/index.js:7292
+msgid "Lifesaver"
+msgstr ""
+
+#: build/index.js:11051
+#: build/index.js:7319
+msgid "Link Off"
+msgstr ""
+
+#: build/index.js:11056
+#: build/index.js:7325
+msgid "List"
+msgstr ""
+
+#: build/index.js:11061
+#: build/index.js:7331
+msgid "List View"
+msgstr ""
+
+#: build/index.js:11066
+#: build/index.js:7337
+msgid "Lock"
+msgstr ""
+
+#: build/index.js:11071
+#: build/index.js:7343
+msgid "Login"
+msgstr ""
+
+#: build/index.js:11075
+#: build/index.js:7348
+msgid "Loop"
+msgstr ""
+
+#: build/index.js:11080
+#: build/index.js:7354
+msgid "Map Marker"
+msgstr ""
+
+#: build/index.js:11084
+#: build/index.js:11623
+#: build/index.js:7359
+#: build/index.js:8022
+msgid "Media"
+msgstr ""
+
+#: build/index.js:11089
+#: build/index.js:7365
+msgid "Media & Text"
+msgstr ""
+
+#: build/index.js:11094
+#: build/index.js:7371
+msgid "Megaphone"
+msgstr ""
+
+#: build/index.js:11098
+#: build/index.js:7376
+msgid "Menu"
+msgstr ""
+
+#: build/index.js:11102
+#: build/index.js:7381
+msgid "Mobile"
+msgstr ""
+
+#: build/index.js:11107
+#: build/index.js:7387
+msgid "More"
+msgstr ""
+
+#: build/index.js:11111
+#: build/index.js:7392
+msgid "More Horizontal"
+msgstr ""
+
+#: build/index.js:11115
+#: build/index.js:7397
+msgid "More Horizontal - Mobile"
+msgstr ""
+
+#: build/index.js:11119
+#: build/index.js:7402
+msgid "More Vertical"
+msgstr ""
+
+#: build/index.js:11123
+#: build/index.js:7407
+msgid "Move To"
+msgstr ""
+
+#: build/index.js:11128
+#: build/index.js:7413
+msgid "Navigation"
+msgstr ""
+
+#: build/index.js:11132
+#: build/index.js:7418
+msgid "Overlay Text"
+msgstr ""
+
+#: build/index.js:11136
+#: build/index.js:7423
+msgid "Page Break"
+msgstr ""
+
+#: build/index.js:11140
+#: build/index.js:7428
+msgid "Custom Link"
+msgstr ""
+
+#: build/index.js:11144
+#: build/index.js:7433
+msgid "Page"
+msgstr ""
+
+#: build/index.js:11148
+#: build/index.js:7438
+msgid "Pages"
+msgstr ""
+
+#: build/index.js:11152
+#: build/index.js:7443
+msgid "Paragraph"
+msgstr ""
+
+#: build/index.js:11156
+#: build/index.js:7448
+msgid "Payment"
+msgstr ""
+
+#: build/index.js:11160
+#: build/index.js:7453
+msgid "Percent"
+msgstr ""
+
+#: build/index.js:11164
+#: build/index.js:7458
+msgid "Position Center"
+msgstr ""
+
+#: build/index.js:11168
+#: build/index.js:7463
+msgid "Position Left"
+msgstr ""
+
+#: build/index.js:11172
+#: build/index.js:7468
+msgid "Position Right"
+msgstr ""
+
+#: build/index.js:11176
+#: build/index.js:7473
+msgid "Post"
+msgstr ""
+
+#: build/index.js:11180
+#: build/index.js:7478
+msgid "Pencil"
+msgstr ""
+
+#: build/index.js:11184
+#: build/index.js:7483
+msgid "People"
+msgstr ""
+
+#: build/index.js:11188
+#: build/index.js:7488
+msgid "Pin"
+msgstr ""
+
+#: build/index.js:11192
+#: build/index.js:7493
+msgid "Plugins"
+msgstr ""
+
+#: build/index.js:11196
+#: build/index.js:7498
+msgid "Plus Circle - Filled"
+msgstr ""
+
+#: build/index.js:11200
+#: build/index.js:7503
+msgid "Plus Circle"
+msgstr ""
+
+#: build/index.js:11204
+#: build/index.js:7508
+msgid "Plus"
+msgstr ""
+
+#: build/index.js:11208
+#: build/index.js:7513
+msgid "Post Author"
+msgstr ""
+
+#: build/index.js:11213
+#: build/index.js:7519
+msgid "Post Categories"
+msgstr ""
+
+#: build/index.js:11218
+#: build/index.js:7525
+msgid "Post Content"
+msgstr ""
+
+#: build/index.js:11223
+#: build/index.js:7531
+msgid "Post Comments"
+msgstr ""
+
+#: build/index.js:11228
+#: build/index.js:7537
+msgid "Post Comment Count"
+msgstr ""
+
+#: build/index.js:11232
+#: build/index.js:7542
+msgid "Post Comments Form"
+msgstr ""
+
+#: build/index.js:11237
+#: build/index.js:7548
+msgid "Post Date"
+msgstr ""
+
+#: build/index.js:11242
+#: build/index.js:7554
+msgid "Post Excerpt"
+msgstr ""
+
+#: build/index.js:11247
+#: build/index.js:7560
+msgid "Post Featured Image"
+msgstr ""
+
+#: build/index.js:11252
+#: build/index.js:7566
+msgid "Post List"
+msgstr ""
+
+#: build/index.js:11257
+#: build/index.js:7572
+msgid "Post Terms"
+msgstr ""
+
+#: build/index.js:11262
+#: build/index.js:7578
+msgid "Previous"
+msgstr ""
+
+#: build/index.js:11267
+#: build/index.js:7584
+msgid "Next"
+msgstr ""
+
+#: build/index.js:11272
+#: build/index.js:7590
+msgid "Preformatted"
+msgstr ""
+
+#: build/index.js:11276
+#: build/index.js:7595
+msgid "Pull Left"
+msgstr ""
+
+#: build/index.js:11280
+#: build/index.js:7600
+msgid "Pull Right"
+msgstr ""
+
+#: build/index.js:11284
+#: build/index.js:7605
+msgid "Pull Quote"
+msgstr ""
+
+#: build/index.js:11288
+#: build/index.js:7610
+msgid "Query Pagination"
+msgstr ""
+
+#: build/index.js:11292
+#: build/index.js:7615
+msgid "Query Pagination Next"
+msgstr ""
+
+#: build/index.js:11297
+#: build/index.js:7621
+msgid "Query Pagination Numbers"
+msgstr ""
+
+#: build/index.js:11301
+#: build/index.js:7626
+msgid "Query Pagination Previous"
+msgstr ""
+
+#: build/index.js:11306
+#: build/index.js:7632
+msgid "Quote"
+msgstr ""
+
+#: build/index.js:11311
+#: build/index.js:7638
+msgid "Receipt"
+msgstr ""
+
+#: build/index.js:11315
+#: build/index.js:7643
+msgid "Redo"
+msgstr ""
+
+#: build/index.js:11320
+#: build/index.js:7649
+msgid "Remove Bug"
+msgstr ""
+
+#: build/index.js:11324
+#: build/index.js:7654
+msgid "Remove Submenu"
+msgstr ""
+
+#: build/index.js:11338
+#: build/index.js:7671
+msgid "Resize Corner"
+msgstr ""
+
+#: build/index.js:11343
+#: build/index.js:7677
+msgid "Reusable Block"
+msgstr ""
+
+#: build/index.js:11348
+#: build/index.js:7683
+msgid "Rotate Left"
+msgstr ""
+
+#: build/index.js:11353
+#: build/index.js:7689
+msgid "Rotate Right"
+msgstr ""
+
+#: build/index.js:11358
+#: build/index.js:7695
+msgid "Row"
+msgstr ""
+
+#: build/index.js:11362
+#: build/index.js:7700
+msgid "RSS"
+msgstr ""
+
+#: build/index.js:11366
+#: build/index.js:7705
+msgid "Search"
+msgstr ""
+
+#: build/index.js:11371
+#: build/index.js:7711
+msgid "Separator"
+msgstr ""
+
+#: build/index.js:11380
+#: build/index.js:7722
+msgid "Share"
+msgstr ""
+
+#: build/index.js:11384
+#: build/index.js:7727
+msgid "Shield"
+msgstr ""
+
+#: build/index.js:11388
+#: build/index.js:7732
+msgid "Shortcode"
+msgstr ""
+
+#: build/index.js:11393
+#: build/index.js:7738
+msgid "Site Logo"
+msgstr ""
+
+#: build/index.js:11399
+#: build/index.js:7745
+msgid "Sparkles"
+msgstr ""
+
+#: build/index.js:11403
+#: build/index.js:7750
+msgid "Stack"
+msgstr ""
+
+#: build/index.js:11407
+#: build/index.js:7755
+msgid "Star Empty"
+msgstr ""
+
+#: build/index.js:11411
+#: build/index.js:7760
+msgid "Star Filled"
+msgstr ""
+
+#: build/index.js:11415
+#: build/index.js:7765
+msgid "Star Half"
+msgstr ""
+
+#: build/index.js:11419
+#: build/index.js:7770
+msgid "Store"
+msgstr ""
+
+#: build/index.js:11423
+#: build/index.js:7775
+msgid "Stretch Full Width"
+msgstr ""
+
+#: build/index.js:11428
+#: build/index.js:7781
+msgid "Styles"
+msgstr ""
+
+#: build/index.js:11433
+#: build/index.js:7787
+msgid "Shipping"
+msgstr ""
+
+#: build/index.js:11438
+#: build/index.js:7793
+msgid "Stretch Wide"
+msgstr ""
+
+#: build/index.js:11443
+#: build/index.js:7799
+msgid "Subscript"
+msgstr ""
+
+#: build/index.js:11448
+#: build/index.js:7805
+msgid "Superscript"
+msgstr ""
+
+#: build/index.js:11453
+#: build/index.js:7811
+msgid "Swatch"
+msgstr ""
+
+#: build/index.js:11457
+#: build/index.js:7816
+msgid "Symbol"
+msgstr ""
+
+#: build/index.js:11461
+#: build/index.js:7821
+msgid "Symbol - Filled"
+msgstr ""
+
+#: build/index.js:11465
+#: build/index.js:7826
+msgid "Table Column After"
+msgstr ""
+
+#: build/index.js:11470
+#: build/index.js:7832
+msgid "Table Column Before"
+msgstr ""
+
+#: build/index.js:11475
+#: build/index.js:7838
+msgid "Table Column Delete"
+msgstr ""
+
+#: build/index.js:11480
+#: build/index.js:7844
+msgid "Table Row After"
+msgstr ""
+
+#: build/index.js:11485
+#: build/index.js:7850
+msgid "Table Row Before"
+msgstr ""
+
+#: build/index.js:11490
+#: build/index.js:7856
+msgid "Table Row Delete"
+msgstr ""
+
+#: build/index.js:11495
+#: build/index.js:7862
+msgid "Table"
+msgstr ""
+
+#: build/index.js:11499
+#: build/index.js:7867
+msgid "Tag"
+msgstr ""
+
+#: build/index.js:11503
+#: build/index.js:7872
+msgid "Term Description"
+msgstr ""
+
+#: build/index.js:11508
+#: build/index.js:7878
+msgid "Footer"
+msgstr ""
+
+#: build/index.js:11512
+#: build/index.js:7883
+msgid "Header"
+msgstr ""
+
+#: build/index.js:11516
+#: build/index.js:7888
+msgid "Sidebar"
+msgstr ""
+
+#: build/index.js:11520
+#: build/index.js:7893
+msgid "Text Color"
+msgstr ""
+
+#: build/index.js:11524
+#: build/index.js:7898
+msgid "Tablet"
+msgstr ""
+
+#: build/index.js:11529
+#: build/index.js:7904
+msgid "Title"
+msgstr ""
+
+#: build/index.js:11533
+#: build/index.js:7909
+msgid "Tip"
+msgstr ""
+
+#: build/index.js:11537
+#: build/index.js:7914
+msgid "Tool"
+msgstr ""
+
+#: build/index.js:11541
+#: build/index.js:7919
+msgid "Trash"
+msgstr ""
+
+#: build/index.js:11545
+#: build/index.js:7924
+msgid "Trending Down"
+msgstr ""
+
+#: build/index.js:11550
+#: build/index.js:7930
+msgid "Trending Up"
+msgstr ""
+
+#: build/index.js:11555
+#: build/index.js:7936
+msgid "Typography"
+msgstr ""
+
+#: build/index.js:11559
+#: build/index.js:7941
+msgid "Undo"
+msgstr ""
+
+#: build/index.js:11564
+#: build/index.js:7947
+msgid "Ungroup"
+msgstr ""
+
+#: build/index.js:11569
+#: build/index.js:7953
+msgid "Unlock"
+msgstr ""
+
+#: build/index.js:11574
+#: build/index.js:7959
+msgid "Update"
+msgstr ""
+
+#: build/index.js:11578
+#: build/index.js:7964
+msgid "Upload"
+msgstr ""
+
+#: build/index.js:11584
+#: build/index.js:7971
+msgid "Verse"
+msgstr ""
+
+#: build/index.js:11589
+#: build/index.js:7977
+msgid "Video"
+msgstr ""
+
+#: build/index.js:11594
+#: build/index.js:7983
+msgid "Warning"
+msgstr ""
+
+#: build/index.js:11598
+#: build/index.js:7988
+msgid "Widget"
+msgstr ""
+
+#: build/index.js:11604
+#: build/index.js:7997
+msgid "WordPress"
+msgstr ""
+
+#: build/index.js:11608
+#: build/index.js:8002
+msgid "Arrows"
+msgstr ""
+
+#: build/index.js:11611
+#: build/index.js:8006
+msgid "Blocks"
+msgstr ""
+
+#: build/index.js:11614
+#: build/index.js:8010
+msgid "Devices"
+msgstr ""
+
+#: build/index.js:11617
+#: build/index.js:8014
+msgid "Editor"
+msgstr ""
+
+#: build/index.js:11620
+#: build/index.js:8018
+msgid "Logos"
+msgstr ""
+
+#: build/index.js:13284
+#: build/index.js:8780
+msgid "An error occured while uploading. The file does not appear to be an SVG."
+msgstr ""
+
+#: build/index.js:13285
+#: build/index.js:8784
+msgid "An error occured while inserting the icon. The media selected is not an SVG."
+msgstr ""
+
+#: build/index.js:13286
+#: build/index.js:8788
+msgid "An error occured while inserting the icon. Check that the file is valid SVG."
 msgstr ""
 
 #: build/block.json
