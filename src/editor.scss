@@ -7,7 +7,7 @@
 
 	// Dropzone styles.
 	.components-drop-zone__content {
-		container-type: inline-size;
+		container-type: size;
 
 		.components-drop-zone__content-icon {
 			width: 24px;
@@ -15,7 +15,17 @@
 		}
 		
 		// Only show the icon if the dropzone is too small.
-		@container (max-width: 150px) {
+		@container (max-width: 150px)  {
+			.components-drop-zone__content-icon {
+				margin-bottom: 0;
+			}
+			
+			.components-drop-zone__content-text {
+				display: none;
+			}
+		}
+
+		@container (max-height: 120px)  {
 			.components-drop-zone__content-icon {
 				margin-bottom: 0;
 			}
