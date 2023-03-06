@@ -10,6 +10,7 @@ The Icon Block plugin registers a single, easy-to-use block that allows you to a
 
 - 270+ native WordPress icons, including social logos
 - Use any custom SVG icon or graphic
+- Insert icons from your Media Library if SVG uploads are supported
 - Includes handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
 - Fully compatible with the Site Editor
 - No block library required 🎉
@@ -31,7 +32,7 @@ The Icon Block plugin registers a single, easy-to-use block that allows you to a
 5. Run `composer install` to install the additional WordPress composer tools within a `/vendor/` folder.
 6. Run `npm run start` to compile and watch source files for changes while developing.
 
-Refer to `package.json` and `composer.json` for additional commands.
+Refer to `package.json` for additional commands.
 
 ## Extensibility
 
