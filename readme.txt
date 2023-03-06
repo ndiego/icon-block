@@ -4,7 +4,7 @@ Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 6.0
 Tested up to:      6.1
 Requires PHP:      7.0
-Stable tag:        1.4.0
+Stable tag:        1.5.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,7 @@ The plugin also includes the complete WordPress icon library with 270+ SVG icons
 
 * 270+ native WordPress icons, including social logos
 * Use any custom SVG icon or graphic
+* Insert icons from your Media Library if SVG uploads are supported
 * Includes handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
 * Fully compatible with the Site Editor
 * No block library required 🎉
@@ -54,6 +55,10 @@ The Icon Block also allows you to register your own custom block library. This n
 
 The Icon Block includes controls for the icon's color and background. However, if your SVG icon has hard-coded color/fill values, the plugin will respect those instead of any applied custom colors.
 
+= Why can't I add SVG icons from my Media Library? =
+
+By default, WordPress does not allow you to add SVG files to your Media Library, but you can enable this functionality using plugins like [Safe SVG](https://wordpress.org/plugins/safe-svg/). If SVG uploads are enabled, you will see the option to insert icons from Media Library in the Icon block.
+
 = Why is the block not working for certain users? =
 
 WordPress only allows Administrators and Editors to save "Unfiltered HTML" content, which includes SVGs. The Icon Block will not work properly for users who are at the Author level or lower.
@@ -73,22 +78,24 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.5.0 - 2023-03-TBD =
+= 1.5.0 - 2023-03-09 =
 
 **Added**
 
-* Added the ability to insert an SVG icon from the Media Library if SVG uploads are enabled on the website.
 * Added dropzone support for media library uploads and custom SVGs.
 * Added support for style elements in custom SVGs.
+* Added the ability to insert an SVG icon from the Media Library if SVG uploads are enabled on the website.
+* Added the ability to clear the current icon.
 
 **Changed**
 
 * Updated the block inspector panels for WordPress 6.2 compatibility.
+* Updated the replace dropdown to use the native DropDownMenu component for improved WordPress 6.2 compatibility.
 
 **Fixed**
 
 * Fixed invalid DOM properties error. Thanks @DeoThemes for reporting this issue and suggesting a solution! ([#25](https://github.com/ndiego/icon-block/pull/25))
-* Fixed a few minor CSS issues for for WordPress 6.2 compatibility.
+* Fixed a few minor CSS issues for WordPress 6.2 compatibility.
 
 = 1.4.0 - 2023-01-03 =
 

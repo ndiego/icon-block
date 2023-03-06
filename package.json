@@ -1,6 +1,6 @@
 {
 	"name": "icon-block",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"description": "Effortlessly add SVG icons and graphics to the WordPress block editor.",
 	"author": "Nick Diego",
 	"license": "GPL-2.0-or-later",
@@ -13,7 +13,8 @@
 		"lint:js:src": "wp-scripts lint-js ./src",
 		"lint:js:src:fix": "wp-scripts lint-js ./src --fix",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update"
+		"packages-update": "wp-scripts packages-update",
+		"update-pot": "wp i18n make-pot . languages/icon-block.pot --exclude=src"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "^10.5.0",
