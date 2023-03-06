@@ -9,10 +9,10 @@ import { isEmpty, isNumber } from 'lodash';
  */
 import { __ } from '@wordpress/i18n';
 import {
-	Dropdown,
+	DropdownMenu,
 	ExternalLink,
+	MenuGroup,
 	MenuItem,
-	NavigableMenu,
 	Popover,
 	TextControl,
 	ToggleControl,
@@ -117,14 +117,23 @@ export function Edit( props ) {
 	// Allowed types for the current WP_User
 	const { allowedMimeTypes, mediaUpload } = useSelect( ( select ) => {
 		const { getSettings } = select( 'core/block-editor' );
+
+		// In WordPress 6.1 and lower, allowedMimeTypes returns
+		// null in the post editor, so need to use getEditorSettings.
+		// TODO: Remove once minimum version is bumped to 6.2
+		const { getEditorSettings } = select( 'core/editor' );
+
 		return {
-			allowedMimeTypes: getSettings().allowedMimeTypes,
+			allowedMimeTypes: getSettings().allowedMimeTypes
+				? getSettings().allowedMimeTypes
+				: getEditorSettings().allowedMimeTypes,
 			mediaUpload: getSettings().mediaUpload,
 		};
 	}, [] );
 
-	const isSVGUploadAllowed =
-		Object.values( allowedMimeTypes ).includes( 'image/svg+xml' );
+	const isSVGUploadAllowed = allowedMimeTypes
+		? Object.values( allowedMimeTypes ).includes( 'image/svg+xml' )
+		: false;
 
 	const { gradientClass, gradientValue, setGradient } = useGradient();
 
@@ -214,58 +223,77 @@ export function Edit( props ) {
 	}
 
 	const replaceDropdown = (
-		<Dropdown
-			renderToggle={ ( { onToggle } ) => (
-				<ToolbarButton onClick={ onToggle }>
-					{ __( 'Replace', 'icon-block' ) }
-				</ToolbarButton>
-			) }
-			renderContent={ ( { onClose } ) => (
-				<NavigableMenu>
-					<MenuItem
-						onClick={ () => {
-							setInserterOpen( true );
-							onClose( true );
-						} }
-						icon={ defaultIcon }
-					>
-						{ __( 'Browse icon library', 'icon-block' ) }
-					</MenuItem>
-					{ isSVGUploadAllowed && (
-						<MediaUpload
-							onSelect={ ( media ) => {
-								parseUploadedMediaAndSetIcon(
-									media,
-									attributes,
-									setAttributes
-								);
-								onClose();
-							} }
-							allowedTypes={ [ 'image/svg+xml' ] }
-							render={ ( { open } ) => (
-								<MenuItem onClick={ open } icon={ mediaIcon }>
-									{ __( 'Open Media Library', 'icon-block' ) }
-								</MenuItem>
-							) }
-						/>
-					) }
-					{ enableCustomIcons && (
+		<DropdownMenu
+			icon=""
+			popoverProps={ {
+				className: 'outermost-icon-block__replace-popover is-alternate',
+			} }
+			text={ __( 'Replace', 'icon-block' ) }
+		>
+			{ ( { onClose } ) => (
+				<>
+					<MenuGroup>
 						<MenuItem
 							onClick={ () => {
-								setCustomInserterOpen( true );
+								setInserterOpen( true );
 								onClose( true );
 							} }
-							icon={ code }
+							icon={ defaultIcon }
 						>
-							{ __( 'Add/edit custom icon', 'icon-block' ) }
+							{ __( 'Browse icon library', 'icon-block' ) }
 						</MenuItem>
-					) }
-				</NavigableMenu>
+						{ isSVGUploadAllowed && (
+							<MediaUpload
+								onSelect={ ( media ) => {
+									parseUploadedMediaAndSetIcon(
+										media,
+										attributes,
+										setAttributes
+									);
+									onClose( true );
+								} }
+								allowedTypes={ [ 'image/svg+xml' ] }
+								render={ ( { open } ) => (
+									<MenuItem
+										onClick={ open }
+										icon={ mediaIcon }
+									>
+										{ __(
+											'Open Media Library',
+											'icon-block'
+										) }
+									</MenuItem>
+								) }
+							/>
+						) }
+						{ enableCustomIcons && (
+							<MenuItem
+								onClick={ () => {
+									setCustomInserterOpen( true );
+									onClose( true );
+								} }
+								icon={ code }
+							>
+								{ __( 'Add/edit custom icon', 'icon-block' ) }
+							</MenuItem>
+						) }
+					</MenuGroup>
+					<MenuGroup>
+						<MenuItem
+							onClick={ () => {
+								setAttributes( {
+									icon: undefined,
+									iconName: undefined,
+								} );
+								onClose( true );
+							} }
+						>
+							{ __( 'Clear icon', 'icon-block' ) }
+						</MenuItem>
+					</MenuGroup>
+				</>
 			) }
-			popoverProps={ {
-				className: 'outermost-icon-block__replace-popover',
-			} }
-		/>
+		</DropdownMenu>
 	);
 
 	const blockControls = (
