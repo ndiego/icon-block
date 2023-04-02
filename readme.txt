@@ -57,7 +57,7 @@ The Icon Block includes controls for the icon's color and background. However, i
 
 = Why can't I add SVG icons from my Media Library? =
 
-By default, WordPress does not allow you to add SVG files to your Media Library, but you can enable this functionality using plugins like [Safe SVG](https://wordpress.org/plugins/safe-svg/). If SVG uploads are enabled, you will see the option to insert icons from Media Library in the Icon block.
+By default, WordPress does not allow you to add SVG files to your Media Library, but you can enable this functionality using plugins like [Safe SVG](https://wordpress.org/plugins/safe-svg/). If SVG uploads are enabled, you will see the option to insert icons from Media Library in the Icon Block.
 
 = Why is the block not working for certain users? =
 
