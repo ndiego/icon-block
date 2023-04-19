@@ -2,14 +2,6 @@
  * Editor and frontend styles for the Icon Block.
  */
 
-/* Register our variables. */
-$r90: rotate(90deg);
-$r180: rotate(180deg);
-$r270: rotate(270deg);
-$flipH: scaleX(-1);
-$flipV: scaleY(-1);
-$flipHV: scale(-1, -1);
-
 /* Icon Block styles. */
 .wp-block-outermost-icon-block {
 	display: flex;
@@ -49,7 +41,6 @@ $flipHV: scale(-1, -1);
     a:hover {
         transform: scale(1.1);
     }
-
 
 	&.rotate-90,
 	.rotate-90 {
