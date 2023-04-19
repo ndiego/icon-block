@@ -50,109 +50,46 @@ $flipHV: scale(-1, -1);
         transform: scale(1.1);
     }
 
-	/* There is likely a more efficient way to handle the rotation/flipping */
+
 	&.rotate-90,
 	.rotate-90 {
 		svg {
-			transform: $r90;
+			rotate: 90deg;
 		}
 	}
 
 	&.rotate-180,
 	.rotate-180 {
 		svg {
-			transform: $r180;
+			rotate: 180deg;
 		}
 	}
 
 	&.rotate-270,
 	.rotate-270 {
 		svg {
-			transform: $r270;
+			rotate: 270deg;
 		}
 	}
 
 	&.flip-horizontal,
 	.flip-horizontal {
 		svg {
-			transform: $flipH;
+			scale: -1 1;
 		}
 	}
 
 	&.flip-vertical,
 	.flip-vertical {
 		svg {
-			transform: $flipV;
+			scale: 1 -1;
 		}
 	}
 
 	&.flip-vertical.flip-horizontal,
 	.flip-vertical.flip-horizontal {
 		svg {
-			transform: $flipHV;
-		}
-	}
-
-	&.rotate-90.flip-horizontal,
-	.rotate-90.flip-horizontal {
-		svg {
-			transform: $r90 $flipH;
-		}
-	}
-
-	&.rotate-90.flip-vertical,
-	.rotate-90.flip-vertical {
-		svg {
-			transform: $r90 $flipV;
-		}
-	}
-
-	&.rotate-90.flip-horizontal.flip-vertical,
-	.rotate-90.flip-horizontal.flip-vertical {
-		svg {
-			transform: $r90 $flipHV;
-		}
-	}
-
-	&.rotate-180.flip-horizontal,
-	.rotate-180.flip-horizontal {
-		svg {
-			transform: $r180 $flipH;
-		}
-	}
-
-	&.rotate-180.flip-vertical,
-	.rotate-180.flip-vertical {
-		svg {
-			transform: $r180 $flipV;
-		}
-	}
-
-	&.rotate-180.flip-horizontal.flip-vertical,
-	.rotate-180.flip-horizontal.flip-vertical {
-		svg {
-			transform: $r180 $flipHV;
-		}
-	}
-
-	&.rotate-270.flip-horizontal,
-	.rotate-270.flip-horizontal {
-		svg {
-			transform: $r270 $flipH;
-		}
-	}
-
-	&.rotate-270.flip-vertical,
-	.rotate-270.flip-vertical {
-		svg {
-			transform: $r270 $flipV;
-		}
-	}
-
-	&.rotate-270.flip-horizontal.flip-vertical,
-	.rotate-270.flip-horizontal.flip-vertical {
-		svg {
-			transform: $r270 $flipHV;
+			scale: -1 -1;
 		}
 	}
  }
