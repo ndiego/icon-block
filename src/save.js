@@ -160,7 +160,7 @@ export default function Save( props ) {
 					target={ target }
 					rel={ rel }
 					style={ iconStyles }
-					aria-label={ label }
+					aria-label={ label ? label : null }
 				>
 					{ printedIcon }
 				</a>
