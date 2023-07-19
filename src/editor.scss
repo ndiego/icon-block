@@ -457,17 +457,24 @@
 	}
 
 	// Styles for color settings.
+	.color-block-support-panel,
 	.outermost-icon-block__color-settings {
 		.outermost-icon-block__color-settings__help {
 			font-size: 12px;
 			font-style: normal;
 			color: rgb(117, 117, 117);
+			grid-column: 1 / -1;
 			margin-top: 8px;
 			margin-bottom: 24px;
 	
 			&:first-child {
 				margin-top: 0;
 			}
+		}
+
+		.outermost-icon-block__color-settings__apply-fill {
+			grid-column: 1 / -1;
+			margin: 0;
 		}
 
 		.components-base-control__help {
@@ -480,12 +487,6 @@
 			.components-notice__content {
 				margin-right: 0;
 			}
-		}
-
-		// A spacer component is added automatically be the PanelColorGradientSettings
-		// component. We don't need this, and it messes with the panel styles.
-		.components-spacer {
-			display: none !important;
 		}
 	}
 

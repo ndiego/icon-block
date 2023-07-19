@@ -28,7 +28,8 @@ import {
 	MediaUpload,
 	useBlockProps,
 	withColors,
-	__experimentalPanelColorGradientSettings as PanelColorGradientSettings, // eslint-disable-line
+	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown, // eslint-disable-line
+	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients, // eslint-disable-line
 	__experimentalUseGradient as useGradient, // eslint-disable-line
 	__experimentalLinkControl as LinkControl, // eslint-disable-line
 	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
@@ -75,6 +76,7 @@ const NEW_TAB_REL = 'noreferrer noopener';
  */
 export function Edit( props ) {
 	const {
+		clientId,
 		attributes,
 		iconBackgroundColor,
 		iconColor,
@@ -396,6 +398,47 @@ export function Edit( props ) {
 		</>
 	);
 
+	const colorSettings = [
+		{
+			colorLabel: __( 'Icon color', 'icon-block' ),
+			colorValue: iconColor.color || iconColorValue,
+			onChange: ( colorValue ) => {
+				setIconColor( colorValue );
+				setAttributes( {
+					iconColorValue: colorValue,
+				} );
+			},
+			resetAllFilter: () => {
+				setIconColor( undefined );
+				setAttributes( { iconColorValue: undefined } );
+			},
+		},
+		{
+			colorLabel: __( 'Background color', 'icon-block' ),
+			colorValue:
+				iconBackgroundColor.color ||
+				iconBackgroundColorValue,
+			colorGradientValue: gradientValue,
+			onChange: ( colorValue ) => {
+				setIconBackgroundColor( colorValue );
+				setAttributes( {
+					iconBackgroundColorValue: colorValue,
+				} );
+			},
+			onGradientChange: setGradient,
+			resetAllFilter: () => {
+				setIconBackgroundColor( undefined );
+				setAttributes( { iconBackgroundColorValue: undefined } );
+			},
+		},
+	];
+
+	const colorGradientSettings = useMultipleOriginColorsAndGradients();
+
+	// In WordPress <=6.2 this will return null, so default to true in those cases.
+	const hasColorsOrGradients =
+		colorGradientSettings?.hasColorsOrGradients ?? true;
+
 	const inspectorControls = ( icon || iconName ) && (
 		<>
 			<InspectorControls group="settings">
@@ -450,40 +493,30 @@ export function Edit( props ) {
 					) }
 				</OptionsPanel>
 			</InspectorControls>
-			<InspectorControls group="styles">
-				<PanelColorGradientSettings
-					className="outermost-icon-block__color-settings"
-					title={ __( 'Color', 'icon-block' ) }
-					initialOpen={ true }
-					enableAlpha={ true }
-					settings={ [
-						{
-							colorValue: iconColor.color || iconColorValue,
-							onColorChange: ( colorValue ) => {
-								setIconColor( colorValue );
-								setAttributes( {
-									iconColorValue: colorValue,
-								} );
-							},
-							label: __( 'Icon color', 'icon-block' ),
-						},
-						{
-							colorValue:
-								iconBackgroundColor.color ||
-								iconBackgroundColorValue,
-							onColorChange: ( colorValue ) => {
-								setIconBackgroundColor( colorValue );
-								setAttributes( {
-									iconBackgroundColorValue: colorValue,
-								} );
-							},
-							gradientValue,
-							onGradientChange: setGradient,
-							label: __( 'Background color', 'icon-block' ),
-						},
-					] }
-					__experimentalHasMultipleOrigins={ true }
-				>
+			{ hasColorsOrGradients && (
+				<InspectorControls group="color">
+					{ colorSettings.map(
+						( { colorLabel, colorValue, colorGradientValue, onChange, onGradientChange, resetAllFilter } ) => (
+							<ColorGradientSettingsDropdown
+								key={ `icon-block-color-${ label }` }
+								__experimentalIsRenderedInSidebar
+								settings={ [
+									{
+										label: colorLabel,
+										colorValue,
+										gradientValue: colorGradientValue,
+										onColorChange: onChange,
+										onGradientChange,
+										isShownByDefault: true,
+										resetAllFilter,
+										enableAlpha: true,
+									},
+								] }
+								panelId={ clientId }
+								{ ...colorGradientSettings }
+							/>
+						)
+					) }
 					{ ( iconColor.color || iconColorValue ) && (
 						<>
 							<p className="outermost-icon-block__color-settings__help">
@@ -493,6 +526,7 @@ export function Edit( props ) {
 								) }
 							</p>
 							<ToggleControl
+								className="outermost-icon-block__color-settings__apply-fill"
 								checked={ ! hasNoIconFill }
 								label={ __(
 									`Apply icon color to fill`,
@@ -517,8 +551,8 @@ export function Edit( props ) {
 						} }
 						isLargeText={ false }
 					/>
-				</PanelColorGradientSettings>
-			</InspectorControls>
+				</InspectorControls>
+			) }
 			<InspectorControls __experimentalGroup="advanced">
 				<TextControl
 					label={ __( 'Link rel', 'icon-block' ) }
