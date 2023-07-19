@@ -78,37 +78,44 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
+= 1.6.0 - 2023-07-TBD =
+
+**Changed**
+
+* Update minimum required WordPress verion to 6.2. We want to be utilizing the latest functionality in WordPress.
+* Move color settings to the native "color" panel. 
+
 = 1.5.0 - 2023-03-09 =
 
 **Added**
 
-* Added dropzone support for media library uploads and custom SVGs.
-* Added support for style elements in custom SVGs.
-* Added the ability to insert an SVG icon from the Media Library if SVG uploads are enabled on the website.
-* Added the ability to clear the current icon.
+* Add dropzone support for media library uploads and custom SVGs.
+* Add support for style elements in custom SVGs.
+* Add the ability to insert an SVG icon from the Media Library if SVG uploads are enabled on the website.
+* Add the ability to clear the current icon.
 
 **Changed**
 
-* Updated the block inspector panels for WordPress 6.2 compatibility.
-* Updated the replace dropdown to use the native DropDownMenu component for improved WordPress 6.2 compatibility.
+* Update the block inspector panels for WordPress 6.2 compatibility.
+* Update the replace dropdown to use the native DropDownMenu component for improved WordPress 6.2 compatibility.
 
 **Fixed**
 
-* Fixed invalid DOM properties error. Thanks @DeoThemes for reporting this issue and suggesting a solution! ([#25](https://github.com/ndiego/icon-block/pull/25))
-* Fixed a few minor CSS issues for WordPress 6.2 compatibility.
+* Fix invalid DOM properties error. Thanks @DeoThemes for reporting this issue and suggesting a solution! ([#25](https://github.com/ndiego/icon-block/pull/25))
+* Fix a few minor CSS issues for WordPress 6.2 compatibility.
 
 = 1.4.0 - 2023-01-03 =
 
 **Added**
 
-* Added icon height control.
+* Add icon height control.
 
 **Changed**
 
-* Updated WordPress version requirement to 6.0+.
-* Updated icon color handling to better support Global Styles.
-* Updated icon width control to support additional units.
-* Updated settings panel to mirror Core `ToolsPanel` implementations and support setting resets.
+* Update WordPress version requirement to 6.0+.
+* Update icon color handling to better support Global Styles.
+* Update icon width control to support additional units.
+* Update settings panel to mirror Core `ToolsPanel` implementations and support setting resets.
 
 = 1.3.2 - 2022-10-17 =
 
