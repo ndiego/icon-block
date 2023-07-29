@@ -1,10 +1,10 @@
 === The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
-Requires at least: 6.0
-Tested up to:      6.2
+Requires at least: 6.2
+Tested up to:      6.3
 Requires PHP:      7.0
-Stable tag:        1.5.0
+Stable tag:        1.6.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,11 +14,11 @@ Effortlessly add SVG icons and graphics to the WordPress block editor.
 
 The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress block editor (Gutenberg). 
 
-The plugin also includes the complete WordPress icon library with 270+ SVG icons to choose from.
+The plugin also includes the complete WordPress icon library with 290+ SVG icons to choose from.
 
 === Key Features ===
 
-* 270+ native WordPress icons, including social logos
+* 290+ native WordPress icons, including social logos
 * Use any custom SVG icon or graphic
 * Insert icons from your Media Library if SVG uploads are supported
 * Includes handy icon controls (link, rotate, alignment, colors, border, padding, margin, etc.)
@@ -78,12 +78,20 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.6.0 - 2023-07-TBD =
+= 1.6.0 - 2023-07-29 =
+
+**Added**
+
+* Add Threads and WhatsApp social icons.
+* Add Core icons new in WordPress 6.2: Border, Caption, Chevron Up/Down, Comment Edit Link, Copy, Drawer Left, Drawer Right, Filter, Justify Stretch, Line Dashed, Line Dotted, Line Solid, List Item, Lock Outline, Lock Small, Seen, Shadow, Shuffle, and Unseen
 
 **Changed**
 
-* Update minimum required WordPress verion to 6.2. We want to be utilizing the latest functionality in WordPress.
-* Move color settings to the native "color" panel. 
+* **Update minimum required WordPress version to 6.2**. We want to be utilizing the latest functionality in WordPress.
+* Update to block API v3 for better 6.3 compatibility.
+* Disable dimension and border default controls for better 6.3 compatibility.
+* Move color controls to the native "color" panel. ([#35](https://github.com/ndiego/icon-block/pull/35))
+* Simplify transform CSS. ([#32](https://github.com/ndiego/icon-block/pull/32))
 
 = 1.5.0 - 2023-03-09 =
 
