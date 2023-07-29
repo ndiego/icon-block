@@ -1248,17 +1248,17 @@ const wordpressIcons = [
 	},
 	{
 		name: 'lineDashed',
-		title:  __( 'Line Dashed', 'icon-block' ),
+		title: __( 'Line Dashed', 'icon-block' ),
 		icon: lineDashed,
 	},
 	{
 		name: 'lineDotted',
-		title:  __( 'Line Dotted', 'icon-block' ),
+		title: __( 'Line Dotted', 'icon-block' ),
 		icon: lineDotted,
 	},
 	{
 		name: 'lineSolid',
-		title:  __( 'Line Solid', 'icon-block' ),
+		title: __( 'Line Solid', 'icon-block' ),
 		icon: lineSolid,
 	},
 	{
