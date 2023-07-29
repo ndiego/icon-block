@@ -22,6 +22,7 @@ import {
 	backup,
 	blockDefault,
 	blockTable,
+	border,
 	box,
 	brush,
 	bug,
@@ -29,6 +30,7 @@ import {
 	buttons,
 	calendar,
 	cancelCircleFilled,
+	caption,
 	capturePhoto,
 	captureVideo,
 	category,
@@ -39,6 +41,7 @@ import {
 	chevronRight,
 	chevronRightSmall,
 	chevronUp,
+	chevronUpDown,
 	classic,
 	close,
 	closeSmall,
@@ -53,8 +56,9 @@ import {
 	commentAuthorAvatar,
 	commentAuthorName,
 	commentContent,
-	// commentEditLink, the WP Icons NPM package does not yet include this icon.
+	commentEditLink,
 	commentReplyLink,
+	copy,
 	cover,
 	create,
 	crop,
@@ -64,10 +68,13 @@ import {
 	customPostType,
 	desktop,
 	dragHandle,
+	drawerLeft,
+	drawerRight,
 	download,
 	edit,
 	external,
 	file,
+	filter,
 	flipHorizontal,
 	flipVertical,
 	formatBold,
@@ -108,20 +115,23 @@ import {
 	justifyCenter,
 	justifyRight,
 	justifySpaceBetween,
+	justifyStretch,
 	key,
 	keyboardClose,
 	keyboardReturn,
 	layout,
 	lifesaver,
-	// There are some issues with these icons.
-	// lineDashed,
-	// lineDotted,
-	// lineSolid,
+	lineDashed,
+	lineDotted,
+	lineSolid,
 	link,
 	linkOff,
 	list,
+	listItem,
 	listView,
 	lock,
+	lockOutline,
+	lockSmall,
 	login,
 	loop,
 	mapMarker,
@@ -190,11 +200,14 @@ import {
 	row,
 	rss,
 	search,
+	seen,
 	separator,
 	settings,
+	shadow,
 	share,
 	shield,
 	shortcode,
+	shuffle,
 	siteLogo,
 	stack,
 	starEmpty,
@@ -234,6 +247,7 @@ import {
 	undo,
 	ungroup,
 	unlock,
+	unseen,
 	update,
 	upload,
 	verse,
@@ -280,19 +294,21 @@ import {
 	soundcloud,
 	spotify,
 	telegram,
+	threads,
 	tiktok,
 	tumblr,
 	twitch,
 	twitter,
 	vimeo,
 	vk,
+	whatsapp,
 	wordpress,
 	yelp,
 	youtube,
 } from './wordpress/social';
 
 // Temporary icon specifications that are not yet in the NPM package.
-import { commentEditLink, sparkles } from './wordpress/temp';
+import { sparkles } from './wordpress/temp';
 
 const wordpressSocialIcons = [
 	{
@@ -506,6 +522,12 @@ const wordpressSocialIcons = [
 		categories: [ 'logos' ],
 	},
 	{
+		name: 'threads',
+		title: 'Threads',
+		icon: threads,
+		categories: [ 'logos' ],
+	},
+	{
 		name: 'tiktok',
 		title: 'TikTok',
 		icon: tiktok,
@@ -540,6 +562,12 @@ const wordpressSocialIcons = [
 		name: 'vk',
 		title: 'VK',
 		icon: vk,
+		categories: [ 'logos' ],
+	},
+	{
+		name: 'whatsapp',
+		title: 'WhatsApp',
+		icon: whatsapp,
 		categories: [ 'logos' ],
 	},
 	{
@@ -662,6 +690,11 @@ const wordpressIcons = [
 		icon: blockTable,
 	},
 	{
+		name: 'border',
+		title: __( 'Border', 'icon-block' ),
+		icon: border,
+	},
+	{
 		name: 'box',
 		title: __( 'Box', 'icon-block' ),
 		icon: box,
@@ -698,6 +731,11 @@ const wordpressIcons = [
 		name: 'cancelCircleFilled',
 		title: __( 'Cancel - Circle Filled', 'icon-block' ),
 		icon: cancelCircleFilled,
+	},
+	{
+		name: 'caption',
+		title: __( 'Caption', 'icon-block' ),
+		icon: caption,
 	},
 	{
 		name: 'capturePhoto',
@@ -755,6 +793,12 @@ const wordpressIcons = [
 		name: 'chevronUp',
 		title: __( 'Chevron Up', 'icon-block' ),
 		icon: chevronUp,
+		categories: [ 'arrows' ],
+	},
+	{
+		name: 'chevronUpDown',
+		title: __( 'Chevron Up/Down', 'icon-block' ),
+		icon: chevronUpDown,
 		categories: [ 'arrows' ],
 	},
 	{
@@ -849,6 +893,11 @@ const wordpressIcons = [
 		categories: [ 'blocks' ],
 	},
 	{
+		name: 'copy',
+		title: __( 'Copy', 'icon-block' ),
+		icon: copy,
+	},
+	{
 		name: 'cover',
 		title: __( 'Cover', 'icon-block' ),
 		icon: cover,
@@ -896,6 +945,18 @@ const wordpressIcons = [
 		icon: dragHandle,
 	},
 	{
+		name: 'drawerLeft',
+		title: __( 'Drawer Left', 'icon-block' ),
+		icon: drawerLeft,
+		keywords: [ 'column' ],
+	},
+	{
+		name: 'drawerRight',
+		title: __( 'Drawer Right', 'icon-block' ),
+		icon: drawerRight,
+		keywords: [ 'column' ],
+	},
+	{
 		name: 'download',
 		title: __( 'Download', 'icon-block' ),
 		icon: download,
@@ -915,6 +976,12 @@ const wordpressIcons = [
 		name: 'file',
 		title: __( 'File', 'icon-block' ),
 		icon: file,
+	},
+	{
+		name: 'filter',
+		title: __( 'Filter', 'icon-block' ),
+		icon: filter,
+		keywords: [ 'triangle' ],
 	},
 	{
 		name: 'flipHorizontal',
@@ -1147,6 +1214,12 @@ const wordpressIcons = [
 		categories: [ 'editor' ],
 	},
 	{
+		name: 'justifyStretch',
+		title: __( 'Justify tretch', 'icon-block' ),
+		icon: justifyStretch,
+		categories: [ 'editor' ],
+	},
+	{
 		name: 'key',
 		title: __( 'Key', 'icon-block' ),
 		icon: key,
@@ -1173,22 +1246,21 @@ const wordpressIcons = [
 		title: __( 'Lifesaver', 'icon-block' ),
 		icon: lifesaver,
 	},
-	// There are some issues with these icons.
-	// {
-	// 	name: 'lineDashed',
-	// 	title:  __( 'Line Dashed', 'icon-block' ),
-	// 	icon: lineDashed,
-	// },
-	// {
-	// 	name: 'lineDotted',
-	// 	title:  __( 'Line Dotted', 'icon-block' ),
-	// 	icon: lineDotted,
-	// },
-	// {
-	// 	name: 'lineSolid',
-	// 	title:  __( 'Line Solid', 'icon-block' ),
-	// 	icon: lineSolid,
-	// },
+	{
+		name: 'lineDashed',
+		title:  __( 'Line Dashed', 'icon-block' ),
+		icon: lineDashed,
+	},
+	{
+		name: 'lineDotted',
+		title:  __( 'Line Dotted', 'icon-block' ),
+		icon: lineDotted,
+	},
+	{
+		name: 'lineSolid',
+		title:  __( 'Line Solid', 'icon-block' ),
+		icon: lineSolid,
+	},
 	{
 		name: 'link',
 		title: __( 'Link', 'icon-block' ),
@@ -1208,6 +1280,12 @@ const wordpressIcons = [
 		categories: [ 'blocks' ],
 	},
 	{
+		name: 'listItem',
+		title: __( 'List Item', 'icon-block' ),
+		icon: listItem,
+		categories: [ 'blocks' ],
+	},
+	{
 		name: 'listView',
 		title: __( 'List View', 'icon-block' ),
 		icon: listView,
@@ -1217,6 +1295,18 @@ const wordpressIcons = [
 		name: 'lock',
 		title: __( 'Lock', 'icon-block' ),
 		icon: lock,
+		categories: [ 'editor' ],
+	},
+	{
+		name: 'lockOutline',
+		title: __( 'Lock Outline', 'icon-block' ),
+		icon: lockOutline,
+		categories: [ 'editor' ],
+	},
+	{
+		name: 'lockSmall',
+		title: __( 'Lock Small', 'icon-block' ),
+		icon: lockSmall,
 		categories: [ 'editor' ],
 	},
 	{
@@ -1588,6 +1678,12 @@ const wordpressIcons = [
 		keywords: [ 'magnifying glass' ],
 	},
 	{
+		name: 'seen',
+		title: __( 'Seen', 'icon-block' ),
+		icon: seen,
+		keywords: [ 'eye', 'visible' ],
+	},
+	{
 		name: 'separator',
 		title: __( 'Separator', 'icon-block' ),
 		icon: separator,
@@ -1597,6 +1693,12 @@ const wordpressIcons = [
 		name: 'settings',
 		title: __( 'Settings', 'icon-block' ),
 		icon: settings,
+	},
+	{
+		name: 'shadow',
+		title: __( 'Shadow', 'icon-block' ),
+		icon: shadow,
+		keywords: [ 'sun' ],
 	},
 	{
 		name: 'share',
@@ -1613,6 +1715,11 @@ const wordpressIcons = [
 		title: __( 'Shortcode', 'icon-block' ),
 		icon: shortcode,
 		categories: [ 'blocks' ],
+	},
+	{
+		name: 'shuffle',
+		title: __( 'Shuffle', 'icon-block' ),
+		icon: shuffle,
 	},
 	{
 		name: 'siteLogo',
@@ -1834,6 +1941,12 @@ const wordpressIcons = [
 		title: __( 'Unlock', 'icon-block' ),
 		icon: unlock,
 		categories: [ 'editor' ],
+	},
+	{
+		name: 'unseen',
+		title: __( 'Unseen', 'icon-block' ),
+		icon: unseen,
+		keywords: [ 'eye', 'hidden' ],
 	},
 	{
 		name: 'update',
