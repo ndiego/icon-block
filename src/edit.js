@@ -553,7 +553,7 @@ export function Edit( props ) {
 					/>
 				</InspectorControls>
 			) }
-			<InspectorControls __experimentalGroup="advanced">
+			<InspectorControls group="advanced">
 				<TextControl
 					label={ __( 'Link rel', 'icon-block' ) }
 					value={ linkRel || '' }
