@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "outermost/icon-block",
   "title": "Icon",
   "category": "media",
@@ -95,11 +95,21 @@
       "style": true,
       "width": true,
       "__experimentalSelector": ".icon-container",
-      "__experimentalSkipSerialization": true
+      "__experimentalSkipSerialization": true,
+      "__experimentalDefaultControls": {
+        "color": false,
+        "radius": false,
+        "style": false,
+        "width": false
+      }
     },
     "spacing": {
       "padding": true,
-      "margin": true
+      "margin": true,
+      "__experimentalDefaultControls": {
+        "margin": false,
+        "padding": false
+      }
     }
   },
   "textdomain": "icon-block",
