@@ -78,6 +78,12 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
+= 1.7.0 - TBD =
+
+**Added**
+
+* Add X social icon.
+
 = 1.6.0 - 2023-07-29 =
 
 **Added**
