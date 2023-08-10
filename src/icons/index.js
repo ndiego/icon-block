@@ -303,6 +303,7 @@ import {
 	vk,
 	whatsapp,
 	wordpress,
+	x,
 	yelp,
 	youtube,
 } from './wordpress/social';
@@ -569,6 +570,13 @@ const wordpressSocialIcons = [
 		title: 'WhatsApp',
 		icon: whatsapp,
 		categories: [ 'logos' ],
+	},
+	{
+		name: 'x',
+		title: 'X',
+		icon: x,
+		categories: [ 'logos' ],
+		keywords: [ 'twitter' ]
 	},
 	{
 		name: 'yelp',
