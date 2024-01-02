@@ -103,9 +103,13 @@ export default function QuickInserterPopover( props ) {
 						<Button
 							key={ `icon-${ icon.name }` }
 							label={ __( 'Insert Icon', 'icon-block' ) }
-							className={ classnames( 'icons-list__item', {
-								'has-no-icon-fill': icon?.hasNoIconFill,
-							} ) }
+							className={ classnames( 
+								'icons-list__item', 
+								'block-editor-block-types-list__item', 
+								{
+									'has-no-icon-fill': icon?.hasNoIconFill,
+								} 
+							) }
 							onClick={ () => {
 								updateIconAtts(
 									icon.name,
