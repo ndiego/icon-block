@@ -43,7 +43,7 @@ export function flattenIconsArray( icons ) {
 			} );
 
 			// Sort the icons alphabetically.
-			iconsOfType.sort( function( a, b ) {
+			iconsOfType.sort( function ( a, b ) {
 				return a.name.localeCompare( b.name );
 			} );
 

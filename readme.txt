@@ -69,7 +69,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 1. The Icon Block includes the WordPress icon library allowing you to insert 270+ graphics.
 2. Create your own custom icons by simply copying/pasting the SVG code. Then modify the icon to suit your needs.
-3. The Icon Block includes numerous icon controls such as color, rotation, alignment, padding, and border radius.
+3. The Icon Block includes numerous icon controls such as color, rotation, alignment, padding, and border-radius.
 4. Whether you need a big icon or a small one, the Icon Block adapts to your layout.
 5. Use the "quick inserter" to quickly pick the WordPress icon you need.
 6. The WordPress icon library modal is complete with categories, search, and preview size functionality.

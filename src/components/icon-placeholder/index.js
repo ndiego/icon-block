@@ -4,7 +4,6 @@
 import { __ } from '@wordpress/i18n';
 import { Button, Placeholder } from '@wordpress/components';
 import { MediaUpload } from '@wordpress/block-editor';
-import { Icon } from '@wordpress/icons';
 
 /**
  * Internal dependencies

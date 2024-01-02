@@ -415,9 +415,7 @@ export function Edit( props ) {
 		},
 		{
 			colorLabel: __( 'Background color', 'icon-block' ),
-			colorValue:
-				iconBackgroundColor.color ||
-				iconBackgroundColorValue,
+			colorValue: iconBackgroundColor.color || iconBackgroundColorValue,
 			colorGradientValue: gradientValue,
 			onChange: ( colorValue ) => {
 				setIconBackgroundColor( colorValue );
@@ -496,7 +494,14 @@ export function Edit( props ) {
 			{ hasColorsOrGradients && (
 				<InspectorControls group="color">
 					{ colorSettings.map(
-						( { colorLabel, colorValue, colorGradientValue, onChange, onGradientChange, resetAllFilter } ) => (
+						( {
+							colorLabel,
+							colorValue,
+							colorGradientValue,
+							onChange,
+							onGradientChange,
+							resetAllFilter,
+						} ) => (
 							<ColorGradientSettingsDropdown
 								key={ `icon-block-color-${ label }` }
 								__experimentalIsRenderedInSidebar

@@ -576,7 +576,7 @@ const wordpressSocialIcons = [
 		title: 'X',
 		icon: x,
 		categories: [ 'logos' ],
-		keywords: [ 'twitter' ]
+		keywords: [ 'twitter' ],
 	},
 	{
 		name: 'yelp',

@@ -200,13 +200,14 @@ export default function InserterModal( props ) {
 				return (
 					<Button
 						key={ `icon-${ icon.name }` }
-						className={ classnames( 
-							'icons-list__item', 
-							'block-editor-block-types-list__item', 
+						className={ classnames(
+							'icons-list__item',
+							'block-editor-block-types-list__item',
 							{
-							'is-active': icon.name === attributes?.iconName,
-							'has-no-icon-fill': icon?.hasNoIconFill,
-						} ) }
+								'is-active': icon.name === attributes?.iconName,
+								'has-no-icon-fill': icon?.hasNoIconFill,
+							}
+						) }
 						onClick={ () =>
 							updateIconAtts( icon.name, icon?.hasNoIconFill )
 						}
