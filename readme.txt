@@ -2,9 +2,9 @@
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 6.2
-Tested up to:      6.3
+Tested up to:      6.4
 Requires PHP:      7.0
-Stable tag:        1.6.0
+Stable tag:        1.7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,11 +78,21 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.7.0 - TBD =
+= 1.7.0 - 2024-01-02 =
 
 **Added**
 
 * Add X social icon.
+
+**Changed**
+
+* Bump the "Tested up to" version to WordPress 6.4.
+* Update hover styles in icon pickers to match Core styling.
+* Remove custom placeholder illustration.
+
+**Fixed**
+
+* Fix the text area height in the custom icon editor modal.
 
 = 1.6.0 - 2023-07-29 =
 
