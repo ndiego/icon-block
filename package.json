@@ -1,6 +1,6 @@
 {
 	"name": "icon-block",
-	"version": "1.6.0",
+	"version": "1.7.0",
 	"description": "Effortlessly add SVG icons and graphics to the WordPress block editor.",
 	"author": "Nick Diego",
 	"license": "GPL-2.0-or-later",
@@ -17,20 +17,20 @@
 		"update-pot": "wp i18n make-pot . languages/icon-block.pot --exclude=src"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^10.5.0",
-		"@wordpress/blocks": "^11.21.0",
-		"@wordpress/components": "^21.3.0",
-		"@wordpress/compose": "^5.20.0",
-		"@wordpress/element": "^4.20.0",
-		"@wordpress/i18n": "^4.38.0",
-		"@wordpress/icons": "^9.29.0",
-		"@wordpress/keycodes": "^3.38.0",
-		"@wordpress/primitives": "^3.36.0",
+		"@wordpress/block-editor": "^12.16.0",
+		"@wordpress/blocks": "^12.25.0",
+		"@wordpress/components": "^25.14.0",
+		"@wordpress/compose": "^6.25.0",
+		"@wordpress/element": "^5.25.0",
+		"@wordpress/i18n": "^4.48.0",
+		"@wordpress/icons": "^9.39.0",
+		"@wordpress/keycodes": "^3.48.0",
+		"@wordpress/primitives": "^3.46.0",
 		"classnames": "^2.3.2",
 		"html-react-parser": "^1.4.14"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^24.6.0",
+		"@wordpress/scripts": "^26.19.0",
 		"lodash": "^4.17.21",
 		"webpack-remove-empty-scripts": "^0.8.4"
 	}
