@@ -321,7 +321,7 @@ export function Edit( props ) {
 							isActive={ isURLSet }
 						/>
 					</ToolbarGroup>
-					<ToolbarGroup>
+					<ToolbarGroup className="components-toolbar-group">
 						<ToolbarButton
 							className={ `outermost-icon-block__rotate-button-${ rotate }` }
 							icon={ rotateRight }
