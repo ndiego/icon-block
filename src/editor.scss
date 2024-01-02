@@ -41,17 +41,15 @@
 		line-height: normal;
 		min-height: 160px;
 
+		// Needed to match the Core styling while supporting icon rotation.
+		svg.components-placeholder__illustration {
+			transform: translate(-50%,-50%);
+		}
+
 		.components-placeholder__label {
 			svg {
 				max-width: 24px;
 			}
-		}
-
-		svg.components-placeholder__illustration {
-			max-width: 80px;
-
-			// Needed for WordPress 6.0 and below.
-			position: absolute;
 		}
 	}
 
@@ -273,6 +271,10 @@
 		flex: 1 1 0%;
 		overflow: auto;
 		padding: 0px;
+
+		&> div:nth-child(2) {
+			height: 100%;
+		}
 
 		&:before {
 			margin-bottom: 0;
@@ -524,7 +526,6 @@
 			word-break: break-word;
 	
 			&:hover {
-				border-color: var(--wp-admin-theme-color);
 				color: var(--wp-admin-theme-color) !important;
 			}
 	

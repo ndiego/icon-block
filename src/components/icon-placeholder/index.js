@@ -9,7 +9,7 @@ import { Icon } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import { bolt, boltPlaceholder } from './../../icons/bolt';
+import { bolt } from './../../icons/bolt';
 import { parseUploadedMediaAndSetIcon } from '../../utils';
 import QuickInserterPopover from './../quick-inserter';
 
@@ -62,11 +62,8 @@ export default function IconPlaceholder( props ) {
 			icon={ bolt }
 			label={ __( 'Icon', 'icon-block' ) }
 			instructions={ instructions() }
+			withIllustration={ true }
 		>
-			<Icon
-				className="components-placeholder__illustration"
-				icon={ boltPlaceholder }
-			/>
 			<Button isPrimary onClick={ () => setQuickInserterOpen( true ) }>
 				{ __( 'Icon Library', 'icon-block' ) }
 			</Button>
