@@ -37,7 +37,7 @@
 		transition: transform 0.1s ease-in-out;
 	}
 
-    /* Added for a11y. In-block hover/focus controls will be added in future releases. */
+    // Added for a11y. In-block hover/focus controls will be added in future releases.
     a:hover {
         transform: scale(1.1);
     }
