@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
+import { addFilter } from '@wordpress/hooks';
 
 /**
  * Internal dependencies
@@ -46,3 +47,30 @@ const settings = {
  * Register the Icon Block.
  */
 registerBlockType( { name, ...metadata }, settings );
+
+/**
+ * Make the Icon Block available to Navigation blocks.
+ * 
+ * @since 1.8.0
+ *
+ * @param {Object} blockSettings The original settings of the block.
+ * @param {string} blockName     The name of the block being modified.
+ * @return {Object} The modified settings for the Navigation block or the original settings for other blocks.
+ */
+const addToNavigation = ( blockSettings, blockName ) => {
+	if ( blockName === 'core/navigation' ) {
+		return {
+			...blockSettings,
+			allowedBlocks: [
+				...( blockSettings.allowedBlocks ?? [] ),
+				'outermost/icon-block',
+			],
+		};
+	}
+	return blockSettings;
+};
+addFilter(
+	'blocks.registerBlockType',
+	'outermost-icon-block-add-to-navigation',
+	addToNavigation
+);
