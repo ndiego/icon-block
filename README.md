@@ -4,7 +4,7 @@
 
 ![The Icon Block](https://github.com/ndiego/icon-block/blob/main/.wordpress-org/banner-1544x500.png)
 
-The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress block editor (Gutenberg). The plugin also includes the complete WordPress icon library with 290+ SVG icons to choose from.
+The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress block editor (Gutenberg). The plugin also includes the complete WordPress icon library with 290+ SVG icons.
 
 ### Key Features
 
@@ -36,7 +36,7 @@ Refer to `package.json` for additional commands.
 
 ## Extensibility
 
-The Icon Block includes a handful of extensibility features allowing you to tailor the block to meet your needs.
+The Icon Block includes a handful of extensibility features, allowing you to tailor the block to meet your needs.
 
 ### Hooks & Filters
 
