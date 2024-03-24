@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: The Icon Block 1.8.0\n"
+"Project-Id-Version: The Icon Block 1.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/icon-block\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-03T20:20:39+00:00\n"
+"POT-Creation-Date: 2024-03-24T01:36:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: icon-block\n"
@@ -315,12 +315,12 @@ msgid "Filter"
 msgstr ""
 
 #: build/index.js:1
-#: build/index.js:11
+#: build/index.js:16
 msgid "Flip Horizontal"
 msgstr ""
 
 #: build/index.js:1
-#: build/index.js:11
+#: build/index.js:16
 msgid "Flip Vertical"
 msgstr ""
 
@@ -513,7 +513,7 @@ msgid "Line Solid"
 msgstr ""
 
 #: build/index.js:1
-#: build/index.js:11
+#: build/index.js:16
 msgid "Link"
 msgstr ""
 
@@ -782,12 +782,12 @@ msgid "Remove Submenu"
 msgstr ""
 
 #: build/index.js:1
-#: build/index.js:11
+#: build/index.js:16
 msgid "Replace"
 msgstr ""
 
 #: build/index.js:1
-#: build/index.js:9
+#: build/index.js:13
 msgid "Reset"
 msgstr ""
 
@@ -828,7 +828,7 @@ msgid "Separator"
 msgstr ""
 
 #: build/index.js:1
-#: build/index.js:11
+#: build/index.js:16
 msgid "Settings"
 msgstr ""
 
@@ -1081,203 +1081,203 @@ msgid "Reset all"
 msgstr ""
 
 #. translators: %s: The name of the option being toggled e.g. "Label".
-#: build/index.js:3
+#: build/index.js:4
 msgid "Toggle %s"
 msgstr ""
 
 #. translators: %s: The name of the option being toggled e.g. "Label".
-#: build/index.js:5
+#: build/index.js:7
 msgid "%s toggled"
 msgstr ""
 
 #. translators: %s: The name of the option being reset e.g. "Label".
-#: build/index.js:7
+#: build/index.js:10
 msgid "Reset %s"
 msgstr ""
 
 #. translators: %s: The name of the option being reset e.g. "Label".
-#: build/index.js:9
+#: build/index.js:13
 msgid "%s reset to default"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "Dimension"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "An error occured while uploading. The file does not appear to be an SVG."
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "An error occured while inserting the icon. The media selected is not an SVG."
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "An error occured while inserting the icon. Check that the file is valid SVG."
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "Custom Icon"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "Custom icon"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "Paste the SVG code for your custom icon."
 msgstr ""
 
-#: build/index.js:9
-#: build/index.js:11
+#: build/index.js:13
+#: build/index.js:16
 msgid "Preview size"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "The custom icon does not appear to be in a valid SVG format or contains non-SVG elements."
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "Clear custom icon"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "Clear"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "Insert custom icon"
 msgstr ""
 
-#: build/index.js:9
+#: build/index.js:13
 msgid "All"
 msgstr ""
 
-#: build/index.js:9
-#: build/index.js:11
+#: build/index.js:13
+#: build/index.js:16
 msgid "Icon Library"
 msgstr ""
 
 #. translators: %1$s: Number of icons retruned from search, %2$s: the search input
-#: build/index.js:11
+#: build/index.js:16
 msgid "%1$s search result for \"%2$s\""
 msgid_plural "%1$s search results for \"%2$s\""
 msgstr[0] ""
 msgstr[1] ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Insert Icon"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Search icons"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Browse all"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Icon"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Choose an icon from the library, pick one from your media library, or insert a custom SVG graphic."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Choose an icon from the library or pick one from your media library."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Choose an icon from the library or insert a custom SVG graphic."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Browse the icon library and choose one to insert."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Open Media Library"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Insert custom SVG"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Drop SVG file to upload"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Drop SVG file to insert"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Browse icon library"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Add/edit custom icon"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Clear icon"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Rotate"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Icon color"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Background color"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Label"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Width"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Height"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Briefly describe the icon to help screen reader users."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Any color or fill values in the SVG icon itself will take precedent over the chosen color."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Apply icon color to fill"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Set the SVG fill value to the chosen icon color. Disable as needed."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Link rel"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Title attribute"
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Describe the role of this icon on the page."
 msgstr ""
 
-#: build/index.js:11
+#: build/index.js:16
 msgid "Note: many devices and browsers do not display this text"
 msgstr ""
 
