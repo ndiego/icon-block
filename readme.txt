@@ -4,7 +4,7 @@ Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 6.3
 Tested up to:      6.5
 Requires PHP:      7.0
-Stable tag:        1.9.0
+Stable tag:        1.8.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,23 +78,17 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-+ 1.9.0 = 2024-03-24
++ 1.8.0 = 2024-03-24
 
 **Added**
 
+* The Icon Block can now be added to Navigation blocks (requires WordPress 6.5 or Gutenberg 17.6+)
 * Add Playground blueprint for live preview in the Plugin Directory.
 
 **Changed**
 
-* Wrap Icon Blocks in list items when placed inside navigation menus (requires WordPress 6.5 or Gutenberg 17.6+).
 * Update "Tested up to" to WordPress 6.5. 
 * Update "Requires at least" to WordPress 6.3.
-
-= 1.8.0 - 2024-02-03 =
-
-**Added**
-
-* [Experimental] The Icon Block can now be added to Navigation blocks (requires Gutenberg 17.6+)
 
 = 1.7.0 - 2024-01-02 =
 
