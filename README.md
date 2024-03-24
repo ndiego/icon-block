@@ -1,8 +1,8 @@
 # Icon Block
 
-[![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](https://github.com/ndiego/icon-block/blob/master/LICENSE.txt) ![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/icon-block?color=%23007cba&label=Active%20Installs&logo=wordpress&style=flat-square)
+![The Icon Block](https://github.com/ndiego/icon-block/blob/main/_wordpress-org/banner-1544x500.png)
 
-![The Icon Block](https://github.com/ndiego/icon-block/blob/main/.wordpress-org/banner-1544x500.png)
+[![Active Installs](https://img.shields.io/wordpress/plugin/installs/icon-block?logo=wordpress&logoColor=%23fff&label=Active%20Installs&labelColor=%230F172A&color=%230F172A)](https://wordpress.org/plugins/social-sharing-block/) [![Playground Demo Link](https://img.shields.io/wordpress/plugin/v/icon-block?logo=wordpress&logoColor=%23fff&label=Playground%20Demo&labelColor=%233858e9&color=%233858e9)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ndiego/icon-block/main/_playground/blueprint.json)
 
 The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress block editor (Gutenberg). The plugin also includes the complete WordPress icon library with 290+ SVG icons.
 
