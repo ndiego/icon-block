@@ -26,3 +26,19 @@ function outermost_icon_block_init() {
 	wp_set_script_translations( 'outermost-icon-block-editor-script-js', 'icon-block' );
 }
 add_action( 'init', 'outermost_icon_block_init' );
+
+/**
+ * Adds the Icon Block to the list of blocks that should be wrapped in a list item
+ * if the block is placed in a Navigation menu. This ensures that custom blocks like
+ * the Icon Block are correctly formatted within Navigation blocks.
+ *
+ * @since 1.9.0
+ * 
+ * @param array $blocks An array of block names that are allowed to be listed within a Navigation block.
+ * @return array The modified array of block names, including 'outermost/icon-block'.
+ */
+function outermost_icon_block_add_to_navigation_listable_blocks( $blocks ) {
+    $blocks[] = 'outermost/icon-block';
+    return $blocks;
+}
+add_filter( 'block_core_navigation_listable_blocks', 'outermost_icon_block_add_to_navigation_listable_blocks' );
