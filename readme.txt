@@ -1,10 +1,10 @@
 === The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
-Requires at least: 6.2
-Tested up to:      6.4
+Requires at least: 6.3
+Tested up to:      6.5
 Requires PHP:      7.0
-Stable tag:        1.8.0
+Stable tag:        1.9.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,18 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 8. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard-coded color/fill values in the provided SVG.
 
 == Changelog ==
+
++ 1.9.0 = 2024-03-24
+
+**Added**
+
+* Add Playground blueprint for live preview in the Plugin Directory.
+
+**Changed**
+
+* Wrap Icon Blocks in list items when placed inside navigation menus (requires WordPress 6.5 or Gutenberg 17.6+).
+* Update "Tested up to" to WordPress 6.5. 
+* Update "Requires at least" to WordPress 6.3.
 
 = 1.8.0 - 2024-02-03 =
 
