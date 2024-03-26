@@ -78,7 +78,13 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-+ 1.8.0 = 2024-03-24
+= 1.9.0 = 2024-03-TBD
+
+**Fixed**
+
+- Fix bug where the icon color input would get duplicated when setting the icon label. This occurred when `blockInspectorTabs` was set to `false`.
+
+= 1.8.0 = 2024-03-24
 
 **Added**
 
