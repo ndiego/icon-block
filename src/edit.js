@@ -503,7 +503,7 @@ export function Edit( props ) {
 							resetAllFilter,
 						} ) => (
 							<ColorGradientSettingsDropdown
-								key={ `icon-block-color-${ label }` }
+								key={ `icon-block-color-${ colorLabel }` }
 								__experimentalIsRenderedInSidebar
 								settings={ [
 									{
