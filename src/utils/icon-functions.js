@@ -64,5 +64,15 @@ export function simplifyCategories( categories ) {
 		}
 	} );
 
+	// Make sure the array is alphabetized with any 'all_' categories first.
+	simplifiedCategories.sort( ( a, b ) => {
+		// Prioritize any string starting with 'all__'.
+		if ( a.startsWith( 'all__' ) ) return -1;
+		if ( b.startsWith( 'all__' ) ) return 1;
+
+		return a.localeCompare( b ); // Otherwise, sort alphabetically.
+	} );
+
+	// Return an alphabetized array of categories.
 	return simplifiedCategories;
 }
