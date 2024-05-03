@@ -78,11 +78,13 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.9.0 = 2024-03-TBD
+= 1.9.0 = 2024-05-TBD
 
 **Fixed**
 
-- Fix bug where the icon color input would get duplicated when setting the icon label. This occurred when `blockInspectorTabs` was set to `false`.
+- Fix the bug causing icon categories to become unalphabetized after the search.
+- Fix text overflow bug caused by custom icon categories with long names.
+- Fix the bug where the icon color input would get duplicated when setting the icon label. This occurred when `blockInspectorTabs` was set to `false`.
 
 = 1.8.0 = 2024-03-24
 
