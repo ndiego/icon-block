@@ -147,10 +147,13 @@
 			}
 
 			.components-menu-item__item {
-				text-transform: capitalize;
+				align-items: flex-start;
 				display: inline-flex;
 				justify-content: space-between;
+				white-space: normal;
 				width: 100%;
+				text-align: left;
+				text-transform: capitalize;
 
 				&>span {
 					opacity: 0.5;
