@@ -89,6 +89,9 @@
     "anchor": true,
     "align": true,
     "html": false,
+    "interactivity": {
+      "clientNavigation": true
+    },
     "__experimentalBorder": {
       "color": true,
       "radius": true,
