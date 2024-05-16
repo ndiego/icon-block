@@ -80,6 +80,10 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 = 1.9.0 = 2024-05-TBD
 
+**Added**
+
+* Added support for `clientNavigation` interactivity, meaning that the Icon Block can now be placed in Query Loops with client-side navigation enabled.
+
 **Fixed**
 
 - Fix the bug causing icon categories to become unalphabetized after the search.
