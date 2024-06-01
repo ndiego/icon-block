@@ -1223,7 +1223,7 @@ const wordpressIcons = [
 	},
 	{
 		name: 'justifyStretch',
-		title: __( 'Justify tretch', 'icon-block' ),
+		title: __( 'Justify Stretch', 'icon-block' ),
 		icon: justifyStretch,
 		categories: [ 'editor' ],
 	},
