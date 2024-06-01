@@ -78,7 +78,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 1.9.0 = 2024-05-TBD
+= 1.9.0 = 2024-06-TBD
 
 **Added**
 
