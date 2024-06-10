@@ -32,7 +32,7 @@ The plugin also includes the complete WordPress icon library with 290+ SVG icons
 
 * [View on GitHub](https://github.com/ndiego/icon-block)
 * [Visit plugin project page](https://nickdiego.com/projects/icon-block/)
-* [Follow on Twitter](https://twitter.com/theiconblock)
+* [Follow on Twitter](https://twitter.com/nickmdiego)
 
 == Installation ==
 
