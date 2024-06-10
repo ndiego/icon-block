@@ -38,7 +38,7 @@ The plugin also includes the complete WordPress icon library with 290+ SVG icons
 
 1. You have a couple of options:
 	* Go to Plugins &rarr; Add New and search for "Icon Block". Once found, click "Install".
-	* Download the Icon Block from wordpress.org and make sure the folder is zipped. Then upload via Plugins &rarr; Add New &rarr; Upload.
+	* Download the Icon Block from WordPress.org and make sure the folder is zipped. Then upload via Plugins &rarr; Add New &rarr; Upload.
     * Open the block inserter within the Block Editor (Gutenberg) and search for "icon". The plugin should appear and allow you to install it directly. Skip steps 2 and 3.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Search for the block within the Block Editor (Gutenberg) and begin using it.
