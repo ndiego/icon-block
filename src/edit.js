@@ -18,6 +18,8 @@ import {
 	ToggleControl,
 	ToolbarButton,
 	ToolbarGroup,
+	__experimentalToolsPanel as ToolsPanel, // eslint-disable-line
+	__experimentalToolsPanelItem as ToolsPanelItem, // eslint-disable-line
 	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue, // eslint-disable-line
 } from '@wordpress/components';
 import {
@@ -56,7 +58,6 @@ import {
 	IconPlaceholder,
 	InserterModal,
 	DimensionControl,
-	OptionsPanel,
 } from './components';
 import {
 	flattenIconsArray,
@@ -65,6 +66,7 @@ import {
 } from './utils';
 import { bolt as defaultIcon } from './icons/bolt';
 import getIcons from './icons';
+import { useToolsPanelDropdownMenuProps } from './utils/hooks';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
@@ -197,6 +199,14 @@ export function Edit( props ) {
 			linkRel: undefined,
 		} );
 		setIsEditingURL( false );
+	}
+
+	function resetAll() {
+		setAttributes( {
+			label: undefined,
+			width: undefined,
+			height: undefined,
+		} );
 	}
 
 	function onToggleOpenInNewTab( value ) {
@@ -432,6 +442,7 @@ export function Edit( props ) {
 	];
 
 	const colorGradientSettings = useMultipleOriginColorsAndGradients();
+	const dropdownMenuProps = useToolsPanelDropdownMenuProps();
 
 	// In WordPress <=6.2 this will return null, so default to true in those cases.
 	const hasColorsOrGradients =
@@ -440,46 +451,55 @@ export function Edit( props ) {
 	const inspectorControls = ( icon || iconName ) && (
 		<>
 			<InspectorControls group="settings">
-				<OptionsPanel
-					className="outermost-icon-block__main-settings"
-					label={ __( 'Settings', 'icon-block' ) }
-					options={ [
-						{
-							attributeSlug: 'label',
-							label: __( 'Label', 'icon-block' ),
-							isDefault: true,
-						},
-						{
-							attributeSlug: 'width',
-							label: __( 'Width', 'icon-block' ),
-							isDefault: true,
-						},
-						{
-							attributeSlug: 'height',
-							label: __( 'Height', 'icon-block' ),
-						},
-					] }
-					{ ...props }
+				<ToolsPanel
+					label={ __( 'Settings' ) }
+					resetAll={ resetAll }
+					dropdownMenuProps={ dropdownMenuProps }
 				>
-					<TextControl
+					<ToolsPanelItem
 						label={ __( 'Label', 'icon-block' ) }
-						help={ __(
-							'Briefly describe the icon to help screen reader users.',
-							'icon-block'
-						) }
-						value={ label || '' }
-						onChange={ ( value ) =>
-							setAttributes( { label: value } )
+						isShownByDefault
+						hasValue={ () => !! label }
+						onDeselect={ () =>
+							setAttributes( { label: undefined } )
 						}
-					/>
-					<DimensionControl
+					>
+						<TextControl
+							label={ __( 'Label', 'icon-block' ) }
+							help={ __(
+								'Briefly describe the icon to help screen reader users.',
+								'icon-block'
+							) }
+							value={ label || '' }
+							onChange={ ( value ) =>
+								setAttributes( { label: value } )
+							}
+						/>
+					</ToolsPanelItem>
+					<ToolsPanelItem
 						label={ __( 'Width', 'icon-block' ) }
-						value={ width }
-						onChange={ ( value ) =>
-							setAttributes( { width: value } )
+						isShownByDefault
+						hasValue={ () => !! width }
+						onDeselect={ () =>
+							setAttributes( { width: undefined } )
 						}
-					/>
-					{ height !== undefined && (
+					>
+						<DimensionControl
+							label={ __( 'Width', 'icon-block' ) }
+							value={ width }
+							onChange={ ( value ) =>
+								setAttributes( { width: value } )
+							}
+						/>
+					</ToolsPanelItem>
+					<ToolsPanelItem
+						label={ __( 'Height', 'icon-block' ) }
+						isShownByDefault={ false }
+						hasValue={ () => !! height }
+						onDeselect={ () =>
+							setAttributes( { height: undefined } )
+						}
+					>
 						<DimensionControl
 							label={ __( 'Height', 'icon-block' ) }
 							value={ height }
@@ -488,8 +508,8 @@ export function Edit( props ) {
 							}
 							units={ [ 'px', 'em', 'rem', 'vh', 'vw' ] }
 						/>
-					) }
-				</OptionsPanel>
+					</ToolsPanelItem>
+				</ToolsPanel>
 			</InspectorControls>
 			{ hasColorsOrGradients && (
 				<InspectorControls group="color">
