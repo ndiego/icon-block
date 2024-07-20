@@ -2,11 +2,11 @@
 
 ![The Icon Block](https://github.com/ndiego/icon-block/blob/main/_wordpress-org/banner-1544x500.png)
 
-[![Active Installs](https://img.shields.io/wordpress/plugin/installs/icon-block?logo=wordpress&logoColor=%23fff&label=Active%20Installs&labelColor=%230F172A&color=%230F172A)](https://wordpress.org/plugins/social-sharing-block/) [![Playground Demo Link](https://img.shields.io/wordpress/plugin/v/icon-block?logo=wordpress&logoColor=%23fff&label=Playground%20Demo&labelColor=%233858e9&color=%233858e9)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ndiego/icon-block/main/_playground/blueprint.json)
+[![Active Installs](https://img.shields.io/wordpress/plugin/installs/icon-block?logo=wordpress&logoColor=%23fff&label=Active%20Installs&labelColor=%2323282dA&color=%2323282dA)](https://wordpress.org/plugins/social-sharing-block/) [![Playground Demo Link](https://img.shields.io/wordpress/plugin/v/icon-block?logo=wordpress&logoColor=%23fff&label=Playground%20Demo&labelColor=%233858e9&color=%233858e9)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ndiego/icon-block/main/_playground/blueprint.json)
 
 The Icon Block plugin registers a single, easy-to-use block that allows you to add custom SVG icons and graphics to the WordPress block editor (Gutenberg). The plugin also includes the complete WordPress icon library with 290+ SVG icons.
 
-### Key Features
+### Key features
 
 - 290+ native WordPress icons, including social logos
 - Use any custom SVG icon or graphic
@@ -18,25 +18,9 @@ The Icon Block plugin registers a single, easy-to-use block that allows you to a
 - Will get additional functionality as it's added to WordPress core
 - Register your own custom icon library. [Learn more](https://nickdiego.com/adding-custom-icons-to-the-icon-block/).
 
-## Requirements
-
-- WordPress 6.2+
-- PHP 7.0+
-
-## Development
-
-1. Set up a local WordPress development environment.
-2. Clone / download this repository into the `wp-content/plugins` folder.
-3. Navigate to the `wp-content/plugins/icon-block` folder in the command line.
-4. Run `npm install` to install the plugin's dependencies within a `/node_modules/` folder.
-5. Run `composer install` to install the additional WordPress composer tools within a `/vendor/` folder.
-6. Run `npm run start` to compile and watch source files for changes while developing.
-
-Refer to `package.json` for additional commands.
-
 ## Extensibility
 
-The Icon Block includes a handful of extensibility features, allowing you to tailor the block to meet your needs.
+The Icon Block includes several extensibility features that allow you to tailor the block to meet your needs.
 
 ### Hooks & Filters
 
@@ -81,5 +65,18 @@ You can easily disable border and spacing settings in the Editor UI if your them
 ...
 ```
 
+## Requirements
 
+- WordPress 6.4+
+- PHP 7.4+
 
+## Development
+
+1. Set up a local WordPress development environment.
+2. Clone / download this repository into the `wp-content/plugins` folder.
+3. Navigate to the `wp-content/plugins/icon-block` folder in the command line.
+4. Run `npm install` to install the plugin's dependencies within a `/node_modules/` folder.
+5. Run `composer install` to install the additional WordPress composer tools within a `/vendor/` folder.
+6. Run `npm run start` to compile and watch source files for changes while developing.
+
+Refer to `package.json` for additional commands.

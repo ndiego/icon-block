@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name:       The Icon Block
- * Description:       Effortlessly add SVG icons and graphics to the WordPress block editor.
- * Requires at least: 6.3
- * Requires PHP:      7.0
- * Version:           1.8.0
+ * Description:       Easily add SVG icons and graphics to the WordPress block editor.
+ * Requires at least: 6.4
+ * Requires PHP:      7.4
+ * Version:           1.9.0
  * Author:            Nick Diego
  * Author URI:        https://www.nickdiego.com
  * License:           GPL-2.0-or-later
@@ -13,6 +13,8 @@
  *
  * @package           The Icon Block
  */
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Registers the Icon Block using the metadata loaded from the `block.json`
