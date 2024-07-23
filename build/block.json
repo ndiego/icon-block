@@ -13,10 +13,12 @@
       "type": "string",
       "source": "html",
       "selector": ".icon-container",
-      "default": ""
+      "default": "",
+      "__experimentalRole": "content"
     },
     "iconName": {
-      "type": "string"
+      "type": "string",
+      "__experimentalRole": "content"
     },
     "itemsJustification": {
       "type": "string"
