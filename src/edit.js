@@ -30,6 +30,7 @@ import {
 	MediaUpload,
 	useBlockProps,
 	withColors,
+	useBlockEditingMode,
 	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown, // eslint-disable-line
 	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients, // eslint-disable-line
 	__experimentalUseGradient as useGradient, // eslint-disable-line
@@ -152,6 +153,7 @@ export function Edit( props ) {
 		true
 	);
 
+	const isContentOnlyMode = useBlockEditingMode() === 'contentOnly';
 	const ref = useRef();
 	const iconRef = useRef();
 	const isURLSet = !! linkUrl;
@@ -310,18 +312,29 @@ export function Edit( props ) {
 
 	const blockControls = (
 		<>
-			<BlockControls group="block">
-				<JustifyToolbar
-					allowedControls={ [ 'left', 'center', 'right' ] }
-					value={ itemsJustification }
-					onChange={ ( value ) =>
-						setAttributes( { itemsJustification: value } )
-					}
-				/>
-			</BlockControls>
 			{ ( icon || iconName ) && (
-				<BlockControls>
-					<ToolbarGroup>
+				<BlockControls group="block">
+					<ToolbarGroup
+						className={ classnames( 'components-toolbar-group', {
+							'wp-block-outermost-icon-block__toolbar':
+								! isContentOnlyMode,
+						} ) }
+					>
+						{ ! isContentOnlyMode && (
+							<JustifyToolbar
+								allowedControls={ [
+									'left',
+									'center',
+									'right',
+								] }
+								value={ itemsJustification }
+								onChange={ ( value ) =>
+									setAttributes( {
+										itemsJustification: value,
+									} )
+								}
+							/>
+						) }
 						<ToolbarButton
 							name="link"
 							icon={ link }
@@ -330,51 +343,130 @@ export function Edit( props ) {
 							onClick={ startEditing }
 							isActive={ isURLSet }
 						/>
-					</ToolbarGroup>
-					<ToolbarGroup className="components-toolbar-group">
-						<ToolbarButton
-							className={ `outermost-icon-block__rotate-button-${ rotate }` }
-							icon={ rotateRight }
-							label={ __( 'Rotate', 'icon-block' ) }
-							onClick={ () => setRotate( rotate ) }
-							isPressed={ rotate }
-						/>
-						<ToolbarButton
-							icon={ flipH }
-							label={ __( 'Flip Horizontal', 'icon-block' ) }
-							onClick={ () =>
-								setAttributes( {
-									flipHorizontal: ! flipHorizontal,
-								} )
-							}
-							isPressed={ flipHorizontal }
-						/>
-						<ToolbarButton
-							icon={ flipV }
-							label={ __( 'Flip Vertical', 'icon-block' ) }
-							onClick={ () =>
-								setAttributes( {
-									flipVertical: ! flipVertical,
-								} )
-							}
-							isPressed={ flipVertical }
-						/>
-					</ToolbarGroup>
-					<ToolbarGroup>
-						{ enableCustomIcons || isSVGUploadAllowed ? (
-							replaceDropdown
-						) : (
-							<ToolbarButton
-								onClick={ () => {
-									setInserterOpen( true );
-								} }
-							>
-								{ __( 'Replace', 'icon-block' ) }
-							</ToolbarButton>
+						{ ! isContentOnlyMode && (
+							<>
+								<ToolbarButton
+									className={ `outermost-icon-block__rotate-button-${ rotate }` }
+									icon={ rotateRight }
+									label={ __( 'Rotate', 'icon-block' ) }
+									onClick={ () => setRotate( rotate ) }
+									isPressed={ rotate }
+								/>
+								<ToolbarButton
+									icon={ flipH }
+									label={ __(
+										'Flip Horizontal',
+										'icon-block'
+									) }
+									onClick={ () =>
+										setAttributes( {
+											flipHorizontal: ! flipHorizontal,
+										} )
+									}
+									isPressed={ flipHorizontal }
+								/>
+								<ToolbarButton
+									icon={ flipV }
+									label={ __(
+										'Flip Vertical',
+										'icon-block'
+									) }
+									onClick={ () =>
+										setAttributes( {
+											flipVertical: ! flipVertical,
+										} )
+									}
+									isPressed={ flipVertical }
+								/>
+							</>
 						) }
 					</ToolbarGroup>
 				</BlockControls>
 			) }
+			<BlockControls group="other">
+				<ToolbarGroup className="components-toolbar-group">
+					{ ( icon || iconName || isContentOnlyMode ) && (
+						<>
+							{ enableCustomIcons || isSVGUploadAllowed ? (
+								replaceDropdown
+							) : (
+								<ToolbarButton
+									onClick={ () => {
+										setInserterOpen( true );
+									} }
+								>
+									{ __( 'Replace', 'icon-block' ) }
+								</ToolbarButton>
+							) }
+						</>
+					) }
+					{ isContentOnlyMode && ( icon || iconName ) && (
+						// Add some extra controls for content attributes when content only mode is active.
+						// With content only mode active, the inspector is hidden, so users need another way
+						// to edit these attributes.
+						<>
+							<DropdownMenu
+								icon=""
+								popoverProps={ {
+									className:
+										'outermost-icon-block__replace-popover is-alternate',
+								} }
+								text={ __( 'Label', 'icon-block' ) }
+							>
+								{ () => (
+									<TextControl
+										className="wp-block-outermost-icon-block__toolbar_content"
+										label={ __( 'Label', 'icon-block' ) }
+										value={ label || '' }
+										onChange={ ( value ) =>
+											setAttributes( { label: value } )
+										}
+										help={ __(
+											'Briefly describe the icon to help screen reader users.',
+											'icon-block'
+										) }
+										__nextHasNoMarginBottom
+									/>
+								) }
+							</DropdownMenu>
+							<DropdownMenu
+								icon=""
+								popoverProps={ {
+									className:
+										'outermost-icon-block__replace-popover is-alternate',
+								} }
+								text={ __( 'Title', 'icon-block' ) }
+							>
+								{ () => (
+									<TextControl
+										className="wp-block-outermost-icon-block__toolbar_content"
+										label={ __( 'Title', 'icon-block' ) }
+										value={ title || '' }
+										onChange={ ( value ) =>
+											setAttributes( { title: value } )
+										}
+										help={
+											<>
+												{ __(
+													'Describe the role of this icon on the page. ',
+													'icon-block'
+												) }
+												<ExternalLink href="https://www.w3.org/TR/html52/dom.html#the-title-attribute">
+													{ __(
+														'Note: many devices and browsers do not display this text',
+														'icon-block'
+													) }
+												</ExternalLink>
+											</>
+										}
+										__nextHasNoMarginBottom
+									/>
+								) }
+							</DropdownMenu>
+						</>
+					) }
+				</ToolbarGroup>
+			</BlockControls>
 			{ isEditingURL && (
 				<Popover
 					position="bottom center"
@@ -382,7 +474,7 @@ export function Edit( props ) {
 						setIsEditingURL( false );
 						iconRef.current?.focus();
 					} }
-					anchorRef={ ref?.current }
+					anchor={ ref?.current }
 					focusOnMount={ isEditingURL ? 'firstElement' : false }
 				>
 					<LinkControl
