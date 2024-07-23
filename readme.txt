@@ -76,6 +76,12 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
+= 2.0.0 = 2024-TBD
+
+**Added**
+
+* Add support for `contentOnly` editing.
+
 = 1.9.0 = 2024-07-20
 
 **Added**
