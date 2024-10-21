@@ -27,7 +27,7 @@ export default function IconPlaceholder( props ) {
 	const instructions = () => {
 		const messages = {
 			default: __(
-				'Choose an icon from the library, pick one from your media library, or insert a custom SVG graphic.',
+				'Choose an icon from the library, pick one from your media library, or insert a custom SVG.',
 				'icon-block'
 			),
 			noCustom: __(
@@ -35,7 +35,7 @@ export default function IconPlaceholder( props ) {
 				'icon-block'
 			),
 			noMediaLibrary: __(
-				'Choose an icon from the library or insert a custom SVG graphic.',
+				'Choose an icon from the library or insert a custom SVG.',
 				'icon-block'
 			),
 			noCustomNoMediaLibrary: __(
@@ -77,15 +77,15 @@ export default function IconPlaceholder( props ) {
 					}
 					allowedTypes={ [ 'image/svg+xml' ] }
 					render={ ( { open } ) => (
-						<Button isTertiary onClick={ open }>
-							{ __( 'Open Media Library', 'icon-block' ) }
+						<Button isSecondary onClick={ open }>
+							{ __( 'Media Library', 'icon-block' ) }
 						</Button>
 					) }
 				/>
 			) }
 			{ enableCustomIcons && (
 				<Button
-					isTertiary
+					isSecondary
 					onClick={ () => setCustomInserterOpen( true ) }
 				>
 					{ __( 'Insert custom SVG', 'icon-block' ) }
