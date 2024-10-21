@@ -146,7 +146,8 @@ export default function QuickInserterPopover( props ) {
 		<Popover
 			className="wp-block-outermost-icon-inserter__quick-inserter block-editor-inserter__popover is-quick"
 			onClose={ () => setQuickInserterOpen( false ) }
-			position="bottom center"
+			position="bottom right"
+			offset={ 12 }
 		>
 			<div className="block-editor-inserter__quick-inserter">
 				<SearchControl
