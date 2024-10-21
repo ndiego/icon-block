@@ -23,7 +23,7 @@ import {
 	__experimentalUnitControl as UnitControl, // eslint-disable-line
 	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue, // eslint-disable-line
 } from '@wordpress/components';
-import { useSetting } from '@wordpress/block-editor';
+import { useSettings } from '@wordpress/block-editor';
 
 const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	px: { max: 1000, step: 1 },
@@ -36,7 +36,8 @@ const RANGE_CONTROL_CUSTOM_SETTINGS = {
 
 export default function DimensionControl( { onChange, label, units, value } ) {
 	const customRangeValue = parseFloat( value );
-	const themeJsonUnits = useSetting( 'spacing.units' );
+	const themeJsonUnits = useSettings( 'spacing.units' )[0];
+
 	let defaultUnits;
 
 	if ( units && themeJsonUnits ) {
