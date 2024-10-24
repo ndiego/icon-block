@@ -236,13 +236,16 @@ export function Edit( props ) {
 		}
 	}
 
+	const replaceText = icon || iconName ? __( 'Replace', 'icon-block' ) : __( 'Add icon', 'icon-block' );
+	const customIconText = icon || iconName ? __( 'Add/edit custom icon', 'icon-block' ) : __( 'Add custom icon', 'icon-block' );
+
 	const replaceDropdown = (
 		<DropdownMenu
 			icon=""
 			popoverProps={ {
 				className: 'outermost-icon-block__replace-popover is-alternate',
 			} }
-			text={ __( 'Replace', 'icon-block' ) }
+			text={ replaceText }
 		>
 			{ ( { onClose } ) => (
 				<>
@@ -254,7 +257,7 @@ export function Edit( props ) {
 							} }
 							icon={ defaultIcon }
 						>
-							{ __( 'Browse icon library', 'icon-block' ) }
+							{ __( 'Browse Icon Library', 'icon-block' ) }
 						</MenuItem>
 						{ isSVGUploadAllowed && (
 							<MediaUpload
@@ -288,23 +291,25 @@ export function Edit( props ) {
 								} }
 								icon={ code }
 							>
-								{ __( 'Add/edit custom icon', 'icon-block' ) }
+								{ customIconText }
 							</MenuItem>
 						) }
 					</MenuGroup>
-					<MenuGroup>
-						<MenuItem
-							onClick={ () => {
-								setAttributes( {
-									icon: undefined,
-									iconName: undefined,
-								} );
-								onClose( true );
-							} }
-						>
-							{ __( 'Clear icon', 'icon-block' ) }
-						</MenuItem>
-					</MenuGroup>
+					{ ( icon || iconName ) && (
+						<MenuGroup>
+							<MenuItem
+								onClick={ () => {
+									setAttributes( {
+										icon: undefined,
+										iconName: undefined,
+									} );
+									onClose( true );
+								} }
+							>
+								{ __( 'Reset', 'icon-block' ) }
+							</MenuItem>
+						</MenuGroup>
+					) }
 				</>
 			) }
 		</DropdownMenu>
@@ -383,9 +388,8 @@ export function Edit( props ) {
 					</ToolbarGroup>
 				</BlockControls>
 			) }
-			<BlockControls group="other">
+			<BlockControls group={ isContentOnlyMode ? 'inline' : 'other' }>
 				<ToolbarGroup className="components-toolbar-group">
-					{ ( icon || iconName || isContentOnlyMode ) && (
 						<>
 							{ enableCustomIcons || isSVGUploadAllowed ? (
 								replaceDropdown
@@ -395,78 +399,79 @@ export function Edit( props ) {
 										setInserterOpen( true );
 									} }
 								>
-									{ __( 'Replace', 'icon-block' ) }
+									{ replaceText }
 								</ToolbarButton>
 							) }
 						</>
-					) }
-					{ isContentOnlyMode && ( icon || iconName ) && (
-						// Add some extra controls for content attributes when content only mode is active.
-						// With content only mode active, the inspector is hidden, so users need another way
-						// to edit these attributes.
-						<>
-							<DropdownMenu
-								icon=""
-								popoverProps={ {
-									className:
-										'outermost-icon-block__replace-popover is-alternate',
-								} }
-								text={ __( 'Label', 'icon-block' ) }
-							>
-								{ () => (
-									<TextControl
-										className="wp-block-outermost-icon-block__toolbar_content"
-										label={ __( 'Label', 'icon-block' ) }
-										value={ label || '' }
-										onChange={ ( value ) =>
-											setAttributes( { label: value } )
-										}
-										help={ __(
-											'Briefly describe the icon to help screen reader users.',
-											'icon-block'
-										) }
-										__nextHasNoMarginBottom
-									/>
-								) }
-							</DropdownMenu>
-							<DropdownMenu
-								icon=""
-								popoverProps={ {
-									className:
-										'outermost-icon-block__replace-popover is-alternate',
-								} }
-								text={ __( 'Title', 'icon-block' ) }
-							>
-								{ () => (
-									<TextControl
-										className="wp-block-outermost-icon-block__toolbar_content"
-										label={ __( 'Title', 'icon-block' ) }
-										value={ title || '' }
-										onChange={ ( value ) =>
-											setAttributes( { title: value } )
-										}
-										help={
-											<>
-												{ __(
-													'Describe the role of this icon on the page. ',
-													'icon-block'
-												) }
-												<ExternalLink href="https://www.w3.org/TR/html52/dom.html#the-title-attribute">
-													{ __(
-														'Note: many devices and browsers do not display this text',
-														'icon-block'
-													) }
-												</ExternalLink>
-											</>
-										}
-										__nextHasNoMarginBottom
-									/>
-								) }
-							</DropdownMenu>
-						</>
-					) }
 				</ToolbarGroup>
 			</BlockControls>
+			{ isContentOnlyMode && ( icon || iconName ) && (
+				// Add some extra controls for content attributes when content only mode is active.
+				// With content only mode active, the inspector is hidden, so users need another way
+				// to edit these attributes.
+				<BlockControls group="other">
+					<ToolbarGroup className="components-toolbar-group">
+						<DropdownMenu
+							icon=""
+							popoverProps={ {
+								className:
+									'outermost-icon-block__replace-popover is-alternate',
+							} }
+							text={ __( 'Label', 'icon-block' ) }
+						>
+							{ () => (
+								<TextControl
+									className="wp-block-outermost-icon-block__toolbar_content"
+									label={ __( 'Label', 'icon-block' ) }
+									value={ label || '' }
+									onChange={ ( value ) =>
+										setAttributes( { label: value } )
+									}
+									help={ __(
+										'Briefly describe the icon to help screen reader users.',
+										'icon-block'
+									) }
+									__nextHasNoMarginBottom
+								/>
+							) }
+						</DropdownMenu>
+						<DropdownMenu
+							icon=""
+							popoverProps={ {
+								className:
+									'outermost-icon-block__replace-popover is-alternate',
+							} }
+							text={ __( 'Title', 'icon-block' ) }
+						>
+							{ () => (
+								<TextControl
+									className="wp-block-outermost-icon-block__toolbar_content"
+									label={ __( 'Title', 'icon-block' ) }
+									value={ title || '' }
+									onChange={ ( value ) =>
+										setAttributes( { title: value } )
+									}
+									help={
+										<>
+											{ __(
+												'Describe the role of this icon on the page. ',
+												'icon-block'
+											) }
+											<ExternalLink href="https://www.w3.org/TR/html52/dom.html#the-title-attribute">
+												{ __(
+													'Note: many devices and browsers do not display this text',
+													'icon-block'
+												) }
+											</ExternalLink>
+										</>
+									}
+									__nextHasNoMarginBottom
+								/>
+							) }
+						</DropdownMenu>
+					</ToolbarGroup>
+				</BlockControls>
+			) }
 			{ isEditingURL && (
 				<Popover
 					position="bottom center"
@@ -566,6 +571,7 @@ export function Edit( props ) {
 							onChange={ ( value ) =>
 								setAttributes( { label: value } )
 							}
+							__nextHasNoMarginBottom
 						/>
 					</ToolsPanelItem>
 					<ToolsPanelItem
@@ -646,7 +652,7 @@ export function Edit( props ) {
 								className="outermost-icon-block__color-settings__apply-fill"
 								checked={ ! hasNoIconFill }
 								label={ __(
-									`Apply icon color to fill`,
+									'Apply icon color to fill',
 									'icon-block'
 								) }
 								help={ __(
@@ -677,6 +683,7 @@ export function Edit( props ) {
 					onChange={ ( value ) =>
 						setAttributes( { linkRel: value } )
 					}
+					__nextHasNoMarginBottom
 				/>
 				<TextControl
 					label={ __( 'Title attribute', 'icon-block' ) }
@@ -697,6 +704,7 @@ export function Edit( props ) {
 							</ExternalLink>
 						</>
 					}
+					__nextHasNoMarginBottom
 				/>
 			</InspectorControls>
 		</>
