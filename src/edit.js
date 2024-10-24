@@ -119,19 +119,12 @@ export function Edit( props ) {
 		}
 	} );
 
-	// Allowed types for the current WP_User
+	// Allowed types for the current user.
 	const { allowedMimeTypes, mediaUpload } = useSelect( ( select ) => {
 		const { getSettings } = select( 'core/block-editor' );
 
-		// In WordPress 6.1 and lower, allowedMimeTypes returns
-		// null in the post editor, so need to use getEditorSettings.
-		// TODO: Remove once minimum version is bumped to 6.2
-		const { getEditorSettings } = select( 'core/editor' );
-
 		return {
-			allowedMimeTypes: getSettings().allowedMimeTypes
-				? getSettings().allowedMimeTypes
-				: getEditorSettings().allowedMimeTypes,
+			allowedMimeTypes: getSettings().allowedMimeTypes,
 			mediaUpload: getSettings().mediaUpload,
 		};
 	}, [] );
