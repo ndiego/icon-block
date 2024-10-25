@@ -156,6 +156,7 @@ export default function QuickInserterPopover( props ) {
 					hideLabelFromVision={ true }
 					value={ searchInput }
 					onChange={ ( value ) => setSearchInput( value ) }
+					__nextHasNoMarginBottom
 				/>
 				<div className="block-editor-inserter__quick-inserter-results">
 					{ [

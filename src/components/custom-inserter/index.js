@@ -139,6 +139,7 @@ function IconPreview( { iconToRender, iconSize, setIconSize, isSVG } ) {
 						value={ iconSize }
 						onChange={ setIconSize }
 						withInputField={ false }
+						__nextHasNoMarginBottom
 					/>
 				</div>
 			</div>

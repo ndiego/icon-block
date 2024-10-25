@@ -360,12 +360,16 @@
 			align-items: center;
 
 			&>span {
-				margin-bottom: 6px;
-				margin-right: 16px;
+				font-size: 11px;
+				font-weight: 500;
+				line-height: 1.4;
+				text-transform: uppercase;
+				display: block;
+				margin-right: 18px;
 			}
 
 			.components-range-control {
-				width: 90px;
+				width: 116px;
 
 				.components-base-control__field {
 					margin-bottom: 0;

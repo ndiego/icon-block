@@ -105,6 +105,7 @@ export default function Sidebar( props ) {
 				<SearchControl
 					value={ searchInput }
 					onChange={ setSearchInput }
+					__nextHasNoMarginBottom
 				/>
 			</div>
 			{ preparedTypes.map( ( type ) =>

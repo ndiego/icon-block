@@ -32,6 +32,7 @@ export default function ContentHeader( props ) {
 						value={ iconSize }
 						withInputField={ false }
 						onChange={ ( value ) => setIconSize( value ) }
+						__nextHasNoMarginBottom
 					/>
 				</div>
 			</div>
