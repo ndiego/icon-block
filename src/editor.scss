@@ -600,9 +600,3 @@
 .wp-block-outermost-icon-block__toolbar_content {
 	width: 250px;
 }
-
-// Temporary fix for the replace icon popover. Without this fix, the 
-// popover appears over the Media Library modal when opened.
-.outermost-icon-block__replace-popover {
-    z-index: 100000;
-}

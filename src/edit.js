@@ -9,10 +9,12 @@ import { isEmpty, isNumber } from 'lodash';
  */
 import { __ } from '@wordpress/i18n';
 import {
+	Dropdown,
 	DropdownMenu,
 	ExternalLink,
 	MenuGroup,
 	MenuItem,
+	NavigableMenu,
 	Popover,
 	TextControl,
 	ToggleControl,
@@ -229,19 +231,30 @@ export function Edit( props ) {
 		}
 	}
 
+	const openOnArrowDown = ( event ) => {
+		if ( event.keyCode === DOWN ) {
+			event.preventDefault();
+			event.target.click();
+		}
+	};
+
 	const replaceText = icon || iconName ? __( 'Replace', 'icon-block' ) : __( 'Add icon', 'icon-block' );
 	const customIconText = icon || iconName ? __( 'Add/edit custom icon', 'icon-block' ) : __( 'Add custom icon', 'icon-block' );
 
 	const replaceDropdown = (
-		<DropdownMenu
-			icon=""
-			popoverProps={ {
-				className: 'outermost-icon-block__replace-popover is-alternate',
-			} }
-			text={ replaceText }
-		>
-			{ ( { onClose } ) => (
-				<>
+		<Dropdown
+			renderToggle={ ( { isOpen, onToggle } ) => (
+				<ToolbarButton
+					aria-expanded={ isOpen }
+					aria-haspopup="true"
+					onClick={ onToggle }
+					onKeyDown={ openOnArrowDown }
+				>
+					{ replaceText }
+				</ToolbarButton>
+			) }
+			renderContent={ ( { onClose } ) => (
+				<NavigableMenu>
 					<MenuGroup>
 						<MenuItem
 							onClick={ () => {
@@ -255,23 +268,13 @@ export function Edit( props ) {
 						{ isSVGUploadAllowed && (
 							<MediaUpload
 								onSelect={ ( media ) => {
-									parseUploadedMediaAndSetIcon(
-										media,
-										attributes,
-										setAttributes
-									);
+									parseUploadedMediaAndSetIcon( media, attributes, setAttributes );
 									onClose( true );
 								} }
 								allowedTypes={ [ 'image/svg+xml' ] }
 								render={ ( { open } ) => (
-									<MenuItem
-										onClick={ open }
-										icon={ mediaIcon }
-									>
-										{ __(
-											'Open Media Library',
-											'icon-block'
-										) }
+									<MenuItem onClick={ open } icon={ mediaIcon }>
+										{ __( 'Open Media Library', 'icon-block' ) }
 									</MenuItem>
 								) }
 							/>
@@ -303,9 +306,9 @@ export function Edit( props ) {
 							</MenuItem>
 						</MenuGroup>
 					) }
-				</>
+				</NavigableMenu>
 			) }
-		</DropdownMenu>
+		/>
 	);
 
 	const blockControls = (
@@ -382,21 +385,19 @@ export function Edit( props ) {
 				</BlockControls>
 			) }
 			<BlockControls group={ isContentOnlyMode ? 'inline' : 'other' }>
-				<ToolbarGroup className="components-toolbar-group">
-					<>
-						{ enableCustomIcons || isSVGUploadAllowed ? (
-							replaceDropdown
-						) : (
-							<ToolbarButton
-								onClick={ () => {
-									setInserterOpen( true );
-								} }
-							>
-								{ replaceText }
-							</ToolbarButton>
-						) }
-					</>
-				</ToolbarGroup>
+				<>
+					{ enableCustomIcons || isSVGUploadAllowed ? (
+						replaceDropdown
+					) : (
+						<ToolbarButton
+							onClick={ () => {
+								setInserterOpen( true );
+							} }
+						>
+							{ replaceText }
+						</ToolbarButton>
+					) }
+				</>
 			</BlockControls>
 			{ isContentOnlyMode && ( icon || iconName ) && (
 				// Add some extra controls for content attributes when content only mode is active.
