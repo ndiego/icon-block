@@ -63,7 +63,10 @@ export default function IconPlaceholder( props ) {
 			instructions={ instructions() }
 			withIllustration={ true }
 		>
-			<Button isPrimary onClick={ () => setQuickInserterOpen( true ) }>
+			<Button
+				variant="primary"
+				onClick={ () => setQuickInserterOpen( true ) }
+			>
 				{ __( 'Icon Library', 'icon-block' ) }
 			</Button>
 			{ isSVGUploadAllowed && (
@@ -77,7 +80,7 @@ export default function IconPlaceholder( props ) {
 					}
 					allowedTypes={ [ 'image/svg+xml' ] }
 					render={ ( { open } ) => (
-						<Button isSecondary onClick={ open }>
+						<Button variant="secondary" onClick={ open }>
 							{ __( 'Media Library', 'icon-block' ) }
 						</Button>
 					) }
@@ -85,7 +88,7 @@ export default function IconPlaceholder( props ) {
 			) }
 			{ enableCustomIcons && (
 				<Button
-					isSecondary
+					variant="secondary"
 					onClick={ () => setCustomInserterOpen( true ) }
 				>
 					{ __( 'Insert custom SVG', 'icon-block' ) }

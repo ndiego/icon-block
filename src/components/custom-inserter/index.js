@@ -141,7 +141,7 @@ function IconInsertButtons( { customIcon, isSVG, onClear, onInsert } ) {
 		<div className="icon-insert-buttons">
 			<Button
 				label={ __( 'Clear custom icon', 'icon-block' ) }
-				isSecondary
+				variant="secondary"
 				disabled={ ! customIcon }
 				onClick={ onClear }
 			>
@@ -149,7 +149,7 @@ function IconInsertButtons( { customIcon, isSVG, onClear, onInsert } ) {
 			</Button>
 			<Button
 				label={ __( 'Insert custom icon', 'icon-block' ) }
-				isPrimary
+				variant="primary"
 				disabled={ ! isSVG || ! customIcon }
 				onClick={ onInsert }
 			>
