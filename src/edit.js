@@ -41,7 +41,7 @@ import {
 } from '@wordpress/block-editor';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
-import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
+import { displayShortcut, isKeyboardEvent, DOWN } from '@wordpress/keycodes';
 import {
 	code,
 	flipHorizontal as flipH,
@@ -77,7 +77,6 @@ const NEW_TAB_REL = 'noreferrer noopener';
  * The edit function for the Icon Block.
  *
  * @param {Object} props All props passed to this function.
- * @return {WPElement}   Element to render.
  */
 export function Edit( props ) {
 	const {
@@ -238,8 +237,14 @@ export function Edit( props ) {
 		}
 	};
 
-	const replaceText = icon || iconName ? __( 'Replace', 'icon-block' ) : __( 'Add icon', 'icon-block' );
-	const customIconText = icon || iconName ? __( 'Add/edit custom icon', 'icon-block' ) : __( 'Add custom icon', 'icon-block' );
+	const replaceText =
+		icon || iconName
+			? __( 'Replace', 'icon-block' )
+			: __( 'Add icon', 'icon-block' );
+	const customIconText =
+		icon || iconName
+			? __( 'Add/edit custom icon', 'icon-block' )
+			: __( 'Add custom icon', 'icon-block' );
 
 	const replaceDropdown = (
 		<Dropdown
@@ -268,13 +273,23 @@ export function Edit( props ) {
 						{ isSVGUploadAllowed && (
 							<MediaUpload
 								onSelect={ ( media ) => {
-									parseUploadedMediaAndSetIcon( media, attributes, setAttributes );
+									parseUploadedMediaAndSetIcon(
+										media,
+										attributes,
+										setAttributes
+									);
 									onClose( true );
 								} }
 								allowedTypes={ [ 'image/svg+xml' ] }
 								render={ ( { open } ) => (
-									<MenuItem onClick={ open } icon={ mediaIcon }>
-										{ __( 'Open Media Library', 'icon-block' ) }
+									<MenuItem
+										onClick={ open }
+										icon={ mediaIcon }
+									>
+										{ __(
+											'Open Media Library',
+											'icon-block'
+										) }
 									</MenuItem>
 								) }
 							/>

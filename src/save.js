@@ -23,7 +23,6 @@ import { flattenIconsArray, parseIcon } from './utils';
  * The save function for the Icon Block.
  *
  * @param {Object} props All props passed to this function.
- * @return {WPElement}   Element to render.
  */
 export default function Save( props ) {
 	const {
