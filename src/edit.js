@@ -172,14 +172,15 @@ export function Edit( props ) {
 	}
 
 	function setRotate( value ) {
-		const currentValue = isNumber( value ) ? value : 0;
-		let newValue = currentValue + 90;
-
-		if ( currentValue === 270 ) {
-			newValue = 0;
-		}
-
-		setAttributes( { rotate: newValue } );
+		const currentValue = ! value ? 0 :
+			isNumber( value ) ? value : 
+			parseQuantityAndUnitFromRawValue( value )[ 0 ];
+	
+		const newValue = currentValue < 90 ? 90 :
+			currentValue < 180 ? 180 :
+			currentValue < 270 ? 270 : 0;
+	
+		setAttributes( { rotate: `${newValue}deg` } );
 	}
 
 	function startEditing( event ) {
@@ -600,6 +601,23 @@ export function Edit( props ) {
 							units={ [ 'px', 'em', 'rem', 'vh', 'vw' ] }
 						/>
 					</ToolsPanelItem>
+					<ToolsPanelItem
+						label={ __( 'Rotation', 'icon-block' ) }
+						isShownByDefault={ false }
+						hasValue={ () => !! rotate }
+						onDeselect={ () =>
+							setAttributes( { rotate: undefined } )
+						}
+					>
+						<DimensionControl
+							label={ __( 'Rotation', 'icon-block' ) }
+							value={ rotate }
+							onChange={ ( value ) =>
+								setAttributes( { rotate: value } )
+							}
+							units={ [ 'deg' ] }
+						/>
+					</ToolsPanelItem>
 				</ToolsPanel>
 			</InspectorControls>
 			{ hasColorsOrGradients && (
@@ -722,7 +740,7 @@ export function Edit( props ) {
 			themeIconBackgroundColor,
 		[ gradientClass ]: gradientClass,
 		[ `items-justified-${ itemsJustification }` ]: itemsJustification,
-		[ `rotate-${ rotate }` ]: rotate,
+		//[ `rotate-${ rotate }` ]: rotate,
 		'flip-horizontal': flipHorizontal,
 		'flip-vertical': flipVertical,
 	} );
@@ -738,6 +756,8 @@ export function Edit( props ) {
 			? `${ widthQuantity }${ widthUnit }`
 			: `${ widthQuantity }px`;
 	}
+	console.log( rotate );
+	const rotateValue = rotate ? `${ rotate }` : '0deg';
 
 	const iconStyles = {
 		background: gradientValue,
@@ -747,6 +767,7 @@ export function Edit( props ) {
 		color: iconColorValue,
 		width: iconWidth,
 		height: height || undefined,
+		transform: `rotate(${ rotateValue })`,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,
