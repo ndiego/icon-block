@@ -383,19 +383,19 @@ export function Edit( props ) {
 			) }
 			<BlockControls group={ isContentOnlyMode ? 'inline' : 'other' }>
 				<ToolbarGroup className="components-toolbar-group">
-						<>
-							{ enableCustomIcons || isSVGUploadAllowed ? (
-								replaceDropdown
-							) : (
-								<ToolbarButton
-									onClick={ () => {
-										setInserterOpen( true );
-									} }
-								>
-									{ replaceText }
-								</ToolbarButton>
-							) }
-						</>
+					<>
+						{ enableCustomIcons || isSVGUploadAllowed ? (
+							replaceDropdown
+						) : (
+							<ToolbarButton
+								onClick={ () => {
+									setInserterOpen( true );
+								} }
+							>
+								{ replaceText }
+							</ToolbarButton>
+						) }
+					</>
 				</ToolbarGroup>
 			</BlockControls>
 			{ isContentOnlyMode && ( icon || iconName ) && (
