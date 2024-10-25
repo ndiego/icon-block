@@ -49,7 +49,7 @@ export default function CustomInserterModal( props ) {
 		if ( icon !== customIcon ) {
 			setCustomIcon( icon );
 		}
-	}, [ icon ] );
+	}, [ customIcon, icon ] );
 
 	if ( ! isCustomInserterOpen ) {
 		return null;
@@ -87,7 +87,10 @@ export default function CustomInserterModal( props ) {
 						hideLabelFromVision
 						value={ customIcon }
 						onChange={ setCustomIcon }
-						placeholder={ __( 'Paste the SVG code for your custom icon.', 'icon-block' ) }
+						placeholder={ __(
+							'Paste the SVG code for your custom icon.',
+							'icon-block'
+						) }
 					/>
 				</div>
 				<div className="icon-custom-inserter__sidebar">
@@ -99,7 +102,10 @@ export default function CustomInserterModal( props ) {
 					/>
 					{ customIcon && ! isSVG && (
 						<Notice status="error" isDismissible={ false }>
-							{ __( 'The custom icon does not appear to be in a valid SVG format or contains non-SVG elements.', 'icon-block' ) }
+							{ __(
+								'The custom icon does not appear to be in a valid SVG format or contains non-SVG elements.',
+								'icon-block'
+							) }
 						</Notice>
 					) }
 					<IconInsertButtons
@@ -117,7 +123,11 @@ export default function CustomInserterModal( props ) {
 function IconPreview( { iconToRender, iconSize, setIconSize, isSVG } ) {
 	return (
 		<div className="icon-preview">
-			<div className={ classnames( 'icon-preview__window', { 'is-default': ! isSVG } ) }>
+			<div
+				className={ classnames( 'icon-preview__window', {
+					'is-default': ! isSVG,
+				} ) }
+			>
 				<Icon icon={ iconToRender } size={ iconSize } />
 			</div>
 			<div className="icon-controls">

@@ -36,7 +36,7 @@ const RANGE_CONTROL_CUSTOM_SETTINGS = {
 
 export default function DimensionControl( { onChange, label, units, value } ) {
 	const customRangeValue = parseFloat( value );
-	const themeJsonUnits = useSettings( 'spacing.units' )[0];
+	const themeJsonUnits = useSettings( 'spacing.units' )[ 0 ];
 
 	let defaultUnits;
 
