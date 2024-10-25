@@ -35,9 +35,7 @@ export default function InserterModal( props ) {
 		'all__' + defaultType[ 0 ]?.type
 	);
 	const [ iconSize, setIconSize ] = useState( () => {
-		const storedSettings = window.localStorage.getItem(
-			'icon_block_settings'
-		);
+		const storedSettings = window.localStorage.getItem( 'icon_block' );
 		return storedSettings
 			? JSON.parse( storedSettings )?.preview_size || 24
 			: 24;
@@ -45,13 +43,10 @@ export default function InserterModal( props ) {
 
 	useEffect( () => {
 		const settings = JSON.parse(
-			window.localStorage.getItem( 'icon_block_settings' ) || '{}'
+			window.localStorage.getItem( 'icon_block' ) || '{}'
 		);
 		settings.preview_size = iconSize;
-		window.localStorage.setItem(
-			'icon_block_settings',
-			JSON.stringify( settings )
-		);
+		window.localStorage.setItem( 'icon_block', JSON.stringify( settings ) );
 	}, [ iconSize ] );
 
 	const iconsAll = useMemo(
