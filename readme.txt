@@ -1,8 +1,8 @@
 === The Icon Block ===
 Contributors:      ndiego, outermostdesign
 Tags:              icon, icon block, SVG, SVG block, block
-Requires at least: 6.4
-Tested up to:      6.6
+Requires at least: 6.5
+Tested up to:      6.7
 Requires PHP:      7.4
 Stable tag:        1.9.0
 License:           GPL-2.0-or-later
@@ -76,11 +76,32 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 2.0.0 = 2024-TBD
+= 2.0.0 = 2024-10-TBD
 
 **Added**
 
-* Add support for `contentOnly` editing.
+* Added support for `contentOnly` editing.
+* Added support for text nodes within SVG icons.
+* Added localStorage support for the preview size in the Icon Library.
+
+**Changed**
+
+* Updated "Tested up to" to WordPress 6.7. 
+* Updated minimum WordPress version to 6.5.
+* Updated the deprecated `useSetting` function to `useSettings`.
+* Improved the positioning of the quick inserter modal.
+* Updated the icon placeholder to better match Core.
+* Updated the link control to better match Core.
+* Updated general component styling to match Core.
+
+**Removed**
+
+* Removed the deprecated `getEditorSettings` conditional.
+
+**Fixed**
+
+* Fixed the bug where values would not get reset when closing the custom icon editor modal.
+* Fixed the nested toolbar visual bug by replacing `DropdownMenu` with `Dropdown`.
 
 = 1.9.0 = 2024-07-20
 
