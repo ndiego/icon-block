@@ -148,8 +148,7 @@ export function Edit( props ) {
 	);
 
 	const isContentOnlyMode = useBlockEditingMode() === 'contentOnly';
-	const ref = useRef();
-	const iconRef = useRef();
+	const linkRef = useRef( null );
 	const isURLSet = !! linkUrl;
 	const opensInNewTab = linkTarget === '_blank';
 
@@ -181,11 +180,6 @@ export function Edit( props ) {
 		}
 
 		setAttributes( { rotate: newValue } );
-	}
-
-	function startEditing( event ) {
-		event.preventDefault();
-		setIsEditingURL( true );
 	}
 
 	function unlink() {
@@ -223,10 +217,12 @@ export function Edit( props ) {
 
 	function onKeyDown( event ) {
 		if ( isKeyboardEvent.primary( event, 'k' ) ) {
-			startEditing( event );
+			// Prevent the command palette from opening.
+			event.preventDefault();
+			setIsEditingURL( true );
 		} else if ( isKeyboardEvent.primaryShift( event, 'k' ) ) {
 			unlink();
-			iconRef.current?.focus();
+			linkRef.current?.focus();
 		}
 	}
 
@@ -352,13 +348,52 @@ export function Edit( props ) {
 							/>
 						) }
 						<ToolbarButton
+							ref={ linkRef }
 							name="link"
 							icon={ link }
 							title={ __( 'Link', 'icon-block' ) }
 							shortcut={ displayShortcut.primary( 'k' ) }
-							onClick={ startEditing }
+							onClick={ () => setIsEditingURL( true ) }
 							isActive={ isURLSet }
 						/>
+						{ isEditingURL && (
+							<Popover
+								className="wp-block-outermost-icon-block__link-popover"
+								anchor={ linkRef?.current }
+								offset={ 12 }
+								placement="bottom"
+								onClose={ () => {
+									setIsEditingURL( false );
+									linkRef.current?.focus();
+								} }
+								focusOnMount={
+									isEditingURL ? 'firstElement' : false
+								}
+								variant="alternate"
+							>
+								<LinkControl
+									value={ { url: linkUrl, opensInNewTab } }
+									onChange={ ( {
+										url: newURL = '',
+										opensInNewTab: newOpensInNewTab,
+									} ) => {
+										setAttributes( { linkUrl: newURL } );
+
+										if (
+											opensInNewTab !== newOpensInNewTab
+										) {
+											onToggleOpenInNewTab(
+												newOpensInNewTab
+											);
+										}
+									} }
+									onRemove={ () => {
+										unlink();
+										linkRef.current?.focus();
+									} }
+								/>
+							</Popover>
+						) }
 						{ ! isContentOnlyMode && (
 							<>
 								<ToolbarButton
@@ -444,72 +479,8 @@ export function Edit( props ) {
 								/>
 							) }
 						</DropdownMenu>
-						<DropdownMenu
-							icon=""
-							popoverProps={ {
-								className:
-									'outermost-icon-block__replace-popover is-alternate',
-							} }
-							text={ __( 'Title', 'icon-block' ) }
-						>
-							{ () => (
-								<TextControl
-									className="wp-block-outermost-icon-block__toolbar_content"
-									label={ __( 'Title', 'icon-block' ) }
-									value={ title || '' }
-									onChange={ ( value ) =>
-										setAttributes( { title: value } )
-									}
-									help={
-										<>
-											{ __(
-												'Describe the role of this icon on the page. ',
-												'icon-block'
-											) }
-											<ExternalLink href="https://www.w3.org/TR/html52/dom.html#the-title-attribute">
-												{ __(
-													'Note: many devices and browsers do not display this text',
-													'icon-block'
-												) }
-											</ExternalLink>
-										</>
-									}
-									__nextHasNoMarginBottom
-								/>
-							) }
-						</DropdownMenu>
 					</ToolbarGroup>
 				</BlockControls>
-			) }
-			{ isEditingURL && (
-				<Popover
-					position="bottom center"
-					onClose={ () => {
-						setIsEditingURL( false );
-						iconRef.current?.focus();
-					} }
-					anchor={ ref?.current }
-					focusOnMount={ isEditingURL ? 'firstElement' : false }
-				>
-					<LinkControl
-						className="wp-block-navigation-link__inline-link-input"
-						value={ { url: linkUrl, opensInNewTab } }
-						onChange={ ( {
-							url: newURL = '',
-							opensInNewTab: newOpensInNewTab,
-						} ) => {
-							setAttributes( { linkUrl: newURL } );
-
-							if ( opensInNewTab !== newOpensInNewTab ) {
-								onToggleOpenInNewTab( newOpensInNewTab );
-							}
-						} }
-						onRemove={ () => {
-							unlink();
-							iconRef.current?.focus();
-						} }
-					/>
-				</Popover>
 			) }
 		</>
 	);
@@ -795,11 +766,7 @@ export function Edit( props ) {
 					isSVGUploadAllowed={ isSVGUploadAllowed }
 				/>
 			) : (
-				<div
-					ref={ iconRef }
-					className={ iconClasses }
-					style={ iconStyles }
-				>
+				<div className={ iconClasses } style={ iconStyles }>
 					{ printedIcon }
 				</div>
 			) }
@@ -815,7 +782,7 @@ export function Edit( props ) {
 					className:
 						itemsJustification &&
 						`items-justified-${ itemsJustification }`,
-					ref,
+					//ref,
 					onKeyDown,
 				} ) }
 				// This is a bit of a hack. we only want the margin styles
