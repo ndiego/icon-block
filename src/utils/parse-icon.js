@@ -15,6 +15,11 @@ export function parseIcon( icon ) {
 	const parseOptions = {
 		trim: true,
 		replace: ( { attribs, children, name, parent, type } ) => {
+			// Allow text but only within text elements.
+			if ( type === 'text' && parent && parent.name === 'text' ) {
+				return;
+			}
+
 			if (
 				( type !== 'tag' && type !== 'style' ) || // Allow svg and style tags.
 				( ! parent && name !== 'svg' ) || // The only root-level element can be an svg.
