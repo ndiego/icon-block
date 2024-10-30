@@ -38,18 +38,13 @@ export default function CustomInserterModal( props ) {
 	// Reset values when modal is closed.
 	useEffect( () => {
 		if ( ! isCustomInserterOpen ) {
-			setCustomIcon( ! iconName ? icon : '' );
 			setIconSize( 100 );
 		}
-	}, [ isCustomInserterOpen, icon, iconName ] );
+	}, [ isCustomInserterOpen ] );
 
 	// If a SVG icon is inserted from the Media Library, we need to update
 	// the custom icon editor in the modal.
-	useEffect( () => {
-		if ( icon !== customIcon ) {
-			setCustomIcon( icon );
-		}
-	}, [ customIcon, icon ] );
+	useEffect( () => setCustomIcon( icon ), [ icon ] );
 
 	if ( ! isCustomInserterOpen ) {
 		return null;
