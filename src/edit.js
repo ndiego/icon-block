@@ -172,11 +172,16 @@ export function Edit( props ) {
 	}
 
 	function setRotate( value ) {
-		const currentValue = isNumber( value ) ? value : 0;
-		let newValue = currentValue + 90;
+		const currentValue = ! value || ! isNumber( value ) ? 0 : value;
 
-		if ( currentValue === 270 ) {
-			newValue = 0;
+		let newValue = 0;
+
+		if ( currentValue < 90 ) {
+			newValue = 90;
+		} else if ( currentValue < 180 ) {
+			newValue = 180;
+		} else if ( currentValue < 270 ) {
+			newValue = 270;
 		}
 
 		setAttributes( { rotate: newValue } );
@@ -587,6 +592,27 @@ export function Edit( props ) {
 							units={ [ 'px', 'em', 'rem', 'vh', 'vw' ] }
 						/>
 					</ToolsPanelItem>
+					<ToolsPanelItem
+						label={ __( 'Rotation', 'icon-block' ) }
+						isShownByDefault={ false }
+						hasValue={ () => !! rotate }
+						onDeselect={ () =>
+							setAttributes( { rotate: undefined } )
+						}
+					>
+						<DimensionControl
+							label={ __( 'Rotation', 'icon-block' ) }
+							value={ `${ rotate }deg` }
+							onChange={ ( value ) =>
+								setAttributes( {
+									rotate: parseQuantityAndUnitFromRawValue(
+										value
+									)[ 0 ],
+								} )
+							}
+							units={ [ 'deg' ] }
+						/>
+					</ToolsPanelItem>
 				</ToolsPanel>
 			</InspectorControls>
 			{ hasColorsOrGradients && (
@@ -709,9 +735,6 @@ export function Edit( props ) {
 			themeIconBackgroundColor,
 		[ gradientClass ]: gradientClass,
 		[ `items-justified-${ itemsJustification }` ]: itemsJustification,
-		[ `rotate-${ rotate }` ]: rotate,
-		'flip-horizontal': flipHorizontal,
-		'flip-vertical': flipVertical,
 	} );
 
 	const [ widthQuantity, widthUnit ] =
@@ -726,6 +749,10 @@ export function Edit( props ) {
 			: `${ widthQuantity }px`;
 	}
 
+	const rotateValue = rotate ? `${ rotate }deg` : '0deg';
+	const scaleXValue = flipHorizontal ? '-1' : '1';
+	const scaleYValue = flipVertical ? '-1' : '1';
+
 	const iconStyles = {
 		background: gradientValue,
 		backgroundColor: iconBackgroundColorValue,
@@ -734,6 +761,7 @@ export function Edit( props ) {
 		color: iconColorValue,
 		width: iconWidth,
 		height: height || undefined,
+		transform: `rotate(${ rotateValue }) scaleX(${ scaleXValue }) scaleY(${ scaleYValue })`,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,

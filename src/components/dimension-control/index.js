@@ -32,6 +32,7 @@ const RANGE_CONTROL_CUSTOM_SETTINGS = {
 	vh: { max: 100, step: 1 },
 	em: { max: 50, step: 0.1 },
 	rem: { max: 50, step: 0.1 },
+	deg: { max: 360, step: 1 },
 };
 
 export default function DimensionControl( { onChange, label, units, value } ) {
@@ -49,6 +50,16 @@ export default function DimensionControl( { onChange, label, units, value } ) {
 	const availableUnits = useCustomUnits( {
 		availableUnits: defaultUnits || [ '%', 'px', 'em', 'rem', 'vh', 'vw' ],
 	} );
+
+	// Ensure 'deg' is included if present in units
+	if ( units && units.includes( 'deg' ) ) {
+		availableUnits.push( {
+			value: 'deg',
+			label: 'deg',
+			a11yLabel: 'Degrees',
+			step: 1,
+		} );
+	}
 
 	const selectedUnit =
 		useMemo(

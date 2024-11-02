@@ -42,6 +42,7 @@
         transform: scale(1.1);
     }
 
+	// Deprecated classes as of v2.1.0. Will be removed in v2.5.0.
 	svg {
 		transform: rotate(var(--outermost--icon-block--transform-rotate, 0deg)) scaleX(var(--outermost--icon-block--transform-scale-x, 1)) scaleY(var(--outermost--icon-block--transform-scale-y, 1));
 	}
