@@ -76,10 +76,11 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 2.0.0 = 2024-10-TBD
+= 2.0.0 = 2024-11-04
 
 **Added**
 
+* Added full 360 degree rotation support.
 * Added support for `contentOnly` editing.
 * Added support for text nodes within SVG icons.
 * Added localStorage support for the preview size in the Icon Library.
@@ -88,6 +89,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 * Updated "Tested up to" to WordPress 6.7. 
 * Updated minimum WordPress version to 6.5.
+* Updated the way rotation and vertical/horizontal flipping are handled. CSS classes are no longer used.
 * Updated the deprecated `useSetting` function to `useSettings`.
 * Improved the positioning of the quick inserter modal.
 * Updated the icon placeholder to better match Core.
