@@ -172,15 +172,19 @@ export function Edit( props ) {
 	}
 
 	function setRotate( value ) {
-		const currentValue = ! value ? 0 :
-			isNumber( value ) ? value : 
-			parseQuantityAndUnitFromRawValue( value )[ 0 ];
-	
-		const newValue = currentValue < 90 ? 90 :
-			currentValue < 180 ? 180 :
-			currentValue < 270 ? 270 : 0;
-	
-		setAttributes( { rotate: `${newValue}deg` } );
+		const currentValue = ! value || ! isNumber( value ) ? 0 : value;
+
+		let newValue = 0;
+
+		if ( currentValue < 90 ) {
+			newValue = 90;
+		} else if ( currentValue < 180 ) {
+			newValue = 180;
+		} else if ( currentValue < 270 ) {
+			newValue = 270;
+		}
+
+		setAttributes( { rotate: newValue } );
 	}
 
 	function unlink() {
@@ -598,9 +602,13 @@ export function Edit( props ) {
 					>
 						<DimensionControl
 							label={ __( 'Rotation', 'icon-block' ) }
-							value={ rotate }
+							value={ `${ rotate }deg` }
 							onChange={ ( value ) =>
-								setAttributes( { rotate: value } )
+								setAttributes( {
+									rotate: parseQuantityAndUnitFromRawValue(
+										value
+									)[ 0 ],
+								} )
 							}
 							units={ [ 'deg' ] }
 						/>
@@ -727,9 +735,6 @@ export function Edit( props ) {
 			themeIconBackgroundColor,
 		[ gradientClass ]: gradientClass,
 		[ `items-justified-${ itemsJustification }` ]: itemsJustification,
-		//[ `rotate-${ rotate }` ]: rotate,
-		'flip-horizontal': flipHorizontal,
-		'flip-vertical': flipVertical,
 	} );
 
 	const [ widthQuantity, widthUnit ] =
@@ -743,8 +748,10 @@ export function Edit( props ) {
 			? `${ widthQuantity }${ widthUnit }`
 			: `${ widthQuantity }px`;
 	}
-	console.log( rotate );
-	const rotateValue = rotate ? `${ rotate }` : '0deg';
+
+	const rotateValue = rotate ? `${ rotate }deg` : '0deg';
+	const scaleXValue = flipHorizontal ? '-1' : '1';
+	const scaleYValue = flipVertical ? '-1' : '1';
 
 	const iconStyles = {
 		background: gradientValue,
@@ -754,7 +761,7 @@ export function Edit( props ) {
 		color: iconColorValue,
 		width: iconWidth,
 		height: height || undefined,
-		transform: `rotate(${ rotateValue })`,
+		transform: `rotate(${ rotateValue }) scaleX(${ scaleXValue }) scaleY(${ scaleYValue })`,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,

@@ -103,9 +103,6 @@ export default function Save( props ) {
 			iconBackgroundColor,
 		[ `has-${ iconColor }-color` ]: iconColor,
 		[ `has-${ gradient }-gradient-background` ]: gradient,
-		[ `rotate-${ rotate }` ]: rotate,
-		'flip-horizontal': flipHorizontal,
-		'flip-vertical': flipVertical,
 	} );
 
 	const [ widthQuantity, widthUnit ] =
@@ -120,6 +117,10 @@ export default function Save( props ) {
 			: `${ widthQuantity }px`;
 	}
 
+	const rotateValue = rotate ? `${ rotate }deg` : '0deg';
+	const scaleXValue = flipHorizontal ? '-1' : '1';
+	const scaleYValue = flipVertical ? '-1' : '1';
+
 	const iconStyles = {
 		background: ! gradient ? customGradient : undefined,
 		backgroundColor: iconBackgroundColorValue,
@@ -128,6 +129,7 @@ export default function Save( props ) {
 		height: height || undefined,
 		...blockProps.style,
 		...borderProps.style,
+		transform: `rotate(${ rotateValue }) scaleX(${ scaleXValue }) scaleY(${ scaleYValue })`,
 
 		// Margin is applied to the wrapper container, so unset.
 		marginBottom: undefined,
