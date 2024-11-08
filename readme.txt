@@ -4,7 +4,7 @@ Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 6.5
 Tested up to:      6.7
 Requires PHP:      7.4
-Stable tag:        1.9.0
+Stable tag:        2.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,7 +76,9 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 == Changelog ==
 
-= 2.0.0 = 2024-11-04
+= 2.0.0 = 2024-11-08
+
+If you're upgrading from a version before v2.0.0 and have icons with custom rotation and styling, you may notice slight changes in their appearance. This is due to an update in how rotation is managed within the block.
 
 **Added**
 

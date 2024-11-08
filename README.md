@@ -67,7 +67,7 @@ You can easily disable border and spacing settings in the Editor UI if your them
 
 ## Requirements
 
-- WordPress 6.4+
+- WordPress 6.5+
 - PHP 7.4+
 
 ## Development
