@@ -249,6 +249,9 @@ export function Edit( props ) {
 
 	const replaceDropdown = (
 		<Dropdown
+			popoverProps={ {
+				className: 'outermost-icon-block__replace-dropdown-popover',
+			} }
 			renderToggle={ ( { isOpen, onToggle } ) => (
 				<ToolbarButton
 					aria-expanded={ isOpen }
