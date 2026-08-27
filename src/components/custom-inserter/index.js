@@ -81,7 +81,14 @@ export default function CustomInserterModal( props ) {
 						label={ __( 'Custom icon', 'icon-block' ) }
 						hideLabelFromVision
 						value={ customIcon }
-						onChange={ setCustomIcon }
+						onChange={ ( value ) =>
+							setCustomIcon(
+								value.replace(
+									/<\?xml(?:\s[\s\S]*?)?\?>/gi,
+									''
+								)
+							)
+						}
 						placeholder={ __(
 							'Paste the SVG code for your custom icon.',
 							'icon-block'
