@@ -88,7 +88,7 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 
 * Fixed all stylelint issues in the SCSS source. There are no visual changes.
 
-= 2.0.0 = 2024-11-08
+= 2.0.0 - 2024-11-08 =
 
 If you're upgrading from a version before v2.0.0 and have icons with custom rotation and styling, you may notice slight changes in their appearance. This is due to an update in how rotation is managed within the block.
 
@@ -119,7 +119,7 @@ If you're upgrading from a version before v2.0.0 and have icons with custom rota
 * Fixed the bug where values would not get reset when closing the custom icon editor modal.
 * Fixed the nested toolbar visual bug by replacing `DropdownMenu` with `Dropdown`.
 
-= 1.9.0 = 2024-07-20
+= 1.9.0 - 2024-07-20 =
 
 **Added**
 
@@ -144,7 +144,7 @@ If you're upgrading from a version before v2.0.0 and have icons with custom rota
 - Fix the bug where the icon color input would get duplicated when setting the icon label. This occurred when `blockInspectorTabs` was set to `false`.
 - Fix a typo in the "Justify Stretch" icon name.
 
-= 1.8.0 = 2024-03-24
+= 1.8.0 - 2024-03-24 =
 
 **Added**
 
