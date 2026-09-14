@@ -71,7 +71,6 @@ import {
 	drawerLeft,
 	drawerRight,
 	download,
-	edit,
 	external,
 	file,
 	filter,
@@ -86,11 +85,9 @@ import {
 	formatListBulletsRTL,
 	formatListNumbered,
 	formatListNumberedRTL,
-	formatLtr,
 	formatLowercase,
 	formatOutdent,
 	formatOutdentRTL,
-	formatRtl,
 	formatStrikethrough,
 	formatUnderline,
 	formatUppercase,
@@ -142,7 +139,6 @@ import {
 	mobile,
 	more,
 	moreHorizontal,
-	moreHorizontalMobile,
 	moreVertical,
 	moveTo,
 	navigation,
@@ -252,7 +248,6 @@ import {
 	upload,
 	verse,
 	video,
-	warning,
 	widget,
 } from '@wordpress/icons';
 
@@ -310,6 +305,15 @@ import {
 
 // Temporary icon specifications that are not yet in the NPM package.
 import { sparkles } from './wordpress/temp';
+
+// Icons that have been removed from the @wordpress/icons package.
+import {
+	edit,
+	formatLtr,
+	formatRtl,
+	moreHorizontalMobile,
+	warning,
+} from './wordpress/legacy';
 
 const wordpressSocialIcons = [
 	{

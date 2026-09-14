@@ -244,7 +244,7 @@ const v1 = {
 				: undefined,
 			borderColor: borderColor
 				? `var(--wp--preset--color--${ borderColor })`
-				: style?.border?.color ?? undefined,
+				: ( style?.border?.color ?? undefined ),
 			borderRadius: style?.border?.radius ?? undefined,
 			borderStyle: style?.border?.style ?? undefined,
 			borderWidth: style?.border?.width ?? undefined,
