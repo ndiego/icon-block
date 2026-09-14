@@ -13,38 +13,41 @@
 			width: 24px;
 			margin-bottom: 10px;
 		}
-		
+
 		// Only show the icon if the dropzone is too small.
-		@container (max-width: 150px)  {
+		@container (max-width: 150px) {
+
 			.components-drop-zone__content-icon {
 				margin-bottom: 0;
 			}
-			
+
 			.components-drop-zone__content-text {
 				display: none;
 			}
 		}
 
-		@container (max-height: 120px)  {
+		@container (max-height: 120px) {
+
 			.components-drop-zone__content-icon {
 				margin-bottom: 0;
 			}
-			
+
 			.components-drop-zone__content-text {
 				display: none;
 			}
 		}
 	}
-	  
+
 	// Placeholder styles.
 	.components-placeholder {
 
 		// Needed to match the Core styling while supporting icon rotation.
 		svg.components-placeholder__illustration {
-			transform: translate(-50%,-50%);
+			transform: translate(-50%, -50%);
 		}
 
 		.components-placeholder__label {
+
 			svg {
 				max-width: 24px;
 			}
@@ -61,7 +64,7 @@
 			color: #1e1e1e;
 			filter: none;
 
-			&:before {
+			&::before {
 				opacity: 0;
 			}
 
@@ -73,7 +76,9 @@
 }
 
 .wp-block-outermost-icon-inserter__quick-inserter {
+
 	.icons-list {
+
 		.icons-list__item {
 			width: 33.33%;
 
@@ -91,7 +96,8 @@
 
 	// Fix minor gap between search field and icons.
 	.block-editor-inserter__search {
-		&> .components-base-control__field {
+
+		> .components-base-control__field {
 			margin-bottom: 0;
 		}
 	}
@@ -99,12 +105,13 @@
 
 // Style for the icon library modal.
 .wp-block-outermost-icon-inserter__modal {
+
 	.components-modal__content {
 		flex: 1 1 0%;
 		overflow: auto;
-		padding: 0px;
+		padding: 0;
 
-		&:before {
+		&::before {
 			margin-bottom: 0;
 		}
 	}
@@ -153,7 +160,7 @@
 				text-align: left;
 				text-transform: capitalize;
 
-				&>span {
+				> span {
 					opacity: 0.5;
 				}
 			}
@@ -189,7 +196,7 @@
 				align-items: center;
 				margin-right: 6px;
 
-				&>span {
+				> span {
 					font-size: 11px;
 					font-weight: 500;
 					line-height: 1.4;
@@ -235,6 +242,7 @@
 			}
 
 			.icons-list__item {
+
 				&.is-active {
 					background-color: var(--wp-admin-theme-color);
 					color: rgb(255 255 255 / 80%);
@@ -248,6 +256,7 @@
 					}
 
 					&.has-no-icon-fill {
+
 						svg {
 							color: #fff;
 							fill: none;
@@ -273,16 +282,17 @@
 
 // Styles for the custom SVG inserter modal.
 .wp-block-outermost-icon-custom-inserter__modal {
+
 	.components-modal__content {
 		flex: 1 1 0%;
 		overflow: auto;
-		padding: 0px;
+		padding: 0;
 
-		&> div:nth-child(2) {
+		> div:nth-child(2) {
 			height: 100%;
 		}
 
-		&:before {
+		&::before {
 			margin-bottom: 0;
 		}
 	}
@@ -310,7 +320,7 @@
 		.components-base-control,
 		.components-base-control__field,
 		.components-textarea-control__input {
-			height: 100%
+			height: 100%;
 		}
 
 		textarea {
@@ -339,8 +349,9 @@
 			overflow: scroll;
 
 			&.is-default {
+
 				svg {
-					opacity: .3;
+					opacity: 0.3;
 				}
 			}
 
@@ -359,7 +370,7 @@
 			display: flex;
 			align-items: center;
 
-			&>span {
+			> span {
 				font-size: 11px;
 				font-weight: 500;
 				line-height: 1.4;
@@ -395,19 +406,23 @@
 
 // Styles for the block's toolbar controls.
 .block-editor-block-toolbar {
+
 	.outermost-icon-block__rotate-button-90 {
+
 		svg {
 			transform: rotate(90deg);
 		}
 	}
 
 	.outermost-icon-block__rotate-button-180 {
+
 		svg {
 			transform: rotate(180deg);
 		}
 	}
 
 	.outermost-icon-block__rotate-button-270 {
+
 		svg {
 			transform: rotate(270deg);
 		}
@@ -419,6 +434,7 @@
 
 	// Styling for the options panel used for the block settings.
 	.outermost-icon-block__main-settings {
+
 		&.options-panel {
 			border-top: 1px solid #ddd;
 			display: grid;
@@ -434,20 +450,18 @@
 				grid-column: 1 / -1;
 				justify-content: space-between;
 				width: 100%;
-				-webkit-box-align: center;
-				-webkit-box-pack: justify;
-		
+
 				h2 {
 					font-weight: 500;
 					margin: 0;
 				}
-		
+
 				.options-panel-header__dropdown-menus {
 					line-height: 0;
 					margin: -4px 0;
-		
+
 					.components-button {
-						padding: 0px;
+						padding: 0;
 						min-width: 24px;
 					}
 				}
@@ -455,7 +469,7 @@
 
 			.options-panel-container {
 				display: grid;
-				grid-gap: 16px;
+				gap: 16px;
 
 				.components-base-control {
 					margin: 0;
@@ -471,6 +485,7 @@
 	// Styles for color settings.
 	.color-block-support-panel,
 	.outermost-icon-block__color-settings {
+
 		.outermost-icon-block__color-settings__help {
 			font-size: 12px;
 			font-style: normal;
@@ -478,7 +493,7 @@
 			grid-column: 1 / -1;
 			margin-top: 8px;
 			margin-bottom: 24px;
-	
+
 			&:first-child {
 				margin-top: 0;
 			}
@@ -504,6 +519,7 @@
 
 	// Styles for advanced settings.
 	.outermost-icon-block__title-control {
+
 		.components-external-link {
 			display: block;
 			margin-top: 8px;
@@ -514,10 +530,11 @@
 // Styles for the icon list grid
 .wp-block-outermost-icon-inserter__modal,
 .wp-block-outermost-icon-inserter__quick-inserter {
+
 	.icons-list {
 		display: flex;
 		flex-wrap: wrap;
-	
+
 		.icons-list__item {
 			align-items: stretch;
 			background: transparent;
@@ -532,26 +549,33 @@
 			justify-content: center;
 			padding: 8px;
 			position: relative;
-			transition: all .05s ease-in-out;
+			transition: all 0.05s ease-in-out;
+			// Flagged by declaration-property-value-keyword-no-deprecated.
+			// Kept as-is: the spec equivalent (overflow-wrap: anywhere)
+			// changes this flex item's min-content size, which would alter
+			// the icon grid layout. The full rule name does not fit within
+			// the 80-character comment limit at this indent depth.
+			// stylelint-disable-next-line
 			word-break: break-word;
-	
+
 			&:hover {
 				color: var(--wp-admin-theme-color) !important;
 			}
-	
+
 			&.has-no-icon-fill {
+
 				svg {
 					fill: none;
 				}
 			}
-	
+
 			.icons-list__item-icon {
 				border-radius: 2px;
 				color: #1e1e1e;
 				padding: 12px;
-				transition: all .05s ease-in-out;
+				transition: all 0.05s ease-in-out;
 			}
-	
+
 			.icons-list__item-title {
 				font-size: 12px;
 				padding: 4px 2px 8px;
@@ -565,13 +589,14 @@
 
 // Styles for the options dropdown popover.
 .options-panel__option-popover {
-	// Same size as core popovers. 
+	// Same size as core popovers.
 	.components-popover__content {
 		min-width: 240px;
 	}
 
 	.components-menu-item__button {
-		&[aria-disabled='true']:not(.is-tertiary) {
+
+		&[aria-disabled="true"]:not(.is-tertiary) {
 			color: #757575;
 			opacity: 1;
 
@@ -583,14 +608,16 @@
 		}
 
 		&.has-reset {
+
 			.components-menu-item__item {
 				min-width: 100%;
 			}
 		}
 
 		.components-menu-item__item {
+
 			.menu-item-reset {
-				color: var( --wp-admin-theme-color-darker-10 );
+				color: var(--wp-admin-theme-color-darker-10);
 				font-size: 11px;
 				font-weight: 500;
 				line-height: 1.4;
@@ -611,7 +638,7 @@
 }
 
 .wp-block-outermost-icon-block__link-popover {
-	
+
 	.block-editor-link-control__field {
 		margin: 8px;
 	}
