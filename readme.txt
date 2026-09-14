@@ -4,7 +4,7 @@ Tags:              icon, icon block, SVG, SVG block, block
 Requires at least: 6.6
 Tested up to:      7.1
 Requires PHP:      7.4
-Stable tag:        2.0.0
+Stable tag:        2.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,18 @@ Note that WordPress multisite installations have additional restrictions. "Unfil
 6. You are not limited to traditional icons. Any SVG-based graphic will work as well. The block will respect any hard-coded color/fill values in the provided SVG.
 
 == Changelog ==
+
+= 2.1.0 - 2026-09-14 =
+
+**Changed**
+
+* Updated "Tested up to" to WordPress 7.1. 
+* Updated minimum WordPress version to 6.6.
+* Updated all npm dependencies, including `@wordpress/scripts` 35, and rebuilt the plugin with the current build tooling.
+
+**Fixed**
+
+* Fixed all stylelint issues in the SCSS source. There are no visual changes.
 
 = 2.0.0 = 2024-11-08
 
