@@ -5,6 +5,10 @@
 	"author": "Nick Diego",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
+	"engines": {
+		"node": ">=22.13.0",
+		"npm": ">=10"
+	},
 	"scripts": {
 		"build": "wp-scripts build",
 		"format": "wp-scripts format",
